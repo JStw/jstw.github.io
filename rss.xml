@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jstw Blog]]></title><description><![CDATA[A personal blog powered by Gatsby.]]></description><link>https://jstw.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 31 May 2020 13:22:38 GMT</lastBuildDate><item><title><![CDATA[Create a Serverless API with AWS - Part 3]]></title><description><![CDATA[Hey hello there! If you didn’t read the previous post, I suggest you to read it before continuing. If you did, perfect, let’s go ;) The last…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-3/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-3/</guid><pubDate>Sun, 31 May 2020 11:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey hello there! If you didn’t read the previous post, I suggest you to &lt;a href=&quot;./../serverless-api-with-lambda-part-2&quot;&gt;read it&lt;/a&gt; before continuing. If you did, perfect, let’s go ;)&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jstw Blog]]></title><description><![CDATA[A personal blog powered by Gatsby.]]></description><link>https://jstw.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 31 May 2020 13:51:11 GMT</lastBuildDate><item><title><![CDATA[Create a Serverless API with AWS - Part 3]]></title><description><![CDATA[Hey hello there! If you didn’t read the previous post, I suggest you to read it before continuing. If you did, perfect, let’s go ;) The last…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-3/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-3/</guid><pubDate>Sun, 31 May 2020 11:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey hello there! If you didn’t read the previous post, I suggest you to &lt;a href=&quot;./../serverless-api-with-lambda-part-2&quot;&gt;read it&lt;/a&gt; before continuing. If you did, perfect, let’s go ;)&lt;/p&gt;
 &lt;p&gt;The last part is to integrate our Lambda Functions previously created, in a API. AWS provides a really great service for that, which is called &lt;strong&gt;API Gateway&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Find this service, by opening &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Networking &amp;amp; Content Delivery &amp;gt; API Gateway&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Let’s create an API by clicking the &lt;code class=&quot;language-text&quot;&gt;Create API&lt;/code&gt; button.&lt;/p&gt;
@@ -10,7 +10,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/3ade922f177a4cdbe7485a33910babb2/ee3fb/integration_1.png&quot;
+    href=&quot;/static/3ade922f177a4cdbe7485a33910babb2/ee3fb/integration1.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -23,12 +23,12 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Integration 1&quot;
         title=&quot;Integration 1&quot;
-        src=&quot;/static/3ade922f177a4cdbe7485a33910babb2/fcda8/integration_1.png&quot;
-        srcset=&quot;/static/3ade922f177a4cdbe7485a33910babb2/12f09/integration_1.png 148w,
-/static/3ade922f177a4cdbe7485a33910babb2/e4a3f/integration_1.png 295w,
-/static/3ade922f177a4cdbe7485a33910babb2/fcda8/integration_1.png 590w,
-/static/3ade922f177a4cdbe7485a33910babb2/efc66/integration_1.png 885w,
-/static/3ade922f177a4cdbe7485a33910babb2/ee3fb/integration_1.png 1144w&quot;
+        src=&quot;/static/3ade922f177a4cdbe7485a33910babb2/fcda8/integration1.png&quot;
+        srcset=&quot;/static/3ade922f177a4cdbe7485a33910babb2/12f09/integration1.png 148w,
+/static/3ade922f177a4cdbe7485a33910babb2/e4a3f/integration1.png 295w,
+/static/3ade922f177a4cdbe7485a33910babb2/fcda8/integration1.png 590w,
+/static/3ade922f177a4cdbe7485a33910babb2/efc66/integration1.png 885w,
+/static/3ade922f177a4cdbe7485a33910babb2/ee3fb/integration1.png 1144w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -41,7 +41,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/03266e80dde87402388cff82018de7d7/72372/integration_2.png&quot;
+    href=&quot;/static/03266e80dde87402388cff82018de7d7/72372/integration2.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -54,12 +54,12 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Integration 2&quot;
         title=&quot;Integration 2&quot;
-        src=&quot;/static/03266e80dde87402388cff82018de7d7/fcda8/integration_2.png&quot;
-        srcset=&quot;/static/03266e80dde87402388cff82018de7d7/12f09/integration_2.png 148w,
-/static/03266e80dde87402388cff82018de7d7/e4a3f/integration_2.png 295w,
-/static/03266e80dde87402388cff82018de7d7/fcda8/integration_2.png 590w,
-/static/03266e80dde87402388cff82018de7d7/efc66/integration_2.png 885w,
-/static/03266e80dde87402388cff82018de7d7/72372/integration_2.png 1149w&quot;
+        src=&quot;/static/03266e80dde87402388cff82018de7d7/fcda8/integration2.png&quot;
+        srcset=&quot;/static/03266e80dde87402388cff82018de7d7/12f09/integration2.png 148w,
+/static/03266e80dde87402388cff82018de7d7/e4a3f/integration2.png 295w,
+/static/03266e80dde87402388cff82018de7d7/fcda8/integration2.png 590w,
+/static/03266e80dde87402388cff82018de7d7/efc66/integration2.png 885w,
+/static/03266e80dde87402388cff82018de7d7/72372/integration2.png 1149w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -73,7 +73,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/464f518bbd960c472e3bf9cd78dfb6ed/e9d87/route_config_1.png&quot;
+    href=&quot;/static/464f518bbd960c472e3bf9cd78dfb6ed/e9d87/routeconfig1.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -86,12 +86,12 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Route Config example&quot;
         title=&quot;Route Config example&quot;
-        src=&quot;/static/464f518bbd960c472e3bf9cd78dfb6ed/fcda8/route_config_1.png&quot;
-        srcset=&quot;/static/464f518bbd960c472e3bf9cd78dfb6ed/12f09/route_config_1.png 148w,
-/static/464f518bbd960c472e3bf9cd78dfb6ed/e4a3f/route_config_1.png 295w,
-/static/464f518bbd960c472e3bf9cd78dfb6ed/fcda8/route_config_1.png 590w,
-/static/464f518bbd960c472e3bf9cd78dfb6ed/efc66/route_config_1.png 885w,
-/static/464f518bbd960c472e3bf9cd78dfb6ed/e9d87/route_config_1.png 1176w&quot;
+        src=&quot;/static/464f518bbd960c472e3bf9cd78dfb6ed/fcda8/routeconfig1.png&quot;
+        srcset=&quot;/static/464f518bbd960c472e3bf9cd78dfb6ed/12f09/routeconfig1.png 148w,
+/static/464f518bbd960c472e3bf9cd78dfb6ed/e4a3f/routeconfig1.png 295w,
+/static/464f518bbd960c472e3bf9cd78dfb6ed/fcda8/routeconfig1.png 590w,
+/static/464f518bbd960c472e3bf9cd78dfb6ed/efc66/routeconfig1.png 885w,
+/static/464f518bbd960c472e3bf9cd78dfb6ed/e9d87/routeconfig1.png 1176w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -105,7 +105,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/7198b48cd5e26caa026248d8c7d851f0/72372/route_config.png&quot;
+    href=&quot;/static/7198b48cd5e26caa026248d8c7d851f0/72372/routeconfig.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -118,12 +118,12 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Route Config&quot;
         title=&quot;Route Config&quot;
-        src=&quot;/static/7198b48cd5e26caa026248d8c7d851f0/fcda8/route_config.png&quot;
-        srcset=&quot;/static/7198b48cd5e26caa026248d8c7d851f0/12f09/route_config.png 148w,
-/static/7198b48cd5e26caa026248d8c7d851f0/e4a3f/route_config.png 295w,
-/static/7198b48cd5e26caa026248d8c7d851f0/fcda8/route_config.png 590w,
-/static/7198b48cd5e26caa026248d8c7d851f0/efc66/route_config.png 885w,
-/static/7198b48cd5e26caa026248d8c7d851f0/72372/route_config.png 1149w&quot;
+        src=&quot;/static/7198b48cd5e26caa026248d8c7d851f0/fcda8/routeconfig.png&quot;
+        srcset=&quot;/static/7198b48cd5e26caa026248d8c7d851f0/12f09/routeconfig.png 148w,
+/static/7198b48cd5e26caa026248d8c7d851f0/e4a3f/routeconfig.png 295w,
+/static/7198b48cd5e26caa026248d8c7d851f0/fcda8/routeconfig.png 590w,
+/static/7198b48cd5e26caa026248d8c7d851f0/efc66/routeconfig.png 885w,
+/static/7198b48cd5e26caa026248d8c7d851f0/72372/routeconfig.png 1149w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -137,7 +137,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/9dd7fb49ed4873643a7ff78479d12419/098c1/api_sucess.png&quot;
+    href=&quot;/static/9dd7fb49ed4873643a7ff78479d12419/098c1/apisuccess.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -150,13 +150,13 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;API Creation Success&quot;
         title=&quot;API Creation Success&quot;
-        src=&quot;/static/9dd7fb49ed4873643a7ff78479d12419/fcda8/api_sucess.png&quot;
-        srcset=&quot;/static/9dd7fb49ed4873643a7ff78479d12419/12f09/api_sucess.png 148w,
-/static/9dd7fb49ed4873643a7ff78479d12419/e4a3f/api_sucess.png 295w,
-/static/9dd7fb49ed4873643a7ff78479d12419/fcda8/api_sucess.png 590w,
-/static/9dd7fb49ed4873643a7ff78479d12419/efc66/api_sucess.png 885w,
-/static/9dd7fb49ed4873643a7ff78479d12419/c83ae/api_sucess.png 1180w,
-/static/9dd7fb49ed4873643a7ff78479d12419/098c1/api_sucess.png 1578w&quot;
+        src=&quot;/static/9dd7fb49ed4873643a7ff78479d12419/fcda8/apisuccess.png&quot;
+        srcset=&quot;/static/9dd7fb49ed4873643a7ff78479d12419/12f09/apisuccess.png 148w,
+/static/9dd7fb49ed4873643a7ff78479d12419/e4a3f/apisuccess.png 295w,
+/static/9dd7fb49ed4873643a7ff78479d12419/fcda8/apisuccess.png 590w,
+/static/9dd7fb49ed4873643a7ff78479d12419/efc66/apisuccess.png 885w,
+/static/9dd7fb49ed4873643a7ff78479d12419/c83ae/apisuccess.png 1180w,
+/static/9dd7fb49ed4873643a7ff78479d12419/098c1/apisuccess.png 1578w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -176,7 +176,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/d4d144082387abdbabac620bb62eebc1/63ec5/get_articles_curl_result.png&quot;
+    href=&quot;/static/d4d144082387abdbabac620bb62eebc1/63ec5/getarticlescurlresult.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -189,11 +189,11 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;GetArticles Output&quot;
         title=&quot;GetArticles Output&quot;
-        src=&quot;/static/d4d144082387abdbabac620bb62eebc1/fcda8/get_articles_curl_result.png&quot;
-        srcset=&quot;/static/d4d144082387abdbabac620bb62eebc1/12f09/get_articles_curl_result.png 148w,
-/static/d4d144082387abdbabac620bb62eebc1/e4a3f/get_articles_curl_result.png 295w,
-/static/d4d144082387abdbabac620bb62eebc1/fcda8/get_articles_curl_result.png 590w,
-/static/d4d144082387abdbabac620bb62eebc1/63ec5/get_articles_curl_result.png 812w&quot;
+        src=&quot;/static/d4d144082387abdbabac620bb62eebc1/fcda8/getarticlescurlresult.png&quot;
+        srcset=&quot;/static/d4d144082387abdbabac620bb62eebc1/12f09/getarticlescurlresult.png 148w,
+/static/d4d144082387abdbabac620bb62eebc1/e4a3f/getarticlescurlresult.png 295w,
+/static/d4d144082387abdbabac620bb62eebc1/fcda8/getarticlescurlresult.png 590w,
+/static/d4d144082387abdbabac620bb62eebc1/63ec5/getarticlescurlresult.png 812w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -209,7 +209,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/406d92d0f0ba7d80f1fe7eb985e351d4/23592/findby_articles_curl_result.png&quot;
+    href=&quot;/static/406d92d0f0ba7d80f1fe7eb985e351d4/23592/findbyarticlescurlresult.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -222,12 +222,12 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;FindByArticles Output&quot;
         title=&quot;FindByArticles Output&quot;
-        src=&quot;/static/406d92d0f0ba7d80f1fe7eb985e351d4/fcda8/findby_articles_curl_result.png&quot;
-        srcset=&quot;/static/406d92d0f0ba7d80f1fe7eb985e351d4/12f09/findby_articles_curl_result.png 148w,
-/static/406d92d0f0ba7d80f1fe7eb985e351d4/e4a3f/findby_articles_curl_result.png 295w,
-/static/406d92d0f0ba7d80f1fe7eb985e351d4/fcda8/findby_articles_curl_result.png 590w,
-/static/406d92d0f0ba7d80f1fe7eb985e351d4/efc66/findby_articles_curl_result.png 885w,
-/static/406d92d0f0ba7d80f1fe7eb985e351d4/23592/findby_articles_curl_result.png 1031w&quot;
+        src=&quot;/static/406d92d0f0ba7d80f1fe7eb985e351d4/fcda8/findbyarticlescurlresult.png&quot;
+        srcset=&quot;/static/406d92d0f0ba7d80f1fe7eb985e351d4/12f09/findbyarticlescurlresult.png 148w,
+/static/406d92d0f0ba7d80f1fe7eb985e351d4/e4a3f/findbyarticlescurlresult.png 295w,
+/static/406d92d0f0ba7d80f1fe7eb985e351d4/fcda8/findbyarticlescurlresult.png 590w,
+/static/406d92d0f0ba7d80f1fe7eb985e351d4/efc66/findbyarticlescurlresult.png 885w,
+/static/406d92d0f0ba7d80f1fe7eb985e351d4/23592/findbyarticlescurlresult.png 1031w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -247,7 +247,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/37594579eda8a2c6fd011704bc5ebef2/68947/created_article_curl_result.png&quot;
+    href=&quot;/static/37594579eda8a2c6fd011704bc5ebef2/68947/createdarticlecurlresult.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -260,13 +260,13 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;CreatedArticle Output&quot;
         title=&quot;CreatedArticle Output&quot;
-        src=&quot;/static/37594579eda8a2c6fd011704bc5ebef2/fcda8/created_article_curl_result.png&quot;
-        srcset=&quot;/static/37594579eda8a2c6fd011704bc5ebef2/12f09/created_article_curl_result.png 148w,
-/static/37594579eda8a2c6fd011704bc5ebef2/e4a3f/created_article_curl_result.png 295w,
-/static/37594579eda8a2c6fd011704bc5ebef2/fcda8/created_article_curl_result.png 590w,
-/static/37594579eda8a2c6fd011704bc5ebef2/efc66/created_article_curl_result.png 885w,
-/static/37594579eda8a2c6fd011704bc5ebef2/c83ae/created_article_curl_result.png 1180w,
-/static/37594579eda8a2c6fd011704bc5ebef2/68947/created_article_curl_result.png 1281w&quot;
+        src=&quot;/static/37594579eda8a2c6fd011704bc5ebef2/fcda8/createdarticlecurlresult.png&quot;
+        srcset=&quot;/static/37594579eda8a2c6fd011704bc5ebef2/12f09/createdarticlecurlresult.png 148w,
+/static/37594579eda8a2c6fd011704bc5ebef2/e4a3f/createdarticlecurlresult.png 295w,
+/static/37594579eda8a2c6fd011704bc5ebef2/fcda8/createdarticlecurlresult.png 590w,
+/static/37594579eda8a2c6fd011704bc5ebef2/efc66/createdarticlecurlresult.png 885w,
+/static/37594579eda8a2c6fd011704bc5ebef2/c83ae/createdarticlecurlresult.png 1180w,
+/static/37594579eda8a2c6fd011704bc5ebef2/68947/createdarticlecurlresult.png 1281w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -284,7 +284,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/47dd52da522f8f4e88fac839d982964a/f663d/updated_article_curl_result.png&quot;
+    href=&quot;/static/47dd52da522f8f4e88fac839d982964a/f663d/updatedarticlecurlresult.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -297,13 +297,13 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;UpdatedArticle Output&quot;
         title=&quot;UpdatedArticle Output&quot;
-        src=&quot;/static/47dd52da522f8f4e88fac839d982964a/fcda8/updated_article_curl_result.png&quot;
-        srcset=&quot;/static/47dd52da522f8f4e88fac839d982964a/12f09/updated_article_curl_result.png 148w,
-/static/47dd52da522f8f4e88fac839d982964a/e4a3f/updated_article_curl_result.png 295w,
-/static/47dd52da522f8f4e88fac839d982964a/fcda8/updated_article_curl_result.png 590w,
-/static/47dd52da522f8f4e88fac839d982964a/efc66/updated_article_curl_result.png 885w,
-/static/47dd52da522f8f4e88fac839d982964a/c83ae/updated_article_curl_result.png 1180w,
-/static/47dd52da522f8f4e88fac839d982964a/f663d/updated_article_curl_result.png 1511w&quot;
+        src=&quot;/static/47dd52da522f8f4e88fac839d982964a/fcda8/updatedarticlecurlresult.png&quot;
+        srcset=&quot;/static/47dd52da522f8f4e88fac839d982964a/12f09/updatedarticlecurlresult.png 148w,
+/static/47dd52da522f8f4e88fac839d982964a/e4a3f/updatedarticlecurlresult.png 295w,
+/static/47dd52da522f8f4e88fac839d982964a/fcda8/updatedarticlecurlresult.png 590w,
+/static/47dd52da522f8f4e88fac839d982964a/efc66/updatedarticlecurlresult.png 885w,
+/static/47dd52da522f8f4e88fac839d982964a/c83ae/updatedarticlecurlresult.png 1180w,
+/static/47dd52da522f8f4e88fac839d982964a/f663d/updatedarticlecurlresult.png 1511w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -319,7 +319,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/9e5d339502f41f0215232bb3521d443a/aa61c/deleted_article_curl_result.png&quot;
+    href=&quot;/static/9e5d339502f41f0215232bb3521d443a/aa61c/deletedarticlecurlresult.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -332,12 +332,12 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;DeletedArticle Output&quot;
         title=&quot;DeletedArticle Output&quot;
-        src=&quot;/static/9e5d339502f41f0215232bb3521d443a/fcda8/deleted_article_curl_result.png&quot;
-        srcset=&quot;/static/9e5d339502f41f0215232bb3521d443a/12f09/deleted_article_curl_result.png 148w,
-/static/9e5d339502f41f0215232bb3521d443a/e4a3f/deleted_article_curl_result.png 295w,
-/static/9e5d339502f41f0215232bb3521d443a/fcda8/deleted_article_curl_result.png 590w,
-/static/9e5d339502f41f0215232bb3521d443a/efc66/deleted_article_curl_result.png 885w,
-/static/9e5d339502f41f0215232bb3521d443a/aa61c/deleted_article_curl_result.png 1065w&quot;
+        src=&quot;/static/9e5d339502f41f0215232bb3521d443a/fcda8/deletedarticlecurlresult.png&quot;
+        srcset=&quot;/static/9e5d339502f41f0215232bb3521d443a/12f09/deletedarticlecurlresult.png 148w,
+/static/9e5d339502f41f0215232bb3521d443a/e4a3f/deletedarticlecurlresult.png 295w,
+/static/9e5d339502f41f0215232bb3521d443a/fcda8/deletedarticlecurlresult.png 590w,
+/static/9e5d339502f41f0215232bb3521d443a/efc66/deletedarticlecurlresult.png 885w,
+/static/9e5d339502f41f0215232bb3521d443a/aa61c/deletedarticlecurlresult.png 1065w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -367,13 +367,13 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;CORS&quot;
         title=&quot;CORS&quot;
-        src=&quot;/static/12a59859965ea26fdb376913b55791cd/fcda8/cors.png&quot;
-        srcset=&quot;/static/12a59859965ea26fdb376913b55791cd/12f09/cors.png 148w,
-/static/12a59859965ea26fdb376913b55791cd/e4a3f/cors.png 295w,
-/static/12a59859965ea26fdb376913b55791cd/fcda8/cors.png 590w,
-/static/12a59859965ea26fdb376913b55791cd/efc66/cors.png 885w,
-/static/12a59859965ea26fdb376913b55791cd/c83ae/cors.png 1180w,
-/static/12a59859965ea26fdb376913b55791cd/fba00/cors.png 1529w&quot;
+        src=&quot;/static/12a59859965ea26fdb376913b55791cd/fcda8/apicors.png&quot;
+        srcset=&quot;/static/12a59859965ea26fdb376913b55791cd/12f09/apicors.png 148w,
+/static/12a59859965ea26fdb376913b55791cd/e4a3f/apicors.png 295w,
+/static/12a59859965ea26fdb376913b55791cd/fcda8/apicors.png 590w,
+/static/12a59859965ea26fdb376913b55791cd/efc66/apicors.png 885w,
+/static/12a59859965ea26fdb376913b55791cd/c83ae/apicors.png 1180w,
+/static/12a59859965ea26fdb376913b55791cd/fba00/apicors.png 1529w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -387,7 +387,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/0428526e689ae48b2c17004fd645c92b/d9ed0/webapp_1.png&quot;
+    href=&quot;/static/0428526e689ae48b2c17004fd645c92b/d9ed0/webapp1.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -400,13 +400,13 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Web App&quot;
         title=&quot;Web App&quot;
-        src=&quot;/static/0428526e689ae48b2c17004fd645c92b/fcda8/webapp_1.png&quot;
-        srcset=&quot;/static/0428526e689ae48b2c17004fd645c92b/12f09/webapp_1.png 148w,
-/static/0428526e689ae48b2c17004fd645c92b/e4a3f/webapp_1.png 295w,
-/static/0428526e689ae48b2c17004fd645c92b/fcda8/webapp_1.png 590w,
-/static/0428526e689ae48b2c17004fd645c92b/efc66/webapp_1.png 885w,
-/static/0428526e689ae48b2c17004fd645c92b/c83ae/webapp_1.png 1180w,
-/static/0428526e689ae48b2c17004fd645c92b/d9ed0/webapp_1.png 1415w&quot;
+        src=&quot;/static/0428526e689ae48b2c17004fd645c92b/fcda8/webapp1.png&quot;
+        srcset=&quot;/static/0428526e689ae48b2c17004fd645c92b/12f09/webapp1.png 148w,
+/static/0428526e689ae48b2c17004fd645c92b/e4a3f/webapp1.png 295w,
+/static/0428526e689ae48b2c17004fd645c92b/fcda8/webapp1.png 590w,
+/static/0428526e689ae48b2c17004fd645c92b/efc66/webapp1.png 885w,
+/static/0428526e689ae48b2c17004fd645c92b/c83ae/webapp1.png 1180w,
+/static/0428526e689ae48b2c17004fd645c92b/d9ed0/webapp1.png 1415w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -434,7 +434,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/a712c81b450295927c99906ae5442c82/f349c/architecture.png&quot;
+    href=&quot;/static/a712c81b450295927c99906ae5442c82/f349c/archi.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -447,13 +447,13 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Architecture&quot;
         title=&quot;Architecture&quot;
-        src=&quot;/static/a712c81b450295927c99906ae5442c82/fcda8/architecture.png&quot;
-        srcset=&quot;/static/a712c81b450295927c99906ae5442c82/12f09/architecture.png 148w,
-/static/a712c81b450295927c99906ae5442c82/e4a3f/architecture.png 295w,
-/static/a712c81b450295927c99906ae5442c82/fcda8/architecture.png 590w,
-/static/a712c81b450295927c99906ae5442c82/efc66/architecture.png 885w,
-/static/a712c81b450295927c99906ae5442c82/c83ae/architecture.png 1180w,
-/static/a712c81b450295927c99906ae5442c82/f349c/architecture.png 2002w&quot;
+        src=&quot;/static/a712c81b450295927c99906ae5442c82/fcda8/archi.png&quot;
+        srcset=&quot;/static/a712c81b450295927c99906ae5442c82/12f09/archi.png 148w,
+/static/a712c81b450295927c99906ae5442c82/e4a3f/archi.png 295w,
+/static/a712c81b450295927c99906ae5442c82/fcda8/archi.png 590w,
+/static/a712c81b450295927c99906ae5442c82/efc66/archi.png 885w,
+/static/a712c81b450295927c99906ae5442c82/c83ae/archi.png 1180w,
+/static/a712c81b450295927c99906ae5442c82/f349c/archi.png 2002w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -508,7 +508,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/36efbd4cccb2c7b9b914ffd8cca06d30/68638/policy.png&quot;
+    href=&quot;/static/36efbd4cccb2c7b9b914ffd8cca06d30/68638/iampolicy.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -521,13 +521,13 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;IAM Policy&quot;
         title=&quot;IAM Policy&quot;
-        src=&quot;/static/36efbd4cccb2c7b9b914ffd8cca06d30/fcda8/policy.png&quot;
-        srcset=&quot;/static/36efbd4cccb2c7b9b914ffd8cca06d30/12f09/policy.png 148w,
-/static/36efbd4cccb2c7b9b914ffd8cca06d30/e4a3f/policy.png 295w,
-/static/36efbd4cccb2c7b9b914ffd8cca06d30/fcda8/policy.png 590w,
-/static/36efbd4cccb2c7b9b914ffd8cca06d30/efc66/policy.png 885w,
-/static/36efbd4cccb2c7b9b914ffd8cca06d30/c83ae/policy.png 1180w,
-/static/36efbd4cccb2c7b9b914ffd8cca06d30/68638/policy.png 1510w&quot;
+        src=&quot;/static/36efbd4cccb2c7b9b914ffd8cca06d30/fcda8/iampolicy.png&quot;
+        srcset=&quot;/static/36efbd4cccb2c7b9b914ffd8cca06d30/12f09/iampolicy.png 148w,
+/static/36efbd4cccb2c7b9b914ffd8cca06d30/e4a3f/iampolicy.png 295w,
+/static/36efbd4cccb2c7b9b914ffd8cca06d30/fcda8/iampolicy.png 590w,
+/static/36efbd4cccb2c7b9b914ffd8cca06d30/efc66/iampolicy.png 885w,
+/static/36efbd4cccb2c7b9b914ffd8cca06d30/c83ae/iampolicy.png 1180w,
+/static/36efbd4cccb2c7b9b914ffd8cca06d30/68638/iampolicy.png 1510w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -547,7 +547,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/d9777715be2c3552e071d8ef5fe52d59/fe8a7/policy_role.png&quot;
+    href=&quot;/static/d9777715be2c3552e071d8ef5fe52d59/fe8a7/policyrole.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -560,13 +560,13 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;IAM Policy Role&quot;
         title=&quot;IAM Policy Role&quot;
-        src=&quot;/static/d9777715be2c3552e071d8ef5fe52d59/fcda8/policy_role.png&quot;
-        srcset=&quot;/static/d9777715be2c3552e071d8ef5fe52d59/12f09/policy_role.png 148w,
-/static/d9777715be2c3552e071d8ef5fe52d59/e4a3f/policy_role.png 295w,
-/static/d9777715be2c3552e071d8ef5fe52d59/fcda8/policy_role.png 590w,
-/static/d9777715be2c3552e071d8ef5fe52d59/efc66/policy_role.png 885w,
-/static/d9777715be2c3552e071d8ef5fe52d59/c83ae/policy_role.png 1180w,
-/static/d9777715be2c3552e071d8ef5fe52d59/fe8a7/policy_role.png 1223w&quot;
+        src=&quot;/static/d9777715be2c3552e071d8ef5fe52d59/fcda8/policyrole.png&quot;
+        srcset=&quot;/static/d9777715be2c3552e071d8ef5fe52d59/12f09/policyrole.png 148w,
+/static/d9777715be2c3552e071d8ef5fe52d59/e4a3f/policyrole.png 295w,
+/static/d9777715be2c3552e071d8ef5fe52d59/fcda8/policyrole.png 590w,
+/static/d9777715be2c3552e071d8ef5fe52d59/efc66/policyrole.png 885w,
+/static/d9777715be2c3552e071d8ef5fe52d59/c83ae/policyrole.png 1180w,
+/static/d9777715be2c3552e071d8ef5fe52d59/fe8a7/policyrole.png 1223w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -580,7 +580,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/0e4fe6d90009bcd47c37629bd3129650/85053/create_role.png&quot;
+    href=&quot;/static/0e4fe6d90009bcd47c37629bd3129650/85053/createrole.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -593,13 +593,13 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;IAM Role created&quot;
         title=&quot;IAM Role created&quot;
-        src=&quot;/static/0e4fe6d90009bcd47c37629bd3129650/fcda8/create_role.png&quot;
-        srcset=&quot;/static/0e4fe6d90009bcd47c37629bd3129650/12f09/create_role.png 148w,
-/static/0e4fe6d90009bcd47c37629bd3129650/e4a3f/create_role.png 295w,
-/static/0e4fe6d90009bcd47c37629bd3129650/fcda8/create_role.png 590w,
-/static/0e4fe6d90009bcd47c37629bd3129650/efc66/create_role.png 885w,
-/static/0e4fe6d90009bcd47c37629bd3129650/c83ae/create_role.png 1180w,
-/static/0e4fe6d90009bcd47c37629bd3129650/85053/create_role.png 1225w&quot;
+        src=&quot;/static/0e4fe6d90009bcd47c37629bd3129650/fcda8/createrole.png&quot;
+        srcset=&quot;/static/0e4fe6d90009bcd47c37629bd3129650/12f09/createrole.png 148w,
+/static/0e4fe6d90009bcd47c37629bd3129650/e4a3f/createrole.png 295w,
+/static/0e4fe6d90009bcd47c37629bd3129650/fcda8/createrole.png 590w,
+/static/0e4fe6d90009bcd47c37629bd3129650/efc66/createrole.png 885w,
+/static/0e4fe6d90009bcd47c37629bd3129650/c83ae/createrole.png 1180w,
+/static/0e4fe6d90009bcd47c37629bd3129650/85053/createrole.png 1225w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -618,7 +618,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/0cef0d74d8b2190f77db61124d3f33f4/fbfd6/lambda_role.png&quot;
+    href=&quot;/static/0cef0d74d8b2190f77db61124d3f33f4/fbfd6/lambdarole.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -631,13 +631,13 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Lambda use role&quot;
         title=&quot;Lambda use role&quot;
-        src=&quot;/static/0cef0d74d8b2190f77db61124d3f33f4/fcda8/lambda_role.png&quot;
-        srcset=&quot;/static/0cef0d74d8b2190f77db61124d3f33f4/12f09/lambda_role.png 148w,
-/static/0cef0d74d8b2190f77db61124d3f33f4/e4a3f/lambda_role.png 295w,
-/static/0cef0d74d8b2190f77db61124d3f33f4/fcda8/lambda_role.png 590w,
-/static/0cef0d74d8b2190f77db61124d3f33f4/efc66/lambda_role.png 885w,
-/static/0cef0d74d8b2190f77db61124d3f33f4/c83ae/lambda_role.png 1180w,
-/static/0cef0d74d8b2190f77db61124d3f33f4/fbfd6/lambda_role.png 1357w&quot;
+        src=&quot;/static/0cef0d74d8b2190f77db61124d3f33f4/fcda8/lambdarole.png&quot;
+        srcset=&quot;/static/0cef0d74d8b2190f77db61124d3f33f4/12f09/lambdarole.png 148w,
+/static/0cef0d74d8b2190f77db61124d3f33f4/e4a3f/lambdarole.png 295w,
+/static/0cef0d74d8b2190f77db61124d3f33f4/fcda8/lambdarole.png 590w,
+/static/0cef0d74d8b2190f77db61124d3f33f4/efc66/lambdarole.png 885w,
+/static/0cef0d74d8b2190f77db61124d3f33f4/c83ae/lambdarole.png 1180w,
+/static/0cef0d74d8b2190f77db61124d3f33f4/fbfd6/lambdarole.png 1357w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -687,7 +687,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/7490e24607018932f2231dbd1ee9b52b/bf8c1/getarticles_lambda_test.png&quot;
+    href=&quot;/static/7490e24607018932f2231dbd1ee9b52b/bf8c1/getarticleslambdatest.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -700,13 +700,13 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Lambda GetArticles Success&quot;
         title=&quot;Lambda GetArticles Success&quot;
-        src=&quot;/static/7490e24607018932f2231dbd1ee9b52b/fcda8/getarticles_lambda_test.png&quot;
-        srcset=&quot;/static/7490e24607018932f2231dbd1ee9b52b/12f09/getarticles_lambda_test.png 148w,
-/static/7490e24607018932f2231dbd1ee9b52b/e4a3f/getarticles_lambda_test.png 295w,
-/static/7490e24607018932f2231dbd1ee9b52b/fcda8/getarticles_lambda_test.png 590w,
-/static/7490e24607018932f2231dbd1ee9b52b/efc66/getarticles_lambda_test.png 885w,
-/static/7490e24607018932f2231dbd1ee9b52b/c83ae/getarticles_lambda_test.png 1180w,
-/static/7490e24607018932f2231dbd1ee9b52b/bf8c1/getarticles_lambda_test.png 1722w&quot;
+        src=&quot;/static/7490e24607018932f2231dbd1ee9b52b/fcda8/getarticleslambdatest.png&quot;
+        srcset=&quot;/static/7490e24607018932f2231dbd1ee9b52b/12f09/getarticleslambdatest.png 148w,
+/static/7490e24607018932f2231dbd1ee9b52b/e4a3f/getarticleslambdatest.png 295w,
+/static/7490e24607018932f2231dbd1ee9b52b/fcda8/getarticleslambdatest.png 590w,
+/static/7490e24607018932f2231dbd1ee9b52b/efc66/getarticleslambdatest.png 885w,
+/static/7490e24607018932f2231dbd1ee9b52b/c83ae/getarticleslambdatest.png 1180w,
+/static/7490e24607018932f2231dbd1ee9b52b/bf8c1/getarticleslambdatest.png 1722w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -731,7 +731,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/20859cd36e1fe92e375b56f725693773/b5a09/findbytitlecategory_settings.png&quot;
+    href=&quot;/static/20859cd36e1fe92e375b56f725693773/b5a09/findbytitlecategory.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -744,13 +744,13 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Lambda FindBy Settings&quot;
         title=&quot;Lambda FindBy Settings&quot;
-        src=&quot;/static/20859cd36e1fe92e375b56f725693773/fcda8/findbytitlecategory_settings.png&quot;
-        srcset=&quot;/static/20859cd36e1fe92e375b56f725693773/12f09/findbytitlecategory_settings.png 148w,
-/static/20859cd36e1fe92e375b56f725693773/e4a3f/findbytitlecategory_settings.png 295w,
-/static/20859cd36e1fe92e375b56f725693773/fcda8/findbytitlecategory_settings.png 590w,
-/static/20859cd36e1fe92e375b56f725693773/efc66/findbytitlecategory_settings.png 885w,
-/static/20859cd36e1fe92e375b56f725693773/c83ae/findbytitlecategory_settings.png 1180w,
-/static/20859cd36e1fe92e375b56f725693773/b5a09/findbytitlecategory_settings.png 1360w&quot;
+        src=&quot;/static/20859cd36e1fe92e375b56f725693773/fcda8/findbytitlecategory.png&quot;
+        srcset=&quot;/static/20859cd36e1fe92e375b56f725693773/12f09/findbytitlecategory.png 148w,
+/static/20859cd36e1fe92e375b56f725693773/e4a3f/findbytitlecategory.png 295w,
+/static/20859cd36e1fe92e375b56f725693773/fcda8/findbytitlecategory.png 590w,
+/static/20859cd36e1fe92e375b56f725693773/efc66/findbytitlecategory.png 885w,
+/static/20859cd36e1fe92e375b56f725693773/c83ae/findbytitlecategory.png 1180w,
+/static/20859cd36e1fe92e375b56f725693773/b5a09/findbytitlecategory.png 1360w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -796,7 +796,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; client&lt;span
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/228597a51ece3eaf826ea0a6e71373b8/8f0f9/findby_test.png&quot;
+    href=&quot;/static/228597a51ece3eaf826ea0a6e71373b8/8f0f9/findbytest.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -809,12 +809,12 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; client&lt;span
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;FindBy test event&quot;
         title=&quot;FindBy test event&quot;
-        src=&quot;/static/228597a51ece3eaf826ea0a6e71373b8/fcda8/findby_test.png&quot;
-        srcset=&quot;/static/228597a51ece3eaf826ea0a6e71373b8/12f09/findby_test.png 148w,
-/static/228597a51ece3eaf826ea0a6e71373b8/e4a3f/findby_test.png 295w,
-/static/228597a51ece3eaf826ea0a6e71373b8/fcda8/findby_test.png 590w,
-/static/228597a51ece3eaf826ea0a6e71373b8/efc66/findby_test.png 885w,
-/static/228597a51ece3eaf826ea0a6e71373b8/8f0f9/findby_test.png 1045w&quot;
+        src=&quot;/static/228597a51ece3eaf826ea0a6e71373b8/fcda8/findbytest.png&quot;
+        srcset=&quot;/static/228597a51ece3eaf826ea0a6e71373b8/12f09/findbytest.png 148w,
+/static/228597a51ece3eaf826ea0a6e71373b8/e4a3f/findbytest.png 295w,
+/static/228597a51ece3eaf826ea0a6e71373b8/fcda8/findbytest.png 590w,
+/static/228597a51ece3eaf826ea0a6e71373b8/efc66/findbytest.png 885w,
+/static/228597a51ece3eaf826ea0a6e71373b8/8f0f9/findbytest.png 1045w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -828,7 +828,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; client&lt;span
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/1667a05bf6e5695273471845d00f3095/bf8c1/findby_result.png&quot;
+    href=&quot;/static/1667a05bf6e5695273471845d00f3095/bf8c1/findbyresult.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -841,13 +841,13 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; client&lt;span
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;FindBy test event&quot;
         title=&quot;FindBy test event&quot;
-        src=&quot;/static/1667a05bf6e5695273471845d00f3095/fcda8/findby_result.png&quot;
-        srcset=&quot;/static/1667a05bf6e5695273471845d00f3095/12f09/findby_result.png 148w,
-/static/1667a05bf6e5695273471845d00f3095/e4a3f/findby_result.png 295w,
-/static/1667a05bf6e5695273471845d00f3095/fcda8/findby_result.png 590w,
-/static/1667a05bf6e5695273471845d00f3095/efc66/findby_result.png 885w,
-/static/1667a05bf6e5695273471845d00f3095/c83ae/findby_result.png 1180w,
-/static/1667a05bf6e5695273471845d00f3095/bf8c1/findby_result.png 1722w&quot;
+        src=&quot;/static/1667a05bf6e5695273471845d00f3095/fcda8/findbyresult.png&quot;
+        srcset=&quot;/static/1667a05bf6e5695273471845d00f3095/12f09/findbyresult.png 148w,
+/static/1667a05bf6e5695273471845d00f3095/e4a3f/findbyresult.png 295w,
+/static/1667a05bf6e5695273471845d00f3095/fcda8/findbyresult.png 590w,
+/static/1667a05bf6e5695273471845d00f3095/efc66/findbyresult.png 885w,
+/static/1667a05bf6e5695273471845d00f3095/c83ae/findbyresult.png 1180w,
+/static/1667a05bf6e5695273471845d00f3095/bf8c1/findbyresult.png 1722w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -929,7 +929,7 @@ lambda_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/12e4b13574727a42d9caeaecd02288ee/fd84e/create_articletest.png&quot;
+    href=&quot;/static/12e4b13574727a42d9caeaecd02288ee/fd84e/createarticletest.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -942,12 +942,12 @@ lambda_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;FindBy test event&quot;
         title=&quot;FindBy test event&quot;
-        src=&quot;/static/12e4b13574727a42d9caeaecd02288ee/fcda8/create_articletest.png&quot;
-        srcset=&quot;/static/12e4b13574727a42d9caeaecd02288ee/12f09/create_articletest.png 148w,
-/static/12e4b13574727a42d9caeaecd02288ee/e4a3f/create_articletest.png 295w,
-/static/12e4b13574727a42d9caeaecd02288ee/fcda8/create_articletest.png 590w,
-/static/12e4b13574727a42d9caeaecd02288ee/efc66/create_articletest.png 885w,
-/static/12e4b13574727a42d9caeaecd02288ee/fd84e/create_articletest.png 1056w&quot;
+        src=&quot;/static/12e4b13574727a42d9caeaecd02288ee/fcda8/createarticletest.png&quot;
+        srcset=&quot;/static/12e4b13574727a42d9caeaecd02288ee/12f09/createarticletest.png 148w,
+/static/12e4b13574727a42d9caeaecd02288ee/e4a3f/createarticletest.png 295w,
+/static/12e4b13574727a42d9caeaecd02288ee/fcda8/createarticletest.png 590w,
+/static/12e4b13574727a42d9caeaecd02288ee/efc66/createarticletest.png 885w,
+/static/12e4b13574727a42d9caeaecd02288ee/fd84e/createarticletest.png 1056w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -962,7 +962,7 @@ lambda_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/29749a014314a0e79755c72ee3b176b4/d0143/lambda_timeout.png&quot;
+    href=&quot;/static/29749a014314a0e79755c72ee3b176b4/d0143/lambdatimeout.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -975,12 +975,12 @@ lambda_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Increase Lambda Timeout&quot;
         title=&quot;Increase Lambda Timeout&quot;
-        src=&quot;/static/29749a014314a0e79755c72ee3b176b4/fcda8/lambda_timeout.png&quot;
-        srcset=&quot;/static/29749a014314a0e79755c72ee3b176b4/12f09/lambda_timeout.png 148w,
-/static/29749a014314a0e79755c72ee3b176b4/e4a3f/lambda_timeout.png 295w,
-/static/29749a014314a0e79755c72ee3b176b4/fcda8/lambda_timeout.png 590w,
-/static/29749a014314a0e79755c72ee3b176b4/efc66/lambda_timeout.png 885w,
-/static/29749a014314a0e79755c72ee3b176b4/d0143/lambda_timeout.png 1025w&quot;
+        src=&quot;/static/29749a014314a0e79755c72ee3b176b4/fcda8/lambdatimeout.png&quot;
+        srcset=&quot;/static/29749a014314a0e79755c72ee3b176b4/12f09/lambdatimeout.png 148w,
+/static/29749a014314a0e79755c72ee3b176b4/e4a3f/lambdatimeout.png 295w,
+/static/29749a014314a0e79755c72ee3b176b4/fcda8/lambdatimeout.png 590w,
+/static/29749a014314a0e79755c72ee3b176b4/efc66/lambdatimeout.png 885w,
+/static/29749a014314a0e79755c72ee3b176b4/d0143/lambdatimeout.png 1025w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -997,7 +997,7 @@ lambda_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/9b04afd01908050b0149d2b90cff9306/0f903/create_result.png&quot;
+    href=&quot;/static/9b04afd01908050b0149d2b90cff9306/0f903/createresult.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1010,13 +1010,13 @@ lambda_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Create Article success&quot;
         title=&quot;Create Article success&quot;
-        src=&quot;/static/9b04afd01908050b0149d2b90cff9306/fcda8/create_result.png&quot;
-        srcset=&quot;/static/9b04afd01908050b0149d2b90cff9306/12f09/create_result.png 148w,
-/static/9b04afd01908050b0149d2b90cff9306/e4a3f/create_result.png 295w,
-/static/9b04afd01908050b0149d2b90cff9306/fcda8/create_result.png 590w,
-/static/9b04afd01908050b0149d2b90cff9306/efc66/create_result.png 885w,
-/static/9b04afd01908050b0149d2b90cff9306/c83ae/create_result.png 1180w,
-/static/9b04afd01908050b0149d2b90cff9306/0f903/create_result.png 1719w&quot;
+        src=&quot;/static/9b04afd01908050b0149d2b90cff9306/fcda8/createresult.png&quot;
+        srcset=&quot;/static/9b04afd01908050b0149d2b90cff9306/12f09/createresult.png 148w,
+/static/9b04afd01908050b0149d2b90cff9306/e4a3f/createresult.png 295w,
+/static/9b04afd01908050b0149d2b90cff9306/fcda8/createresult.png 590w,
+/static/9b04afd01908050b0149d2b90cff9306/efc66/createresult.png 885w,
+/static/9b04afd01908050b0149d2b90cff9306/c83ae/createresult.png 1180w,
+/static/9b04afd01908050b0149d2b90cff9306/0f903/createresult.png 1719w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -1083,7 +1083,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/b168a192c163c9343552cfe23f341811/ee9b6/update_test.png&quot;
+    href=&quot;/static/b168a192c163c9343552cfe23f341811/ee9b6/updatetest.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1096,12 +1096,12 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Update Article Test Event&quot;
         title=&quot;Update Article Test Event&quot;
-        src=&quot;/static/b168a192c163c9343552cfe23f341811/fcda8/update_test.png&quot;
-        srcset=&quot;/static/b168a192c163c9343552cfe23f341811/12f09/update_test.png 148w,
-/static/b168a192c163c9343552cfe23f341811/e4a3f/update_test.png 295w,
-/static/b168a192c163c9343552cfe23f341811/fcda8/update_test.png 590w,
-/static/b168a192c163c9343552cfe23f341811/efc66/update_test.png 885w,
-/static/b168a192c163c9343552cfe23f341811/ee9b6/update_test.png 1041w&quot;
+        src=&quot;/static/b168a192c163c9343552cfe23f341811/fcda8/updatetest.png&quot;
+        srcset=&quot;/static/b168a192c163c9343552cfe23f341811/12f09/updatetest.png 148w,
+/static/b168a192c163c9343552cfe23f341811/e4a3f/updatetest.png 295w,
+/static/b168a192c163c9343552cfe23f341811/fcda8/updatetest.png 590w,
+/static/b168a192c163c9343552cfe23f341811/efc66/updatetest.png 885w,
+/static/b168a192c163c9343552cfe23f341811/ee9b6/updatetest.png 1041w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -1115,7 +1115,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/3cb38152c91c940a7100947b68c06cda/4ed6a/update_success.png&quot;
+    href=&quot;/static/3cb38152c91c940a7100947b68c06cda/4ed6a/updatesuccess.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1128,13 +1128,13 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Update Article Test Event&quot;
         title=&quot;Update Article Test Event&quot;
-        src=&quot;/static/3cb38152c91c940a7100947b68c06cda/fcda8/update_success.png&quot;
-        srcset=&quot;/static/3cb38152c91c940a7100947b68c06cda/12f09/update_success.png 148w,
-/static/3cb38152c91c940a7100947b68c06cda/e4a3f/update_success.png 295w,
-/static/3cb38152c91c940a7100947b68c06cda/fcda8/update_success.png 590w,
-/static/3cb38152c91c940a7100947b68c06cda/efc66/update_success.png 885w,
-/static/3cb38152c91c940a7100947b68c06cda/c83ae/update_success.png 1180w,
-/static/3cb38152c91c940a7100947b68c06cda/4ed6a/update_success.png 1713w&quot;
+        src=&quot;/static/3cb38152c91c940a7100947b68c06cda/fcda8/updatesuccess.png&quot;
+        srcset=&quot;/static/3cb38152c91c940a7100947b68c06cda/12f09/updatesuccess.png 148w,
+/static/3cb38152c91c940a7100947b68c06cda/e4a3f/updatesuccess.png 295w,
+/static/3cb38152c91c940a7100947b68c06cda/fcda8/updatesuccess.png 590w,
+/static/3cb38152c91c940a7100947b68c06cda/efc66/updatesuccess.png 885w,
+/static/3cb38152c91c940a7100947b68c06cda/c83ae/updatesuccess.png 1180w,
+/static/3cb38152c91c940a7100947b68c06cda/4ed6a/updatesuccess.png 1713w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -1148,7 +1148,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/79233c457756de4feb53269d72c47be7/e8d6f/blog_table_updated.png&quot;
+    href=&quot;/static/79233c457756de4feb53269d72c47be7/e8d6f/tableupdated.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1161,13 +1161,13 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Blog Table Updated&quot;
         title=&quot;Blog Table Updated&quot;
-        src=&quot;/static/79233c457756de4feb53269d72c47be7/fcda8/blog_table_updated.png&quot;
-        srcset=&quot;/static/79233c457756de4feb53269d72c47be7/12f09/blog_table_updated.png 148w,
-/static/79233c457756de4feb53269d72c47be7/e4a3f/blog_table_updated.png 295w,
-/static/79233c457756de4feb53269d72c47be7/fcda8/blog_table_updated.png 590w,
-/static/79233c457756de4feb53269d72c47be7/efc66/blog_table_updated.png 885w,
-/static/79233c457756de4feb53269d72c47be7/c83ae/blog_table_updated.png 1180w,
-/static/79233c457756de4feb53269d72c47be7/e8d6f/blog_table_updated.png 1273w&quot;
+        src=&quot;/static/79233c457756de4feb53269d72c47be7/fcda8/tableupdated.png&quot;
+        srcset=&quot;/static/79233c457756de4feb53269d72c47be7/12f09/tableupdated.png 148w,
+/static/79233c457756de4feb53269d72c47be7/e4a3f/tableupdated.png 295w,
+/static/79233c457756de4feb53269d72c47be7/fcda8/tableupdated.png 590w,
+/static/79233c457756de4feb53269d72c47be7/efc66/tableupdated.png 885w,
+/static/79233c457756de4feb53269d72c47be7/c83ae/tableupdated.png 1180w,
+/static/79233c457756de4feb53269d72c47be7/e8d6f/tableupdated.png 1273w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -1206,7 +1206,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/19a615e02b1e0a628d2efd72e6d0d007/ffe34/delete_event.png&quot;
+    href=&quot;/static/19a615e02b1e0a628d2efd72e6d0d007/ffe34/deleteevent.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1219,12 +1219,12 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Delete Event&quot;
         title=&quot;Delete Event&quot;
-        src=&quot;/static/19a615e02b1e0a628d2efd72e6d0d007/fcda8/delete_event.png&quot;
-        srcset=&quot;/static/19a615e02b1e0a628d2efd72e6d0d007/12f09/delete_event.png 148w,
-/static/19a615e02b1e0a628d2efd72e6d0d007/e4a3f/delete_event.png 295w,
-/static/19a615e02b1e0a628d2efd72e6d0d007/fcda8/delete_event.png 590w,
-/static/19a615e02b1e0a628d2efd72e6d0d007/efc66/delete_event.png 885w,
-/static/19a615e02b1e0a628d2efd72e6d0d007/ffe34/delete_event.png 1055w&quot;
+        src=&quot;/static/19a615e02b1e0a628d2efd72e6d0d007/fcda8/deleteevent.png&quot;
+        srcset=&quot;/static/19a615e02b1e0a628d2efd72e6d0d007/12f09/deleteevent.png 148w,
+/static/19a615e02b1e0a628d2efd72e6d0d007/e4a3f/deleteevent.png 295w,
+/static/19a615e02b1e0a628d2efd72e6d0d007/fcda8/deleteevent.png 590w,
+/static/19a615e02b1e0a628d2efd72e6d0d007/efc66/deleteevent.png 885w,
+/static/19a615e02b1e0a628d2efd72e6d0d007/ffe34/deleteevent.png 1055w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -1238,7 +1238,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/abe9712f8ebe7fc8a79ad38b604c297a/0d98f/table_after_delete.png&quot;
+    href=&quot;/static/abe9712f8ebe7fc8a79ad38b604c297a/0d98f/tableafterdelete.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1251,13 +1251,13 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Table after delete&quot;
         title=&quot;Table after delete&quot;
-        src=&quot;/static/abe9712f8ebe7fc8a79ad38b604c297a/fcda8/table_after_delete.png&quot;
-        srcset=&quot;/static/abe9712f8ebe7fc8a79ad38b604c297a/12f09/table_after_delete.png 148w,
-/static/abe9712f8ebe7fc8a79ad38b604c297a/e4a3f/table_after_delete.png 295w,
-/static/abe9712f8ebe7fc8a79ad38b604c297a/fcda8/table_after_delete.png 590w,
-/static/abe9712f8ebe7fc8a79ad38b604c297a/efc66/table_after_delete.png 885w,
-/static/abe9712f8ebe7fc8a79ad38b604c297a/c83ae/table_after_delete.png 1180w,
-/static/abe9712f8ebe7fc8a79ad38b604c297a/0d98f/table_after_delete.png 1276w&quot;
+        src=&quot;/static/abe9712f8ebe7fc8a79ad38b604c297a/fcda8/tableafterdelete.png&quot;
+        srcset=&quot;/static/abe9712f8ebe7fc8a79ad38b604c297a/12f09/tableafterdelete.png 148w,
+/static/abe9712f8ebe7fc8a79ad38b604c297a/e4a3f/tableafterdelete.png 295w,
+/static/abe9712f8ebe7fc8a79ad38b604c297a/fcda8/tableafterdelete.png 590w,
+/static/abe9712f8ebe7fc8a79ad38b604c297a/efc66/tableafterdelete.png 885w,
+/static/abe9712f8ebe7fc8a79ad38b604c297a/c83ae/tableafterdelete.png 1180w,
+/static/abe9712f8ebe7fc8a79ad38b604c297a/0d98f/tableafterdelete.png 1276w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -1290,7 +1290,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/a712c81b450295927c99906ae5442c82/f349c/architecture.png&quot;
+    href=&quot;/static/a712c81b450295927c99906ae5442c82/f349c/archi.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1303,13 +1303,13 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Architecture AWS&quot;
         title=&quot;Architecture AWS&quot;
-        src=&quot;/static/a712c81b450295927c99906ae5442c82/fcda8/architecture.png&quot;
-        srcset=&quot;/static/a712c81b450295927c99906ae5442c82/12f09/architecture.png 148w,
-/static/a712c81b450295927c99906ae5442c82/e4a3f/architecture.png 295w,
-/static/a712c81b450295927c99906ae5442c82/fcda8/architecture.png 590w,
-/static/a712c81b450295927c99906ae5442c82/efc66/architecture.png 885w,
-/static/a712c81b450295927c99906ae5442c82/c83ae/architecture.png 1180w,
-/static/a712c81b450295927c99906ae5442c82/f349c/architecture.png 2002w&quot;
+        src=&quot;/static/a712c81b450295927c99906ae5442c82/fcda8/archi.png&quot;
+        srcset=&quot;/static/a712c81b450295927c99906ae5442c82/12f09/archi.png 148w,
+/static/a712c81b450295927c99906ae5442c82/e4a3f/archi.png 295w,
+/static/a712c81b450295927c99906ae5442c82/fcda8/archi.png 590w,
+/static/a712c81b450295927c99906ae5442c82/efc66/archi.png 885w,
+/static/a712c81b450295927c99906ae5442c82/c83ae/archi.png 1180w,
+/static/a712c81b450295927c99906ae5442c82/f349c/archi.png 2002w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -1333,7 +1333,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/9ce9bacb311be4f2e53c772f201fd1e1/187fa/dynamodb_creation_Table.png&quot;
+    href=&quot;/static/9ce9bacb311be4f2e53c772f201fd1e1/187fa/tablecreation.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1346,13 +1346,13 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Dynamodb Blog Table&quot;
         title=&quot;Dynamodb Blog Table&quot;
-        src=&quot;/static/9ce9bacb311be4f2e53c772f201fd1e1/fcda8/dynamodb_creation_Table.png&quot;
-        srcset=&quot;/static/9ce9bacb311be4f2e53c772f201fd1e1/12f09/dynamodb_creation_Table.png 148w,
-/static/9ce9bacb311be4f2e53c772f201fd1e1/e4a3f/dynamodb_creation_Table.png 295w,
-/static/9ce9bacb311be4f2e53c772f201fd1e1/fcda8/dynamodb_creation_Table.png 590w,
-/static/9ce9bacb311be4f2e53c772f201fd1e1/efc66/dynamodb_creation_Table.png 885w,
-/static/9ce9bacb311be4f2e53c772f201fd1e1/c83ae/dynamodb_creation_Table.png 1180w,
-/static/9ce9bacb311be4f2e53c772f201fd1e1/187fa/dynamodb_creation_Table.png 1194w&quot;
+        src=&quot;/static/9ce9bacb311be4f2e53c772f201fd1e1/fcda8/tablecreation.png&quot;
+        srcset=&quot;/static/9ce9bacb311be4f2e53c772f201fd1e1/12f09/tablecreation.png 148w,
+/static/9ce9bacb311be4f2e53c772f201fd1e1/e4a3f/tablecreation.png 295w,
+/static/9ce9bacb311be4f2e53c772f201fd1e1/fcda8/tablecreation.png 590w,
+/static/9ce9bacb311be4f2e53c772f201fd1e1/efc66/tablecreation.png 885w,
+/static/9ce9bacb311be4f2e53c772f201fd1e1/c83ae/tablecreation.png 1180w,
+/static/9ce9bacb311be4f2e53c772f201fd1e1/187fa/tablecreation.png 1194w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -1374,7 +1374,7 @@ But this primary key can also be composed of a &lt;code class=&quot;language-tex
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/8781f387b6e012a12d188ec00e491c82/1790f/dynamodb_table_config.png&quot;
+    href=&quot;/static/8781f387b6e012a12d188ec00e491c82/1790f/dbconf.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1387,13 +1387,13 @@ But this primary key can also be composed of a &lt;code class=&quot;language-tex
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Dynamodb Table Settings&quot;
         title=&quot;Dynamodb Table Settings&quot;
-        src=&quot;/static/8781f387b6e012a12d188ec00e491c82/fcda8/dynamodb_table_config.png&quot;
-        srcset=&quot;/static/8781f387b6e012a12d188ec00e491c82/12f09/dynamodb_table_config.png 148w,
-/static/8781f387b6e012a12d188ec00e491c82/e4a3f/dynamodb_table_config.png 295w,
-/static/8781f387b6e012a12d188ec00e491c82/fcda8/dynamodb_table_config.png 590w,
-/static/8781f387b6e012a12d188ec00e491c82/efc66/dynamodb_table_config.png 885w,
-/static/8781f387b6e012a12d188ec00e491c82/c83ae/dynamodb_table_config.png 1180w,
-/static/8781f387b6e012a12d188ec00e491c82/1790f/dynamodb_table_config.png 1189w&quot;
+        src=&quot;/static/8781f387b6e012a12d188ec00e491c82/fcda8/dbconf.png&quot;
+        srcset=&quot;/static/8781f387b6e012a12d188ec00e491c82/12f09/dbconf.png 148w,
+/static/8781f387b6e012a12d188ec00e491c82/e4a3f/dbconf.png 295w,
+/static/8781f387b6e012a12d188ec00e491c82/fcda8/dbconf.png 590w,
+/static/8781f387b6e012a12d188ec00e491c82/efc66/dbconf.png 885w,
+/static/8781f387b6e012a12d188ec00e491c82/c83ae/dbconf.png 1180w,
+/static/8781f387b6e012a12d188ec00e491c82/1790f/dbconf.png 1189w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -1435,7 +1435,7 @@ But this primary key can also be composed of a &lt;code class=&quot;language-tex
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/e354ae519958591993fd023c2bd803f0/0d98f/dynamodb_items.png&quot;
+    href=&quot;/static/e354ae519958591993fd023c2bd803f0/0d98f/items.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1448,13 +1448,13 @@ But this primary key can also be composed of a &lt;code class=&quot;language-tex
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Dynamodb Items&quot;
         title=&quot;Dynamodb Items&quot;
-        src=&quot;/static/e354ae519958591993fd023c2bd803f0/fcda8/dynamodb_items.png&quot;
-        srcset=&quot;/static/e354ae519958591993fd023c2bd803f0/12f09/dynamodb_items.png 148w,
-/static/e354ae519958591993fd023c2bd803f0/e4a3f/dynamodb_items.png 295w,
-/static/e354ae519958591993fd023c2bd803f0/fcda8/dynamodb_items.png 590w,
-/static/e354ae519958591993fd023c2bd803f0/efc66/dynamodb_items.png 885w,
-/static/e354ae519958591993fd023c2bd803f0/c83ae/dynamodb_items.png 1180w,
-/static/e354ae519958591993fd023c2bd803f0/0d98f/dynamodb_items.png 1276w&quot;
+        src=&quot;/static/e354ae519958591993fd023c2bd803f0/fcda8/items.png&quot;
+        srcset=&quot;/static/e354ae519958591993fd023c2bd803f0/12f09/items.png 148w,
+/static/e354ae519958591993fd023c2bd803f0/e4a3f/items.png 295w,
+/static/e354ae519958591993fd023c2bd803f0/fcda8/items.png 590w,
+/static/e354ae519958591993fd023c2bd803f0/efc66/items.png 885w,
+/static/e354ae519958591993fd023c2bd803f0/c83ae/items.png 1180w,
+/static/e354ae519958591993fd023c2bd803f0/0d98f/items.png 1276w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
