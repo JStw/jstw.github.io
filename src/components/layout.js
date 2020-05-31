@@ -62,6 +62,18 @@ const Layout = ({ location, title, children }) => {
         © {new Date().getFullYear()}, Built with
         {` `}
         <a href="https://www.gatsbyjs.org">Gatsby</a>
+          <br/>
+          <small>
+          Socials links:&nbsp;
+          <a href={`https://twitter.com/jstw`}>
+              Twitter
+          </a>,&nbsp;
+          <a href={`https://stackoverflow.com/users/8597732/jstw`}>
+              StackOverflow
+          </a>,&nbsp;
+          <a href={`https://www.linkedin.com/in/julien-sauvannet-8b5330b7/`}>
+              Linkedin
+          </a>.</small>
       </footer>
     </div>
   )
