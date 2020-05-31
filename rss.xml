@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jstw Blog]]></title><description><![CDATA[A personal blog powered by Gatsby.]]></description><link>https://jstw.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 31 May 2020 13:51:11 GMT</lastBuildDate><item><title><![CDATA[Create a Serverless API with AWS - Part 3]]></title><description><![CDATA[Hey hello there! If you didn’t read the previous post, I suggest you to read it before continuing. If you did, perfect, let’s go ;) The last…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-3/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-3/</guid><pubDate>Sun, 31 May 2020 11:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey hello there! If you didn’t read the previous post, I suggest you to &lt;a href=&quot;./../serverless-api-with-lambda-part-2&quot;&gt;read it&lt;/a&gt; before continuing. If you did, perfect, let’s go ;)&lt;/p&gt;
-&lt;p&gt;The last part is to integrate our Lambda Functions previously created, in a API. AWS provides a really great service for that, which is called &lt;strong&gt;API Gateway&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Find this service, by opening &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Networking &amp;amp; Content Delivery &amp;gt; API Gateway&lt;/code&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jstw Blog]]></title><description><![CDATA[A personal blog powered by Gatsby.]]></description><link>https://jstw.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 31 May 2020 20:51:41 GMT</lastBuildDate><item><title><![CDATA[Serverless App with AWS in ReactJS, using Lambda & API Gateway - Final part]]></title><description><![CDATA[Hey hello there! If you didn’t read the previous post, I suggest you to read it before continuing. If you did, perfect, let’s continue…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-3/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-3/</guid><pubDate>Sun, 31 May 2020 11:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey hello there! If you didn’t read the previous post, I suggest you to &lt;a href=&quot;./../serverless-api-with-lambda-part-2&quot;&gt;read it&lt;/a&gt; before continuing. If you did, perfect, let’s continue ;)&lt;/p&gt;
+&lt;p&gt;The last part is to integrate our Lambda Functions previously created, in the AWS API Gateway service. Find this service, by opening &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Networking &amp;amp; Content Delivery &amp;gt; API Gateway&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Let’s create an API by clicking the &lt;code class=&quot;language-text&quot;&gt;Create API&lt;/code&gt; button.&lt;/p&gt;
-&lt;p&gt;We have the possibility to chose some types for our API, but in this case we want to create an HTTP API. Let’s choose the &lt;code class=&quot;language-text&quot;&gt;HTTP API&lt;/code&gt; (the first one).&lt;/p&gt;
-&lt;p&gt;Provide a name &lt;strong&gt;blog-api&lt;/strong&gt; for example, and let’s integrate all Lambdas by adding them one by one in the &lt;code class=&quot;language-text&quot;&gt;Create and configure integrations&lt;/code&gt; like below :&lt;/p&gt;
+&lt;p&gt;We have the possibility to chose some types for our API, but in this case we want to create an HTTP API. So let’s keep the first selected option.&lt;/p&gt;
+&lt;p&gt;Provide a name, &lt;strong&gt;blog-api&lt;/strong&gt; for example, and let’s integrate our Lambdas by adding them one by one in the &lt;code class=&quot;language-text&quot;&gt;Create and configure integrations&lt;/code&gt; like below :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -66,7 +65,7 @@
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Now our Lambda are integrated, let’s create our &lt;strong&gt;routes&lt;/strong&gt; and configure it like this :&lt;/p&gt;
+&lt;p&gt;Now our Lambdas are integrated. Let’s create our &lt;strong&gt;routes&lt;/strong&gt; and configure them like this :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -165,7 +164,7 @@
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Good job, your API is now created! You can find your API url in your &lt;strong&gt;stages&lt;/strong&gt;. It should be in the Invoke URL column.&lt;/p&gt;
 &lt;h3&gt;Let’s test the beast!&lt;/h3&gt;
-&lt;p&gt;I don’t what you prefer to test an API, you can use a command line to curl it, or do via Postman, it’s up to you :)&lt;/p&gt;
+&lt;p&gt;I don’t know what you prefer to test your API, you can CURL or Postman, it’s up to you :)&lt;/p&gt;
 &lt;p&gt;I will go for curl :&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;GetArticles:&lt;/strong&gt; &lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;batch&quot;&gt;&lt;pre class=&quot;language-batch&quot;&gt;&lt;code class=&quot;language-batch&quot;&gt;&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;token parameter attr-name&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;token parameter attr-name&quot;&gt;-X&lt;/span&gt; GET &apos;&amp;lt;&amp;lt; your api url&gt;&gt;/articles&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -345,11 +344,11 @@
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;This is the end :) You successfully have a functional API which serves Lambda functions to intereact with your DB.&lt;/p&gt;
-&lt;p&gt;If you want to go further, you can clone a sample project that I did, to show you how we can have a fully serverless web application.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;batch&quot;&gt;&lt;pre class=&quot;language-batch&quot;&gt;&lt;code class=&quot;language-batch&quot;&gt;&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;git&lt;/span&gt; clone git@github.com:JStw/blog-app.git&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;or you can git clone via HTTPS:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;batch&quot;&gt;&lt;pre class=&quot;language-batch&quot;&gt;&lt;code class=&quot;language-batch&quot;&gt;&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;git&lt;/span&gt; clone https://github.com/JStw/blog-app.git&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Perfect our API is working successfully! Let’s download our ReactJS application to test it in live :)&lt;/p&gt;
+&lt;p&gt;You can find in my Github account, a sample project which is available to test your API. You can clone it via command line (if you have git installed) : &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;batch&quot;&gt;&lt;pre class=&quot;language-batch&quot;&gt;&lt;code class=&quot;language-batch&quot;&gt;&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;git&lt;/span&gt; clone git@github.com:JStw/blog-app.git&lt;/span&gt;
+// or via https :
+&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;git&lt;/span&gt; clone https://github.com/JStw/blog-app.git&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;When its done, run a &lt;code class=&quot;language-text&quot;&gt;npm install&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Open the &lt;code class=&quot;language-text&quot;&gt;App.js&lt;/code&gt;, and put your Api Gateway base url in this line :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;API_BASE_URL&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;put your api base url here (do not put the /)&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -416,18 +415,18 @@
 &lt;blockquote&gt;
 &lt;p&gt;If the port has changed because you have already something running on the 3000 port, please edit your CORS configuration by setting the correct port in your API Gateway.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;I hope this article was clear for you and your API on your side working greats, this is my article guys, so if you want to send me a feedback do not hesitate to contact me via DM in Twitter :)&lt;/p&gt;
+&lt;p&gt;I hope this article was helpful for you, like I said this is my article guys, so it will not be perfect… but if you want to send me a feedback do not hesitate to contact me in DM via Twitter or my other social links :) Thank you for your time!&lt;/p&gt;
 &lt;h3&gt;Go further&lt;/h3&gt;
 &lt;p&gt;Now your API is working, this is some extra-work you can do :&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Secure some API calls with Cognito.&lt;/li&gt;
 &lt;li&gt;Send SMS / Email to your subscribers list&lt;/li&gt;
 &lt;li&gt;Customize domain name for your API&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Create a Serverless API with AWS - Part 2]]></title><description><![CDATA[Hey folks! If you didn’t read the previous post, I suggest you to read it  before continuing. If you did, let’s continue :) Ok so now, we…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-2/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-2/</guid><pubDate>Sat, 30 May 2020 15:00:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey folks! If you didn’t read the previous post, I suggest you to &lt;a href=&quot;./../serverless-api-with-lambda-part-1&quot;&gt;read it&lt;/a&gt;  before continuing. If you did, let’s continue :)&lt;/p&gt;
-&lt;p&gt;Ok so now, we are our beautiful database which only asking to be queried :D &lt;/p&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Serverless App with AWS in ReactJS, using Lambda & API Gateway - Part 2]]></title><description><![CDATA[Hey folks! If you didn’t read the previous post, I suggest you to read it  before continuing. If you did, let’s continue! At this step, you…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-2/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-2/</guid><pubDate>Sat, 30 May 2020 15:00:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey folks! If you didn’t read the previous post, I suggest you to &lt;a href=&quot;./../serverless-api-with-lambda-part-1&quot;&gt;read it&lt;/a&gt;  before continuing. If you did, let’s continue!&lt;/p&gt;
+&lt;p&gt;At this step, you normally have a beautiful database which only asking to be queried. Let’s move on to the first step.&lt;/p&gt;
 &lt;h3&gt;First step: define our Lambda Role&lt;/h3&gt;
-&lt;p&gt;Yeah I know, you wanted to start coding a little bit! But you have to wait a little bit :)&lt;/p&gt;
-&lt;p&gt;If you remember in our architecture schema :&lt;/p&gt;
+&lt;p&gt;Yeah I know, you wanted to start coding a little bit, but you have to wait again :)&lt;/p&gt;
+&lt;p&gt;If you remember our architecture schema :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -460,17 +459,17 @@
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Our client will query our API Gateway, and the API Gateway will invoke some Lambda Functions. Fina the lambda functions will query the DynamoDB table and returns some results.&lt;/p&gt;
-&lt;p&gt;To allow our Lambdas to do that, we will need an IAM role which allow these API actions.&lt;/p&gt;
+&lt;p&gt;Our Client-Side App will query our API. The API Gateway will invoke some Lambda Functions, and those lambda will interacts with our DynamoDB blog table.&lt;/p&gt;
+&lt;p&gt;But, to allow those interaction between our different AWS Services, we must configure an &lt;strong&gt;IAM role&lt;/strong&gt; with particular &lt;strong&gt;IAM policies&lt;/strong&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;If you want to know what are the IAM roles, why we need them, I’ll provide you the link to the  &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html&quot;&gt;IAM AWS Official Documentation&lt;/a&gt;. &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Navigate to the ÌAM Service through &lt;code class=&quot;language-text&quot;&gt;Security, Identity, &amp;amp; Compliance &amp;gt; IAM&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Before creating our new role, we will create our policy which will be used in our IAM Role. Create a new policy by clicking on &lt;code class=&quot;language-text&quot;&gt;Policies &amp;gt; Create Policy&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Let’s navigate to the IAM Service through &lt;code class=&quot;language-text&quot;&gt;Security, Identity, &amp;amp; Compliance &amp;gt; IAM&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Before creating our IAM role, we will create the policy which will be attached to our role. For that, click on &lt;code class=&quot;language-text&quot;&gt;Policies &amp;gt; Create Policy&lt;/code&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;By default, an explicit deny is set to all resources created in AWS. You must grant permissions via IAM Policies. and attach them to your resources. In you want more informations about IAM Roles, Policies, Groups, have a look &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html&quot;&gt;to the officiel documentation of IAM&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Choose the &lt;code class=&quot;language-text&quot;&gt;JSON&lt;/code&gt; editor tab. Once it’s done, you can copy paste this following policy :&lt;/p&gt;
+&lt;p&gt;Choose the &lt;code class=&quot;language-text&quot;&gt;JSON&lt;/code&gt; editor tab and copy paste this following JSON policy :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;token property&quot;&gt;&quot;Version&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2012-10-17&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
     &lt;span class=&quot;token property&quot;&gt;&quot;Statement&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
@@ -499,9 +498,9 @@
     &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Do not forget to change the &lt;strong&gt;region&lt;/strong&gt; and the &lt;strong&gt;account id&lt;/strong&gt; inside the &lt;strong&gt;Resource arn&lt;/strong&gt; bloc. The region is the one selected in the AWS Console nav bar, and you can find your account id by checking in your IAM Dashboard, the IAM users sign-in link.&lt;/p&gt;
+&lt;p&gt;Do not forget to change the &lt;strong&gt;region&lt;/strong&gt; and the &lt;strong&gt;account id&lt;/strong&gt; inside the &lt;strong&gt;Resource arn&lt;/strong&gt; bloc. The region is the one selected in the AWS Console navigation bar, and your account id can be found by checking the IAM users sign-in link in the IAM Dashboard.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Finally, you can hit the Next button to review your policy, add a name and create your policy. It should should looks like this :&lt;/p&gt;
+&lt;p&gt;Finally, you can hit the Next button to review your policy, add a name and create your policy. You should have  a screen like this :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -534,13 +533,13 @@
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Let me explain a little bit what this policy does. The first &lt;code class=&quot;language-text&quot;&gt;Effect&lt;/code&gt; will allow our resources (lambdas) to make some basics dynamodb execution calls like Query, Scan or PutItem etc. For this specific actions, we specify also the ARNs of our DynamoDB table/indexes.&lt;/p&gt;
+&lt;p&gt;Let me explain a little bit what this policy does. The first &lt;code class=&quot;language-text&quot;&gt;Effect&lt;/code&gt; will allow our resources (lambdas) to make some basics interactions with DynamoDB, for example: &lt;strong&gt;Query, Scan or PutItem&lt;/strong&gt; etc. For these specifics actions, we should fill the ARNs of our DynamoDB table/indexes.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;You should follow the &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege&quot;&gt;Principle of Least Privileges&lt;/a&gt; in AWS. It’s one a best practice to follow.&lt;/p&gt;
+&lt;p&gt;You always should follow one of the best practice in AWS, the &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege&quot;&gt;Principle of Least Privileges&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;I will not explain the second effect bloc (the lambda:InvokeFunction) for now. I’ll keep it for later ;)&lt;/p&gt;
-&lt;p&gt;Ok so now our IAM Policy has been created and we can finally create our IAM Role. Go back to the IAM Dashboard by clicking on &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Security, Identity &amp;amp; Compliance &amp;gt; IAM&lt;/code&gt;. Click on &lt;code class=&quot;language-text&quot;&gt;Roles &amp;gt; Create a role&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Once is down, keep the first selected option (type of trusted entity) which is normally AWS service, chose the use case &lt;code class=&quot;language-text&quot;&gt;Lambda&lt;/code&gt; and click to &lt;code class=&quot;language-text&quot;&gt;Next: Permissions&lt;/code&gt;. Now we just have to search our policy previously created, so just type the name of the policy you just created and select it.&lt;/p&gt;
+&lt;p&gt;I will not explain the second effect bloc (the &lt;strong&gt;lambda:InvokeFunction&lt;/strong&gt;) for now, I’ll keep it for later.&lt;/p&gt;
+&lt;p&gt;Our IAM Policy has been created and we can finally create our IAM Role. Go back to the IAM Dashboard (&lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Security, Identity &amp;amp; Compliance &amp;gt; IAM&lt;/code&gt;). Click on &lt;code class=&quot;language-text&quot;&gt;Roles &amp;gt; Create a role&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Keep the first selected option (trusted entity), then chose &lt;code class=&quot;language-text&quot;&gt;Lambda&lt;/code&gt; and click to &lt;code class=&quot;language-text&quot;&gt;Next: Permissions&lt;/code&gt;. Search our policy previously created by typing his name and select it like below :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -610,8 +609,8 @@
 &lt;p&gt;You can now navigate to the Lambda Service trough: &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Compute &amp;gt; Lambda&lt;/code&gt;.&lt;/p&gt;
 &lt;h3&gt;Second step: Create our lambda functions&lt;/h3&gt;
 &lt;p&gt;We will start to create a first Lambda Function which will basically read out the content of our DynamoDB blog table.&lt;/p&gt;
-&lt;p&gt;So hit the &lt;code class=&quot;language-text&quot;&gt;Create Function&lt;/code&gt; button and keep the selected creation option (Author from scratch). Choose a name for your Lambda Function, in this case I will name it &lt;code class=&quot;language-text&quot;&gt;GetArticles&lt;/code&gt; and go for the &lt;code class=&quot;language-text&quot;&gt;Python 3.8&lt;/code&gt; language runtime.&lt;/p&gt;
-&lt;p&gt;Before creating our function, one last important step is to select our IAM Role previously created. Open the Permissions just below, click on &lt;code class=&quot;language-text&quot;&gt;Use an existing role&lt;/code&gt; and select your service role from the selected list like below:&lt;/p&gt;
+&lt;p&gt;So hit the &lt;code class=&quot;language-text&quot;&gt;Create Function&lt;/code&gt; button and keep the selected creation option (Author from scratch). Choose a name for your Lambda Function, &lt;code class=&quot;language-text&quot;&gt;GetArticles&lt;/code&gt; for example, and go for the &lt;code class=&quot;language-text&quot;&gt;Python 3.8&lt;/code&gt; language runtime.&lt;/p&gt;
+&lt;p&gt;Before creating our function, one last important step is to select our IAM Role previously created. Open the Permissions just below, click on &lt;code class=&quot;language-text&quot;&gt;Use an existing role&lt;/code&gt; and select your service role from the selected list like this:&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -644,8 +643,9 @@
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Hit the create function button, and you will be redirected your Lambda.&lt;/p&gt;
-&lt;p&gt;Ok so, in this Lambda, we just want to retrieve all our Articles from the DynamoDB table. For that, we can use the &lt;code class=&quot;language-text&quot;&gt;scan&lt;/code&gt; operation that will just basically reads every items in our table. (More information &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html&quot;&gt;here&lt;/a&gt; about Scan.)&lt;/p&gt;
+&lt;p&gt;Then create your function. you will be redirected to your Lambda.&lt;/p&gt;
+&lt;p&gt;Scroll down a little bit to your Lambda Code Editor. In this Lambda, we just want to retrieve all Articles from our table. For that, we will use the &lt;code class=&quot;language-text&quot;&gt;Scan&lt;/code&gt; operation that will just basically reads every items in a table. (More information &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html&quot;&gt;here&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Copy/paste this following code in the editor :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Boto is the Amazon Web Services (AWS) SDK for Python&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
 
@@ -666,9 +666,9 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
         &lt;span class=&quot;token comment&quot;&gt;# If an exception was thrown, I just catch it to print a log, and then I raise the error.&lt;/span&gt;
         &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;An error occured while retrieving Movies table.&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; e&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;No more explanations needed for this code, its quite simple we just import the boto3 library to use the dynamodb client. We surround our scan operation with the try/catch operator and finally we return the Items.&lt;/p&gt;
+&lt;p&gt;No more explanations needed for this code, its quite simple, we just import the boto3 library to use the Dynamodb client. We surround our scan operation with the try/catch operator and finally we return the Items.&lt;/p&gt;
 &lt;p&gt;You can now this Lambda code by clicking &lt;code class=&quot;language-text&quot;&gt;Save&lt;/code&gt; at the top of the page, and now it’s time for testing :)&lt;/p&gt;
-&lt;p&gt;Just near the Save button, you have the possibility to create a &lt;code class=&quot;language-text&quot;&gt;Test Event&lt;/code&gt; to trigger our function.&lt;/p&gt;
+&lt;p&gt;Just near the Save button, you have the possibility to create a &lt;code class=&quot;language-text&quot;&gt;Test Event&lt;/code&gt; to trigger our function handler.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;FYI: Every AWS Lambda function contains at least 2 parameters :&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -678,8 +678,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;context&lt;/strong&gt; – AWS Lambda uses this parameter to provide runtime information to your handler.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Click on the &lt;code class=&quot;language-text&quot;&gt;Test&lt;/code&gt; button, choose an event name (For example: TestGetItems) and leave the rest as is.&lt;/p&gt;
-&lt;p&gt;Your &lt;code class=&quot;language-text&quot;&gt;TestGetItems&lt;/code&gt; is now part of your tests events. Ready to test your lambda ? Push the test button again ;)&lt;/p&gt;
+&lt;p&gt;Click on the &lt;code class=&quot;language-text&quot;&gt;Test&lt;/code&gt; button, choose an event name (For example: TestGetItems) and leave the rest as is. Your &lt;code class=&quot;language-text&quot;&gt;TestGetItems&lt;/code&gt; is now part of your tests events. Ready to test your lambda ? Push the test button again ;)&lt;/p&gt;
 &lt;p&gt;Normally you should see a success box like this :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -713,18 +712,19 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Well, I think we can claim our first beer, we successfully created our first lambda which read in our DynamoDB, congrats!&lt;/p&gt;
+&lt;p&gt;Well, I think we can claim our first beer, we successfully created our first lambda which reads our DynamoDB items, congrats!&lt;/p&gt;
 &lt;h3&gt;Third step: Create the other lambda functions&lt;/h3&gt;
-&lt;p&gt;The goal of this article is to show you the basic operation we can do thanks to the interaction between Lambda and DynamoDB. Remember, the goal is to call these Lambda functions with an API.&lt;/p&gt;
+&lt;p&gt;The other Lambda will basically represents all the CRUD operation you can found in an API. Remember, the goal is to call these Lambda functions with API Gateway.&lt;/p&gt;
 &lt;p&gt;So this is what is remaning for our Lambda :&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Retrieve all blog articles (GetArticles - done)&lt;/li&gt;
 &lt;li&gt;Find an article by title and category (FindByTitleAndCategory - TBD)&lt;/li&gt;
+&lt;li&gt;Create an article (CreateArticle - TBD)&lt;/li&gt;
 &lt;li&gt;Update an article (UpdateArticle - TBD)&lt;/li&gt;
 &lt;li&gt;Delete an article (DeleteArticle - TBD)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Let’s do this! Go back to the main Lambda screen, by clicking &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Compute &amp;gt; Lambda&lt;/code&gt;. Do the same job you did for the GetArticles Lambda, by clicking &lt;code class=&quot;language-text&quot;&gt;Create Function&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;This time, we will tackle our second lambda in the list, the &lt;code class=&quot;language-text&quot;&gt;FindByTitleAndCategory&lt;/code&gt;. Your lambda settings should look likes this :&lt;/p&gt;
+&lt;p&gt;Let’s move on! Go back to the main Lambda screen, by clicking &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Compute &amp;gt; Lambda&lt;/code&gt;. Then, do the same job like you did before by clicking &lt;code class=&quot;language-text&quot;&gt;Create Function&lt;/code&gt;. Keep the same settings we did for the &lt;strong&gt;GetArticles&lt;/strong&gt; Lambda function.&lt;/p&gt;
+&lt;p&gt;This time, we will tackle our second lambda in the list, the &lt;code class=&quot;language-text&quot;&gt;FindByTitleAndCategory&lt;/code&gt;. Lambda settings should be the same :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -758,9 +758,9 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Do not forget to attach the MyDynamoDBRoleForLambdas role.&lt;/p&gt;
+&lt;p&gt;Do not forget to attach our IAM role.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Let’s create this function, and copy paste this Python Code :&lt;/p&gt;
+&lt;p&gt;Copy/paste this following Python code :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
 &lt;span class=&quot;token comment&quot;&gt;# This new import will be use to specify which DynamoDB Key we use in the KeyConditionExpression.&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;dynamodb&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;conditions &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Key
@@ -784,12 +784,12 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; client&lt;span
     &lt;span class=&quot;token keyword&quot;&gt;except&lt;/span&gt; Exception &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
         &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;An error occurred while retrieving an item in blog table.&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; e&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;In this lambda we just need to specify which fields we want to see in our response thanks to the &lt;code class=&quot;language-text&quot;&gt;ProjectionExpression&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;The second one (the more important) is the &lt;code class=&quot;language-text&quot;&gt;KeyConditionExpression&lt;/code&gt; which will determinate our conditional query expression (which article we want to query).&lt;/p&gt;
+&lt;p&gt;In this lambda we just need to specify which fields we want to expose in our response thanks to the &lt;code class=&quot;language-text&quot;&gt;ProjectionExpression&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The second one (the most important) is the &lt;code class=&quot;language-text&quot;&gt;KeyConditionExpression&lt;/code&gt; which will determine our conditional query expression (which article we want to query).&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;You can find &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html&quot;&gt;here&lt;/a&gt; the official documentation of a Query operation.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Save your function, and add a new test event. This time our test event, will be a little bit different, because we will update the JSON provided to our handler :&lt;/p&gt;
+&lt;p&gt;Save your function, add a new test event but this time we will have to change a little bit the test event content by adding the requested params (title and category) :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -821,7 +821,10 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; client&lt;span
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Once is created, just hit the Test button and let’s see what we received :)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Do not pay attention of our test event structure, but please respect it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Once your event has been created, just hit the Test button again and let’s see what we received :)&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -855,7 +858,8 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; client&lt;span
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;This time, we just received 1 item based from the value passed in the test event. Our FindBy Lambda is now operational!&lt;/p&gt;
-&lt;p&gt;Let’s move on, and tackle the &lt;code class=&quot;language-text&quot;&gt;CreateArticle&lt;/code&gt; one, create a new Lambda function again (Author From Scratch, Python 3.8 Runetime, and our DynamoDB role) and provide this following code :&lt;/p&gt;
+&lt;p&gt;Let’s move on, and make the &lt;code class=&quot;language-text&quot;&gt;CreateArticle&lt;/code&gt; one. Same process like before, create a new Lambda function with the same settings.&lt;/p&gt;
+&lt;p&gt;Copy/paste this following code :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; json
 &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
 &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; datetime &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; datetime
@@ -913,14 +917,11 @@ lambda_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&
         &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; e
         
     &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; item&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Do you remember in our Policy we added an Effect Allow on the InvokeFunction api call :)&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;p&gt;Before configuring our test event, just some clarifications about this portion of code: &lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;First, to retrieve the body sent by the POST action, e want to handle both scenarios use cases (object and stringified object). That’s why we check the type of the &lt;code class=&quot;language-text&quot;&gt;event body&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;First, to retrieve the body sent by the POST action, we want to handle the fact that the object passed in the body can be an object, but also a stringified object. That’s why we check the type of the &lt;code class=&quot;language-text&quot;&gt;event body&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Then, we use the &lt;code class=&quot;language-text&quot;&gt;put_item&lt;/code&gt; operation by simply passing the Item that we want to insert in database.&lt;/li&gt;
-&lt;li&gt;Finally, to retrieve the item created, we just use the Lambda Function we created to retrieve an article by his title and his category. But you can also directly query the database like we did in the Lambda, it’s also possible&lt;/li&gt;
+&lt;li&gt;Finally, the official documentation is not really clear, but it’s impossible to retrieve the item created when we use the &lt;strong&gt;put_item&lt;/strong&gt; action. We need to query the DB again. But if you remember, we created already a Lamba (&lt;strong&gt;FindByArticleAndCategory&lt;/strong&gt;) which is doing exactly what we want to retrieve an item. That’s why we added the &lt;strong&gt;Lambda:InvokeFunction&lt;/strong&gt; policy in our IAM Role :) So when the &lt;strong&gt;put_item&lt;/strong&gt; is done, we just invoke our &lt;strong&gt;FindByArticleAndCategory&lt;/strong&gt; Lambda Function to retrieve our article created by providing his title and his category. It’s not the only way, and probably the right way to do that, but it’s one of the possibility to do it. The other one is to query directly the database like we did in the FindByArticleAndCategory Lambda,.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Ok so let’s create our test event :
 &lt;span
@@ -954,8 +955,7 @@ lambda_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Before testing our Lambda Function, this one is a little bit more “bigger” than the other one, so it’s possible to have some timeout when its triggered.&lt;/p&gt;
-&lt;p&gt;I suggest for this example to augment a little bit the “default” lambda settings by increasing a little bit the default timeout timer, up 3 to 10 seconds. &lt;/p&gt;
+&lt;p&gt;Before testing our Lambda Function, because this one is a little bit more “tricky” than the other one, it’s possible to have some timeout when executing it. To avoid this problem, I suggest for this example to increase a little bit the “default” lambda settings. For that, change default timeout timer, up 3 to 10 seconds in the Lambda settings :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -988,9 +988,9 @@ lambda_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;I provide you a great article for &lt;a href=&quot;https://medium.com/@raupach/choosing-the-right-amount-of-memory-for-your-aws-lambda-function-99615ddf75dd&quot;&gt;choosing the right amount of memory for an AWS lambda&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Same as DynamoDB’s RCU and WCU, if you want to use this Lambda in a real production stage, please adapt yhe settings in consequence (Memory, timeout etc.).I provide you a great article for &lt;a href=&quot;https://medium.com/@raupach/choosing-the-right-amount-of-memory-for-your-aws-lambda-function-99615ddf75dd&quot;&gt;choosing the right amount of memory for an AWS lambda&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;I think we can test our Create Lambda function, hit the Test button and you should have this output :&lt;/p&gt;
+&lt;p&gt;I think we can test our Create Lambda function, so hit the Test button and you should have this results :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -1023,8 +1023,8 @@ lambda_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Ok we did the most difficult Lambda creation, the other ones will be more easier :)&lt;/p&gt;
-&lt;p&gt;Let’s tackle the &lt;code class=&quot;language-text&quot;&gt;UpdateArticle&lt;/code&gt; one by creating a new Lambda and provide this code :&lt;/p&gt;
+&lt;p&gt;Nice, the most difficult Lambda part has been done! The others one will be more easier.&lt;/p&gt;
+&lt;p&gt;Let’s tackle the &lt;code class=&quot;language-text&quot;&gt;UpdateArticle&lt;/code&gt; Lambda. Create a new lambda and provide this code :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; json
 &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
 &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; botocore&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exceptions &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; ClientError
@@ -1071,7 +1071,10 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
 &lt;p&gt;For this portion of code, we will need the primary key identifier to determinate which object we want to update.&lt;/p&gt;
 &lt;p&gt;Remember, when we created our DynamoDB table, we specified a &lt;strong&gt;partition key&lt;/strong&gt; (title), and a &lt;strong&gt;sort key&lt;/strong&gt; (category) which represent our &lt;strong&gt;primary key&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;It means that if we want to make some actions in a particular item in our table, we have to specify these two properties.&lt;/p&gt;
-&lt;p&gt;Another good news is, we can specify also the &lt;code class=&quot;language-text&quot;&gt;ReturnValues=&amp;quot;ALL_NEW&amp;quot;&lt;/code&gt; that will return the complete object updated.&lt;/p&gt;
+&lt;p&gt;Good news: For the &lt;strong&gt;update_item&lt;/strong&gt; operation, we can specify the &lt;code class=&quot;language-text&quot;&gt;ReturnValues=&amp;quot;ALL_NEW&amp;quot;&lt;/code&gt; property which will return the complete object updated.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You have also the possibility to return only the attributes changed by changing the ReturnValues value. &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateItem.html#API_UpdateItem_RequestSyntax&quot;&gt;See here&lt;/a&gt; the possible values of the &lt;strong&gt;ReturnValues&lt;/strong&gt; property.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;In this lambda, I decided to update my item with Conditional Expressions. It means that it will update my item only if its respect the &lt;strong&gt;ConditionsExpressions&lt;/strong&gt;. If not, it will raise a &lt;strong&gt;ConditionalCheckFailedException&lt;/strong&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;You can have a look on what are &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html&quot;&gt;conditions expressions&lt;/a&gt;.&lt;/p&gt;
@@ -1174,7 +1177,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Finally, we will tackle the last one, create the DeleteArticle Lambda Function and provide this code :&lt;/p&gt;
+&lt;p&gt;Finally, let’s implement the latest one, create the DeleteArticle Lambda Function and provide this code :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; json
 &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
 &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; botocore&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exceptions &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; ClientError
@@ -1280,10 +1283,10 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Woah, we did a great job, congrats. Let’s move on now to the latest part, the &lt;a href=&quot;../serverless-api-with-lambda-part-3&quot;&gt;creation of our API Gateway&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Create a Serverless API with AWS - Part 1]]></title><description><![CDATA[Hey there! This is my first post on my new blog ;-) In this article we will have a look on how we can create a web application without…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-1/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-1/</guid><pubDate>Thu, 28 May 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey there! This is my first post on my new blog ;-)&lt;/p&gt;
+&lt;p&gt;Woah, we did a great job, congrats. Let’s move on now to the latest part, the &lt;a href=&quot;../serverless-api-with-lambda-part-3&quot;&gt;creation of our API Gateway&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Serverless App with AWS in ReactJS, using Lambda & API Gateway - Part 1]]></title><description><![CDATA[Hey there! This is my first post on my new blog ;-) In this article we will have a look on how we can create a web application without…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-1/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-1/</guid><pubDate>Thu, 28 May 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey there! This is my first post on my new blog ;-)&lt;/p&gt;
 &lt;p&gt;In this article we will have a look on how we can create a web application without handling any server architecture/installation.&lt;/p&gt;
-&lt;p&gt;This kind of architecture is called “serverless”. You can have a look in this &lt;a href=&quot;https://hackernoon.com/what-is-serverless-architecture-what-are-its-pros-and-cons-cc4b804022e9&quot;&gt;great article&lt;/a&gt; what it is.&lt;/p&gt;
-&lt;p&gt;Let me show you what we will implement in this tutorial :&lt;/p&gt;
+&lt;p&gt;This kind of architecture is called “serverless”. (more information &lt;a href=&quot;https://hackernoon.com/what-is-serverless-architecture-what-are-its-pros-and-cons-cc4b804022e9&quot;&gt;here&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Let me introduce you the architecture our the application :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -1316,17 +1319,25 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, it’s a very simple architecture. We don’t have to create so many resources to get a functional web app.&lt;/p&gt;
+&lt;p&gt;Our goal here, is to have a Client-Side application (developed in ReactJS), which will query an API (through API Gateway). Finally, this API will deserves some Lambda Functions that will interacts with our DynamoDB database.&lt;/p&gt;
+&lt;p&gt;Before going further, there is a list of pre-requires :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You should have an AWS Account (to create one, please visit &lt;a href=&quot;https://portal.aws.amazon.com/billing/signup#/start&quot;&gt;this link&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://curl.haxx.se/download.html&quot;&gt;CURL&lt;/a&gt; or &lt;a href=&quot;https://www.postman.com/&quot;&gt;Postman&lt;/a&gt; to query our database.&lt;/li&gt;
+&lt;li&gt;Node Package Manager (&lt;a href=&quot;https://www.npmjs.com/get-npm&quot;&gt;npm&lt;/a&gt;) or other package managers like &lt;a href=&quot;https://classic.yarnpkg.com/en/docs/install/#windows-stable&quot;&gt;yarn&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Before going further, you will need an AWS Account (to create one, please visit &lt;a href=&quot;https://portal.aws.amazon.com/billing/signup#/start&quot;&gt;this link&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;I recommend to connect to your root account if you don’t have one, go to the IAM Dashboard and create an “admin” user. Once is done, attach the &lt;code class=&quot;language-text&quot;&gt;AdministratorAccess&lt;/code&gt; policy.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;So first, we are going to use an AWS user that has the admin rights. I recommend you connect to your root account, create an “admin” user and attach the &lt;code class=&quot;language-text&quot;&gt;AdministratorAccess&lt;/code&gt; policy.&lt;/p&gt;
-&lt;p&gt;When it’s done, please connect to your AWS Account through the IAM users sign-in links.&lt;/p&gt;
-&lt;p&gt;| Be careful: For the entire article, I wil use the region eu-west-2. You can choose every region you want, but do not forget to create all the keep the same region for all your future created resources!
-| --- |&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Be careful&lt;/strong&gt;: For the entire article, I wil use the region &lt;strong&gt;eu-west-2&lt;/strong&gt;. You can choose every region you want, but do not forget to create all the keep the same region for all your future created resources!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Let’s start then :) Connect to your AWS Account by using the IAM users sign-in link.&lt;/p&gt;
 &lt;h3&gt;First step: Create the Database (DynamoDB)&lt;/h3&gt;
-&lt;p&gt;I will use a no NoSQL Database, DynamoDB. If you are curious and if you want more information about this database I provide you &lt;a href=&quot;https://cloudacademy.com/blog/amazon-dynamodb-ten-things/&quot;&gt;this link&lt;/a&gt; which describes perfectly what is DynamoDB.&lt;/p&gt;
-&lt;p&gt;Navigate to the DynamoDB service  via &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Database &amp;gt; DynamoDB&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Ok once you are here, we will create our blog table. Hit the &lt;code class=&quot;language-text&quot;&gt;Create Table&lt;/code&gt; button and fill the form like below :&lt;/p&gt;
+&lt;p&gt;I will use a no NoSQL Database, &lt;strong&gt;DynamoDB&lt;/strong&gt;. If you are curious and if you want more information about this database I provide you &lt;a href=&quot;https://cloudacademy.com/blog/amazon-dynamodb-ten-things/&quot;&gt;this link&lt;/a&gt; which describes perfectly what is DynamoDB.&lt;/p&gt;
+&lt;p&gt;Let’s navigate to the DynamoDB service  via &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Database &amp;gt; DynamoDB&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Once you are here, we will create our blog table. Hit the &lt;code class=&quot;language-text&quot;&gt;Create Table&lt;/code&gt; button and fill the form like below :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -1359,14 +1370,20 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;When you create a DynamoDB table, a &lt;code class=&quot;language-text&quot;&gt;partition key&lt;/code&gt; is required to identify uniquely each item in your table.
 But this primary key can also be composed of a &lt;code class=&quot;language-text&quot;&gt;sort key&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;The partition key is used for partitioning the data. Data with the same partition key is stored together, which allows you to query data with the same partition key in 1 query.&lt;/p&gt;
-&lt;p&gt;The (optional) sort key determines the order of how data with the same partition key is stored. Using a clever sort key allows you to query many items in 1 query.&lt;/p&gt;
-&lt;h3&gt;Second step: Configure our DynamoDB table settings&lt;/h3&gt;
-&lt;p&gt;Our settings will be simple, I will just create one Global Secondary Index (GSI) which is composed on our partition key, &lt;code class=&quot;language-text&quot;&gt;title&lt;/code&gt;, and our sort key, &lt;code class=&quot;language-text&quot;&gt;author&lt;/code&gt;. GSIs can be created only at the table creation and not after.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;For the Read/Write capacity mode, it just an example so I’ll change them to have the minimum of Read capacity units (RCUs) and Write capacity units (WCUs). Of course, if you intent to use this Database in your project, you will adapt the RCUs/WCUs and probably use the Auto-Scaling based on your demand.&lt;/p&gt;
+&lt;p&gt;The partition key is used for partitioning the data. Data with the same partition key is stored together, which allows you to query data with the same partition key in 1 query.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The (optional) sort key determines the order of how data with the same partition key is stored. Using a clever sort key allows you to query many items in 1 query.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Second step: Configure our DynamoDB table settings&lt;/h3&gt;
+&lt;p&gt;Our settings will be very simple. I will just create 1x &lt;strong&gt;Global Secondary Index (GSI)&lt;/strong&gt; which is composed with a partition key (&lt;code class=&quot;language-text&quot;&gt;title&lt;/code&gt; here), and a sort key, &lt;code class=&quot;language-text&quot;&gt;category&lt;/code&gt;. GSIs can be created only at the table creation and not after.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For the Read/Write capacity mode, I will change them to have the minimum of Read capacity units (RCUs) and Write capacity units (WCUs). Of course, if you intent to use this Database in a real production environment, you will should adapt the RCUs/WCUs and perhaps use the Auto-Scaling, based on your application charge.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -1401,8 +1418,8 @@ But this primary key can also be composed of a &lt;code class=&quot;language-tex
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Once your DynamoDB settings are ready, feel free to hit the &lt;code class=&quot;language-text&quot;&gt;Create&lt;/code&gt; button and your table will be created in few seconds.&lt;/p&gt;
-&lt;p&gt;Ok so once its created, you can provide some “Items” to fill a little bit your table.&lt;/p&gt;
-&lt;p&gt;I provide you a following list of items that you can add :&lt;/p&gt;
+&lt;p&gt;Once your database is available, you can provide some “Items” for later usages.&lt;/p&gt;
+&lt;p&gt;This is a basiclist of items that you can provide :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
   &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;token property&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;My first article&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
@@ -1427,7 +1444,7 @@ But this primary key can also be composed of a &lt;code class=&quot;language-tex
   &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;blockquote&gt;
-&lt;p&gt;At this step, you should have your Blog table which contains 3 items :&lt;/p&gt;
+&lt;p&gt;At this step, you should have your Blog table which contains 3 items&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
