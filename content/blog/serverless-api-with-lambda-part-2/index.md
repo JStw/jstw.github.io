@@ -14,7 +14,7 @@ Yeah I know, you wanted to start coding a little bit! But you have to wait a lit
 
 If you remember in our architecture schema :
 
-![Architecture](./../serverless-api-with-lambda-part-1/architecture.png)
+![Architecture](../serverless-api-with-lambda-part-1/archi.PNG)
 
 Our client will query our API Gateway, and the API Gateway will invoke some Lambda Functions. Fina the lambda functions will query the DynamoDB table and returns some results.
 
@@ -63,7 +63,7 @@ Choose the `JSON` editor tab. Once it's done, you can copy paste this following 
 
 Finally, you can hit the Next button to review your policy, add a name and create your policy. It should should looks like this :
 
-![IAM Policy](./policy.png)
+![IAM Policy](iampolicy.PNG)
 
 Let me explain a little bit what this policy does. The first `Effect` will allow our resources (lambdas) to make some basics dynamodb execution calls like Query, Scan or PutItem etc. For this specific actions, we specify also the ARNs of our DynamoDB table/indexes.
 
@@ -75,11 +75,11 @@ Ok so now our IAM Policy has been created and we can finally create our IAM Role
 
 Once is down, keep the first selected option (type of trusted entity) which is normally AWS service, chose the use case `Lambda` and click to `Next: Permissions`. Now we just have to search our policy previously created, so just type the name of the policy you just created and select it.
 
-![IAM Policy Role](./policy_role.png)
+![IAM Policy Role](policyrole.PNG)
 
 You can now click on the `Next: Tags` and click on `Next: Review` to finally give a name to your role and create it.
 
-![IAM Role created](./create_role.png)
+![IAM Role created](createrole.PNG)
 
 Good job! Your role is now ready to be used. I think it's time for coding!
 
@@ -93,7 +93,7 @@ So hit the `Create Function` button and keep the selected creation option (Autho
 
 Before creating our function, one last important step is to select our IAM Role previously created. Open the Permissions just below, click on `Use an existing role` and select your service role from the selected list like below:
 
-![Lambda use role](./lambda_role.png)
+![Lambda use role](lambdarole.PNG)
 
 Hit the create function button, and you will be redirected your Lambda.
 
@@ -140,7 +140,7 @@ Your `TestGetItems` is now part of your tests events. Ready to test your lambda 
 
 Normally you should see a success box like this :
 
-![Lambda GetArticles Success](./getarticles_lambda_test.png)
+![Lambda GetArticles Success](getarticleslambdatest.PNG)
 
 Well, I think we can claim our first beer, we successfully created our first lambda which read in our DynamoDB, congrats!
 
@@ -158,7 +158,7 @@ Let's do this! Go back to the main Lambda screen, by clicking `Services > Comput
 
 This time, we will tackle our second lambda in the list, the `FindByTitleAndCategory`. Your lambda settings should look likes this :
 
-![Lambda FindBy Settings](./findbytitlecategory_settings.png)
+![Lambda FindBy Settings](findbytitlecategory.PNG)
 
 > Do not forget to attach the MyDynamoDBRoleForLambdas role.
 
@@ -198,11 +198,11 @@ The second one (the more important) is the `KeyConditionExpression` which will d
 
 Save your function, and add a new test event. This time our test event, will be a little bit different, because we will update the JSON provided to our handler :
 
-![FindBy test event](./findby_test.png)
+![FindBy test event](findbytest.PNG)
 
 Once is created, just hit the Test button and let's see what we received :)
 
-![FindBy test event](./findby_result.png)
+![FindBy test event](findbyresult.PNG)
 
 This time, we just received 1 item based from the value passed in the test event. Our FindBy Lambda is now operational!
 
@@ -275,19 +275,19 @@ Before configuring our test event, just some clarifications about this portion o
 - Finally, to retrieve the item created, we just use the Lambda Function we created to retrieve an article by his title and his category. But you can also directly query the database like we did in the Lambda, it's also possible
 
 Ok so let's create our test event :
-![FindBy test event](./create_articletest.png)
+![FindBy test event](createarticletest.PNG)
 
 Before testing our Lambda Function, this one is a little bit more "bigger" than the other one, so it's possible to have some timeout when its triggered.
 
 I suggest for this example to augment a little bit the "default" lambda settings by increasing a little bit the default timeout timer, up 3 to 10 seconds. 
 
-![Increase Lambda Timeout](./lambda_timeout.png)
+![Increase Lambda Timeout](lambdatimeout.PNG)
 
 > I provide you a great article for [choosing the right amount of memory for an AWS lambda](https://medium.com/@raupach/choosing-the-right-amount-of-memory-for-your-aws-lambda-function-99615ddf75dd)
 
 I think we can test our Create Lambda function, hit the Test button and you should have this output :
 
-![Create Article success](./create_result.png)
+![Create Article success](createresult.PNG)
 
 Ok we did the most difficult Lambda creation, the other ones will be more easier :)
 
@@ -352,13 +352,13 @@ In this lambda, I decided to update my item with Conditional Expressions. It mea
 > You can have a look on what are [conditions expressions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html).
 
 Let's configure our test event and test it just after :
-![Update Article Test Event](./update_test.png)
+![Update Article Test Event](updatetest.PNG)
 
 As you can see, this is what we received :
-![Update Article Test Event](./update_success.png)
+![Update Article Test Event](updatesuccess.PNG)
 
 And if we check our DynamoDB blog table :
-![Blog Table Updated](./blog_table_updated.png)
+![Blog Table Updated](tableupdated.PNG)
 
 Finally, we will tackle the last one, create the DeleteArticle Lambda Function and provide this code :
 
@@ -390,10 +390,10 @@ def lambda_handler(event, context):
 ```
 
 And the test event :
-![Delete Event](./delete_event.png)
+![Delete Event](deleteevent.PNG)
 
 Let's try your Delete Lambda function and your item is now deleted from your table :
-![Table after delete](./table_after_delete.png)
+![Table after delete](tableafterdelete.PNG)
 
 ### Let's summarize
 - We created our IAM **admin** user

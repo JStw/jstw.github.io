@@ -16,20 +16,20 @@ We have the possibility to chose some types for our API, but in this case we wan
 
 Provide a name **blog-api** for example, and let's integrate all Lambdas by adding them one by one in the `Create and configure integrations` like below :
 
-![Integration 1](./integration_1.png)
-![Integration 2](./integration_2.png)
+![Integration 1](integration1.png)
+![Integration 2](integration2.png)
 
 Now our Lambda are integrated, let's create our **routes** and configure it like this :
 
-![Route Config example](./route_config_1.PNG)
+![Route Config example](routeconfig1.png)
 
 Please be sure to have the same URL as below :
 
-![Route Config](./route_config.png)
+![Route Config](routeconfig.png)
 
 You can now click on **Next** and leave the configuration stages as is. Review your API creation, and if it's respect all the configuration above, you can hit the **Create** button.
 
-![API Creation Success](./api_sucess.png)
+![API Creation Success](apisuccess.png)
 
 Good job, your API is now created! You can find your API url in your **stages**. It should be in the Invoke URL column.
 
@@ -44,14 +44,14 @@ I will go for curl :
 curl -v -X GET '<< your api url>>/articles'
 ```
 *Output:*
-![GetArticles Output](./get_articles_curl_result.png)
+![GetArticles Output](getarticlescurlresult.png)
 
 **FindArticleByTitleAndCategory:** 
 ```batch
 curl -v -X GET '<< your api url>>/articles/My%20firs%20article/Blabla'
 ```
 *Output:*
-![FindByArticles Output](./findby_articles_curl_result.png)
+![FindByArticles Output](findbyarticlescurlresult.png)
 
 
 **CreateArticle:** 
@@ -63,7 +63,7 @@ curl -d '{
 	"author": "Julien"}' -H "Content-Type: application/json" -X POST << your api url >>/articles | json_pp
 ```
 *Output:*
-![CreatedArticle Output](./created_article_curl_result.png)
+![CreatedArticle Output](createdarticlecurlresult.png)
 
 
 **UpdateArticle:** 
@@ -73,14 +73,14 @@ curl -d '{
 	"author": "CURLUser"}' -H "Content-Type: application/json" -X PUT << your api url >>/articles/My%20CURL%20Article/Test | json_pp
 ```
 *Output:*
-![UpdatedArticle Output](./updated_article_curl_result.png)
+![UpdatedArticle Output](updatedarticlecurlresult.png)
 
 **DeleteArticle:** 
 ```batch
 curl -X DELETE '<< your api url>>/articles/My%20CURL%20Article/Test'
 ```
 *Output:*
-![DeletedArticle Output](./deleted_article_curl_result.png)
+![DeletedArticle Output](deletedarticlecurlresult.png)
 
 ---
 
@@ -106,12 +106,12 @@ export const API_BASE_URL = 'put your api base url here (do not put the /)';
 Before starting the app, you should enable CORS by adding the `http://localhost:3000` Origin. If you don't do that, it will be impossile for your app to query your API.
 
 Navigate to the API Gateway Services, and click on the `CORS` option in the left menu. Edit the configuration, and add http://localhost:3000 to the **Access-Control-Allow-Origin** list :
-![CORS](./cors.png)
+![CORS](apicors.PNG)
 
 Once is done, save and go back to the React App project.
 
 Run `npm start` and when the app will run, it will open a new tab with this following URL: `http://localhost:3000`.
-![Web App](./webapp_1.png)
+![Web App](webapp1.png)
 
 > If the port has changed because you have already something running on the 3000 port, please edit your CORS configuration by setting the correct port in your API Gateway.
 

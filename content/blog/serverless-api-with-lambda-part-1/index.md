@@ -12,7 +12,7 @@ This kind of architecture is called "serverless". You can have a look in this [g
 
 Let me show you what we will implement in this tutorial :
 
-![Architecture AWS](./architecture.png)
+![Architecture AWS](archi.PNG)
 
 > Before going further, you will need an AWS Account (to create one, please visit [this link](https://portal.aws.amazon.com/billing/signup#/start))
 
@@ -31,7 +31,7 @@ Navigate to the DynamoDB service  via `Services > Database > DynamoDB`.
 
 Ok once you are here, we will create our blog table. Hit the `Create Table` button and fill the form like below :
 
-![Dynamodb Blog Table](./dynamodb_creation_Table.png)
+![Dynamodb Blog Table](tablecreation.PNG)
 
 When you create a DynamoDB table, a `partition key` is required to identify uniquely each item in your table.
 But this primary key can also be composed of a `sort key`.
@@ -46,7 +46,7 @@ Our settings will be simple, I will just create one Global Secondary Index (GSI)
 
 > For the Read/Write capacity mode, it just an example so I'll change them to have the minimum of Read capacity units (RCUs) and Write capacity units (WCUs). Of course, if you intent to use this Database in your project, you will adapt the RCUs/WCUs and probably use the Auto-Scaling based on your demand.
 
-![Dynamodb Table Settings](./dynamodb_table_config.png)
+![Dynamodb Table Settings](dbconf.PNG)
 
 Once your DynamoDB settings are ready, feel free to hit the `Create` button and your table will be created in few seconds.
 
@@ -82,6 +82,6 @@ I provide you a following list of items that you can add :
 
 > At this step, you should have your Blog table which contains 3 items :
 
-![Dynamodb Items](./dynamodb_items.png)
+![Dynamodb Items](items.PNG)
 
 Well done! Our DynamoDB is ready to be used :) Feel free to move on [to the Part 2](./../serverless-api-with-lambda-part-2) to start to configure our lambdas to query our DB.
