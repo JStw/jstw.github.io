@@ -1,115 +1,1372 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jstw Blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://jstw.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 28 May 2020 14:33:22 GMT</lastBuildDate><item><title><![CDATA[No title]]></title><description><![CDATA[My first article Wow such a great article!]]></description><link>https://jstw.github.io/my-first-article/</link><guid isPermaLink="false">https://jstw.github.io/my-first-article/</guid><content:encoded>&lt;h1&gt;My first article&lt;/h1&gt;
-&lt;p&gt;Wow such a great article!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[New Beginnings]]></title><description><![CDATA[Far far away, behind the word mountains, far from the countries Vokalia and
-Consonantia, there live the blind texts. Separated they live in…]]></description><link>https://jstw.github.io/new-beginnings/</link><guid isPermaLink="false">https://jstw.github.io/new-beginnings/</guid><pubDate>Thu, 28 May 2015 22:40:32 GMT</pubDate><content:encoded>&lt;p&gt;Far far away, behind the word mountains, far from the countries Vokalia and
-Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
-right at the coast of the Semantics, a large language ocean. A small river named
-Duden flows by their place and supplies it with the necessary regelialia.&lt;/p&gt;
-&lt;h2&gt;On deer horse aboard tritely yikes and much&lt;/h2&gt;
-&lt;p&gt;The Big Oxmox advised her not to do so, because there were thousands of bad
-Commas, wild Question Marks and devious Semikoli, but the Little Blind Text
-didn’t listen. She packed her seven versalia, put her initial into the belt and
-made herself on the way.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jstw Blog]]></title><description><![CDATA[A personal blog powered by Gatsby.]]></description><link>https://jstw.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 31 May 2020 13:22:38 GMT</lastBuildDate><item><title><![CDATA[Create a Serverless API with AWS - Part 3]]></title><description><![CDATA[Hey hello there! If you didn’t read the previous post, I suggest you to read it before continuing. If you did, perfect, let’s go ;) The last…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-3/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-3/</guid><pubDate>Sun, 31 May 2020 11:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey hello there! If you didn’t read the previous post, I suggest you to &lt;a href=&quot;./../serverless-api-with-lambda-part-2&quot;&gt;read it&lt;/a&gt; before continuing. If you did, perfect, let’s go ;)&lt;/p&gt;
+&lt;p&gt;The last part is to integrate our Lambda Functions previously created, in a API. AWS provides a really great service for that, which is called &lt;strong&gt;API Gateway&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Find this service, by opening &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Networking &amp;amp; Content Delivery &amp;gt; API Gateway&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Let’s create an API by clicking the &lt;code class=&quot;language-text&quot;&gt;Create API&lt;/code&gt; button.&lt;/p&gt;
+&lt;p&gt;We have the possibility to chose some types for our API, but in this case we want to create an HTTP API. Let’s choose the &lt;code class=&quot;language-text&quot;&gt;HTTP API&lt;/code&gt; (the first one).&lt;/p&gt;
+&lt;p&gt;Provide a name &lt;strong&gt;blog-api&lt;/strong&gt; for example, and let’s integrate all Lambdas by adding them one by one in the &lt;code class=&quot;language-text&quot;&gt;Create and configure integrations&lt;/code&gt; like below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/3ade922f177a4cdbe7485a33910babb2/ee3fb/integration_1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 54.05405405405405%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAABbElEQVQoz31Si46EIAz0/3/yRNfX+lgfCLiivU5F10s2RzKplDJOp0Rd19HjkVGW5RTHsXzHSlGSPsg5R25xIS6CJQC5JeTOvOVcZIyheZ4F0zRJ1FpLXNf1wvv9FpxEyCEit4Qz7KO+70mphFJWpJJUFEJdkqasWPGZoh+OZVVRUZRUlhXleSGxLEvprAix7weKZlYI0mEYWOGhTAfFojR0sG0b7Qysfd+P/RU/uQiXn3VNwzjSfwsX5FKI9+81tCyE1lp6vXr2xEuB+BS88d5/wMUXeA8i1GnjqO64w3EKCrmtlH2bOK5cCPKEvWyaVn7wh+gGkKG2HTR1Mw+EBSEXYVpsgbALgheXR1+AvPfHOcntY0FQhFHDeLRxkpye+fMn3yCkhx3oUuv50zKeg2EvQYJJt/zYkd9vau/wgRDvtuk1Ze1I02z4zB9DadqWjLHyQDH16vlk1JJf74O5wVonz8k6HqDfxAJw/QJYm1dej4ZYjwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Integration 1&quot;
+        title=&quot;Integration 1&quot;
+        src=&quot;/static/3ade922f177a4cdbe7485a33910babb2/fcda8/integration_1.png&quot;
+        srcset=&quot;/static/3ade922f177a4cdbe7485a33910babb2/12f09/integration_1.png 148w,
+/static/3ade922f177a4cdbe7485a33910babb2/e4a3f/integration_1.png 295w,
+/static/3ade922f177a4cdbe7485a33910babb2/fcda8/integration_1.png 590w,
+/static/3ade922f177a4cdbe7485a33910babb2/efc66/integration_1.png 885w,
+/static/3ade922f177a4cdbe7485a33910babb2/ee3fb/integration_1.png 1144w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/03266e80dde87402388cff82018de7d7/72372/integration_2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 56.08108108108109%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAABR0lEQVQoz51Si46EIAzk/z9zL1ld36ACgtjrVDFkc7eXHEl9lHbamVZZ52gYRooxUkpJ3rB93z8aYv22kXWemrYjxzjwq3lZqKprdngJ0tpwQEtmnikdB+3sS5flbySGEGmaNHXGUqstBW4ihEBq4yqrtbRtQTpDVa01LVwIgKkATAUg4pCDfxz4gKXCRfFAMlt5fgLLhngxUGe6MZ5SKMvddV0vLSMAVZz3p6a/dCjGd9Y6MqujVz9K3q3h81nRsq4C0vOAHo8vEXoXeqd2+TsPToY5TjQuDOqiNAQZVGTUkl6m/onuHSuZ15NzAKqAii5z9UznT0COQacbT3acJvK+oFxVteiGKpgwNIUE72tTrg/AANRMK1WDkZWBT2EhcQGBz0V11PcDaWPu5NKyhmjAY3jcVaYrGuICAK+mFer/Oce1bqD8DerFXwwB/0YBAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Integration 2&quot;
+        title=&quot;Integration 2&quot;
+        src=&quot;/static/03266e80dde87402388cff82018de7d7/fcda8/integration_2.png&quot;
+        srcset=&quot;/static/03266e80dde87402388cff82018de7d7/12f09/integration_2.png 148w,
+/static/03266e80dde87402388cff82018de7d7/e4a3f/integration_2.png 295w,
+/static/03266e80dde87402388cff82018de7d7/fcda8/integration_2.png 590w,
+/static/03266e80dde87402388cff82018de7d7/efc66/integration_2.png 885w,
+/static/03266e80dde87402388cff82018de7d7/72372/integration_2.png 1149w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Now our Lambda are integrated, let’s create our &lt;strong&gt;routes&lt;/strong&gt; and configure it like this :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/464f518bbd960c472e3bf9cd78dfb6ed/e9d87/route_config_1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 44.5945945945946%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABS0lEQVQoz31SXU/DMAzs7+e/8MyPQLzDAxpo6ZqO5bNN2rRpDztso0wTkU6ufPHZvrTy3kNpDW0MrHUIIVzR38R/EWO5V7Gg2AvItoVSGjnnK5blHDe5e5jnGdM0IRFIsIOUEm17REOxaSREXaOuD3+wFzUOh6ZwQvzypfZ4hHOOBlhQ8Zg8mVIKp5MiwsPQ+lozdIlsiTG2FF3zfIcQaVWecl3XH8HiUR/Ah5PsY9d1uD3DMBBnEUO4YVakNNHa+SxIHbgz7z+mVAS5K5P5DG4klcHrbg8dRvgpw6cMHRP6IYHfIcaAlTyvInU21JnBxZdJWfCClXK66/Epv9CQsCWhOC/oSTjlhQvKnUyoHKl7WpHB3/fAHHv8sduVabbHWoNWe9jnR5inB3rljVAR5rjBJa/pUST9CV3fF3uGcSwWMW8caYg3uPcXfAOEmbSA00RelQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Route Config example&quot;
+        title=&quot;Route Config example&quot;
+        src=&quot;/static/464f518bbd960c472e3bf9cd78dfb6ed/fcda8/route_config_1.png&quot;
+        srcset=&quot;/static/464f518bbd960c472e3bf9cd78dfb6ed/12f09/route_config_1.png 148w,
+/static/464f518bbd960c472e3bf9cd78dfb6ed/e4a3f/route_config_1.png 295w,
+/static/464f518bbd960c472e3bf9cd78dfb6ed/fcda8/route_config_1.png 590w,
+/static/464f518bbd960c472e3bf9cd78dfb6ed/efc66/route_config_1.png 885w,
+/static/464f518bbd960c472e3bf9cd78dfb6ed/e9d87/route_config_1.png 1176w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Please be sure to have the same URL as below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/7198b48cd5e26caa026248d8c7d851f0/72372/route_config.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 59.45945945945946%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABh0lEQVQoz52TWZKDMAxEuf8xEyBM2DGLWTV6wjCpfA5VKhst7e42RE3TyPMZy+uVyc/7LZP3/wrPOk0SDcMgVVVJ07bSOSfLstyxrusd37nlKz/Ps0XUdZ2k6UuSJJUkTW3/jGNjzfqwNbF9kiQSazweT6vHmmcuyzLJ80I8gH3fS1lWAnDTtBYw5v0MJ23bSV03GrXVarXJud7q4zjJ52OSGeLZ990GnXN3wxHWUf0pFQyg/TjuGnvvT7nMRzQS27aZsbBxytoHo8kTGJ4XpQzDaN4xPJt3i7KujbUB0ngN0gBjirABfNU8LGDQ6sVRG8bRhpdwKVwmJG7AXkHWdbMiklhPSYcdZGwUEH8xngO27Q+wxWsFPSXraSY5DGE0Eiq9ABrJ04iKvCik7wd7/2TIQfSeDLXR9YP5ckmmyHeJjMsvABu1YJq82UAswUOsgSFqIhpggy8MmwUKhHTAD5VHULvsuHKwR/qlklwEUMU3pmbTbE1BEuv9VwQvjdnHn0IAuoVb/wUyOKMXZFzn0AAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Route Config&quot;
+        title=&quot;Route Config&quot;
+        src=&quot;/static/7198b48cd5e26caa026248d8c7d851f0/fcda8/route_config.png&quot;
+        srcset=&quot;/static/7198b48cd5e26caa026248d8c7d851f0/12f09/route_config.png 148w,
+/static/7198b48cd5e26caa026248d8c7d851f0/e4a3f/route_config.png 295w,
+/static/7198b48cd5e26caa026248d8c7d851f0/fcda8/route_config.png 590w,
+/static/7198b48cd5e26caa026248d8c7d851f0/efc66/route_config.png 885w,
+/static/7198b48cd5e26caa026248d8c7d851f0/72372/route_config.png 1149w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;You can now click on &lt;strong&gt;Next&lt;/strong&gt; and leave the configuration stages as is. Review your API creation, and if it’s respect all the configuration above, you can hit the &lt;strong&gt;Create&lt;/strong&gt; button.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/9dd7fb49ed4873643a7ff78479d12419/098c1/api_sucess.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 47.2972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABKklEQVQoz5VRO07EMBD1XWhol54VRUTJp+FQSBTQbCSOwQE4AhdY2iASf+I4PzuJHmMni5ZNtCtGepqZ5xl75pk9vF7jZrPGfXwVcBevcRtfInpZIXpejf4YQs0FoqdzRI9nYF88RSIEvkWKVGYQuQDPOYQWIQ5eywPsziQkxaoqwT/ekL1vwNKMY7v9REa+rhsYU6Isq3/D9ymlwVSukCQJtNboug7WWlg3orXtn/wX1i7wLnCsMIYmq+GIODTP98Mw45umCVMtGdNFASklairyNtAFp+Af6ft+8YxWziGVAueC1i7CxafQTNjPd57lpB33v5xm8Ot7Hf36++g6N+PmNWNf0FDRZD6pSDNdGBLX0Yf4T3ETbOB8TT5t1LQtvFyG+luKhZDB/wCMBZVFSEpSSQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;API Creation Success&quot;
+        title=&quot;API Creation Success&quot;
+        src=&quot;/static/9dd7fb49ed4873643a7ff78479d12419/fcda8/api_sucess.png&quot;
+        srcset=&quot;/static/9dd7fb49ed4873643a7ff78479d12419/12f09/api_sucess.png 148w,
+/static/9dd7fb49ed4873643a7ff78479d12419/e4a3f/api_sucess.png 295w,
+/static/9dd7fb49ed4873643a7ff78479d12419/fcda8/api_sucess.png 590w,
+/static/9dd7fb49ed4873643a7ff78479d12419/efc66/api_sucess.png 885w,
+/static/9dd7fb49ed4873643a7ff78479d12419/c83ae/api_sucess.png 1180w,
+/static/9dd7fb49ed4873643a7ff78479d12419/098c1/api_sucess.png 1578w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Good job, your API is now created! You can find your API url in your &lt;strong&gt;stages&lt;/strong&gt;. It should be in the Invoke URL column.&lt;/p&gt;
+&lt;h3&gt;Let’s test the beast!&lt;/h3&gt;
+&lt;p&gt;I don’t what you prefer to test an API, you can use a command line to curl it, or do via Postman, it’s up to you :)&lt;/p&gt;
+&lt;p&gt;I will go for curl :&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;GetArticles:&lt;/strong&gt; &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;batch&quot;&gt;&lt;pre class=&quot;language-batch&quot;&gt;&lt;code class=&quot;language-batch&quot;&gt;&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;token parameter attr-name&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;token parameter attr-name&quot;&gt;-X&lt;/span&gt; GET &apos;&amp;lt;&amp;lt; your api url&gt;&gt;/articles&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;Output:&lt;/em&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d4d144082387abdbabac620bb62eebc1/63ec5/get_articles_curl_result.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 60.13513513513513%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABYUlEQVQoz5VSa3OCMBAMb0wgPAJIeESdUfv/f+H2LrSOY1utH3Zg7pK93dsIuVdQi0I2ZNBWY1ErnJmxrDWWpcS6asyzxjQVhJKg0FsDNc3QB4diGJAmKXY7CSklhC4qmNpA5hJd26FuaxS6REn1YW+J8EAkC+q6RUt9rRv0/YCCLvetwdEdqFdBCIEoiiDyPEcYhkiSBEEQIAxC32TEcewPBcH2H8eRP/vd9yRU53t3NQFdVXA0qWkaUtHC2olszvS16LqO0KNQimztPPE94S8Qnuh0PKEsS9jRejLeR5qmXtGjqqfgiXyRLXMhS7P/qHilsMWRFGqtvTrnHMZxpOX3MMZ45W+opB3q6kY40DNgsopqTMTWeXcPi39ume1uaQZkOfWW39rbD8uU7PX64cNhdefzhRIeoShZVsngoT6g10o3y+vqUNHzMaa7PRd+PjyE+0qqLfmv8P5E8urAm/gEohEFuG8db04AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;GetArticles Output&quot;
+        title=&quot;GetArticles Output&quot;
+        src=&quot;/static/d4d144082387abdbabac620bb62eebc1/fcda8/get_articles_curl_result.png&quot;
+        srcset=&quot;/static/d4d144082387abdbabac620bb62eebc1/12f09/get_articles_curl_result.png 148w,
+/static/d4d144082387abdbabac620bb62eebc1/e4a3f/get_articles_curl_result.png 295w,
+/static/d4d144082387abdbabac620bb62eebc1/fcda8/get_articles_curl_result.png 590w,
+/static/d4d144082387abdbabac620bb62eebc1/63ec5/get_articles_curl_result.png 812w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;FindArticleByTitleAndCategory:&lt;/strong&gt; &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;batch&quot;&gt;&lt;pre class=&quot;language-batch&quot;&gt;&lt;code class=&quot;language-batch&quot;&gt;&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;token parameter attr-name&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;token parameter attr-name&quot;&gt;-X&lt;/span&gt; GET &apos;&amp;lt;&amp;lt; your api url&gt;&gt;/articles/My&lt;span class=&quot;token variable&quot;&gt;%20firs%&lt;/span&gt;20article/Blabla&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;Output:&lt;/em&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/406d92d0f0ba7d80f1fe7eb985e351d4/23592/findby_articles_curl_result.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 22.972972972972975%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAAAuElEQVQY05WQyXKEMAxE7YkxXpBZxtkwMEzN/3/ji6FyylKVHF71QS2pJSXvgpREeV7Y843tltn3zOPxxrpemeeBpfS8lFdkLuT9zjVn2ratOLz3xBhpmoYQPMoay0lr0U+ay8VUQyJJX7WrDaESiSHirCV1Qp8SSqlvaK1RqRaHccA7X4193RLounhuPVKcph+af6WUpZ41M00T27oxjiMi8pnM45zDGPP3gYf54PiBbeyp/0r0hQ+lw2zkQOqLEwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;FindByArticles Output&quot;
+        title=&quot;FindByArticles Output&quot;
+        src=&quot;/static/406d92d0f0ba7d80f1fe7eb985e351d4/fcda8/findby_articles_curl_result.png&quot;
+        srcset=&quot;/static/406d92d0f0ba7d80f1fe7eb985e351d4/12f09/findby_articles_curl_result.png 148w,
+/static/406d92d0f0ba7d80f1fe7eb985e351d4/e4a3f/findby_articles_curl_result.png 295w,
+/static/406d92d0f0ba7d80f1fe7eb985e351d4/fcda8/findby_articles_curl_result.png 590w,
+/static/406d92d0f0ba7d80f1fe7eb985e351d4/efc66/findby_articles_curl_result.png 885w,
+/static/406d92d0f0ba7d80f1fe7eb985e351d4/23592/findby_articles_curl_result.png 1031w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CreateArticle:&lt;/strong&gt; &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;batch&quot;&gt;&lt;pre class=&quot;language-batch&quot;&gt;&lt;code class=&quot;language-batch&quot;&gt;&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;token parameter attr-name&quot;&gt;-d&lt;/span&gt; &apos;{&lt;/span&gt;
+	&quot;title&quot;: &quot;My CURL Article&quot;,
+	&quot;category&quot;: &quot;Test&quot;,
+	&quot;content&quot;: &quot;An article created via CURL command, awesome!&quot;,
+	&quot;author&quot;: &quot;Julien&quot;}&lt;span class=&quot;token punctuation&quot;&gt;&apos;&lt;/span&gt; -H &quot;Content-Type: application/json&quot; -X POST &amp;lt;&amp;lt; your api url &gt;&gt;/articles | json_pp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;Output:&lt;/em&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/37594579eda8a2c6fd011704bc5ebef2/68947/created_article_curl_result.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAAAo0lEQVQY05WP2RKDIAxFoyCLLDqKqP//obcJHcbpU9uHMyGEJAdKR0KoATkuWGyE9QRnCZbxjqDNCLIONHIk+s5VL5xMrRV72VFKxXlKfmHbClJMiPOMdV3hvYcxpjFNhpfaxjufGuScg7FPUZpSSph5SL+TNzlnKKUwDANGtu2xnzuklMZ932yzsd3RmrXWH/z01Y5sDSE0bbETxE4GSe3fgS9Jn2rSa6hj3QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;CreatedArticle Output&quot;
+        title=&quot;CreatedArticle Output&quot;
+        src=&quot;/static/37594579eda8a2c6fd011704bc5ebef2/fcda8/created_article_curl_result.png&quot;
+        srcset=&quot;/static/37594579eda8a2c6fd011704bc5ebef2/12f09/created_article_curl_result.png 148w,
+/static/37594579eda8a2c6fd011704bc5ebef2/e4a3f/created_article_curl_result.png 295w,
+/static/37594579eda8a2c6fd011704bc5ebef2/fcda8/created_article_curl_result.png 590w,
+/static/37594579eda8a2c6fd011704bc5ebef2/efc66/created_article_curl_result.png 885w,
+/static/37594579eda8a2c6fd011704bc5ebef2/c83ae/created_article_curl_result.png 1180w,
+/static/37594579eda8a2c6fd011704bc5ebef2/68947/created_article_curl_result.png 1281w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;UpdateArticle:&lt;/strong&gt; &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;batch&quot;&gt;&lt;pre class=&quot;language-batch&quot;&gt;&lt;code class=&quot;language-batch&quot;&gt;&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;token parameter attr-name&quot;&gt;-d&lt;/span&gt; &apos;{&lt;/span&gt;
+	&quot;content&quot;: &quot;Oh, this is a curl update ?&quot;,
+	&quot;author&quot;: &quot;CURLUser&quot;}&lt;span class=&quot;token punctuation&quot;&gt;&apos;&lt;/span&gt; -H &quot;Content-Type: application/json&quot; -X PUT &amp;lt;&amp;lt; your api url &gt;&gt;/articles/My%20CURL%20Article/Test | json_pp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;Output:&lt;/em&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/47dd52da522f8f4e88fac839d982964a/f663d/updated_article_curl_result.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 16.89189189189189%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABJ0AAASdAHeZh94AAAAcUlEQVQI152O2QoEMQgETSYnao4h5P//tEcysOy+7kNRtqhIbTfoUvQ6MAdjW+69GhlFGaUP5JyRUkKM8fDW6TiXchxCQLgCSEVxaApmwX0viDTUyqg23ERQzEQE59wP3vvDd4/mnPbVxlrLDvJn+V8e+ZdAclUNt+cAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;UpdatedArticle Output&quot;
+        title=&quot;UpdatedArticle Output&quot;
+        src=&quot;/static/47dd52da522f8f4e88fac839d982964a/fcda8/updated_article_curl_result.png&quot;
+        srcset=&quot;/static/47dd52da522f8f4e88fac839d982964a/12f09/updated_article_curl_result.png 148w,
+/static/47dd52da522f8f4e88fac839d982964a/e4a3f/updated_article_curl_result.png 295w,
+/static/47dd52da522f8f4e88fac839d982964a/fcda8/updated_article_curl_result.png 590w,
+/static/47dd52da522f8f4e88fac839d982964a/efc66/updated_article_curl_result.png 885w,
+/static/47dd52da522f8f4e88fac839d982964a/c83ae/updated_article_curl_result.png 1180w,
+/static/47dd52da522f8f4e88fac839d982964a/f663d/updated_article_curl_result.png 1511w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DeleteArticle:&lt;/strong&gt; &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;batch&quot;&gt;&lt;pre class=&quot;language-batch&quot;&gt;&lt;code class=&quot;language-batch&quot;&gt;&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;token parameter attr-name&quot;&gt;-X&lt;/span&gt; DELETE &apos;&amp;lt;&amp;lt; your api url&gt;&gt;/articles/My&lt;span class=&quot;token variable&quot;&gt;%20CURL%&lt;/span&gt;20Article/Test&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;Output:&lt;/em&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/9e5d339502f41f0215232bb3521d443a/aa61c/deleted_article_curl_result.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 34.45945945945946%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABJ0AAASdAHeZh94AAAA+klEQVQoz41Q2XLDIBDDB5izNuAYX3j8/z+pLkyalzaZPmiWY1cridlkYZKBSw7ZZ+yPBWf2uO8HrjxjXUcc+4i4BLj9QLwuTNMErTWMMVBKQUqJvu8xDAOYNQ5a0qcykFqi7TpqMphGD2e/6KxpQENTHTiHH0c458AYQ9u2FU3TvO6MC4FMW+/7xhxneB/q9mEQ4LyHVPKlorxzIi3DH8AQQsB5nIgxIMSIZUlE7DGSGvMkKXYKhODoyMWPqj8Jy+acL2zbhrSumOe55lSsWcpJksLSo57VWFsze0tYwk0pVaWWmguKKiFErR/U/EaRX6xIqWpm/x58g29rkJkSTTJvlQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;DeletedArticle Output&quot;
+        title=&quot;DeletedArticle Output&quot;
+        src=&quot;/static/9e5d339502f41f0215232bb3521d443a/fcda8/deleted_article_curl_result.png&quot;
+        srcset=&quot;/static/9e5d339502f41f0215232bb3521d443a/12f09/deleted_article_curl_result.png 148w,
+/static/9e5d339502f41f0215232bb3521d443a/e4a3f/deleted_article_curl_result.png 295w,
+/static/9e5d339502f41f0215232bb3521d443a/fcda8/deleted_article_curl_result.png 590w,
+/static/9e5d339502f41f0215232bb3521d443a/efc66/deleted_article_curl_result.png 885w,
+/static/9e5d339502f41f0215232bb3521d443a/aa61c/deleted_article_curl_result.png 1065w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;This is the end :) You successfully have a functional API which serves Lambda functions to intereact with your DB.&lt;/p&gt;
+&lt;p&gt;If you want to go further, you can clone a sample project that I did, to show you how we can have a fully serverless web application.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;batch&quot;&gt;&lt;pre class=&quot;language-batch&quot;&gt;&lt;code class=&quot;language-batch&quot;&gt;&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;git&lt;/span&gt; clone git@github.com:JStw/blog-app.git&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;or you can git clone via HTTPS:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;batch&quot;&gt;&lt;pre class=&quot;language-batch&quot;&gt;&lt;code class=&quot;language-batch&quot;&gt;&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;git&lt;/span&gt; clone https://github.com/JStw/blog-app.git&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When its done, run a &lt;code class=&quot;language-text&quot;&gt;npm install&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Open the &lt;code class=&quot;language-text&quot;&gt;App.js&lt;/code&gt;, and put your Api Gateway base url in this line :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;API_BASE_URL&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;put your api base url here (do not put the /)&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Before starting the app, you should enable CORS by adding the &lt;code class=&quot;language-text&quot;&gt;http://localhost:3000&lt;/code&gt; Origin. If you don’t do that, it will be impossile for your app to query your API.&lt;/p&gt;
+&lt;p&gt;Navigate to the API Gateway Services, and click on the &lt;code class=&quot;language-text&quot;&gt;CORS&lt;/code&gt; option in the left menu. Edit the configuration, and add &lt;a href=&quot;http://localhost:3000&quot;&gt;http://localhost:3000&lt;/a&gt; to the &lt;strong&gt;Access-Control-Allow-Origin&lt;/strong&gt; list :
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 44.5945945945946%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABBklEQVQoz6VRW04EQQjs+19tL6FGjRpHnZl+P6gFbHR24p8klSZAUwW4ZfnA49Mz3vktpSDn/C+4FAP8vkHenJMGU0pI8k4/T//40eIhV4Xka61wsQxsGVgTobQBooExbkFEaL2jtabo7P/maWJAzN0tDZeHjst9x+vWODSLaIILRUlkRT4E7N6rGpo5IxQSibs1RLx9rXj5XOFzAYhuGzJkt/p5NummbuatedGRuYlPGXtMHGgqm2aRQUxGlR0JRM25zszpYmNE4HF+lJxQuVnmnOc6GVnGN6WmVghlJc72I1c7Kzuye24kxHZdU2hmtU5U6QUZMoqy9gn1vy/qfVD/SPLXyFf3B8Krb6GSWQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;CORS&quot;
+        title=&quot;CORS&quot;
+        src=&quot;/static/12a59859965ea26fdb376913b55791cd/fcda8/cors.png&quot;
+        srcset=&quot;/static/12a59859965ea26fdb376913b55791cd/12f09/cors.png 148w,
+/static/12a59859965ea26fdb376913b55791cd/e4a3f/cors.png 295w,
+/static/12a59859965ea26fdb376913b55791cd/fcda8/cors.png 590w,
+/static/12a59859965ea26fdb376913b55791cd/efc66/cors.png 885w,
+/static/12a59859965ea26fdb376913b55791cd/c83ae/cors.png 1180w,
+/static/12a59859965ea26fdb376913b55791cd/fba00/cors.png 1529w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Once is done, save and go back to the React App project.&lt;/p&gt;
+&lt;p&gt;Run &lt;code class=&quot;language-text&quot;&gt;npm start&lt;/code&gt; and when the app will run, it will open a new tab with this following URL: &lt;code class=&quot;language-text&quot;&gt;http://localhost:3000&lt;/code&gt;.
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/0428526e689ae48b2c17004fd645c92b/d9ed0/webapp_1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 48.64864864864865%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABJ0AAASdAHeZh94AAABbElEQVQoz42QCUsDMRCF88tUsAq2YBFEEPzFiqJYaan2rnWzu9mje2SPbJ+ZbFtaLNLAR2bem5kc7Pr2Hjd3D2g02zhpNHF60dqDtEOQRz3nV200CB2fXbbABpM5xrMFhnofjGdm/xpN8Tmc6nyO0fQbI+2Ppn+hvl2EF4A9vbzh+fUdH71PvHV66HT76PYHeHx+NbEtAjheeBRFqcCGk+/6FmtmCw7L8bDgroHiY0llBvZjC3DX3zMoP8R/NaTJLAfL8gJxkiJJJVIN5Vmem50KSN9Qe7W/qxNUq1QFVpYFLMuCEALCFVitVtissizBOYdtcwRBsNWrqqrr13Bum1paTKkSUSLBRQSp/0ApZYbWg1cIIwnLXeoGZRpIp4F0ES9M4fgxiry+HXmMzFwLvh+YYZTvIqVEEIbG2/WpOU4SLJcRqvUhBKOnuK6rB/pwHAdRFKEo9D9lGTzP3/PiON56m+eSRzWJHk7P/gV1vtF5rPaVqwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Web App&quot;
+        title=&quot;Web App&quot;
+        src=&quot;/static/0428526e689ae48b2c17004fd645c92b/fcda8/webapp_1.png&quot;
+        srcset=&quot;/static/0428526e689ae48b2c17004fd645c92b/12f09/webapp_1.png 148w,
+/static/0428526e689ae48b2c17004fd645c92b/e4a3f/webapp_1.png 295w,
+/static/0428526e689ae48b2c17004fd645c92b/fcda8/webapp_1.png 590w,
+/static/0428526e689ae48b2c17004fd645c92b/efc66/webapp_1.png 885w,
+/static/0428526e689ae48b2c17004fd645c92b/c83ae/webapp_1.png 1180w,
+/static/0428526e689ae48b2c17004fd645c92b/d9ed0/webapp_1.png 1415w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If the port has changed because you have already something running on the 3000 port, please edit your CORS configuration by setting the correct port in your API Gateway.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I hope this article was clear for you and your API on your side working greats, this is my article guys, so if you want to send me a feedback do not hesitate to contact me via DM in Twitter :)&lt;/p&gt;
+&lt;h3&gt;Go further&lt;/h3&gt;
+&lt;p&gt;Now your API is working, this is some extra-work you can do :&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;This however showed weasel&lt;/li&gt;
+&lt;li&gt;Secure some API calls with Cognito.&lt;/li&gt;
+&lt;li&gt;Send SMS / Email to your subscribers list&lt;/li&gt;
+&lt;li&gt;Customize domain name for your API&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Create a Serverless API with AWS - Part 2]]></title><description><![CDATA[Hey folks! If you didn’t read the previous post, I suggest you to read it  before continuing. If you did, let’s continue :) Ok so now, we…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-2/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-2/</guid><pubDate>Sat, 30 May 2020 15:00:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey folks! If you didn’t read the previous post, I suggest you to &lt;a href=&quot;./../serverless-api-with-lambda-part-1&quot;&gt;read it&lt;/a&gt;  before continuing. If you did, let’s continue :)&lt;/p&gt;
+&lt;p&gt;Ok so now, we are our beautiful database which only asking to be queried :D &lt;/p&gt;
+&lt;h3&gt;First step: define our Lambda Role&lt;/h3&gt;
+&lt;p&gt;Yeah I know, you wanted to start coding a little bit! But you have to wait a little bit :)&lt;/p&gt;
+&lt;p&gt;If you remember in our architecture schema :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a712c81b450295927c99906ae5442c82/f349c/architecture.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 41.21621621621622%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAAsSAAALEgHS3X78AAACBUlEQVQoz2PQNHVmUDd2ZKioaWKIyytnAAH+0HIGNr9qdm7feg6ugGoOfv9Cdga508yT0pylD2aoOtsGhHIx+HazcfmXsbMFVLHLRUzkAmJOVv8qDgYYUNaxgLOZ/euZ2AIr2WD8X80mTCD6bLGh5+1S7acfExk4Qfz//xlQAKN3JQeDkp4No6KuDTNIICo6hqkkJZKJ16uAicExlxUkZubhxVRbV8cd3ryI8ZoGA+PcNFtRBjSQVXrdNq/8poVEUi07g7aZq6qWmYt5eGwqZ3lZqVhxXoVEXq+fYKrnXsva0LNXy4IP+IBdovyf4USxqdOdYvVDqzOtBJNal3F31iVx1tZPEI3PvPoxIev6A5GEMnYGHQtXTWA4eodFxQtUlJeJl+RXSGQ3RIileO80rQk5vbss6IAjzCUnczRlLxTrp0ypzhQsqu/iqa8u5urs6udOKzibnVF4LkUgsY6dYeuyyYxJyclsQuJyDKZm5kyO2mKMDHrRzAy+wawMygysDK4MDF1VZVwMk/4zHS8y0b9RpD7hgxMDCwM24FbHhlWcIbydkTsAU/JioY7hrTLdxb9y2FDk/kNjhyOgkp3BLziSwcMvlMHBzZfBNTodLMEdUMbI6lfFyeFbx87mX83B7F/Nzu9fxM4gfREceQx+rezAJMPB7FfFzgLEXAEVwORVAWJzAgByAJMyNZh8PwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Architecture&quot;
+        title=&quot;Architecture&quot;
+        src=&quot;/static/a712c81b450295927c99906ae5442c82/fcda8/architecture.png&quot;
+        srcset=&quot;/static/a712c81b450295927c99906ae5442c82/12f09/architecture.png 148w,
+/static/a712c81b450295927c99906ae5442c82/e4a3f/architecture.png 295w,
+/static/a712c81b450295927c99906ae5442c82/fcda8/architecture.png 590w,
+/static/a712c81b450295927c99906ae5442c82/efc66/architecture.png 885w,
+/static/a712c81b450295927c99906ae5442c82/c83ae/architecture.png 1180w,
+/static/a712c81b450295927c99906ae5442c82/f349c/architecture.png 2002w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Our client will query our API Gateway, and the API Gateway will invoke some Lambda Functions. Fina the lambda functions will query the DynamoDB table and returns some results.&lt;/p&gt;
+&lt;p&gt;To allow our Lambdas to do that, we will need an IAM role which allow these API actions.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you want to know what are the IAM roles, why we need them, I’ll provide you the link to the  &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html&quot;&gt;IAM AWS Official Documentation&lt;/a&gt;. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Navigate to the ÌAM Service through &lt;code class=&quot;language-text&quot;&gt;Security, Identity, &amp;amp; Compliance &amp;gt; IAM&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Before creating our new role, we will create our policy which will be used in our IAM Role. Create a new policy by clicking on &lt;code class=&quot;language-text&quot;&gt;Policies &amp;gt; Create Policy&lt;/code&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;By default, an explicit deny is set to all resources created in AWS. You must grant permissions via IAM Policies. and attach them to your resources. In you want more informations about IAM Roles, Policies, Groups, have a look &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html&quot;&gt;to the officiel documentation of IAM&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Choose the &lt;code class=&quot;language-text&quot;&gt;JSON&lt;/code&gt; editor tab. Once it’s done, you can copy paste this following policy :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;Version&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2012-10-17&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;Statement&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;Effect&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Allow&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;Action&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&quot;dynamodb:Query&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&quot;dynamodb:DeleteItem&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&quot;dynamodb:GetItem&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&quot;dynamodb:PutItem&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&quot;dynamodb:Scan&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&quot;dynamodb:UpdateItem&quot;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;Resource&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&quot;arn:aws:dynamodb:*:*:table/*/index/*&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&quot;arn:aws:dynamodb:&amp;lt;&amp;lt; put your region here &gt;&gt;:&amp;lt;&amp;lt; insert your account id here &gt;&gt;:table/blog&quot;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;Effect&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Allow&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;Action&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&quot;lambda:InvokeFunction&quot;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;Resource&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;*&quot;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Do not forget to change the &lt;strong&gt;region&lt;/strong&gt; and the &lt;strong&gt;account id&lt;/strong&gt; inside the &lt;strong&gt;Resource arn&lt;/strong&gt; bloc. The region is the one selected in the AWS Console nav bar, and you can find your account id by checking in your IAM Dashboard, the IAM users sign-in link.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Finally, you can hit the Next button to review your policy, add a name and create your policy. It should should looks like this :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/36efbd4cccb2c7b9b914ffd8cca06d30/68638/policy.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 37.83783783783784%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAAA70lEQVQoz5WSyW6EMBBE/f8fiOAQEAwmQDxiM6uBylQnJnOIspT0EG3h6qJt1TQNhmHAvu9Y1xXbtuE7necp/CbFxzzPYmqMQdu2mKYJ42gfjAKbHMdxmf6Ecm4Ts2VZPo0+TKy1F6xp+BeUj8qCSZ5xzgn/kaIRExKmYVLCeRKm67pO4Dd931813/1eXys/6Lqu8RLHqKoKZVkijhOkaSbreZ4LURQhThJoraVO0xRBECAMQ2TZDUVRfBmyS3bTYljVBvr1QfkmXf1MeWB+psQn83/HtcvQzg73fr2uCFMac5fr5MUrxk1eHAkP8lnvzhdtA4xVHvYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;IAM Policy&quot;
+        title=&quot;IAM Policy&quot;
+        src=&quot;/static/36efbd4cccb2c7b9b914ffd8cca06d30/fcda8/policy.png&quot;
+        srcset=&quot;/static/36efbd4cccb2c7b9b914ffd8cca06d30/12f09/policy.png 148w,
+/static/36efbd4cccb2c7b9b914ffd8cca06d30/e4a3f/policy.png 295w,
+/static/36efbd4cccb2c7b9b914ffd8cca06d30/fcda8/policy.png 590w,
+/static/36efbd4cccb2c7b9b914ffd8cca06d30/efc66/policy.png 885w,
+/static/36efbd4cccb2c7b9b914ffd8cca06d30/c83ae/policy.png 1180w,
+/static/36efbd4cccb2c7b9b914ffd8cca06d30/68638/policy.png 1510w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let me explain a little bit what this policy does. The first &lt;code class=&quot;language-text&quot;&gt;Effect&lt;/code&gt; will allow our resources (lambdas) to make some basics dynamodb execution calls like Query, Scan or PutItem etc. For this specific actions, we specify also the ARNs of our DynamoDB table/indexes.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You should follow the &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege&quot;&gt;Principle of Least Privileges&lt;/a&gt; in AWS. It’s one a best practice to follow.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I will not explain the second effect bloc (the lambda:InvokeFunction) for now. I’ll keep it for later ;)&lt;/p&gt;
+&lt;p&gt;Ok so now our IAM Policy has been created and we can finally create our IAM Role. Go back to the IAM Dashboard by clicking on &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Security, Identity &amp;amp; Compliance &amp;gt; IAM&lt;/code&gt;. Click on &lt;code class=&quot;language-text&quot;&gt;Roles &amp;gt; Create a role&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Once is down, keep the first selected option (type of trusted entity) which is normally AWS service, chose the use case &lt;code class=&quot;language-text&quot;&gt;Lambda&lt;/code&gt; and click to &lt;code class=&quot;language-text&quot;&gt;Next: Permissions&lt;/code&gt;. Now we just have to search our policy previously created, so just type the name of the policy you just created and select it.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d9777715be2c3552e071d8ef5fe52d59/fe8a7/policy_role.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 31.756756756756754%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAAA+UlEQVQY04WQWW7DMAxEdf9L9RAF3Dau6ySSl1irDa/xMiXt9KP5CYGHoQiRHFC0bYsQApqmwTzPWNcV27bhVfx9ScoWb5GhbMWd+kXXdXDewzkHay2MMajr+t9whvNntm3FNC/oxhnb469oqNkavTvs+x68gJVZluXh5rVjjmmaICpjEadXWB92y4ezwxEPnAnWcRyPRcNAOuw6cI2UzXg6m9YGQuY3RPEF30kKeTnD6ArBO3hnCbcT6CRlWUBJiUwxas/PaQpF7/h0wudHRLUrRGFqyMIgSiTekxyxMpA3B/VEVnnkOiAjWGVp8fUjoahe2gY8R4cWv315zHfWXHdeAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;IAM Policy Role&quot;
+        title=&quot;IAM Policy Role&quot;
+        src=&quot;/static/d9777715be2c3552e071d8ef5fe52d59/fcda8/policy_role.png&quot;
+        srcset=&quot;/static/d9777715be2c3552e071d8ef5fe52d59/12f09/policy_role.png 148w,
+/static/d9777715be2c3552e071d8ef5fe52d59/e4a3f/policy_role.png 295w,
+/static/d9777715be2c3552e071d8ef5fe52d59/fcda8/policy_role.png 590w,
+/static/d9777715be2c3552e071d8ef5fe52d59/efc66/policy_role.png 885w,
+/static/d9777715be2c3552e071d8ef5fe52d59/c83ae/policy_role.png 1180w,
+/static/d9777715be2c3552e071d8ef5fe52d59/fe8a7/policy_role.png 1223w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;You can now click on the &lt;code class=&quot;language-text&quot;&gt;Next: Tags&lt;/code&gt; and click on &lt;code class=&quot;language-text&quot;&gt;Next: Review&lt;/code&gt; to finally give a name to your role and create it.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/0e4fe6d90009bcd47c37629bd3129650/85053/create_role.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 64.1891891891892%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABJ0AAASdAHeZh94AAABV0lEQVQ4y41SW27DIBDk3D1Dz5Lv3qH//W+rVrXs2BgMBvOYsiR2wI7SIo12bbHD7swypRQ456DovcejE2M8fFON9w7GOpxef8CGYcD5fMayLBsul2pQcbySlAghbFDGgRljME1ThaZp0HVdQpvynwx6mDpJlLtO667ZfizqZp5nWGvBR4l+GMGFxDCKDMpHkR7WM5yPNUIEK9uns2oqZIpSpzhhTJBK55jz6ZLbxWeSlcy4UHdYjkKZth42XaKLazQLwedoXcz/L4j5H0MhNB3nkmNJVzJHFbrK1BF1a4zdEMiUHQ6EpB0ZQiaINBoXKmtGUtBDfx22X4PVGJ2MUTZCzAF6iZUsNxzXqNKQ3O37PptCY2p1Q7n4e5KKUGudCaSU24JSYbmwKyrTDgteaLiO+ajgnjR3NSTx27b9F0m8OklL1YwGfJrRfH/i7b3D0+kDzy9f+AUgYvu1hTRtJwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;IAM Role created&quot;
+        title=&quot;IAM Role created&quot;
+        src=&quot;/static/0e4fe6d90009bcd47c37629bd3129650/fcda8/create_role.png&quot;
+        srcset=&quot;/static/0e4fe6d90009bcd47c37629bd3129650/12f09/create_role.png 148w,
+/static/0e4fe6d90009bcd47c37629bd3129650/e4a3f/create_role.png 295w,
+/static/0e4fe6d90009bcd47c37629bd3129650/fcda8/create_role.png 590w,
+/static/0e4fe6d90009bcd47c37629bd3129650/efc66/create_role.png 885w,
+/static/0e4fe6d90009bcd47c37629bd3129650/c83ae/create_role.png 1180w,
+/static/0e4fe6d90009bcd47c37629bd3129650/85053/create_role.png 1225w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Good job! Your role is now ready to be used. I think it’s time for coding!&lt;/p&gt;
+&lt;p&gt;You can now navigate to the Lambda Service trough: &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Compute &amp;gt; Lambda&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Second step: Create our lambda functions&lt;/h3&gt;
+&lt;p&gt;We will start to create a first Lambda Function which will basically read out the content of our DynamoDB blog table.&lt;/p&gt;
+&lt;p&gt;So hit the &lt;code class=&quot;language-text&quot;&gt;Create Function&lt;/code&gt; button and keep the selected creation option (Author from scratch). Choose a name for your Lambda Function, in this case I will name it &lt;code class=&quot;language-text&quot;&gt;GetArticles&lt;/code&gt; and go for the &lt;code class=&quot;language-text&quot;&gt;Python 3.8&lt;/code&gt; language runtime.&lt;/p&gt;
+&lt;p&gt;Before creating our function, one last important step is to select our IAM Role previously created. Open the Permissions just below, click on &lt;code class=&quot;language-text&quot;&gt;Use an existing role&lt;/code&gt; and select your service role from the selected list like below:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/0cef0d74d8b2190f77db61124d3f33f4/fbfd6/lambda_role.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 54.72972972972974%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAABJElEQVQoz51Si26DMAzM//8n0NEGCHkHws02jDJp09pZOhkF63y2T2k9oG07gfcey7KglPJvKDPP+Oh7OCJLKSPlLHmtFdu2oRK2N6Cc83hoDR8CISIQ+DvEiGVdUYl4fQH1EKBmUtjrESElRAITZZLOBe+o43oOIrTo+zuR0ZikSHCQ1aPzX+D6QrsXQh55nCYY65FzIew7ZLWyU1Ye0/me5H3/t7/t/zhkZB5xmoxc2DkHS/iS/9toT2xnPo9ijpEnYzBbK7DWUYOwK8hZ1mEC2WJ9Nrrma3M1uoDu1pMPW7AnWe0wjDRmxDU2vBaKFd0fWghkd5RZHZuUTX5FEdNf8uGGbz5kYzekrmlatN0NfHUujoeNzsP8BDqWNCNncA2v7RPjgV3WYqGDSwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Lambda use role&quot;
+        title=&quot;Lambda use role&quot;
+        src=&quot;/static/0cef0d74d8b2190f77db61124d3f33f4/fcda8/lambda_role.png&quot;
+        srcset=&quot;/static/0cef0d74d8b2190f77db61124d3f33f4/12f09/lambda_role.png 148w,
+/static/0cef0d74d8b2190f77db61124d3f33f4/e4a3f/lambda_role.png 295w,
+/static/0cef0d74d8b2190f77db61124d3f33f4/fcda8/lambda_role.png 590w,
+/static/0cef0d74d8b2190f77db61124d3f33f4/efc66/lambda_role.png 885w,
+/static/0cef0d74d8b2190f77db61124d3f33f4/c83ae/lambda_role.png 1180w,
+/static/0cef0d74d8b2190f77db61124d3f33f4/fbfd6/lambda_role.png 1357w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Hit the create function button, and you will be redirected your Lambda.&lt;/p&gt;
+&lt;p&gt;Ok so, in this Lambda, we just want to retrieve all our Articles from the DynamoDB table. For that, we can use the &lt;code class=&quot;language-text&quot;&gt;scan&lt;/code&gt; operation that will just basically reads every items in our table. (More information &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html&quot;&gt;here&lt;/a&gt; about Scan.)&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Boto is the Amazon Web Services (AWS) SDK for Python&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
+
+&lt;span class=&quot;token comment&quot;&gt;# To interact with DynamoDB, I just need to specity what resource I will use from boto3 (here: dynamodb)&lt;/span&gt;
+dynamodb &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;resource&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;dynamodb&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# Now I specify which table in DynamoDB I want to interact with.&lt;/span&gt;
+table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Table&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;blog&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;lambda_handler&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;event&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; context&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;# Here, I will use a scan operation, to retrieve ALL my table items.&lt;/span&gt;
+        response &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; table&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;scan&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        
+        &lt;span class=&quot;token comment&quot;&gt;# Finally, I just return all the Items I found.&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; response&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Items&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;except&lt;/span&gt; Exception &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;# If an exception was thrown, I just catch it to print a log, and then I raise the error.&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;An error occured while retrieving Movies table.&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; e&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;No more explanations needed for this code, its quite simple we just import the boto3 library to use the dynamodb client. We surround our scan operation with the try/catch operator and finally we return the Items.&lt;/p&gt;
+&lt;p&gt;You can now this Lambda code by clicking &lt;code class=&quot;language-text&quot;&gt;Save&lt;/code&gt; at the top of the page, and now it’s time for testing :)&lt;/p&gt;
+&lt;p&gt;Just near the Save button, you have the possibility to create a &lt;code class=&quot;language-text&quot;&gt;Test Event&lt;/code&gt; to trigger our function.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;FYI: Every AWS Lambda function contains at least 2 parameters :&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;event&lt;/strong&gt; – AWS Lambda uses this parameter to pass in event data to the handler.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;context&lt;/strong&gt; – AWS Lambda uses this parameter to provide runtime information to your handler.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Click on the &lt;code class=&quot;language-text&quot;&gt;Test&lt;/code&gt; button, choose an event name (For example: TestGetItems) and leave the rest as is.&lt;/p&gt;
+&lt;p&gt;Your &lt;code class=&quot;language-text&quot;&gt;TestGetItems&lt;/code&gt; is now part of your tests events. Ready to test your lambda ? Push the test button again ;)&lt;/p&gt;
+&lt;p&gt;Normally you should see a success box like this :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/7490e24607018932f2231dbd1ee9b52b/bf8c1/getarticles_lambda_test.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 43.91891891891892%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABO0lEQVQoz5VRCW6DMBDk/09sEzUXAXxfGAMh07VRjjZtpSKNht2dvbzV28c7NrstmGSQVhIUjDcwgeB1Ye00uOLgmq9MEFqAKQYbVq0wApr0VWtr7JsdanHEkR1wkmeoIKD6DGpALANfbfLrKGEGVWAzk33zZX2lvIBxBj56+D7DUVdLPg039LDkc2S7sPpj6jFdRoxzeoDsRKyDQhVGB+8DuKAJlC7/MUbM84z/fNflCkVPVvnkqMAAax0CFRvHCcuy/JL1d9EweFo5yLJeHHsMUyyrR+I0Dy8YL+mOl/hEQ/V0lM402B43OIsTWnVGpxsw0z4evbBGzU8FOZ610nPYpJ8OpAsqZls0ol4v2FMwIyq4ZL4gF2Omo0OZosnJ3zWlYEfT5I654E+CW+KZmh7aPW3R3BveYs/8CSoYs6TCThwJAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Lambda GetArticles Success&quot;
+        title=&quot;Lambda GetArticles Success&quot;
+        src=&quot;/static/7490e24607018932f2231dbd1ee9b52b/fcda8/getarticles_lambda_test.png&quot;
+        srcset=&quot;/static/7490e24607018932f2231dbd1ee9b52b/12f09/getarticles_lambda_test.png 148w,
+/static/7490e24607018932f2231dbd1ee9b52b/e4a3f/getarticles_lambda_test.png 295w,
+/static/7490e24607018932f2231dbd1ee9b52b/fcda8/getarticles_lambda_test.png 590w,
+/static/7490e24607018932f2231dbd1ee9b52b/efc66/getarticles_lambda_test.png 885w,
+/static/7490e24607018932f2231dbd1ee9b52b/c83ae/getarticles_lambda_test.png 1180w,
+/static/7490e24607018932f2231dbd1ee9b52b/bf8c1/getarticles_lambda_test.png 1722w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Well, I think we can claim our first beer, we successfully created our first lambda which read in our DynamoDB, congrats!&lt;/p&gt;
+&lt;h3&gt;Third step: Create the other lambda functions&lt;/h3&gt;
+&lt;p&gt;The goal of this article is to show you the basic operation we can do thanks to the interaction between Lambda and DynamoDB. Remember, the goal is to call these Lambda functions with an API.&lt;/p&gt;
+&lt;p&gt;So this is what is remaning for our Lambda :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Retrieve all blog articles (GetArticles - done)&lt;/li&gt;
+&lt;li&gt;Find an article by title and category (FindByTitleAndCategory - TBD)&lt;/li&gt;
+&lt;li&gt;Update an article (UpdateArticle - TBD)&lt;/li&gt;
+&lt;li&gt;Delete an article (DeleteArticle - TBD)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let’s do this! Go back to the main Lambda screen, by clicking &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Compute &amp;gt; Lambda&lt;/code&gt;. Do the same job you did for the GetArticles Lambda, by clicking &lt;code class=&quot;language-text&quot;&gt;Create Function&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This time, we will tackle our second lambda in the list, the &lt;code class=&quot;language-text&quot;&gt;FindByTitleAndCategory&lt;/code&gt;. Your lambda settings should look likes this :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/20859cd36e1fe92e375b56f725693773/b5a09/findbytitlecategory_settings.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 54.72972972972974%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAABLklEQVQoz51Si46DIBD0/3+ztbVVBOQhIDi3i3o1uVzuWpIJS4DZ2dlthmHA5XJF295grUPOGSmlj9EwiRAjrHOIMSLsKKWA17qub6Ex1uLx7NGTUo79PMN5D+9nLEuuxPkf4HeVcJom9EJiDqSMwISRpPOD8oayo6KqcBgEEQXyr1QP805W9sx/gd+nZdkI2UMpFbRhD9PmIymdQ6h7jSkZ3x3ncNzFLeY/h9/NTCUqreGoKZbUsmJW+VtDXsrWVxXnpkg9ob3da1OkUpWcwcSHWlaiPY1FPnUeG8Gxvgm1C+gePbqugxhHKKUxjrKW/MlqjDEYhahqeDB5rzGZnNLyY3DjaWdf8z4ujIWsarSxuN6fuHZ9hVAGjprAs8gq454knHA+MwlPBydxzuMLcINdyABKcl4AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Lambda FindBy Settings&quot;
+        title=&quot;Lambda FindBy Settings&quot;
+        src=&quot;/static/20859cd36e1fe92e375b56f725693773/fcda8/findbytitlecategory_settings.png&quot;
+        srcset=&quot;/static/20859cd36e1fe92e375b56f725693773/12f09/findbytitlecategory_settings.png 148w,
+/static/20859cd36e1fe92e375b56f725693773/e4a3f/findbytitlecategory_settings.png 295w,
+/static/20859cd36e1fe92e375b56f725693773/fcda8/findbytitlecategory_settings.png 590w,
+/static/20859cd36e1fe92e375b56f725693773/efc66/findbytitlecategory_settings.png 885w,
+/static/20859cd36e1fe92e375b56f725693773/c83ae/findbytitlecategory_settings.png 1180w,
+/static/20859cd36e1fe92e375b56f725693773/b5a09/findbytitlecategory_settings.png 1360w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Do not forget to attach the MyDynamoDBRoleForLambdas role.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Let’s create this function, and copy paste this Python Code :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
+&lt;span class=&quot;token comment&quot;&gt;# This new import will be use to specify which DynamoDB Key we use in the KeyConditionExpression.&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;dynamodb&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;conditions &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Key
+ 
+client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;resource&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;dynamodb&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; client&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Table&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;blog&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;lambda_handler&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;event&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; context&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;# I&apos;ll explain you later why we take these values from the event &quot;pathParameters&quot; property.&lt;/span&gt;
+        title &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; event&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;pathParameters&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;title&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        category &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; event&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;pathParameters&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;category&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        
+        &lt;span class=&quot;token comment&quot;&gt;# This time, we will use the query operation.&lt;/span&gt;
+        response &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; table&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;query&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+            ProjectionExpression&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;title, category, author, content, createdAt&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            KeyConditionExpression&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;Key&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;title&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;eq&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;title&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; Key&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;category&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;eq&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;category&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+       
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; response&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Items&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;except&lt;/span&gt; Exception &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;An error occurred while retrieving an item in blog table.&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; e&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In this lambda we just need to specify which fields we want to see in our response thanks to the &lt;code class=&quot;language-text&quot;&gt;ProjectionExpression&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The second one (the more important) is the &lt;code class=&quot;language-text&quot;&gt;KeyConditionExpression&lt;/code&gt; which will determinate our conditional query expression (which article we want to query).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can find &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html&quot;&gt;here&lt;/a&gt; the official documentation of a Query operation.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Save your function, and add a new test event. This time our test event, will be a little bit different, because we will update the JSON provided to our handler :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/228597a51ece3eaf826ea0a6e71373b8/8f0f9/findby_test.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 47.2972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABE0lEQVQoz52Q62rDMAyF8/7PtbEWxmCjLazQDtLRuslysx0ntpOcWUpnuv1qZ/g4tpB0JCdFUWK//0CaHpAePiHEGX3fz1gLe8Xf93Ws6zrUTYOELlJKKK2hmZYTnHOXxjYacIMfs8jvWNJIjePxxJORZlnGdyEEqqpmA6kUVKBt26CzMb0pruMgGt57JOemRVE1qOsatD4VTdOEYRhw7/GhhleeHTVccBjHMSZQ41uJDY0xyPMvlGXFzYjhTqjGWscktCKtajoTnMZ/gYvyH5qwchYmPIkCZa3R2fEmejuxmn6IdNbThArbncDjW4uHV4XFymC5NqyLjcRTgHXdYLkxnMe6qoJqvGx9wOH53SOvHL4BsMS4dxZneDMAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;FindBy test event&quot;
+        title=&quot;FindBy test event&quot;
+        src=&quot;/static/228597a51ece3eaf826ea0a6e71373b8/fcda8/findby_test.png&quot;
+        srcset=&quot;/static/228597a51ece3eaf826ea0a6e71373b8/12f09/findby_test.png 148w,
+/static/228597a51ece3eaf826ea0a6e71373b8/e4a3f/findby_test.png 295w,
+/static/228597a51ece3eaf826ea0a6e71373b8/fcda8/findby_test.png 590w,
+/static/228597a51ece3eaf826ea0a6e71373b8/efc66/findby_test.png 885w,
+/static/228597a51ece3eaf826ea0a6e71373b8/8f0f9/findby_test.png 1045w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Once is created, just hit the Test button and let’s see what we received :)&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1667a05bf6e5695273471845d00f3095/bf8c1/findby_result.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 37.83783783783784%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAABF0lEQVQoz5WR607DMAyF+/5vOEADbZStzcVx0qTpLj046VZg/IFIn3zsozhW3GxeNig8bZ+hSMMNbiEUqGplVfV620PXqKCdQac7kCdYthWSO83rxxYH26LVe+zUO1ToYQYlaJiob3rBSu5GI9gKZ7vkydSo5W5TXmDp7AfGkAJC9FX7NIAL4nFgcKkJ+TwK+caXni4ZfpQJY0ywRka2hKLjEDFNJ8zzjP+eMDKaPGY4xyCSKX2oza7XK9Z+3/vOf2ioSSGdIvJlxHhOayy1R0r9zi9PcIlkKe0WrdrjYNoVKwvhTPXjvUTFHXbHNxztR6VzB3BZyg8IJMtpWtlsSVyyKyX32dUYJkZPR+y73eLJFHf/keJ/AtDAZ0XLHAU/AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;FindBy test event&quot;
+        title=&quot;FindBy test event&quot;
+        src=&quot;/static/1667a05bf6e5695273471845d00f3095/fcda8/findby_result.png&quot;
+        srcset=&quot;/static/1667a05bf6e5695273471845d00f3095/12f09/findby_result.png 148w,
+/static/1667a05bf6e5695273471845d00f3095/e4a3f/findby_result.png 295w,
+/static/1667a05bf6e5695273471845d00f3095/fcda8/findby_result.png 590w,
+/static/1667a05bf6e5695273471845d00f3095/efc66/findby_result.png 885w,
+/static/1667a05bf6e5695273471845d00f3095/c83ae/findby_result.png 1180w,
+/static/1667a05bf6e5695273471845d00f3095/bf8c1/findby_result.png 1722w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This time, we just received 1 item based from the value passed in the test event. Our FindBy Lambda is now operational!&lt;/p&gt;
+&lt;p&gt;Let’s move on, and tackle the &lt;code class=&quot;language-text&quot;&gt;CreateArticle&lt;/code&gt; one, create a new Lambda function again (Author From Scratch, Python 3.8 Runetime, and our DynamoDB role) and provide this following code :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; json
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
+&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; datetime &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; datetime
+&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; botocore&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exceptions &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; ClientError
+        
+dynamodb_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;resource&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;dynamodb&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_client&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Table&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;blog&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+lambda_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;client&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;lambda&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;lambda_handler&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;event&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; context&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;# here, we want to handle both cases: if we receive a body as string, or a body as object.&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;event&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;body&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+            body &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; json&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;loads&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;event&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;body&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+            body &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; event&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;body&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        
+        &lt;span class=&quot;token comment&quot;&gt;# we extract this 2 properties to retrive the item inserted after.&lt;/span&gt;
+        title &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; body&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;author&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        category &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; body&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;category&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        
+        createdAt &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; datetime&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;now&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;strftime&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;%Y-%m-%dT%H:%M:%SZ&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        
+        response &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; table&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;put_item&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+            Item&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&apos;title&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; title&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&apos;category&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; category&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&apos;author&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; body&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;author&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&apos;content&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; body&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;content&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&apos;createdAt&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; createdAt
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        
+        &lt;span class=&quot;token comment&quot;&gt;# According to the documentation, We can set a ReturnValues=&apos;ALL_NEW&apos; property in our PutItem operation.&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;# But the the ALL_NEW isn&apos;t accepted for put_item.&lt;/span&gt;
+        
+        &lt;span class=&quot;token comment&quot;&gt;# The other solution is to re-query our database to get the item created.&lt;/span&gt;
+        
+        &lt;span class=&quot;token comment&quot;&gt;# But, re-query the DB is just re-triggering the same Job we did&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;# in our FindByTitleCategory lambda.&lt;/span&gt;
+        
+        &lt;span class=&quot;token comment&quot;&gt;# We have the possibility to invoke another Lambda in our Lambda&lt;/span&gt;
+        invoke_response &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; lambda_client&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;invoke&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+            FunctionName&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;FindByTitleCategory&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            InvocationType&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;RequestResponse&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            Payload&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;json&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;dumps&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;pathParameters&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; title&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;category&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; category&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        
+        &lt;span class=&quot;token comment&quot;&gt;# Finally, we need to convert our response in an object and return the&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;# payload received from our Lambda&lt;/span&gt;
+        item &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; json&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;loads&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;invoke_response&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Payload&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;read&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;decode&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;except&lt;/span&gt; ClientError &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;An error occured while trying to insert a new movie&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; e
+        
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; item&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Do you remember in our Policy we added an Effect Allow on the InvokeFunction api call :)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Before configuring our test event, just some clarifications about this portion of code: &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First, to retrieve the body sent by the POST action, e want to handle both scenarios use cases (object and stringified object). That’s why we check the type of the &lt;code class=&quot;language-text&quot;&gt;event body&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Then, we use the &lt;code class=&quot;language-text&quot;&gt;put_item&lt;/code&gt; operation by simply passing the Item that we want to insert in database.&lt;/li&gt;
+&lt;li&gt;Finally, to retrieve the item created, we just use the Lambda Function we created to retrieve an article by his title and his category. But you can also directly query the database like we did in the Lambda, it’s also possible&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ok so let’s create our test event :
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/12e4b13574727a42d9caeaecd02288ee/fd84e/create_articletest.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 54.72972972972974%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAABOklEQVQoz52S226DMBBE+f8/rNSHBJIABny3uWe6u23S9KVNaunIK2MNM+stQowoywrHssSlrnE6nTGOI5Z1wbI8zzTPCCGgyDnDOQdrLe1e6hiTiPI3huvE+zT9OM9c3/j6XqQ84tIoNE2Dmmhbha7r0CoFY6wIpZSEuxCfPZynlIVlXVEEEqxNEGfGOjjvwet6veLVtW3bZ2T+CwvN1AsW+g/fgpTfkru+H7CS5X3fsRH7i3Bc6WGmyFob6Re/1v4PsUdRcchiXd9TbEfutvsFjsCsDF3+Db7HhkRQ0YsOxkMNNDY+wAYnhBSFiaIs84KZZu0v5FFYcCLh41njcO5xaI94O71DGRofrdDbASZYaK/hIk2DN1LzzgxOw0d/c5hRVRUubY/ORCKgoZ42gyGXWTA+PUUaJ3wAoh5Wgwe9XX8AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;FindBy test event&quot;
+        title=&quot;FindBy test event&quot;
+        src=&quot;/static/12e4b13574727a42d9caeaecd02288ee/fcda8/create_articletest.png&quot;
+        srcset=&quot;/static/12e4b13574727a42d9caeaecd02288ee/12f09/create_articletest.png 148w,
+/static/12e4b13574727a42d9caeaecd02288ee/e4a3f/create_articletest.png 295w,
+/static/12e4b13574727a42d9caeaecd02288ee/fcda8/create_articletest.png 590w,
+/static/12e4b13574727a42d9caeaecd02288ee/efc66/create_articletest.png 885w,
+/static/12e4b13574727a42d9caeaecd02288ee/fd84e/create_articletest.png 1056w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Before testing our Lambda Function, this one is a little bit more “bigger” than the other one, so it’s possible to have some timeout when its triggered.&lt;/p&gt;
+&lt;p&gt;I suggest for this example to augment a little bit the “default” lambda settings by increasing a little bit the default timeout timer, up 3 to 10 seconds. &lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/29749a014314a0e79755c72ee3b176b4/d0143/lambda_timeout.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 64.86486486486486%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABJ0AAASdAHeZh94AAABg0lEQVQ4y5VT2XKDMAzk/7+uP9D0oYGcYDD4xGYriaM0yUxbzezYBnu1ltZFXdcoyxKHwwdu9zvGcUQI4d+IBOscin4YoNoWSilo3QthSgnjA9IvyDkLceG8R9/3cMQ+EDkfnqYJecG0gA884jFYTGGtJcIBLamzYVFHP2Z8z5lg2ichgmmXkCMyIatrmkaurFoNY4wo5dES1vUYI3Ji4iS3YSHYkW4K1wM+pm0DOP8u+4y8qYxxFLwk5GzGEqnNGMwbyX6H9wvprzE9E7K6O1lHqRYhOsrsJbvUb6nnqkhAa661DWkj+kF47QyO5xuqqsLnsaJ6tlQCUkyl4GZ5ckEIEZ4s4RfP9S4SRmnQE6HzQWyjtZZaMpiIx67TsumvIYSayI5lRa+kBnvS+1mJc15gpcaWum3ntXUC/jZ3e57zPj5X8OR8ueJ0vuByvaFmC9HLefVSZKROy/UpMb+sQHZaQ3xoXMCtI9LWoGoGwUkZ1L2nzG5WRsr3ps7Ly1kNv7/yF6lB+R/wyIZnAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Increase Lambda Timeout&quot;
+        title=&quot;Increase Lambda Timeout&quot;
+        src=&quot;/static/29749a014314a0e79755c72ee3b176b4/fcda8/lambda_timeout.png&quot;
+        srcset=&quot;/static/29749a014314a0e79755c72ee3b176b4/12f09/lambda_timeout.png 148w,
+/static/29749a014314a0e79755c72ee3b176b4/e4a3f/lambda_timeout.png 295w,
+/static/29749a014314a0e79755c72ee3b176b4/fcda8/lambda_timeout.png 590w,
+/static/29749a014314a0e79755c72ee3b176b4/efc66/lambda_timeout.png 885w,
+/static/29749a014314a0e79755c72ee3b176b4/d0143/lambda_timeout.png 1025w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I provide you a great article for &lt;a href=&quot;https://medium.com/@raupach/choosing-the-right-amount-of-memory-for-your-aws-lambda-function-99615ddf75dd&quot;&gt;choosing the right amount of memory for an AWS lambda&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I think we can test our Create Lambda function, hit the Test button and you should have this output :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/9b04afd01908050b0149d2b90cff9306/0f903/create_result.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 42.567567567567565%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABQ0lEQVQoz4WRi26DMAxF+f8v3KSuaykwIO8Xz9I7J5CukyYN6eg69rUT4eLt9I5rXUIaAW4ktNPQ/sApGFKmWKKXPbjiSYUW6HgHRR5pZeqPcfHZnFHzCmV3waWvwCw1eUbwHZfPDIJQAzWOMqk+NCMcQ9EqQUM0NRpIbylpwOPZOzDv99oLdhpg55EYDvbYkYpBo/A+QEkFpTQCxeM4YV1WYjlYsZBu24b/PjEYFC6MkDRMKgNjPcZpxn17YL1vv4i5+yOCxPYHPNDARjKYOcAt8fkhEc9mOjTFPpHr9iX3Q4AItJRzdULdl2hlk2Cmo/9E2x0jMsWccmV7QafII2rSL1iqZ6I3+vQgUXyJJgWZvajpRmKkJcxxST1qVh2X7I1PT/aRpoFle6VX9SmReQ4ldTQw1j9uJ9zI26n2WXv15YHfTCix13ScNfUAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Create Article success&quot;
+        title=&quot;Create Article success&quot;
+        src=&quot;/static/9b04afd01908050b0149d2b90cff9306/fcda8/create_result.png&quot;
+        srcset=&quot;/static/9b04afd01908050b0149d2b90cff9306/12f09/create_result.png 148w,
+/static/9b04afd01908050b0149d2b90cff9306/e4a3f/create_result.png 295w,
+/static/9b04afd01908050b0149d2b90cff9306/fcda8/create_result.png 590w,
+/static/9b04afd01908050b0149d2b90cff9306/efc66/create_result.png 885w,
+/static/9b04afd01908050b0149d2b90cff9306/c83ae/create_result.png 1180w,
+/static/9b04afd01908050b0149d2b90cff9306/0f903/create_result.png 1719w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Ok we did the most difficult Lambda creation, the other ones will be more easier :)&lt;/p&gt;
+&lt;p&gt;Let’s tackle the &lt;code class=&quot;language-text&quot;&gt;UpdateArticle&lt;/code&gt; one by creating a new Lambda and provide this code :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; json
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
+&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; botocore&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exceptions &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; ClientError
+&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;dynamodb&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;conditions &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Key
+        
+dynamodb_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;resource&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;dynamodb&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_client&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Table&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;blog&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;lambda_handler&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;event&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; context&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;event&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;body&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+            body &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; json&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;loads&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;event&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;body&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+            body &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; event&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;body&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        
+        &lt;span class=&quot;token comment&quot;&gt;# here we retrieve the same parameters as the FindBy lambda&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;# to identify what item to update.&lt;/span&gt;
+        title &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; event&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;pathParameters&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;title&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        category &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; event&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;pathParameters&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;category&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        
+        &lt;span class=&quot;token comment&quot;&gt;# we will use the update_item in this case&lt;/span&gt;
+        response &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; table&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;update_item&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+            Key&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&apos;title&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; title&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&apos;category&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; category
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            UpdateExpression&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;set content = :content, author = :author&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            ConditionExpression&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;title = :title AND category = :category&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            ExpressionAttributeValues&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&apos;:title&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; title&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&apos;:category&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; category&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&apos;:content&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; body&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;content&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&apos;:author&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; body&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;author&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            ReturnValues&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;ALL_NEW&quot;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; response&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Attributes&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;except&lt;/span&gt; ClientError &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;response&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Error&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Code&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;ConditionalCheckFailedException&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;e&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;response&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Error&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Message&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; e&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;For this portion of code, we will need the primary key identifier to determinate which object we want to update.&lt;/p&gt;
+&lt;p&gt;Remember, when we created our DynamoDB table, we specified a &lt;strong&gt;partition key&lt;/strong&gt; (title), and a &lt;strong&gt;sort key&lt;/strong&gt; (category) which represent our &lt;strong&gt;primary key&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;It means that if we want to make some actions in a particular item in our table, we have to specify these two properties.&lt;/p&gt;
+&lt;p&gt;Another good news is, we can specify also the &lt;code class=&quot;language-text&quot;&gt;ReturnValues=&amp;quot;ALL_NEW&amp;quot;&lt;/code&gt; that will return the complete object updated.&lt;/p&gt;
+&lt;p&gt;In this lambda, I decided to update my item with Conditional Expressions. It means that it will update my item only if its respect the &lt;strong&gt;ConditionsExpressions&lt;/strong&gt;. If not, it will raise a &lt;strong&gt;ConditionalCheckFailedException&lt;/strong&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can have a look on what are &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html&quot;&gt;conditions expressions&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Let’s configure our test event and test it just after :
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/b168a192c163c9343552cfe23f341811/ee9b6/update_test.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 32.43243243243243%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAAA5klEQVQY052R207GIBCE+/5PqBcabUuBQms5/BwKdARqoolXSvJlJrOw2SyDsRZ8FRBCIuWMUgryP2hv43liiDHCaI0QAtq5avHPXBdSbXa2hlJbPE8LxjalecCmAlOxuXT/i/yjlu+7JmXopjFh2I3FK10xSg2yG3DtO0w5MP0AN01v3+m5754qW4fwkDaAVVUuYFDHAbpQTPTA0wvHTDdMjIGsEkRwvDGCkS+Y15ZxEL5hZrJn72wBFQLboWCsq2uLGLQ29UNE3+H+YdE+adM7XHA988F3Qrx9rBrid+a8+8pj3+EnyC7PfFZN+1cAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Update Article Test Event&quot;
+        title=&quot;Update Article Test Event&quot;
+        src=&quot;/static/b168a192c163c9343552cfe23f341811/fcda8/update_test.png&quot;
+        srcset=&quot;/static/b168a192c163c9343552cfe23f341811/12f09/update_test.png 148w,
+/static/b168a192c163c9343552cfe23f341811/e4a3f/update_test.png 295w,
+/static/b168a192c163c9343552cfe23f341811/fcda8/update_test.png 590w,
+/static/b168a192c163c9343552cfe23f341811/efc66/update_test.png 885w,
+/static/b168a192c163c9343552cfe23f341811/ee9b6/update_test.png 1041w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, this is what we received :
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/3cb38152c91c940a7100947b68c06cda/4ed6a/update_success.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 39.189189189189186%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAABI0lEQVQoz4WR6XKDMAyEef837Jkh4fR9YMLZrWwgpO2PMvPN2pJsrUX28vGKvMwhrSQUTGc2vE6qSZli4Jo/NLGvLdUII1Kd7Syya5ujURUKfkMha6ggNnpJKs89oSlm7iphdz1iMc8dQ8Ykh1AcylCRJ2duw4aOXDpaU2dv4ah7GAKmZcQ4Dye0j7F+CpCeI7PGQUq6jNS7DtM4YV3WxDIvmAl84d8vXiqiQxccwr1L9CM5WLeO47J1j3rEEuue++UyjB1EdPh+fUNNM2SmQavrNM84D3vX+6w0almiFAUayle0jk+zw5k/SE+uZQVNw38mJt1gEp6oREkN2xTXQf3IPyO9oL/c5OCWwfTqQTx0XB73BbvhUn4mp/HQViP/wGyLbw6/ZIg4FngiAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Update Article Test Event&quot;
+        title=&quot;Update Article Test Event&quot;
+        src=&quot;/static/3cb38152c91c940a7100947b68c06cda/fcda8/update_success.png&quot;
+        srcset=&quot;/static/3cb38152c91c940a7100947b68c06cda/12f09/update_success.png 148w,
+/static/3cb38152c91c940a7100947b68c06cda/e4a3f/update_success.png 295w,
+/static/3cb38152c91c940a7100947b68c06cda/fcda8/update_success.png 590w,
+/static/3cb38152c91c940a7100947b68c06cda/efc66/update_success.png 885w,
+/static/3cb38152c91c940a7100947b68c06cda/c83ae/update_success.png 1180w,
+/static/3cb38152c91c940a7100947b68c06cda/4ed6a/update_success.png 1713w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;And if we check our DynamoDB blog table :
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/79233c457756de4feb53269d72c47be7/e8d6f/blog_table_updated.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 49.32432432432432%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABJ0AAASdAHeZh94AAACCElEQVQoz22STWsaURSG50cpbtypKKILf0FWbswiXWixcdFsXLnwB3SVJqSBNKHS0qS0xNSvFKQ6saG0Lhqhgo6ZGZ1xvvx8e+6VKWnJhYfznnfmnjt3zhFMfQxzqmNuaXBsE5Zl/cU0TQ7ThmH8k7u63++j2+3irtfDYDCE8OXHEB++9vDr9xD30gCyLGM8HkNVVa4VReH5aDTi2n0uy/dUYMA19xUVumFBeNsaYb/ax82dDIk2GZaN9XqN5XKJ1WrF40Ptxv+XrutUXIVwcX6O8tUVTs5KePP+I95dfEL58hK1Wg3VapXHh5rFRqOBUqmEQqGAYrGIfD7PYbmQTCaxs/METzMZ5HafYXs7hVQqhQzlj5FOp5HNZrG1tQWPxwOv1wufz8ej3++HEI/HEQgEkMvt4vneHiKRCEKhEILBIPeZZtHVrh8Oh8H2xmIxTjQaRSKRgNDpdFD+XEGrLeL29hs6nRtc05Xq9Tra7RYqlQpEsc1h1202m9wXRZFHl1Zr4wmsAZq1hG6vsVpvfrDjzOHM5lxrmobZbNME07Q5tr2gxuHRJTiOA0nTiTGsmUSWhOlUJhTqpoHJhHxLwmLBRmlEsNH6SXwnT6HCBnVeIibEEsJ8bmNivoZqHMB0TqngGRXYJw6p4CF90Qvyjkm/otE4IF7SIccUT2nYj+jgI9InBHtHxh9p8ZnxlDByrQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Blog Table Updated&quot;
+        title=&quot;Blog Table Updated&quot;
+        src=&quot;/static/79233c457756de4feb53269d72c47be7/fcda8/blog_table_updated.png&quot;
+        srcset=&quot;/static/79233c457756de4feb53269d72c47be7/12f09/blog_table_updated.png 148w,
+/static/79233c457756de4feb53269d72c47be7/e4a3f/blog_table_updated.png 295w,
+/static/79233c457756de4feb53269d72c47be7/fcda8/blog_table_updated.png 590w,
+/static/79233c457756de4feb53269d72c47be7/efc66/blog_table_updated.png 885w,
+/static/79233c457756de4feb53269d72c47be7/c83ae/blog_table_updated.png 1180w,
+/static/79233c457756de4feb53269d72c47be7/e8d6f/blog_table_updated.png 1273w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Finally, we will tackle the last one, create the DeleteArticle Lambda Function and provide this code :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; json
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
+&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; botocore&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exceptions &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; ClientError
+&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;dynamodb&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;conditions &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Key
+        
+dynamodb_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;resource&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;dynamodb&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_client&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Table&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;blog&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;lambda_handler&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;event&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; context&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        title &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; event&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;pathParameters&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;title&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        category &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; event&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;pathParameters&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;category&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        
+        response &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; table&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;delete_item&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+            Key&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&apos;title&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; title&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&apos;category&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; category
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; response
+    &lt;span class=&quot;token keyword&quot;&gt;except&lt;/span&gt; ClientError &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;e&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;response&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Error&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Message&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; e&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And the test event :
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/19a615e02b1e0a628d2efd72e6d0d007/ffe34/delete_event.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 24.324324324324326%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAAAtklEQVQY052PSRLCIBBFvf8RXWk5BAwQhpBEAnw/URcuXOjiVXf18Lp6J6WEEAIpJdRaUUr5mZzztu+8x87HiDgvWEtFao0/uK+EQm0p3B9POJyvsJTGXBHWgjGT9Qvv3ms2ULbFlHEzFJ4o66SGMAF9mKHChN6TMH6gNp69lku+N8QZbr7DTgvGJaEfQhNeIHWAUB6SaBb7JjeOFy2HHKQZttjqba7lndIwboTlgcFFTBQr7j4AOsCC04A6x+IAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Delete Event&quot;
+        title=&quot;Delete Event&quot;
+        src=&quot;/static/19a615e02b1e0a628d2efd72e6d0d007/fcda8/delete_event.png&quot;
+        srcset=&quot;/static/19a615e02b1e0a628d2efd72e6d0d007/12f09/delete_event.png 148w,
+/static/19a615e02b1e0a628d2efd72e6d0d007/e4a3f/delete_event.png 295w,
+/static/19a615e02b1e0a628d2efd72e6d0d007/fcda8/delete_event.png 590w,
+/static/19a615e02b1e0a628d2efd72e6d0d007/efc66/delete_event.png 885w,
+/static/19a615e02b1e0a628d2efd72e6d0d007/ffe34/delete_event.png 1055w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s try your Delete Lambda function and your item is now deleted from your table :
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/abe9712f8ebe7fc8a79ad38b604c297a/0d98f/table_after_delete.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 46.621621621621614%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABxUlEQVQoz22SzYoaURCF+6VExI1/C0VduvMRXE1cmFHjC4grI0zeIK6ySEgwQ2IaxRZGR80QshFGRuJP29qtbXfbap/cukGZJF74qHOLugW36gjbtQp9s4FtaNhZBkzTYph/YVkWttst14ZhnKOu6xiNRhgOh3gaj7FYKBB+PMq4+znGr+kc8mwKRVlguVyyqLCCBY+r1Qqz2YxrWZbP98lkwmunLCorDRvdgPBWmuL17Qj3Q5kVzaEbJo7HI/b7PQ6HA+ekn8fnx3Ec3ljTNAi12md8qYt49/4jPtTq+HT7FaIoQpIktFqti7TbbVSrVZTLZVQqFRSLRZRKJdzcvIGQSqWQyWRwff0ShVd5vLi6QjqdRj6fv0gul0OhUEAikYDL5YLH44HX64Xb7UY0GoUQi8Xg9/uRzWZ5cSgUQjAY5DkiEAj8p30+H8LhMOLxOOg9EYlEkEwmIfT7fdS/ibjv9fHw8B10bzab7GsSOp0OGo0GBoMB03dcU67X63G63e4ZylOdcGQDVY095+D8GTLZ4jR4VVVh2zbXZBOCLEOLu3QEa7fDXDMhr5nfbGrisG2t+SNqRA13rIY4WYjsRBulpv/yGzacVSv8hAtcAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Table after delete&quot;
+        title=&quot;Table after delete&quot;
+        src=&quot;/static/abe9712f8ebe7fc8a79ad38b604c297a/fcda8/table_after_delete.png&quot;
+        srcset=&quot;/static/abe9712f8ebe7fc8a79ad38b604c297a/12f09/table_after_delete.png 148w,
+/static/abe9712f8ebe7fc8a79ad38b604c297a/e4a3f/table_after_delete.png 295w,
+/static/abe9712f8ebe7fc8a79ad38b604c297a/fcda8/table_after_delete.png 590w,
+/static/abe9712f8ebe7fc8a79ad38b604c297a/efc66/table_after_delete.png 885w,
+/static/abe9712f8ebe7fc8a79ad38b604c297a/c83ae/table_after_delete.png 1180w,
+/static/abe9712f8ebe7fc8a79ad38b604c297a/0d98f/table_after_delete.png 1276w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;Let’s summarize&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;We created our IAM &lt;strong&gt;admin&lt;/strong&gt; user&lt;/li&gt;
+&lt;li&gt;With the admin user, we created the &lt;strong&gt;policy&lt;/strong&gt; that &lt;strong&gt;allows our Lambdas to interact wich our DynamoDB&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;We &lt;strong&gt;attached this policy to our IAM Role&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Well uncritical so misled&lt;/p&gt;
+&lt;p&gt;We created &lt;strong&gt;5&lt;/strong&gt; Lambda Functions :&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;this is very interesting&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GetArticles&lt;/strong&gt; (which list all articles from blog table)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FinByTitleAndCategory&lt;/strong&gt; (which list an article based from his primary key)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CreateArticle&lt;/strong&gt; (which create an article item in blog table)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UpdateArticle&lt;/strong&gt; (which update an article based from his primary key)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DeleteArticle&lt;/strong&gt; (which delete an article based from his primary key)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Goodness much until that fluid owl&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;When she reached the first hills of the &lt;strong&gt;Italic Mountains&lt;/strong&gt;, she had a last
-view back on the skyline of her hometown &lt;em&gt;Bookmarksgrove&lt;/em&gt;, the headline of
-&lt;a href=&quot;http://google.com&quot;&gt;Alphabet Village&lt;/a&gt; and the subline of her own road, the Line
-Lane. Pityful a rhetoric question ran over her cheek, then she continued her
-way. On her way she met a copy.&lt;/p&gt;
-&lt;h3&gt;Overlaid the jeepers uselessly much excluding&lt;/h3&gt;
-&lt;p&gt;But nothing the copy said could convince her and so it didn’t take long until a
-few insidious Copy Writers ambushed her, made her drunk with
-&lt;a href=&quot;http://google.com&quot;&gt;Longe and Parole&lt;/a&gt; and dragged her into their agency, where
-they abused her for their projects again and again. And if she hasn’t been
-rewritten, then they are still using her.&lt;/p&gt;
+&lt;p&gt;Woah, we did a great job, congrats. Let’s move on now to the latest part, the &lt;a href=&quot;../serverless-api-with-lambda-part-3&quot;&gt;creation of our API Gateway&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Create a Serverless API with AWS - Part 1]]></title><description><![CDATA[Hey there! This is my first post on my new blog ;-) In this article we will have a look on how we can create a web application without…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-1/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-1/</guid><pubDate>Thu, 28 May 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey there! This is my first post on my new blog ;-)&lt;/p&gt;
+&lt;p&gt;In this article we will have a look on how we can create a web application without handling any server architecture/installation.&lt;/p&gt;
+&lt;p&gt;This kind of architecture is called “serverless”. You can have a look in this &lt;a href=&quot;https://hackernoon.com/what-is-serverless-architecture-what-are-its-pros-and-cons-cc4b804022e9&quot;&gt;great article&lt;/a&gt; what it is.&lt;/p&gt;
+&lt;p&gt;Let me show you what we will implement in this tutorial :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a712c81b450295927c99906ae5442c82/f349c/architecture.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 41.21621621621622%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAAsSAAALEgHS3X78AAACBUlEQVQoz2PQNHVmUDd2ZKioaWKIyytnAAH+0HIGNr9qdm7feg6ugGoOfv9Cdga508yT0pylD2aoOtsGhHIx+HazcfmXsbMFVLHLRUzkAmJOVv8qDgYYUNaxgLOZ/euZ2AIr2WD8X80mTCD6bLGh5+1S7acfExk4Qfz//xlQAKN3JQeDkp4No6KuDTNIICo6hqkkJZKJ16uAicExlxUkZubhxVRbV8cd3ryI8ZoGA+PcNFtRBjSQVXrdNq/8poVEUi07g7aZq6qWmYt5eGwqZ3lZqVhxXoVEXq+fYKrnXsva0LNXy4IP+IBdovyf4USxqdOdYvVDqzOtBJNal3F31iVx1tZPEI3PvPoxIev6A5GEMnYGHQtXTWA4eodFxQtUlJeJl+RXSGQ3RIileO80rQk5vbss6IAjzCUnczRlLxTrp0ypzhQsqu/iqa8u5urs6udOKzibnVF4LkUgsY6dYeuyyYxJyclsQuJyDKZm5kyO2mKMDHrRzAy+wawMygysDK4MDF1VZVwMk/4zHS8y0b9RpD7hgxMDCwM24FbHhlWcIbydkTsAU/JioY7hrTLdxb9y2FDk/kNjhyOgkp3BLziSwcMvlMHBzZfBNTodLMEdUMbI6lfFyeFbx87mX83B7F/Nzu9fxM4gfREceQx+rezAJMPB7FfFzgLEXAEVwORVAWJzAgByAJMyNZh8PwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Architecture AWS&quot;
+        title=&quot;Architecture AWS&quot;
+        src=&quot;/static/a712c81b450295927c99906ae5442c82/fcda8/architecture.png&quot;
+        srcset=&quot;/static/a712c81b450295927c99906ae5442c82/12f09/architecture.png 148w,
+/static/a712c81b450295927c99906ae5442c82/e4a3f/architecture.png 295w,
+/static/a712c81b450295927c99906ae5442c82/fcda8/architecture.png 590w,
+/static/a712c81b450295927c99906ae5442c82/efc66/architecture.png 885w,
+/static/a712c81b450295927c99906ae5442c82/c83ae/architecture.png 1180w,
+/static/a712c81b450295927c99906ae5442c82/f349c/architecture.png 2002w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Far far away, behind the word mountains, far from the countries Vokalia and
-Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
-right at the coast of the Semantics, a large language ocean.&lt;/p&gt;
+&lt;p&gt;Before going further, you will need an AWS Account (to create one, please visit &lt;a href=&quot;https://portal.aws.amazon.com/billing/signup#/start&quot;&gt;this link&lt;/a&gt;)&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;It is a paradisematic country, in which roasted parts of sentences fly into your
-mouth. Even the all-powerful Pointing has no control about the blind texts it is
-an almost unorthographic life One day however a small line of blind text by the
-name of Lorem Ipsum decided to leave for the far World of Grammar.&lt;/p&gt;
-&lt;h3&gt;According a funnily until pre-set or arrogant well cheerful&lt;/h3&gt;
-&lt;p&gt;The Big Oxmox advised her not to do so, because there were thousands of bad
-Commas, wild Question Marks and devious Semikoli, but the Little Blind Text
-didn’t listen. She packed her seven versalia, put her initial into the belt and
-made herself on the way.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;So baboon this&lt;/li&gt;
-&lt;li&gt;Mounted militant weasel gregariously admonishingly straightly hey&lt;/li&gt;
-&lt;li&gt;Dear foresaw hungry and much some overhung&lt;/li&gt;
-&lt;li&gt;Rash opossum less because less some amid besides yikes jeepers frenetic
-impassive fruitlessly shut&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;When she reached the first hills of the Italic Mountains, she had a last view
-back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet
-Village and the subline of her own road, the Line Lane. Pityful a rhetoric
-question ran over her cheek, then she continued her way. On her way she met a
-copy.&lt;/p&gt;
+&lt;p&gt;So first, we are going to use an AWS user that has the admin rights. I recommend you connect to your root account, create an “admin” user and attach the &lt;code class=&quot;language-text&quot;&gt;AdministratorAccess&lt;/code&gt; policy.&lt;/p&gt;
+&lt;p&gt;When it’s done, please connect to your AWS Account through the IAM users sign-in links.&lt;/p&gt;
+&lt;p&gt;| Be careful: For the entire article, I wil use the region eu-west-2. You can choose every region you want, but do not forget to create all the keep the same region for all your future created resources!
+| --- |&lt;/p&gt;
+&lt;h3&gt;First step: Create the Database (DynamoDB)&lt;/h3&gt;
+&lt;p&gt;I will use a no NoSQL Database, DynamoDB. If you are curious and if you want more information about this database I provide you &lt;a href=&quot;https://cloudacademy.com/blog/amazon-dynamodb-ten-things/&quot;&gt;this link&lt;/a&gt; which describes perfectly what is DynamoDB.&lt;/p&gt;
+&lt;p&gt;Navigate to the DynamoDB service  via &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Database &amp;gt; DynamoDB&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Ok once you are here, we will create our blog table. Hit the &lt;code class=&quot;language-text&quot;&gt;Create Table&lt;/code&gt; button and fill the form like below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/9ce9bacb311be4f2e53c772f201fd1e1/187fa/dynamodb_creation_Table.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 30.405405405405407%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAAAt0lEQVQY042QWRKEIAxEvf89XUYUQUFE0R47JfzNkqomIZhHS2WMwTAMGLWGUkpk7YzzPJFSKjqOo2jf95J5tq4rurZFXdeo9ANiHsdR4Nz3fY9X95KseoVlWeC9h3NOxDqLQO88QgiocAcbHLTW3oNObs63c3jbNvwbAuQA3c3zDD1NiDGWX2Ud7vPcY1zX9VEVlxxriDDGiuMMpFPucy8DvzrMHxDYNI28RUqHAFjT9fQ4/wV8A+4E1E2LSfG0AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Dynamodb Blog Table&quot;
+        title=&quot;Dynamodb Blog Table&quot;
+        src=&quot;/static/9ce9bacb311be4f2e53c772f201fd1e1/fcda8/dynamodb_creation_Table.png&quot;
+        srcset=&quot;/static/9ce9bacb311be4f2e53c772f201fd1e1/12f09/dynamodb_creation_Table.png 148w,
+/static/9ce9bacb311be4f2e53c772f201fd1e1/e4a3f/dynamodb_creation_Table.png 295w,
+/static/9ce9bacb311be4f2e53c772f201fd1e1/fcda8/dynamodb_creation_Table.png 590w,
+/static/9ce9bacb311be4f2e53c772f201fd1e1/efc66/dynamodb_creation_Table.png 885w,
+/static/9ce9bacb311be4f2e53c772f201fd1e1/c83ae/dynamodb_creation_Table.png 1180w,
+/static/9ce9bacb311be4f2e53c772f201fd1e1/187fa/dynamodb_creation_Table.png 1194w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;When you create a DynamoDB table, a &lt;code class=&quot;language-text&quot;&gt;partition key&lt;/code&gt; is required to identify uniquely each item in your table.
+But this primary key can also be composed of a &lt;code class=&quot;language-text&quot;&gt;sort key&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The partition key is used for partitioning the data. Data with the same partition key is stored together, which allows you to query data with the same partition key in 1 query.&lt;/p&gt;
+&lt;p&gt;The (optional) sort key determines the order of how data with the same partition key is stored. Using a clever sort key allows you to query many items in 1 query.&lt;/p&gt;
+&lt;h3&gt;Second step: Configure our DynamoDB table settings&lt;/h3&gt;
+&lt;p&gt;Our settings will be simple, I will just create one Global Secondary Index (GSI) which is composed on our partition key, &lt;code class=&quot;language-text&quot;&gt;title&lt;/code&gt;, and our sort key, &lt;code class=&quot;language-text&quot;&gt;author&lt;/code&gt;. GSIs can be created only at the table creation and not after.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The copy warned the Little Blind Text, that where it came from it would have
-been rewritten a thousand times and everything that was left from its origin
-would be the word “and” and the Little Blind Text should turn around and
-return to its own, safe country.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;But nothing the copy said could convince her and so it didn’t take long until a
-few insidious Copy Writers ambushed her, made her drunk with Longe and Parole
-and dragged her into their agency, where they abused her for their projects
-again and again. And if she hasn’t been rewritten, then they are still using
-her. Far far away, behind the word mountains, far from the countries Vokalia and
-Consonantia, there live the blind texts.&lt;/p&gt;
-&lt;h4&gt;Silent delightfully including because before one up barring chameleon&lt;/h4&gt;
-&lt;p&gt;Separated they live in Bookmarksgrove right at the coast of the Semantics, a
-large language ocean. A small river named Duden flows by their place and
-supplies it with the necessary regelialia. It is a paradisematic country, in
-which roasted parts of sentences fly into your mouth.&lt;/p&gt;
-&lt;p&gt;Even the all-powerful Pointing has no control about the blind texts it is an
-almost unorthographic life One day however a small line of blind text by the
-name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox
-advised her not to do so, because there were thousands of bad Commas, wild
-Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.&lt;/p&gt;
-&lt;h5&gt;Wherever far wow thus a squirrel raccoon jeez jaguar this from along&lt;/h5&gt;
-&lt;p&gt;She packed her seven versalia, put her initial into the belt and made herself on
-the way. When she reached the first hills of the Italic Mountains, she had a
-last view back on the skyline of her hometown Bookmarksgrove, the headline of
-Alphabet Village and the subline of her own road, the Line Lane. Pityful a
-rhetoric question ran over her cheek, then she continued her way. On her way she
-met a copy.&lt;/p&gt;
-&lt;h6&gt;Slapped cozy a that lightheartedly and far&lt;/h6&gt;
-&lt;p&gt;The copy warned the Little Blind Text, that where it came from it would have
-been rewritten a thousand times and everything that was left from its origin
-would be the word “and” and the Little Blind Text should turn around and return
-to its own, safe country. But nothing the copy said could convince her and so it
-didn’t take long until a few insidious Copy Writers ambushed her, made her drunk
-with Longe and Parole and dragged her into their agency, where they abused her
-for their projects again and again.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[My Second Post!]]></title><description><![CDATA[Wow! I love blogging so much already. Did you know that “despite its name, salted duck eggs can also be made from
-chicken eggs, though the…]]></description><link>https://jstw.github.io/my-second-post/</link><guid isPermaLink="false">https://jstw.github.io/my-second-post/</guid><pubDate>Wed, 06 May 2015 23:46:37 GMT</pubDate><content:encoded>&lt;p&gt;Wow! I love blogging so much already.&lt;/p&gt;
-&lt;p&gt;Did you know that “despite its name, salted duck eggs can also be made from
-chicken eggs, though the taste and texture will be somewhat different, and the
-egg yolk will be less rich.”?
-(&lt;a href=&quot;https://en.wikipedia.org/wiki/Salted_duck_egg&quot;&gt;Wikipedia Link&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;Yeah, I didn’t either.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Hello World]]></title><description><![CDATA[This is my first post on my new fake blog! How exciting! I’m sure I’ll write a lot more interesting things in the future. Oh, and here’s a…]]></description><link>https://jstw.github.io/hello-world/</link><guid isPermaLink="false">https://jstw.github.io/hello-world/</guid><pubDate>Fri, 01 May 2015 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;This is my first post on my new fake blog! How exciting!&lt;/p&gt;
-&lt;p&gt;I’m sure I’ll write a lot more interesting things in the future.&lt;/p&gt;
-&lt;p&gt;Oh, and here’s a great quote from this Wikipedia on
-&lt;a href=&quot;https://en.wikipedia.org/wiki/Salted_duck_egg&quot;&gt;salted duck eggs&lt;/a&gt;.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;A salted duck egg is a Chinese preserved food product made by soaking duck
-eggs in brine, or packing each egg in damp, salted charcoal. In Asian
-supermarkets, these eggs are sometimes sold covered in a thick layer of salted
-charcoal paste. The eggs may also be sold with the salted paste removed,
-wrapped in plastic, and vacuum packed. From the salt curing process, the
-salted duck eggs have a briny aroma, a gelatin-like egg white and a
-firm-textured, round yolk that is bright orange-red in color.&lt;/p&gt;
+&lt;p&gt;For the Read/Write capacity mode, it just an example so I’ll change them to have the minimum of Read capacity units (RCUs) and Write capacity units (WCUs). Of course, if you intent to use this Database in your project, you will adapt the RCUs/WCUs and probably use the Auto-Scaling based on your demand.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -117,29 +1374,91 @@ firm-textured, round yolk that is bright orange-red in color.&lt;/p&gt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/8058f3f26913fea3b6a89a73344fe94a/e1596/salty_egg.jpg&quot;
+    href=&quot;/static/8781f387b6e012a12d188ec00e491c82/1790f/dynamodb_table_config.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAMB/8QAFwEAAwEAAAAAAAAAAAAAAAAAAAEEBf/aAAwDAQACEAMQAAABgik0dXC//8QAGRABAAMBAQAAAAAAAAAAAAAAAQACEhEy/9oACAEBAAEFAkqW2DlnRj73yf/EABcRAQADAAAAAAAAAAAAAAAAAAAREkH/2gAIAQMBAT8B1WX/xAAWEQEBAQAAAAAAAAAAAAAAAAAAEQL/2gAIAQIBAT8Bi6f/xAAbEAABBAMAAAAAAAAAAAAAAAAAAQIRISIxMv/aAAgBAQAGPwK9GNocyS8hCj//xAAbEAADAQADAQAAAAAAAAAAAAABESEAMUGBof/aAAgBAQABPyGxNMfrLHmCDZmAzzvJJDjEQCHv/9oADAMBAAIAAwAAABDIL//EABYRAQEBAAAAAAAAAAAAAAAAAAERAP/aAAgBAwEBPxARhylZv//EABgRAAIDAAAAAAAAAAAAAAAAAAABESFR/9oACAECAQE/EFoktI//xAAdEAEBAAICAwEAAAAAAAAAAAABEQAxIWFBcYHh/9oACAEBAAE/EEbMLQ0fMHDVaPIXyI4pk4JUnWacNCtO8ojDE9TGIYES7/Jn/9k=&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 61.48648648648649%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABSklEQVQoz6VSDa+DIAzk///IvblP3RRBUER0N44Fs/eWLUtek0uh2tK7VrRtC6UUpJTw3uNbu91umOc5+WeI/JFmjMFhv8fpdEJZliiKAtttgX2MEbvdDj+bTYrXdY2u69bivwpmY4dldYXSGsMwoGmaCLkyYIG+7xOstS/dpYLTNIEIYcLoJ1gX8B8TpHc+E+cEKZtEnd3o2Cn9M3SE6mz0Fp2hN+lseocpLBDH8orD4YjL5ZISpGyRB7WiVTHGcwsZfd0a1MqgiZBKR28hdQ/nZwhrH3pQF+o2DC5q2CU9l2WJUoR1aF9R/rMMCPMCbXpUVZUo86Fx9C/TfAfBJE6VNJn8ae+ez28LkhYXNC8p75SA2pko+hzv+eccpzRvC+ZXWXAcx5REiiHML10+VuzzWolMheLzdU7aOZe6GH3AEOF8WLsnPtG+A/74qUeY+4bBAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;Chinese Salty Egg&quot;
-        title=&quot;Chinese Salty Egg&quot;
-        src=&quot;/static/8058f3f26913fea3b6a89a73344fe94a/1c72d/salty_egg.jpg&quot;
-        srcset=&quot;/static/8058f3f26913fea3b6a89a73344fe94a/a80bd/salty_egg.jpg 148w,
-/static/8058f3f26913fea3b6a89a73344fe94a/1c91a/salty_egg.jpg 295w,
-/static/8058f3f26913fea3b6a89a73344fe94a/1c72d/salty_egg.jpg 590w,
-/static/8058f3f26913fea3b6a89a73344fe94a/a8a14/salty_egg.jpg 885w,
-/static/8058f3f26913fea3b6a89a73344fe94a/fbd2c/salty_egg.jpg 1180w,
-/static/8058f3f26913fea3b6a89a73344fe94a/e1596/salty_egg.jpg 2048w&quot;
+        alt=&quot;Dynamodb Table Settings&quot;
+        title=&quot;Dynamodb Table Settings&quot;
+        src=&quot;/static/8781f387b6e012a12d188ec00e491c82/fcda8/dynamodb_table_config.png&quot;
+        srcset=&quot;/static/8781f387b6e012a12d188ec00e491c82/12f09/dynamodb_table_config.png 148w,
+/static/8781f387b6e012a12d188ec00e491c82/e4a3f/dynamodb_table_config.png 295w,
+/static/8781f387b6e012a12d188ec00e491c82/fcda8/dynamodb_table_config.png 590w,
+/static/8781f387b6e012a12d188ec00e491c82/efc66/dynamodb_table_config.png 885w,
+/static/8781f387b6e012a12d188ec00e491c82/c83ae/dynamodb_table_config.png 1180w,
+/static/8781f387b6e012a12d188ec00e491c82/1790f/dynamodb_table_config.png 1189w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Once your DynamoDB settings are ready, feel free to hit the &lt;code class=&quot;language-text&quot;&gt;Create&lt;/code&gt; button and your table will be created in few seconds.&lt;/p&gt;
+&lt;p&gt;Ok so once its created, you can provide some “Items” to fill a little bit your table.&lt;/p&gt;
+&lt;p&gt;I provide you a following list of items that you can add :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;My first article&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;author&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Julien&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;category&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Blabla&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;content&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;A first content for a first article!&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;createdAt&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2020-05-28T22:00:00.000Z&quot;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;A magic article&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;author&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Dumbledore&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;category&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Magic&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;content&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;You are a wizard Harry.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;createdAt&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2020-05-29T22:00:00.000Z&quot;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;How to cook a steak&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;author&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Gordon Ramsay&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;category&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Cooking&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;content&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Are crazy ?! I will never teach you!!&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;createdAt&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2020-05-30T22:00:00.000Z&quot;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;At this step, you should have your Blog table which contains 3 items :&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/e354ae519958591993fd023c2bd803f0/0d98f/dynamodb_items.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 46.621621621621614%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAAB20lEQVQoz2VS22paQRSdf1LEP/AGKuoHCM1D44MPXtLLS2rqi+CLX9AHXwsNhaaBgGlRhEYSxMsRTEFSKfV4vJxzPDf16Kp7WoMhGxZrz5rNDDNrMUOdQ9dUrAwFlmnAMMwdjGfQNI2zruuPvFgsMBgM8PP+Hr+GQ0iTCVijL6LSfMDDbxGS+AfT6RTz+Ryz2Yz3BFmWMR6LXJMk6f96jNFo9NjPZBWaboCd34r48H2I1kCCKI6hGRY2mw3W6/UT2Lb9hA9ru93yyxRFAbv8eoHK9Td8/PQZ5xdX+HJ5hetKBbVaDdVqlfNhT1yv11Eul1EoFFAsFvH+7Az5fB6lUgnsxdERkskkXp2c4O2b1zg+folEIoFMJoN0Ov0MqVQK2WwW4XAYDocDLpcLbrcbTqcTPp8PLBKJwOv14N3pKXK5HAKBAPx+Pzwez0738qFD3iMYDCIWiyEajXKEQiHE43GwXq+H27sm2l0BHaGHbrfLnyQIAhqNBprN3V67jZsfN+h0Orwn7OfoG2im1Wqh3++DkQGqZUMxbdjbf59MkaAyTZNHg2YOI7M3haKkqirHarXiGlsulxjJJiYLi/wCrSkKVOSaZVncWXJxsssZRYo0cpYiRRpFiQ6n+guJBVO1yk8rqwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Dynamodb Items&quot;
+        title=&quot;Dynamodb Items&quot;
+        src=&quot;/static/e354ae519958591993fd023c2bd803f0/fcda8/dynamodb_items.png&quot;
+        srcset=&quot;/static/e354ae519958591993fd023c2bd803f0/12f09/dynamodb_items.png 148w,
+/static/e354ae519958591993fd023c2bd803f0/e4a3f/dynamodb_items.png 295w,
+/static/e354ae519958591993fd023c2bd803f0/fcda8/dynamodb_items.png 590w,
+/static/e354ae519958591993fd023c2bd803f0/efc66/dynamodb_items.png 885w,
+/static/e354ae519958591993fd023c2bd803f0/c83ae/dynamodb_items.png 1180w,
+/static/e354ae519958591993fd023c2bd803f0/0d98f/dynamodb_items.png 1276w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Well done! Our DynamoDB is ready to be used :) Feel free to move on &lt;a href=&quot;./../serverless-api-with-lambda-part-2&quot;&gt;to the Part 2&lt;/a&gt; to start to configure our lambdas to query our DB.&lt;/p&gt;</content:encoded></item></channel></rss>
