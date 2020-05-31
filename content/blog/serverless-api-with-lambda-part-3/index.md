@@ -1,25 +1,23 @@
 ---
-title: Create a Serverless API with AWS - Part 3
+title: Serverless App with AWS in ReactJS, using Lambda & API Gateway - Final part
 date: "2020-05-31T11:12:03.284Z"
 description: "How to create a serverless API in AWS - Part 3 (The API Gateway)"
 ---
 
-Hey hello there! If you didn't read the previous post, I suggest you to [read it](./../serverless-api-with-lambda-part-2) before continuing. If you did, perfect, let's go ;)
+Hey hello there! If you didn't read the previous post, I suggest you to [read it](./../serverless-api-with-lambda-part-2) before continuing. If you did, perfect, let's continue ;)
 
-The last part is to integrate our Lambda Functions previously created, in a API. AWS provides a really great service for that, which is called **API Gateway**.
-
-Find this service, by opening `Services > Networking & Content Delivery > API Gateway`.
+The last part is to integrate our Lambda Functions previously created, in the AWS API Gateway service. Find this service, by opening `Services > Networking & Content Delivery > API Gateway`.
 
 Let's create an API by clicking the `Create API` button.
 
-We have the possibility to chose some types for our API, but in this case we want to create an HTTP API. Let's choose the `HTTP API` (the first one).
+We have the possibility to chose some types for our API, but in this case we want to create an HTTP API. So let's keep the first selected option.
 
-Provide a name **blog-api** for example, and let's integrate all Lambdas by adding them one by one in the `Create and configure integrations` like below :
+Provide a name, **blog-api** for example, and let's integrate our Lambdas by adding them one by one in the `Create and configure integrations` like below :
 
 ![Integration 1](integration1.png)
 ![Integration 2](integration2.png)
 
-Now our Lambda are integrated, let's create our **routes** and configure it like this :
+Now our Lambdas are integrated. Let's create our **routes** and configure them like this :
 
 ![Route Config example](routeconfig1.png)
 
@@ -35,7 +33,7 @@ Good job, your API is now created! You can find your API url in your **stages**.
 
 ### Let's test the beast!
 
-I don't what you prefer to test an API, you can use a command line to curl it, or do via Postman, it's up to you :)
+I don't know what you prefer to test your API, you can CURL or Postman, it's up to you :)
 
 I will go for curl :
 
@@ -84,15 +82,13 @@ curl -X DELETE '<< your api url>>/articles/My%20CURL%20Article/Test'
 
 ---
 
-This is the end :) You successfully have a functional API which serves Lambda functions to intereact with your DB.
+Perfect our API is working successfully! Let's download our ReactJS application to test it in live :)
 
-If you want to go further, you can clone a sample project that I did, to show you how we can have a fully serverless web application.
+You can find in my Github account, a sample project which is available to test your API. You can clone it via command line (if you have git installed) : 
 
 ```batch
 git clone git@github.com:JStw/blog-app.git
-```
-or you can git clone via HTTPS:
-```batch
+// or via https :
 git clone https://github.com/JStw/blog-app.git
 ```
 
@@ -115,7 +111,7 @@ Run `npm start` and when the app will run, it will open a new tab with this foll
 
 > If the port has changed because you have already something running on the 3000 port, please edit your CORS configuration by setting the correct port in your API Gateway.
 
-I hope this article was clear for you and your API on your side working greats, this is my article guys, so if you want to send me a feedback do not hesitate to contact me via DM in Twitter :)
+I hope this article was helpful for you, like I said this is my article guys, so it will not be perfect... but if you want to send me a feedback do not hesitate to contact me in DM via Twitter or my other social links :) Thank you for your time!
 
 ### Go further
 Now your API is working, this is some extra-work you can do :

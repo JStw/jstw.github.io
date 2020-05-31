@@ -1,58 +1,64 @@
 ---
-title: Create a Serverless API with AWS - Part 1
+title: Serverless App with AWS in ReactJS, using Lambda & API Gateway - Part 1
 date: "2020-05-28T22:12:03.284Z"
-description: "How to create a serverless API in AWS - Part 1 (The Database)"
+description: "How to create a serverless app in AWS - Part 1 (The Database)"
 ---
 
 Hey there! This is my first post on my new blog ;-)
 
 In this article we will have a look on how we can create a web application without handling any server architecture/installation.
 
-This kind of architecture is called "serverless". You can have a look in this [great article](https://hackernoon.com/what-is-serverless-architecture-what-are-its-pros-and-cons-cc4b804022e9) what it is.
+This kind of architecture is called "serverless". (more information [here](https://hackernoon.com/what-is-serverless-architecture-what-are-its-pros-and-cons-cc4b804022e9)).
 
-Let me show you what we will implement in this tutorial :
+Let me introduce you the architecture our the application :
 
 ![Architecture AWS](archi.PNG)
 
-> Before going further, you will need an AWS Account (to create one, please visit [this link](https://portal.aws.amazon.com/billing/signup#/start))
+As you can see, it's a very simple architecture. We don't have to create so many resources to get a functional web app.
 
-So first, we are going to use an AWS user that has the admin rights. I recommend you connect to your root account, create an "admin" user and attach the `AdministratorAccess` policy.
+Our goal here, is to have a Client-Side application (developed in ReactJS), which will query an API (through API Gateway). Finally, this API will deserves some Lambda Functions that will interacts with our DynamoDB database.
 
-When it's done, please connect to your AWS Account through the IAM users sign-in links.
+Before going further, there is a list of pre-requires :
+- You should have an AWS Account (to create one, please visit [this link](https://portal.aws.amazon.com/billing/signup#/start))
+- [CURL](https://curl.haxx.se/download.html) or [Postman](https://www.postman.com/) to query our database.
+- Node Package Manager ([npm](https://www.npmjs.com/get-npm)) or other package managers like [yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable).
 
-| Be careful: For the entire article, I wil use the region eu-west-2. You can choose every region you want, but do not forget to create all the keep the same region for all your future created resources!
-| --- |
+> I recommend to connect to your root account if you don't have one, go to the IAM Dashboard and create an "admin" user. Once is done, attach the `AdministratorAccess` policy.
+
+> **Be careful**: For the entire article, I wil use the region **eu-west-2**. You can choose every region you want, but do not forget to create all the keep the same region for all your future created resources!
+
+Let's start then :) Connect to your AWS Account by using the IAM users sign-in link.
 
 ###First step: Create the Database (DynamoDB)
 
-I will use a no NoSQL Database, DynamoDB. If you are curious and if you want more information about this database I provide you [this link](https://cloudacademy.com/blog/amazon-dynamodb-ten-things/) which describes perfectly what is DynamoDB.
+I will use a no NoSQL Database, **DynamoDB**. If you are curious and if you want more information about this database I provide you [this link](https://cloudacademy.com/blog/amazon-dynamodb-ten-things/) which describes perfectly what is DynamoDB.
 
-Navigate to the DynamoDB service  via `Services > Database > DynamoDB`.
+Let's navigate to the DynamoDB service  via `Services > Database > DynamoDB`.
 
-Ok once you are here, we will create our blog table. Hit the `Create Table` button and fill the form like below :
+Once you are here, we will create our blog table. Hit the `Create Table` button and fill the form like below :
 
 ![Dynamodb Blog Table](tablecreation.PNG)
 
-When you create a DynamoDB table, a `partition key` is required to identify uniquely each item in your table.
+> When you create a DynamoDB table, a `partition key` is required to identify uniquely each item in your table.
 But this primary key can also be composed of a `sort key`.
 
-The partition key is used for partitioning the data. Data with the same partition key is stored together, which allows you to query data with the same partition key in 1 query.
+> The partition key is used for partitioning the data. Data with the same partition key is stored together, which allows you to query data with the same partition key in 1 query.
 
-The (optional) sort key determines the order of how data with the same partition key is stored. Using a clever sort key allows you to query many items in 1 query.
+> The (optional) sort key determines the order of how data with the same partition key is stored. Using a clever sort key allows you to query many items in 1 query.
 
 ###Second step: Configure our DynamoDB table settings
 
-Our settings will be simple, I will just create one Global Secondary Index (GSI) which is composed on our partition key, `title`, and our sort key, `author`. GSIs can be created only at the table creation and not after.
+Our settings will be very simple. I will just create 1x **Global Secondary Index (GSI)** which is composed with a partition key (`title` here), and a sort key, `category`. GSIs can be created only at the table creation and not after.
 
-> For the Read/Write capacity mode, it just an example so I'll change them to have the minimum of Read capacity units (RCUs) and Write capacity units (WCUs). Of course, if you intent to use this Database in your project, you will adapt the RCUs/WCUs and probably use the Auto-Scaling based on your demand.
+> For the Read/Write capacity mode, I will change them to have the minimum of Read capacity units (RCUs) and Write capacity units (WCUs). Of course, if you intent to use this Database in a real production environment, you will should adapt the RCUs/WCUs and perhaps use the Auto-Scaling, based on your application charge.
 
 ![Dynamodb Table Settings](dbconf.PNG)
 
 Once your DynamoDB settings are ready, feel free to hit the `Create` button and your table will be created in few seconds.
 
-Ok so once its created, you can provide some "Items" to fill a little bit your table.
+Once your database is available, you can provide some "Items" for later usages.
 
-I provide you a following list of items that you can add :
+This is a basiclist of items that you can provide :
 
 ```json
 [
@@ -80,7 +86,7 @@ I provide you a following list of items that you can add :
 ]
 ```
 
-> At this step, you should have your Blog table which contains 3 items :
+> At this step, you should have your Blog table which contains 3 items
 
 ![Dynamodb Items](items.PNG)
 
