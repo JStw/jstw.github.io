@@ -1,4 +1,1854 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jstw Blog]]></title><description><![CDATA[A personal blog powered by Gatsby.]]></description><link>https://jstw.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 31 May 2020 20:51:41 GMT</lastBuildDate><item><title><![CDATA[Serverless App with AWS in ReactJS, using Lambda & API Gateway - Final part]]></title><description><![CDATA[Hey hello there! If you didn’t read the previous post, I suggest you to read it before continuing. If you did, perfect, let’s continue…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-3/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-3/</guid><pubDate>Sun, 31 May 2020 11:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey hello there! If you didn’t read the previous post, I suggest you to &lt;a href=&quot;./../serverless-api-with-lambda-part-2&quot;&gt;read it&lt;/a&gt; before continuing. If you did, perfect, let’s continue ;)&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jstw Blog]]></title><description><![CDATA[A personal blog powered by Gatsby.]]></description><link>https://jstw.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 08 Jun 2020 07:55:14 GMT</lastBuildDate><item><title><![CDATA[Secure your Serverless App in AWS (Using Cognito, Cloudfront, API Gateway and Lambda)]]></title><description><![CDATA[Hello guys! Today, we will learn together how we can secure exchanges between a client application hosted in a Cloudfront distribution and…]]></description><link>https://jstw.github.io/serverless-app-with-secured-api/</link><guid isPermaLink="false">https://jstw.github.io/serverless-app-with-secured-api/</guid><pubDate>Fri, 05 Jun 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hello guys!&lt;/p&gt;
+&lt;p&gt;Today, we will learn together how we can secure exchanges between a client application hosted in a Cloudfront distribution and an API Gateway in AWS.&lt;/p&gt;
+&lt;p&gt;I wrote &lt;a href=&quot;../serverless-api-with-lambda-part-1&quot;&gt;an article&lt;/a&gt; last week to explain how we can build a serverless app with a simple ReactJS client which query an API Gateway (deserved by Lambda functions) to get items from a DynamoDB.&lt;/p&gt;
+&lt;p&gt;Well, you will see this article is not very different from the previous one in the beginning, but this time we will go a little bit further in the configuration of our API Gateway. We will also have a look to some new services like Amazon Cognito, and Cloudfront.&lt;/p&gt;
+&lt;p&gt;There is a list a pre-requisites that you must have before continuing:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;An AWS account is required (&lt;a href=&quot;https://portal.aws.amazon.com/billing/signup#/start&quot;&gt;click here&lt;/a&gt; to create one)&lt;/li&gt;
+&lt;li&gt;Node Package Manager (&lt;a href=&quot;https://www.npmjs.com/get-npm&quot;&gt;npm&lt;/a&gt;) or other package managers like &lt;a href=&quot;https://classic.yarnpkg.com/en/docs/install/#windows-stable&quot;&gt;yarn&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We are now ready! Have a nice read :)&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;In general, when you want to develop an interactive client/server web application, you have to identify uniquely any users that will interact with your application.&lt;/p&gt;
+&lt;p&gt;You want probably also make a distinction between simple users and admin users, so you will add some user roles in your application.&lt;/p&gt;
+&lt;p&gt;Anyway, you will have to implement an authentication mechanism. There is so many authentication system already existing, from the simplest to the most complex one.&lt;/p&gt;
+&lt;p&gt;Today I will show you an AWS Service called Amazon Cognito, which use an authorization framework, OAuth, commonly used as a way for Internet users to grant websites or applications access to their information.&lt;/p&gt;
+&lt;p&gt;This is a quick overview of how works oAuth2 :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 555px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/9939b2023b42c89c770166caf0cfe258/cd039/oauth2_flow.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75.67567567567568%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAIAAABr+ngCAAAACXBIWXMAAAsSAAALEgHS3X78AAACKUlEQVQoz2VS2ZKiQBDs//+a2UcjZl9mPWYjRhFYuQRUaBGaoxHFg3MSGI3dnQqCgO7KrKzKIk3TtG3rOI6maaZprtdrvG3bxmFVVbj19ntd13Gu92FZ1maz2W63ZVmSARxF0W63AwWlFEjgv8B17fn+CsQ9DLdAGn3gluDfpW4QMJ7wJE6OxyNO2z7qvnTJ+Xm9bqqKsRDV6kd04P1+n3I+/jUejUbiUkySBNxhGDLG/MPh4PseFCmqpqqTycR13cl4/P7+u0OlKeGco9H5fD6dTgVB0HXjdDqhLNpBnaIo2kf4/gEJLy8/Xl9/yvKfLMsIBCD7fD7neX7uY5jC0DPwz+/FYgFFqBlFMQsC5JP2WzQ9Gs9QeeC6F8Vuu8WcFnNBWAiWaXWyMbCgp0FAwj8D66fyJMUE4MLHB9BLTVPRL+lc3cAdGx5S1zUtSxIEqmnUMBzDAC/PMniQcI4Rwk6kZdnxcslBTeI4dh3XtuzZbIZhwkwkoWKn+H7P0zRSFCZJeRR5ngdp1+sV3dxut68lYSwAQFVVURSV1QrV4jTFw8Lw4HmOojiybOo6vOyWRdORI4ki9qrrmfMUFKhUlOXlckGf1zDMKb2fTlVdP3sOoxC7u1wuV6tu5aCCYEsx94AF0A8ySMByU0Gw3t4YpUmaYoTH/o1sDNX3/ad/BCsFweCTZRliJEnCht9RvCjgPjDQMniBFQAev80jCGhQMP4r6ofU/6z6Hp9SUDvIy83DYAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;oAuth2 overview&quot;
+        title=&quot;oAuth2 overview&quot;
+        src=&quot;/static/9939b2023b42c89c770166caf0cfe258/cd039/oauth2_flow.png&quot;
+        srcset=&quot;/static/9939b2023b42c89c770166caf0cfe258/12f09/oauth2_flow.png 148w,
+/static/9939b2023b42c89c770166caf0cfe258/e4a3f/oauth2_flow.png 295w,
+/static/9939b2023b42c89c770166caf0cfe258/cd039/oauth2_flow.png 555w&quot;
+        sizes=&quot;(max-width: 555px) 100vw, 555px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;And this is how Amazon Cognito works :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/61fdf7797a15826f5799d8e1d4de7009/4b2cc/amazon_cognito.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50.67567567567568%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABcSAAAXEgFnn9JSAAABsklEQVQoz22ST2/TQBDF8/25ceIjICHEiRtCQhEUekCkaYXitPGfNHVIUsfreNf2etc/duOkgSgjrXe8M3rz5s0MOLOu6+h6p/dfzv6RrlU0snCuBqvdf4UefbSojU9YDM7BOIL9H+CAyOw24MubD8yDB5J5zJ/0iWI+sRjlctoesLvIxiLWCaVUzgPZQmUsm+WG5MdvxGbrYpKm0X2yxzHNYvDC6syMluyWI8RyQr64oWpa91b7yKX0HtDqE8O6aSjLEqUUpe6ofB0jKeJvhPcB4eyencicdBW7rMA6ttb2x/jPv4B1U5PMQq7uIj7/nFCIFXL5izTLEEqTuX6zdEprFcFoyqfX73icRoRxRBzFCFGcWvaOalvy4ZDx8Jqv48AV0Igi4yFJCCaOXRiR57nrxFBut6jwic51VNW107DxAzwxPGoodzvWy3S/GvPVipXTTVc5eWXQxh6Uavdyvf8+Y5oW/QKca3hpKH6yjXiklhnj2zuErN2Eoaj8RDWv3l5xPUl7JMuJ4bHl7rhnh7U52nrzzM1oRBLHGGNczNLWAl0+o+V2v+RdK/1tfaHOtou/By8CrvJXyFIAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Amazon cognito&quot;
+        title=&quot;Amazon cognito&quot;
+        src=&quot;/static/61fdf7797a15826f5799d8e1d4de7009/fcda8/amazon_cognito.png&quot;
+        srcset=&quot;/static/61fdf7797a15826f5799d8e1d4de7009/12f09/amazon_cognito.png 148w,
+/static/61fdf7797a15826f5799d8e1d4de7009/e4a3f/amazon_cognito.png 295w,
+/static/61fdf7797a15826f5799d8e1d4de7009/fcda8/amazon_cognito.png 590w,
+/static/61fdf7797a15826f5799d8e1d4de7009/efc66/amazon_cognito.png 885w,
+/static/61fdf7797a15826f5799d8e1d4de7009/4b2cc/amazon_cognito.png 1013w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;OAuth 2.0 supports several different grants. Grants are ways of retrieving an Access Token. Deciding which one is suited for your case depends mostly on your Client’s type, but other parameters weigh in as well, like the level of trust for the Client, or the experience you want your users to have.&lt;/p&gt;
+&lt;p&gt;This is the different OAuth flows that actually exists :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Resource Owner&lt;/strong&gt;: the entity that can grant access to a protected resource. Typically this is the end-user.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Client&lt;/strong&gt;: an application requesting access to a protected resource on behalf of the Resource Owner.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Resource Server&lt;/strong&gt;: the server hosting the protected resources. This is the API you want to access.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Authorization Server&lt;/strong&gt;: the server that authenticates the Resource Owner and issues Access Tokens after getting proper authorization.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;User Agent&lt;/strong&gt;: the agent used by the Resource Owner to interact with the Client, for example a browser or a native application.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Have a look on this &lt;a href=&quot;https://auth0.com/docs/api-auth/which-oauth-flow-to-use&quot;&gt;article&lt;/a&gt; which can help you to determine which oAuth2 flows is more appropriate to your application.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I think we can now focus on the implementation of our application. Let me present you the architecture:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/535655496a2995dbeaf1a18762326d5d/1ac29/architecture.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 73.64864864864865%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABJ0AAASdAHeZh94AAAB5UlEQVQ4y5VTy07bQBSd3+kPsOUDumPHFhUJwY7+RIkQEpW66x90ASqItJvuEGwqaNVKWRSrDZJTO7GdEMeP8cwc7p2JITEJVa9iTe7Mfcw5544AmTEGk8kEyWCA8XgMrTXqff7+xwSmyaNv3/FrYwvhaRtcwig1V9D91w3fPPGFpkQumXy9gre2jvDoowugfbtOg2szjWJNFCJNU4RhiCAIEPg+UoJsA+rAabAqc6RJn3y9EGpZamS5guAkRbeRUmKS5xiOhuj1eoiiCDn5Wkmb0D9pofP6BYadC1TkF3lmz4uCzyUO3nnY2u0Qh2QsQlVVyLLMihLHsV2LoiDolS0YfXkPb+8lsu4P68uydA2tBgYfjn203nquYH1DXjlolujalNK2QXP/8VxSk9wV5EDm0Pd7Fi7ftDk2ddNlCj+I4jg2uPkZYX/nGuftLhwNjwklwYvjyIrHIjZHZX5stNv407nDm1fXuPz01xVU88GMIqPhVzPzuQi6qDeZ3CRJSJwFsNwPqp7FZ16PmO1UyvLh2TVNjkYYd2+ps5kb7qdPb6ajhZXldmW1WRxNQtz0+7jY3Ia3sorit+PYLGksmsTyDXllRfnjRCZhcPYZwf4hVDJ8FrbAP3hxAB1/6XTI7SWWcHgPyB+Klba8VoIAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;RecipeApp Architecture&quot;
+        title=&quot;RecipeApp Architecture&quot;
+        src=&quot;/static/535655496a2995dbeaf1a18762326d5d/fcda8/architecture.png&quot;
+        srcset=&quot;/static/535655496a2995dbeaf1a18762326d5d/12f09/architecture.png 148w,
+/static/535655496a2995dbeaf1a18762326d5d/e4a3f/architecture.png 295w,
+/static/535655496a2995dbeaf1a18762326d5d/fcda8/architecture.png 590w,
+/static/535655496a2995dbeaf1a18762326d5d/efc66/architecture.png 885w,
+/static/535655496a2995dbeaf1a18762326d5d/1ac29/architecture.png 1022w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s summarize this schema regarding the Client Side operations:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Customers will sign-in through the Amazon Cognito with their credentials. They can also create an account with email registration confirmation.&lt;/li&gt;
+&lt;li&gt;Once logged, Amazon Cognito will redirect to our application with an Authorization Code.&lt;/li&gt;
+&lt;li&gt;We will exchange this Authorization Code with an Access Token.&lt;/li&gt;
+&lt;li&gt;Once the Access Token available we will be able to query our API.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This token will be essential for the rest, because we will protect all our API routes by attaching an “Authorizer” that will check all requests sent to our API, if they contain a valid access token provided by Cognito.&lt;/p&gt;
+&lt;p&gt;Time to code! Let’s connect to the AWS Console and let’s move on :)&lt;/p&gt;
+&lt;h3&gt;First step: Creation of our Database&lt;/h3&gt;
+&lt;p&gt;We will create a simple DynamoDB which will contains our secret cook recipe list.&lt;/p&gt;
+&lt;p&gt;Let’s navigate to DynamoDB via &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Database &amp;gt; DynamoDB&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Once you are here, hit the &lt;strong&gt;Create Table&lt;/strong&gt; and let’s provide a table name, &lt;strong&gt;recipes&lt;/strong&gt; for example, and fill our &lt;strong&gt;Primary Key&lt;/strong&gt; by adding :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A “name” (String) property as Partition Key.&lt;/li&gt;
+&lt;li&gt;A “category” (String) property as Sort Key.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Next, we need to add an index to our table. You can configure one like below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/49d2133de2efaacffb588a764b7220b6/c23ad/dbindex.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 44.5945945945946%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABxElEQVQoz11SXW/aMBTN/39r6dZC0/IRSmEfL3vbXiYhVdqmsgGlfJRpUllJAhmYxElME+DsXtNU3SydXMuxj88518brMwu5QgnH51WcX7xF8+oLrr+3cf2jg+7tAN3eQNdOr/8vbvq4ofVPn5solOs4q77RMMxKA6eVOi1eaozuxnAcG5P7ewRBgDCUkDJAHEdQcUw1hlL7+rheo9Xu4JVpPZ83+JMv1XBSvIBpNTDz/oAHk61WK/i+r2uSpkiSBCnVNREptdbz/misBZUu36NYe0cKrb1ChklwZnO8HEvhQ4gVkTxis9lqxE9KM8I8iWIyjsxg5gycge24mog3p3R4vpRwPQEZJ4hUilBt4MsIUbSPgAkLz4SkMLPL4LlLCne7LTzPw2KxgCC7HsUghNBW+SKlFMIo1v8Go5/aXTmzzF0+MisUbAU8Z4V8s1gudY4MKSU1J9KVle22G/KwQxIH1OkhDvL0Soo1Im7AyJ1aOMwXNVjlbO7h/6HtZ00hLMIUH3sCX39JUjhGzqzipNygLIkwawjnwPV2eEeN8TB5mOL31MaD7WBKql26iGG7M7SGExx+6KLeHONbq61fh+4DWf4LzxFtb9NaZ3cAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;db index&quot;
+        title=&quot;db index&quot;
+        src=&quot;/static/49d2133de2efaacffb588a764b7220b6/fcda8/dbindex.png&quot;
+        srcset=&quot;/static/49d2133de2efaacffb588a764b7220b6/12f09/dbindex.png 148w,
+/static/49d2133de2efaacffb588a764b7220b6/e4a3f/dbindex.png 295w,
+/static/49d2133de2efaacffb588a764b7220b6/fcda8/dbindex.png 590w,
+/static/49d2133de2efaacffb588a764b7220b6/efc66/dbindex.png 885w,
+/static/49d2133de2efaacffb588a764b7220b6/c83ae/dbindex.png 1180w,
+/static/49d2133de2efaacffb588a764b7220b6/c23ad/dbindex.png 1193w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Then, for the provisioned capacity part, I will put the minimal values for this demo, but you can provides any resources what you will need, depends on your demand.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/bfe9b2f7d97804dc96d2eafddbc93806/cec12/dbcapacity.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 56.08108108108109%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAABJklEQVQoz4VSiY6FIBDj/z9UEa8ohwdIl+Ji1Ox7O0mdI9DpjIhxHND3PYbh9MZYHMeBEMIXeBy//sqPACBC1FKhqipIKdF1HZqmQdu2Gawxp2eulIJs0nk1oG5H1Mk3qsux7CfYZYdouiFdOEm01jAJ8zzBew9ajDGDqjMYR9xw5iF9CEGZxXhx8wGTtmkFfSKec5NlWfC0+DEX27aBWNf1UsW9UOm+75cy/EGR+j9BQp1HnDFNaQfWXoQkI8rIhPd7bvyu3yHenXnYaJMbcFQeKmbMWSfpR8JygZf5dMZxzHFRwUX7cJxxUl7GLwRvE+UP0nNkqiAhY+tWzG6Hdtu/RBch90dlHOP+t+Nz/bg3/gbxLpQ9cldUWxrQ+BpYd8491N7xAwpaXrf+WXUEAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;db capacity&quot;
+        title=&quot;db capacity&quot;
+        src=&quot;/static/bfe9b2f7d97804dc96d2eafddbc93806/fcda8/dbcapacity.png&quot;
+        srcset=&quot;/static/bfe9b2f7d97804dc96d2eafddbc93806/12f09/dbcapacity.png 148w,
+/static/bfe9b2f7d97804dc96d2eafddbc93806/e4a3f/dbcapacity.png 295w,
+/static/bfe9b2f7d97804dc96d2eafddbc93806/fcda8/dbcapacity.png 590w,
+/static/bfe9b2f7d97804dc96d2eafddbc93806/efc66/dbcapacity.png 885w,
+/static/bfe9b2f7d97804dc96d2eafddbc93806/c83ae/dbcapacity.png 1180w,
+/static/bfe9b2f7d97804dc96d2eafddbc93806/cec12/dbcapacity.png 1187w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Finally, we can now create our table! It will take few seconds to be available.&lt;/p&gt;
+&lt;p&gt;Once it is, you can click on the &lt;code class=&quot;language-text&quot;&gt;Items&lt;/code&gt; tab, and provide some basic items. I provide you a sample list of them :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Pizza&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;category&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Fast Food&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;calories&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;895&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;aliments&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Chorizo, vegetables, tomatoes and cheese, a lot of cheese!&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;duration&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;15&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Salad&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;category&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Bio&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;calories&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;410&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;aliments&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Salad, cucumber, tomatoes and tuna.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;duration&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;15&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Our DynamoDB is now ready. Let’s move on to the creation of our Lambda.&lt;/p&gt;
+&lt;h3&gt;Second step: Lambda Function&lt;/h3&gt;
+&lt;p&gt;Our Lambda Function will query our Database to retrieve all recipes. To create our Lambda, navigate to &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Compute &amp;gt; Lambda&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Once its done, create on &lt;strong&gt;Create Function&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Leave the first selected option as is (Author From Scratch), and give our lambda a name: &lt;strong&gt;GetRecipes&lt;/strong&gt; and select &lt;strong&gt;Python 3.8&lt;/strong&gt; for the language Runtime.&lt;/p&gt;
+&lt;p&gt;Our Lambda will need some permissions to interact with DynamoDB. For that, click on the &lt;strong&gt;Create a new role from AWS policy templates&lt;/strong&gt;, search for &lt;strong&gt;Simple microservice permissions&lt;/strong&gt; in the Policy templates selector and then provide a role name: &lt;strong&gt;myDynamoDbRole&lt;/strong&gt; like below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/86e284bceb4a453d5d084387533cb5cd/4929c/dynamodbrole.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 37.83783783783784%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAAA2UlEQVQoz5WRiXKEIBBE+f8vjeAKDpecnUGs3ZwVM1XPhnJooBFvi8S+E7ZNI8SI1hpqbacW1to6er+PWJYFSikQEYwx8N6zYUUtBUeubNrxnxKLcVCasBrLarGHBJcqU57YYzLGofRfiWWckCJWG5iIhzvwYFU056fS1MH4T6nB5v4NSh0uNwgpJZzzV3Z81VbBYfDhP3LVmdPMd+jnnonQ2kBrDesCUs44UjqNx6K/uPZ42fFHjOw2ctj42rm286XumBXedBp+eWVJHps/sLrIob6a7tRPfe82oXRfpkrKIQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;dynamo db role&quot;
+        title=&quot;dynamo db role&quot;
+        src=&quot;/static/86e284bceb4a453d5d084387533cb5cd/fcda8/dynamodbrole.png&quot;
+        srcset=&quot;/static/86e284bceb4a453d5d084387533cb5cd/12f09/dynamodbrole.png 148w,
+/static/86e284bceb4a453d5d084387533cb5cd/e4a3f/dynamodbrole.png 295w,
+/static/86e284bceb4a453d5d084387533cb5cd/fcda8/dynamodbrole.png 590w,
+/static/86e284bceb4a453d5d084387533cb5cd/efc66/dynamodbrole.png 885w,
+/static/86e284bceb4a453d5d084387533cb5cd/c83ae/dynamodbrole.png 1180w,
+/static/86e284bceb4a453d5d084387533cb5cd/4929c/dynamodbrole.png 1727w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Once it’s done, create your function and provide this following code :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Boto is the Amazon Web Services (AWS) SDK for Python&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
+
+&lt;span class=&quot;token comment&quot;&gt;# To interact with DynamoDB, I just need to specity what resource I will use from boto3 (here: dynamodb)&lt;/span&gt;
+dynamodb &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;resource&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;dynamodb&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# Now I specify which table in DynamoDB I want to interact with.&lt;/span&gt;
+table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Table&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;recipes&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;lambda_handler&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;event&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; context&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;# Here, I will use a scan operation, to retrieve ALL my table items.&lt;/span&gt;
+        response &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; table&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;scan&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        
+        &lt;span class=&quot;token comment&quot;&gt;# Finally, I just return all the Items I found.&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; response&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Items&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;except&lt;/span&gt; Exception &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;# If an exception was thrown, I just catch it to print a log, and then I raise the error.&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;An error occured while retrieving Recipes table.&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; e&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Save your function, and we will provide a test event to test our lambda Function. Click on the &lt;code class=&quot;language-text&quot;&gt;Test&lt;/code&gt; button, and leave the default configuration as is. Just provide a name to your test event, and hit &lt;code class=&quot;language-text&quot;&gt;Create&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Once your test event has been created, you can click again the the &lt;strong&gt;Test&lt;/strong&gt; button and you should have an output like this :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/e1284d9bcc7e6e8802988f02a39151cf/8d7b0/lambdatest.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 39.189189189189186%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAABLElEQVQoz42R626DMAyFef9H3NppKoMWcg8JBAKcOaao259pEZ+O4xyMTarL5wVv13d0soN2Goqwg/2FGQx6LSCNhCBlKC45FxxTzow3qB6uxUdzRSNq1P0NtWyggjiIklRyrCnWFJtRwU6acUVpf+ZMVKhMoA1VHqKHJ4Ynnr7qxwg3Bo65E+o2TAHzmpDy9CQxM+EidTgkjxAClFSIMSKlGXnJWJYFa87IxLqu+M8qY1NBR4VGGGOpSMa+7di2jSkxs+8APcwfq0xWmahpVCqaAo+wbDNTxipj/FQ+Ww9eYx9aPH50qITrcLm9o5Vf6OwDD92yHj/dHJoM5xtBHnPHXbVQg+D86TuphO/ZqMvlxOOm7EhdJ8u4yWKYHZq+5kLlrHjKy6fn5TX4BpGsZ7/VZEqVAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;lambda results&quot;
+        title=&quot;lambda results&quot;
+        src=&quot;/static/e1284d9bcc7e6e8802988f02a39151cf/fcda8/lambdatest.png&quot;
+        srcset=&quot;/static/e1284d9bcc7e6e8802988f02a39151cf/12f09/lambdatest.png 148w,
+/static/e1284d9bcc7e6e8802988f02a39151cf/e4a3f/lambdatest.png 295w,
+/static/e1284d9bcc7e6e8802988f02a39151cf/fcda8/lambdatest.png 590w,
+/static/e1284d9bcc7e6e8802988f02a39151cf/efc66/lambdatest.png 885w,
+/static/e1284d9bcc7e6e8802988f02a39151cf/c83ae/lambdatest.png 1180w,
+/static/e1284d9bcc7e6e8802988f02a39151cf/8d7b0/lambdatest.png 1723w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Our Lambda configuration is over, now let’s have a look on our API Gatewa.&lt;/p&gt;
+&lt;h3&gt;Third step: Create  the API&lt;/h3&gt;
+&lt;p&gt;Let’s navigate through &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Networking &amp;amp; Content Delivery &amp;gt; API Gateway&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Let’s first create our &lt;strong&gt;cook-recipes-api&lt;/strong&gt; (HTTP API) and integrate the lambda function like below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/05b492beffd9d9c882c2852ad26fd744/ee3fb/api-config.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 61.48648648648649%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABYklEQVQoz6VTa4+EIAzk///L9a175wsURNxup4gx+2FzyZGMxVKGaSmq73sqioLKsqLHI6OyqumRZVTXDbltI+fcn7GuK6llWUlrLZimma0Ra8xC+76T954R7cYHCMR3+9/iHKRqHCfKspyVVay0FKURJWV5LmvwN21LTdNS3TRUcRZt24kFavZjzwKFkNkPg6iaZ0ALoDhZYwy9Xq8Lx3EI0n8aIQRSZlmo7TpC6t/GnTCRiGV4ThdkQgiZz+eP1CTwqVJca6UuKSjiOBEkDgqR3WQs1c9f2SOEmtNBfax14hiGkW85p3GaREEiSAARLsvywYjttSXtAnn2oSuUcxsNIy/wItK/kxxfgJiYekwbPpAqfCzLBRna4T/jquHMN5luD+nsezhxm5+1jL47YrpYF4WoIdpmXS0h/dSk0qgntpu9/Fesl3l6AApEAzc36ohAL69jj/YTyY/NbI+Py4L/DZyVpsxBGLRMAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;api main config&quot;
+        title=&quot;api main config&quot;
+        src=&quot;/static/05b492beffd9d9c882c2852ad26fd744/fcda8/api-config.png&quot;
+        srcset=&quot;/static/05b492beffd9d9c882c2852ad26fd744/12f09/api-config.png 148w,
+/static/05b492beffd9d9c882c2852ad26fd744/e4a3f/api-config.png 295w,
+/static/05b492beffd9d9c882c2852ad26fd744/fcda8/api-config.png 590w,
+/static/05b492beffd9d9c882c2852ad26fd744/efc66/api-config.png 885w,
+/static/05b492beffd9d9c882c2852ad26fd744/ee3fb/api-config.png 1144w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;and then configure the route to get the recipes like this :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/5ce44adc69144cd3a43bed51a4480cfa/077b7/api-route-config.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 42.567567567567565%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABBklEQVQoz6VRSW7DMAzU/1/X9pAFQWI7deE4bhZJ3iQvLIeOCrWHHlIBA4occTiE1MvrG603W9rudrRab0gbQ8Zaic9A+cFT75yg7ToR+w/Ufn+gPP+gojiRY1Hv/dPo2JDSWlNd14yG+r6XIoD7d86xbVu5hxiAvG6WXoiqJEkp4PieU5I+8jSTeEgSSrOMcRQ+fdRRy7hWlmeqqkqEx3EkBXfOeXKs3vAkIF59GAZxaG0tmzRN+4OLzwBBrY0knsnPy4Vu97s8nOeZpmlaOG4uTiVdrzdZLXB4h+HGWDElDvEzmBqceL9MRUMMrISmmEMPjEADfWNwaHkVTA0nvv8+f3FY+Quy0rdduvozjgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;api route config&quot;
+        title=&quot;api route config&quot;
+        src=&quot;/static/5ce44adc69144cd3a43bed51a4480cfa/fcda8/api-route-config.png&quot;
+        srcset=&quot;/static/5ce44adc69144cd3a43bed51a4480cfa/12f09/api-route-config.png 148w,
+/static/5ce44adc69144cd3a43bed51a4480cfa/e4a3f/api-route-config.png 295w,
+/static/5ce44adc69144cd3a43bed51a4480cfa/fcda8/api-route-config.png 590w,
+/static/5ce44adc69144cd3a43bed51a4480cfa/efc66/api-route-config.png 885w,
+/static/5ce44adc69144cd3a43bed51a4480cfa/077b7/api-route-config.png 1166w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Now you can hit &lt;strong&gt;Next&lt;/strong&gt;, &lt;strong&gt;Next&lt;/strong&gt; again and &lt;strong&gt;Create&lt;/strong&gt;, and your API will be created few seconds after. Congrats! Our API is now created :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/c7833edf53b46e2996c9039ec49b7982/d3d45/api-created.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 41.891891891891895%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAABJUlEQVQoz41Ry07DMBDMZ5UDnIGCBFco4rdQTzSfBVQgODQNSuJXEtt5DLt2iloJodoarT2eHXvXyWN6jUV6iYd0jrvVOe6fL7BYzXGzPMXV04xwciRmuF2eIdlsM7ysX/H2vsbH1ydKUaGSFYSSkFpBqiNAOs4rqhKJkBLZJoMQEtY6dL5D13UhOufhfVz7A/ig2edYU9cNEqU1tNEYhgE8xnEMcRgHEtTTfoxzOtOUY6391e/4pm2jYVGUBwI2/w993wfsc5wXDLnkPP8O2OZ5KL2lg+YPMN/SxQHTep/XxkTDoiggpIKiBhsiQw87PyH2jMFVNE0TonMuGDHPkTluURJ/SgcB36a0gaXPsLTfwU2G3J5KiFgBGfNjmJcUjalRE/cDwQZLNs1ryB0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;api created&quot;
+        title=&quot;api created&quot;
+        src=&quot;/static/c7833edf53b46e2996c9039ec49b7982/fcda8/api-created.png&quot;
+        srcset=&quot;/static/c7833edf53b46e2996c9039ec49b7982/12f09/api-created.png 148w,
+/static/c7833edf53b46e2996c9039ec49b7982/e4a3f/api-created.png 295w,
+/static/c7833edf53b46e2996c9039ec49b7982/fcda8/api-created.png 590w,
+/static/c7833edf53b46e2996c9039ec49b7982/efc66/api-created.png 885w,
+/static/c7833edf53b46e2996c9039ec49b7982/c83ae/api-created.png 1180w,
+/static/c7833edf53b46e2996c9039ec49b7982/d3d45/api-created.png 1614w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;As you wan see, your API has an &lt;strong&gt;Invoker URL&lt;/strong&gt;. This is the base URL of your API. So, to test our API, open your browser with this following URL: &lt;code class=&quot;language-text&quot;&gt;https://&amp;lt;&amp;lt; your api gateway invoker url &amp;gt;&amp;gt;/recipes&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;You should see all your items in your DynamoDB like below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/129da9032f77710e66360e9e065d50df/75609/recipes-api-results.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 43.91891891891892%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABJUlEQVQoz5VRi07CQBDs/3+dmBqoiCWgpiE19B7tvXdcrg+BxKibTPbR27mZa/FYblE911itnrDZvGD3esDbe4PzuYMQEkqpnLXWaJoT1ust1nzucv5hVaIsN6iqHer9EXV9RHFoLT47hbZtF5IQArTS6HWPoR/QT7DGwvvA8LDWZjjn8izGxIgoJC8KqTOR7CQEwzpeDB6JCJegBZRnKSUQZ8r12M8oQiR8iAQbeEN4UBdAijFEJM5pYPTcm5hz4vl4y3zNbWTCRkYYlm1lD+KeAitgC2OmEYm+a9Ci8B6F4yVliS1GeLb6lyCiH78VMU0KHauR/G6ztRnczwSzivv61jITnhS/oWeF0oD8ZDVcWb4i+S2yQmEIji1bY5a/+h+b1/EF3cG/vTD13c0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;api results ok&quot;
+        title=&quot;api results ok&quot;
+        src=&quot;/static/129da9032f77710e66360e9e065d50df/fcda8/recipes-api-results.png&quot;
+        srcset=&quot;/static/129da9032f77710e66360e9e065d50df/12f09/recipes-api-results.png 148w,
+/static/129da9032f77710e66360e9e065d50df/e4a3f/recipes-api-results.png 295w,
+/static/129da9032f77710e66360e9e065d50df/fcda8/recipes-api-results.png 590w,
+/static/129da9032f77710e66360e9e065d50df/efc66/recipes-api-results.png 885w,
+/static/129da9032f77710e66360e9e065d50df/75609/recipes-api-results.png 994w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Well, we did a great job. Our API now works successfully!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;But, why did you said its secure ?! Everyone can access to my cook recipe list with this endpoint…&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;That’s true! Now, we will handle the security part with Amazon Cognito.&lt;/p&gt;
+&lt;h3&gt;Fourth step: Configure Amazon Cognito&lt;/h3&gt;
+&lt;p&gt;Amazon Cognito is not present in the Services dropdown, but you can search it directly by tapping &lt;strong&gt;Cognito&lt;/strong&gt; :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/76e2143a3fa9c5dfd952977b08339886/7db30/cognito-service.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 19.594594594594593%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABJ0AAASdAHeZh94AAAAlklEQVQY03VP2Q7DIAzr/39o2cM6jnGIcnhxOvpWS5YcJ3Fgsy6itIlchzLVfutVP5F9wtgPYs6Yc2J7GQPvPayYzjmklPANASF4YdA6pajMOf3ry4tRKLrUijHGFWitRWsNvXclNQfXIodKKXqUmosEe0Yec54nFqZw2/ddLufbrHLtfRwavMBAzjFkBdLjjzRIDpHED+E3N6hEz5H2AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;cognito service&quot;
+        title=&quot;cognito service&quot;
+        src=&quot;/static/76e2143a3fa9c5dfd952977b08339886/fcda8/cognito-service.png&quot;
+        srcset=&quot;/static/76e2143a3fa9c5dfd952977b08339886/12f09/cognito-service.png 148w,
+/static/76e2143a3fa9c5dfd952977b08339886/e4a3f/cognito-service.png 295w,
+/static/76e2143a3fa9c5dfd952977b08339886/fcda8/cognito-service.png 590w,
+/static/76e2143a3fa9c5dfd952977b08339886/efc66/cognito-service.png 885w,
+/static/76e2143a3fa9c5dfd952977b08339886/c83ae/cognito-service.png 1180w,
+/static/76e2143a3fa9c5dfd952977b08339886/7db30/cognito-service.png 1494w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Once you are, we will firstly handle our User Pool. Click on &lt;strong&gt;Manage User Pools&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Provide a name to your user pool, &lt;strong&gt;CookRecipePool&lt;/strong&gt; for example, click on &lt;strong&gt;Review defaults&lt;/strong&gt;, and &lt;strong&gt;Next&lt;/strong&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;There is lot of configuration possible for User Pools, you can manage the required attributes for the Log-in part, define the “username” attributes, manage password policies, activate MFA etc.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;On the Review’s page, we will add a Client Application by clicking on &lt;strong&gt;Add app clients…&lt;/strong&gt; Click again on &lt;strong&gt;Add app client&lt;/strong&gt;, provide a name to your App Client, &lt;strong&gt;CookRecipeApp&lt;/strong&gt; for example, leave the default configuration as is and hit &lt;strong&gt;Create App Client&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Once it’s done, click on &lt;strong&gt;Return to pool details&lt;/strong&gt; and create the user pool.&lt;/p&gt;
+&lt;p&gt;Our user pool is now created, we will configure our &lt;strong&gt;App Client Settings&lt;/strong&gt; like below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1381bbcb9b0d136c4f492b73980b1a6d/f4b34/app-client-settings.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 57.432432432432435%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAABQklEQVQoz5VT226DMAzl/79sz3vZXiZVsE4r4dZcCQk5tQN0tFPVzdLRcUhiO/ahmOcZKaWMvc8mpcThcEBZVahWKKXy3nbuHoWxFkIIdF2HYRjgvYefAqx12IwTbXgUbLNCKY3v0wm1qDH0PcZxXC6tl/9q1wq11mjaFh0F6/oBkhJw1dowTGaliRm0vvr6Z88Qh7i0q6jbM17fPlB+NTh1KkPaiPMKecf3/rbWY4J0FFBRhZ/HI+paoOceThP1KiHu+saIz0AVhhjXJzcNphAwUbBIHwP5zP8FJy4M9aWlHrJEnHM0XUswsKPHGBKsjzCEEJdJpifDKSTpinV2pGdzMA7K4Kdz9Vz5NkU80N6cuEULLzqkJ4umzRNj2Vhns4AZvGbsNbjnXxXuN26y5mHc/kH7M2w+zHDTjPfa4qVUmS+KNVwnke3H0gAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;app client settings&quot;
+        title=&quot;app client settings&quot;
+        src=&quot;/static/1381bbcb9b0d136c4f492b73980b1a6d/fcda8/app-client-settings.png&quot;
+        srcset=&quot;/static/1381bbcb9b0d136c4f492b73980b1a6d/12f09/app-client-settings.png 148w,
+/static/1381bbcb9b0d136c4f492b73980b1a6d/e4a3f/app-client-settings.png 295w,
+/static/1381bbcb9b0d136c4f492b73980b1a6d/fcda8/app-client-settings.png 590w,
+/static/1381bbcb9b0d136c4f492b73980b1a6d/efc66/app-client-settings.png 885w,
+/static/1381bbcb9b0d136c4f492b73980b1a6d/c83ae/app-client-settings.png 1180w,
+/static/1381bbcb9b0d136c4f492b73980b1a6d/f4b34/app-client-settings.png 1457w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In this settings you just need to :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Check the &lt;strong&gt;Cognito User Pool&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Provide the &lt;strong&gt;Sign-in/Sign-out URLs&lt;/strong&gt; (we don’t have our Cloudfront distribution ready for now, so you can put a temporary URL)&lt;/li&gt;
+&lt;li&gt;Allow the &lt;strong&gt;Authorization Code Grant&lt;/strong&gt; OAuth Flow.&lt;/li&gt;
+&lt;li&gt;Allow at minimum 1 scope (email for example).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We will update the Sign-in/Sign-out later. Now we can claim a Domain Name for our User Pool. Click on &lt;strong&gt;Domain Name&lt;/strong&gt; and choose a domain which is available like below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/c49c4f80f9089bff9a58895f05f34908/da994/userpool-domain.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50.67567567567568%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABJ0AAASdAHeZh94AAABm0lEQVQoz5WRSXLbMBBFeXZfIpfJ3hfISjYlcZA5igMGEiAI/nyAWqTiyiKoetVgs4H+/ZHMUmASM2YhItM8Q2qNvHzgkqZI73dkeY4b4z3LIl3fQy0LhJKQSrH+RK8LkrSscLmX+Mwf+Cy+cMlKfBQ10qonT3x89ciaJ/J2QEke3RmLpj9pn5GSVKNAUgwarVjRiCVSz2TSqCbFqPAYFW6dwJWUg4r5E/0HKp4JdYleV0jKl3qJoy7GwmwO64uwt5ENxm5YrY01gbBfY+4k5BJB34oiR13X6LoWUkqsbLLSDxMim4Vi4zzsfhD8c3nvkSia2jQNhmGEpsrNURU7W14SVFnut6CU3+HBxmnGNE0QbAwcWDaPVlpUwkJbh8TxgoAxBvv+d/vj5DhwsHuo21/1gYN57w9sO9W78H8/R06vV1xvN47cYZwler7Wc5J4KotRb+y80x96tKxk+YYO3jNunCjRxvGVDTppoHnIUeXmXrCzo2+7P5WECb5B5ZQf8Z4KwyHjjmi6P/BfS5od2WDw473G288SvyqF37pjAj3lBgXQAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;userpool domain&quot;
+        title=&quot;userpool domain&quot;
+        src=&quot;/static/c49c4f80f9089bff9a58895f05f34908/fcda8/userpool-domain.png&quot;
+        srcset=&quot;/static/c49c4f80f9089bff9a58895f05f34908/12f09/userpool-domain.png 148w,
+/static/c49c4f80f9089bff9a58895f05f34908/e4a3f/userpool-domain.png 295w,
+/static/c49c4f80f9089bff9a58895f05f34908/fcda8/userpool-domain.png 590w,
+/static/c49c4f80f9089bff9a58895f05f34908/efc66/userpool-domain.png 885w,
+/static/c49c4f80f9089bff9a58895f05f34908/c83ae/userpool-domain.png 1180w,
+/static/c49c4f80f9089bff9a58895f05f34908/da994/userpool-domain.png 1487w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;You can now create your domain, and the next step is to test our User Pool.&lt;/p&gt;
+&lt;p&gt;To access to the Log-in page, we should pick up the &lt;strong&gt;App Client ID&lt;/strong&gt; first. Go to the &lt;strong&gt;App Clients&lt;/strong&gt; menu on the left bar, and you should be able to see your App Client name with the App Client ID like below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/7083dd367406cf217c95d10c77ec56c9/99375/app-client-id.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 34.45945945945946%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABJ0AAASdAHeZh94AAAA2UlEQVQoz5XR626EIBAFYN7/IburdputuCJXFYTTGcjaP72SfHEiMAdRGOewGAttP136HpeuO71cr+iGoRput4rrh1rg1xXWe7gQKrEYA6V19ZhnzEphnCbcx/H0LmV9jnJqobSHeWoQtg2BmjJuLmKM0NrAUQqPUgrBtyPX+SbnjOM4Kq5jShArdX0dekg6gaZTbpTIIfu+f4nnfiLCHiF1wF05hLAi0cuaSmnP9N8kWtscraHdEgx5fsZ/lZL5rlCoFsa30zFlPV1sOP/YX/B6qR3eZlt7fAD0wh6gt6f5YAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;app client id&quot;
+        title=&quot;app client id&quot;
+        src=&quot;/static/7083dd367406cf217c95d10c77ec56c9/fcda8/app-client-id.png&quot;
+        srcset=&quot;/static/7083dd367406cf217c95d10c77ec56c9/12f09/app-client-id.png 148w,
+/static/7083dd367406cf217c95d10c77ec56c9/e4a3f/app-client-id.png 295w,
+/static/7083dd367406cf217c95d10c77ec56c9/fcda8/app-client-id.png 590w,
+/static/7083dd367406cf217c95d10c77ec56c9/efc66/app-client-id.png 885w,
+/static/7083dd367406cf217c95d10c77ec56c9/c83ae/app-client-id.png 1180w,
+/static/7083dd367406cf217c95d10c77ec56c9/99375/app-client-id.png 1525w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Ok so, to the URL to provide to Log-in through Amazon Cognito will be :&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;https://&amp;lt;&amp;lt; your domain name &amp;gt;&amp;gt;.auth.&amp;lt;&amp;lt; your AWS region &amp;gt;&amp;gt;.amazoncognito.com/login?response_type=code&amp;amp;client_id=&amp;lt;&amp;lt; your app client ID&amp;gt;&amp;gt;&amp;amp;redirect_uri=&amp;lt;&amp;lt; your redirect URI&amp;gt;&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Please replace the :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Domain name (your domain previously created)&lt;/li&gt;
+&lt;li&gt;Client id (provide your app client ID)&lt;/li&gt;
+&lt;li&gt;Redirect uri (should be &lt;a href=&quot;https://www.google.com/authenticate&quot;&gt;https://www.google.com/authenticate&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For me it will looks like :&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://cook-recipes-app.auth.eu-west-2.amazoncognito.com/login?response_type=code&amp;#x26;client_id=13ft34s2dt7nn0ef0k4p512hgp&amp;#x26;redirect_uri=https://www.google.com/authenticate&quot;&gt;https://cook-recipes-app.auth.eu-west-2.amazoncognito.com/login?response_type=code&amp;#x26;client_id=13ft34s2dt7nn0ef0k4p512hgp&amp;#x26;redirect_uri=https://www.google.com/authenticate&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;You should be able to see your Log-in page :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 497px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/0a3418a5842ab2d12f5b72258a0bf828/15d25/login.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 101.35135135135135%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAABJ0AAASdAHeZh94AAACy0lEQVQ4y52VTW8SURSG+UUuWzXRVdXu3BgT1y6Mf8BNqWhSgbZQqrFJ3dD+hobE1mowdoENpoUSsNpGLQMzMDDD8DEzwMC8njN8WEoT297kyZk799x3zjn3Y1yhUAjhcBhra2tXgueur69jdXUVS0tLcC0uLiIejyOdTiOVSl2ag4MDHB4eIhKJYH5+Hq6FhQXs7u46g8lk8tIkEglkMhlsbGzA7/fDFQgEUCwW0W61oOs6DMPoc/p5HNM0YRCNRgMtmhuLxeDz+eDivCsVldAcx3q9Dq2qkThNpA/UarUhPMaWRTRNQ7VadZ65caRerxeuYDAIVVUgiiKJVqAoCopyEaVS2XnP0Q+QZZms7Fj2lySJ/FVHcG9v75QgiSjlMqSCRGIyrtJGBDl8rh+nwHB9LMu6EO12e1SQF4Xr0mo2nZQZrpVt2+h2u/+l0+mMCvKiyFQzrokgCChQrbhdRIzhKMciHKTJqXN0vA34yxdhTDB4SrBMC6OoKhpUz0E6ljOxn945jAvSopSVCgoVA0KpjpJmoFjRkSvVqF9DQW049ew1ewybRM9fFMtG3aDT0rSGGH1bN9swWhaa7Q75dYnOELN1JsK3r0OIZQRM+6O46/2Eez7C22Pq1UfcD3zG43cxPFz+gmkau0Pv2G/ge/vFFp6EvyGxv98TXHkTwk7qBJOzHzDhfo9J9yauz27hpmcbE2SnvFE8DcfxYHkHt15u48bzLYee3yauPYvg0crXf4JcQ0XVIFVM5Mp15FUdv0QFmd8ifgoyfmSLSB6L1JeQ/iPju6DiWNQgsK/SQFauQTO7ozXkbTLabFTpwjD0Bky9Dr1WRZNsm2pW0S2Ylj129PheHAoeHR0hn88jSxubyeXydPALtNklB74ERIJ9JDEPkazQ9z3JZp3DEI1Ge/chp+zxeDAzMwO32z2E++O4h5z1nZubA/9O/gKOamnEU1H1KgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;cognito login page&quot;
+        title=&quot;cognito login page&quot;
+        src=&quot;/static/0a3418a5842ab2d12f5b72258a0bf828/15d25/login.png&quot;
+        srcset=&quot;/static/0a3418a5842ab2d12f5b72258a0bf828/12f09/login.png 148w,
+/static/0a3418a5842ab2d12f5b72258a0bf828/e4a3f/login.png 295w,
+/static/0a3418a5842ab2d12f5b72258a0bf828/15d25/login.png 497w&quot;
+        sizes=&quot;(max-width: 497px) 100vw, 497px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Now we will sign up to obtain an account. Let’s provide an username, a valid email address and a password.&lt;/p&gt;
+&lt;p&gt;You should receive a verification code in your mail inbox :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/7e4769cb46f0001f00ccbcfc2a298486/40040/verifcode_2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 41.891891891891895%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAABDElEQVQoz3VQiXaDQAj0/3+w3tdLTWqtZzx31ynQajevCe8hyLDDgLPvO9iNMVBaw/zm67ZBU9RUY1xrI/XdKCilsBH+5+oHoz6HP2yKgCiKUFyvEl33DZ7nIeRaUcDzfeR5To03XC7v1BMiSRKEYYgsy4SYzcETO4bY8djCzm0/6g7LH4YB8zwjTVNS5iIIApocifuUx3Esfr/fHwc9ESOEfd+L5LpuKB/O2yzLQr6eN+N7vtroVGgDrGAcRyKuRTEbEzVNI0OZ8KtX+Ow2iR8NYYN6JLR/+FHbtijLUshZIQ+oqgpt18mS06IxzhrzajBMlC/6PyEbT+/oEd+TV2dVTM41jtM04ZXZhN+MKW2aWX2tGwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;verif code&quot;
+        title=&quot;verif code&quot;
+        src=&quot;/static/7e4769cb46f0001f00ccbcfc2a298486/fcda8/verifcode_2.png&quot;
+        srcset=&quot;/static/7e4769cb46f0001f00ccbcfc2a298486/12f09/verifcode_2.png 148w,
+/static/7e4769cb46f0001f00ccbcfc2a298486/e4a3f/verifcode_2.png 295w,
+/static/7e4769cb46f0001f00ccbcfc2a298486/fcda8/verifcode_2.png 590w,
+/static/7e4769cb46f0001f00ccbcfc2a298486/40040/verifcode_2.png 616w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Copy/paste this code and create your account :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 498px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/2b37e0bff2678c7f56f3f79103f9f5dd/79e1b/verifcode_1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 84.45945945945947%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAABJ0AAASdAHeZh94AAACs0lEQVQ4y6VT204TURTtF/hihBf/wlcS9cX/8MFb/AATY+RiYgcIIDbVxHcTDUUkTSqI8AgSxbYztCampdrLTO+Xuc90ZpZnn0opMcYQTrK6dufsvc8+6+wdWlpaQiQSQTQaPTcoV2hubg6JRALZbBapVArpdPpMoBhJkrC/v4/FxUWEBEFAPB5HJpNBMpnkDmcBxYiiiL29PczPzyMUDoexu7sLTdNQr9fRbDbPhEajgU6ng2KxiIWFhUFCqu68yzCMgYaUkLToslMqFRlKtYoqA51eq9UgyzKvgliWFXS7HSiKgnK5zOwei6nwhKqqDjSkhKRFVamiUPjJS8/ncjx5qVRCjtnElUqZJazwROSjM4mCwIdjW8OEwwpJVFq+749wwAICWHYfpu1BM2zopgNVtzi7HuD0A46/EtKV640mfrBq8kcFlKiKUhn5Qgm1lo5GS4XlAqYTwHQDzgY7xLB9qGaf72kaXXm0Qs+BqbZh9Fpw9C48S4Pe68C2WDW2/d9HsQx9RMO0iG9FHRtpBduZOj4d1rAlVTlvijKDgkSyzPGBYSNVGYL+k+8vpYnny8/YpMwK+Pw1iYmZHVy4+Qbjd2IYux3DxVsruPIwgRvCDq7PfMTE5CauTm/h2pMtXL6/hkvMZ/zuKsaY//i9NSS+5PDqRYQmJYyDZBovt4/w4PUBplYlTL87xGRMQng9i9l4Fk/fZyDEv0NYZ7x+iJlVEVMxEY9X0nj0NsV9xbyMaGR5cGVJEodaBI7BdGxzDU2Vaaj34P/5Bt+F47JXJ10Zn2psXTvRkIabt0tAz6+h2eqgR9zu8OYlu8Vsx3XRM1zUuiZamg277/MYWjS6w7ahxqZls9f0PI/34Sgf2/1+Hx6D7zFmcNkBjuPwvXa7PaiQfkZBA/4vDPaPfU7HUXX0/TfDs4lq+dKmxwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;verif code&quot;
+        title=&quot;verif code&quot;
+        src=&quot;/static/2b37e0bff2678c7f56f3f79103f9f5dd/79e1b/verifcode_1.png&quot;
+        srcset=&quot;/static/2b37e0bff2678c7f56f3f79103f9f5dd/12f09/verifcode_1.png 148w,
+/static/2b37e0bff2678c7f56f3f79103f9f5dd/e4a3f/verifcode_1.png 295w,
+/static/2b37e0bff2678c7f56f3f79103f9f5dd/79e1b/verifcode_1.png 498w&quot;
+        sizes=&quot;(max-width: 498px) 100vw, 498px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Once is done, you will be redirected to the &lt;strong&gt;Callback URL&lt;/strong&gt; you provided when we configured our App Client Settings. Normally, you have been redirected to the 404 google page, but the most interessant part is the URL :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/6e166c3151fce0519804b60b2977e1a8/a016c/authcodegoogle.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 6.081081081081082%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAABCAYAAADeko4lAAAACXBIWXMAABJ0AAASdAHeZh94AAAATElEQVQI1xXIOwqAMBBAQW8gIbW1SrJr8EeMBhS8/5WeazHNNKXerPmkPi/zlllMuez2g6iJKIkQf4KoRybHGJy9tzPiUDvRln7o+ADuPR6GV/heJgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;google redirect auth code&quot;
+        title=&quot;google redirect auth code&quot;
+        src=&quot;/static/6e166c3151fce0519804b60b2977e1a8/fcda8/authcodegoogle.png&quot;
+        srcset=&quot;/static/6e166c3151fce0519804b60b2977e1a8/12f09/authcodegoogle.png 148w,
+/static/6e166c3151fce0519804b60b2977e1a8/e4a3f/authcodegoogle.png 295w,
+/static/6e166c3151fce0519804b60b2977e1a8/fcda8/authcodegoogle.png 590w,
+/static/6e166c3151fce0519804b60b2977e1a8/a016c/authcodegoogle.png 762w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, we get an &lt;strong&gt;Authorization Code&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This code can be exchanged with an access token. But to get an access token, we need to implement a new API Gateway route to query our Cognito User Pool.&lt;/p&gt;
+&lt;p&gt;Before creating our route, we will create a new Lambda Function that will handle this token exchange. Let’s navigate to &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Compute &amp;gt; Lambda&lt;/code&gt; again.&lt;/p&gt;
+&lt;p&gt;Once you are here, do the same thing we did for the creation of our GetRecipes lambda :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create lambda function&lt;/li&gt;
+&lt;li&gt;Leave “Author from scratch” default option selected&lt;/li&gt;
+&lt;li&gt;Provide a name (CognitoTokenExchange)&lt;/li&gt;
+&lt;li&gt;For the execution role, leave the first option selected (Create a new role with basic Lambda permissions)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Once your lambda is created, I provided you a ZIP file which contains our Lambda Function but also the dependencies needed to make an HTTP requests. &lt;a href=&quot;/15e423a003ff7320462f788fb274f397/cook-recipe-authenticate.zip&quot;&gt;Click here&lt;/a&gt; to download the zip file.&lt;/p&gt;
+&lt;p&gt;Then, click on the &lt;strong&gt;Edit code inline&lt;/strong&gt; like below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/56c35d3810aa0146e08fd5d3ce069ba5/016a8/update_zip_lambda.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 34.45945945945946%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABJ0AAASdAHeZh94AAABEUlEQVQoz31R0W6DMAzk/79vD1tX2KR2gwIhISEJEOBmmzLxVKSTsX3YviPLiwLvlws+Pq/Iiy9c8wKtUnDOobdWYJ/vquugTY+mbWH6XvKjP3gvMeMPFQ2wzmNdN8KKlGZM0ySY51kwPeN/fuqlUy1zw0CbNMZpxrptSMuCZVnBT0pJtm5U3yjnuKx7jzK60mIIEeM4ykDmZA8a9nb9xo8y0HGG8hOUGxBjxMDL6HqOIQR4BkkLNCRQn2VrYwQsnTkZF6u6Rlk9yJtGSGVV4367wxgNS0S25Qxr3e4bLTpw9MTDsy89ySibDrfyF1obIYUYRNbh6yvIQJbHfqW0wNFFnPee/zBJHUlm9Lv5wnmNP1LbHF7z+XkpAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;upload lambda zip code&quot;
+        title=&quot;upload lambda zip code&quot;
+        src=&quot;/static/56c35d3810aa0146e08fd5d3ce069ba5/fcda8/update_zip_lambda.png&quot;
+        srcset=&quot;/static/56c35d3810aa0146e08fd5d3ce069ba5/12f09/update_zip_lambda.png 148w,
+/static/56c35d3810aa0146e08fd5d3ce069ba5/e4a3f/update_zip_lambda.png 295w,
+/static/56c35d3810aa0146e08fd5d3ce069ba5/fcda8/update_zip_lambda.png 590w,
+/static/56c35d3810aa0146e08fd5d3ce069ba5/efc66/update_zip_lambda.png 885w,
+/static/56c35d3810aa0146e08fd5d3ce069ba5/c83ae/update_zip_lambda.png 1180w,
+/static/56c35d3810aa0146e08fd5d3ce069ba5/016a8/update_zip_lambda.png 1576w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;And upload the ZIP file previously downloaded and save your lambda.&lt;/p&gt;
+&lt;p&gt;Now you should update a little bit the lambda by replacing this portion of lambda :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; json
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; requests
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; urllib3
+
+token_url &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;https://&amp;lt;&amp;lt; your domain name &gt;&gt;.auth.&amp;lt;&amp;lt; your AWS region &gt;&gt;.amazoncognito.com/oauth2/token&quot;&lt;/span&gt;
+callback_uri &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;https://www.google.com/authenticate&quot;&lt;/span&gt;
+client_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;&amp;lt;&amp;lt; your app client id &gt;&gt;&apos;&lt;/span&gt;
+client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;&amp;lt;&amp;lt; your app client secret &gt;&gt;&apos;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;lambda_handler&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;event&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; context&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    authorization_code &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; event&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;pathParameters&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;code&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    data &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;grant_type&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;authorization_code&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;code&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; authorization_code&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;redirect_uri&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; callback_uri&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    access_token_response &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; requests&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;post&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;token_url&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; data&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; verify&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; allow_redirects&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; auth&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;client_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; client_secret&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; json&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;loads&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;access_token_response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;text&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;with your &lt;strong&gt;Domain Name&lt;/strong&gt; (like we did above), your &lt;strong&gt;App Client ID&lt;/strong&gt; and your &lt;strong&gt;App Client Secret&lt;/strong&gt;. You can find this following information in the Amazon Cognito service, in the &lt;code class=&quot;language-text&quot;&gt;General settings &amp;gt; App clients&lt;/code&gt; menu in your &lt;strong&gt;CookRecipePool&lt;/strong&gt; :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/5498e7859b08c4f6a8822c5476344c5a/d7ba6/appclients.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 40.54054054054054%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAABK0lEQVQoz42Si26DMAxF+f8f2xdMldZ247nwKAmQEAqU3tlGILFN0yJdOQ7h5MZOYPseYRwjyTKYtkU/DKLaGORlKSqqao+i243yCqXEdV3mFAMGZkqhtRbO+1UE9Cy/xuF+X/N/SICX6xVv5zM+whCdcwKdHw8CetRaw9Eaj+fziWVZ/hQBPVRRoaoNXUXDdE6uPE0TFDmPqRxd1wmUHc/zLN9ENJ+/KbC2QfR+QqMVBlejt7U45M1FniOKYuQqx41qxOADkDSO40GBI8Dl9QVleoI3IXqT7MCKipwkCUqK7LClpulaQ+tVnP8AttYh+VRyVT/O1JBxBdLp/FNRFCipkxm9gpwcN02ziw85upwQ6MZIM+I0paeipX4MHGkjO2QXm7bmbOO3Jn0BM3Jl1FCoV/QAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;app clients&quot;
+        title=&quot;app clients&quot;
+        src=&quot;/static/5498e7859b08c4f6a8822c5476344c5a/fcda8/appclients.png&quot;
+        srcset=&quot;/static/5498e7859b08c4f6a8822c5476344c5a/12f09/appclients.png 148w,
+/static/5498e7859b08c4f6a8822c5476344c5a/e4a3f/appclients.png 295w,
+/static/5498e7859b08c4f6a8822c5476344c5a/fcda8/appclients.png 590w,
+/static/5498e7859b08c4f6a8822c5476344c5a/efc66/appclients.png 885w,
+/static/5498e7859b08c4f6a8822c5476344c5a/d7ba6/appclients.png 1107w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Once you have updated the Lambda function, you can save it. So now we will test our Lambda Function. Go back to your Log-in URL :&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;https://&amp;lt;&amp;lt; your domain name &amp;gt;&amp;gt;.auth.&amp;lt;&amp;lt; your AWS region &amp;gt;&amp;gt;.amazoncognito.com/login?response_type=code&amp;amp;client_id=&amp;lt;&amp;lt; your app client ID&amp;gt;&amp;gt;&amp;amp;redirect_uri=&amp;lt;&amp;lt; your redirect URI&amp;gt;&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Now you have 2 possibilities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sign in as &lt;strong&gt;your username&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Re-login with the credentials you provided during the subscription.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 517px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a954d69ec781407515c4e510ac96d4b0/fa2f5/signin_as.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 54.05405405405405%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAABu0lEQVQoz6WSTWsTURSG5z+4r8Wda3+DuHAp+A/cNbjoShdqPtRm8ql10iwMkVqoGGOmhKJl0CZBQUepiRNSShfJNI5CFjaZ2NRE5XHuTCLYUhB74bnvOdyXl3sPV0omkyQSCWKx2LGIx+OILEkUqVSKcrlMqVT6LyqVCpqmuReTRLqiKBiGQb1ed9UQ+q84/kajga7r7k2laDRKOp3GNE2arb9pjTmq92ix027T2Nx0ny1FIhGy2SzHXfuDPW+GYVlmeWmR11sdrixv4H9S40auxrXHVW4WDG6rdUJPDYL5j05tuIjz67naWKv48wYfti0WlHmkubBM/tESC9oWJy7lOHVZZdqnMjVT4MzVZ1y884pzcy85e+sF58PrXEhUOD1b5OSM55v2FZjyrVB8u839tIIkyxEeLj6g2emzutFmrWaxVrUovt9B1U3UdyYrDvk3LZeC7vUT7/PqJzTjC02rw735u0fP8PvwJ/ZgxHD0y8XeG9H9NmT4w6sP+fcH3gxFYCaTodfr8XW3+wfRu9ie2rZN32FSd7sT/67j6WNZn71AsYnQYDBIIBA4hH+Cf8y4P+gLhUKIL/gb4BDAkYDebucAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;signin as&quot;
+        title=&quot;signin as&quot;
+        src=&quot;/static/a954d69ec781407515c4e510ac96d4b0/fa2f5/signin_as.png&quot;
+        srcset=&quot;/static/a954d69ec781407515c4e510ac96d4b0/12f09/signin_as.png 148w,
+/static/a954d69ec781407515c4e510ac96d4b0/e4a3f/signin_as.png 295w,
+/static/a954d69ec781407515c4e510ac96d4b0/fa2f5/signin_as.png 517w&quot;
+        sizes=&quot;(max-width: 517px) 100vw, 517px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Please log-in with your credentials, and pick up the &lt;strong&gt;authorization code&lt;/strong&gt; from the redirected URL :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/f8738ffa60569df8a2f1d09170fef37f/cc488/redirected_code.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 52.02702702702703%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABJ0AAASdAHeZh94AAABXElEQVQoz62SyUoDQRCG56wigiePQUwmm0ElLm/iQbNqHJ0sYoJP6EnwIoiInk0gEZLRJJN093z2jBj1YFSw6J8qavmrqruN1HqazfQO2+ktEqk1kskNovE1IokQ8fgM8egskdi89s1hxhZIpRZJri6xvBIjHIkSNk1WwiZmNEZoOYJhVWpY2TyNwyMO7BPKJ+dkChb7ls1xMcfBXobdbIm9XIFsvkTNrnJWr2DZp5SrFWqnOs8+pt6okimWMKSUSM9jrBRKKqQUeNr24fsVWrT2AiiEzhdC18g3iKBGBT4/bvDPYniT7tOhx/yw/fNN3tQJ34hAae2OVbC60mtJJSfx95zJhD8TegwEXN4MUfcXXN098Hh7/YXw7xPqB3rpDxDDPk89Fzkaf3+HvyEUQtDpdOj2HJ6dHoPhkNFohOu6gf6MXxH6X6nZbNJqtSZot9t0u10cx6GnG73rV2Z6wMIIhfHJAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;redirected code&quot;
+        title=&quot;redirected code&quot;
+        src=&quot;/static/f8738ffa60569df8a2f1d09170fef37f/fcda8/redirected_code.png&quot;
+        srcset=&quot;/static/f8738ffa60569df8a2f1d09170fef37f/12f09/redirected_code.png 148w,
+/static/f8738ffa60569df8a2f1d09170fef37f/e4a3f/redirected_code.png 295w,
+/static/f8738ffa60569df8a2f1d09170fef37f/fcda8/redirected_code.png 590w,
+/static/f8738ffa60569df8a2f1d09170fef37f/efc66/redirected_code.png 885w,
+/static/f8738ffa60569df8a2f1d09170fef37f/cc488/redirected_code.png 928w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For example, my authorization code is: &lt;code class=&quot;language-text&quot;&gt;53c7105e-09b3-4a93-9062-0cdc74d30bd2&lt;/code&gt; (yours will be different).&lt;/p&gt;
+&lt;p&gt;Go back in your Lambda Function and add a &lt;strong&gt;Test Event&lt;/strong&gt;. Click on Test button, and add this following JSON:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;pathParameters&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;&quot;code&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&amp;lt;&amp;lt; put your authorization code here&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;like below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/69c6b81a6feeedd6011aa24ef1790843/dd104/testcode.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 24.324324324324326%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAAAsElEQVQY052OywqDMBBF/f8/LIUurChJmuZhjIl53I5pLRS6cnG4M8NwOR1jHFI+UWpFKeUUmdhSgp1ndE+lEEJApcJ8snAvizFidg4d4xzWWlT8M6yNWut33skfq4P9N6UMaciQCwGlDRYfsIZItvGdMcCHleYVy+pb+uDbbds2Kkg/RLo9NBlerjcMzKKfNEZuMArTcpIKA5cYhETPRMv7vhNCOUi9tIIjHQlJ4/ACOvKFMaJCyokAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;test event authorization code&quot;
+        title=&quot;test event authorization code&quot;
+        src=&quot;/static/69c6b81a6feeedd6011aa24ef1790843/fcda8/testcode.png&quot;
+        srcset=&quot;/static/69c6b81a6feeedd6011aa24ef1790843/12f09/testcode.png 148w,
+/static/69c6b81a6feeedd6011aa24ef1790843/e4a3f/testcode.png 295w,
+/static/69c6b81a6feeedd6011aa24ef1790843/fcda8/testcode.png 590w,
+/static/69c6b81a6feeedd6011aa24ef1790843/efc66/testcode.png 885w,
+/static/69c6b81a6feeedd6011aa24ef1790843/dd104/testcode.png 1064w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Save your Test Event, and hit the Test button again. Congrats! You should have a response with all your tokens :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/96a9e2a46e8a4d67ebe60a50e150af7a/00b3d/gettoken.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 42.567567567567565%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABX0lEQVQoz1WR2XKCQBBF+f8/tEwskYHZd1DJy013E634cKq3OwPTd1hsgHYBxlgs2iDngtZXtNbflFJRa4N1Hpp0WlvSO4pGeq/c+YDhdDnh63oWzuM3Uksoa0Zek1C2jFADQvHwRGpRco4uO5oXIfUo2mE0V5i8wBJLNohrQLlH5Dtd+CAkj9IrVLdnRtvpFfsRK9X1rxc3j8EF+l2rERJ9OXoiwAf6G65LOWrqx0x1Cmhr+6BvXeDcV4dBa43bbYJS8wfTpDCON0xKYZ4X6bHuv3ZZNHHMPPkQKv2h914OsinWOhFZWjLnsnSKjhdPOc9Yl1IW89ioQq9g0/bnfuxQGQUTjCw5FnpW5ufSJYTkBMdYghAI7rlo3zrR8ryTy9flgtkruGIEm7WY0PdKBhT0n4pERk12fGtctTI7zDnoBJ8blJvkQN6ikMTlhPrIAh/kZU/29qF7zd+6x3HhLylZpjdFrEyhAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;test event success&quot;
+        title=&quot;test event success&quot;
+        src=&quot;/static/96a9e2a46e8a4d67ebe60a50e150af7a/fcda8/gettoken.png&quot;
+        srcset=&quot;/static/96a9e2a46e8a4d67ebe60a50e150af7a/12f09/gettoken.png 148w,
+/static/96a9e2a46e8a4d67ebe60a50e150af7a/e4a3f/gettoken.png 295w,
+/static/96a9e2a46e8a4d67ebe60a50e150af7a/fcda8/gettoken.png 590w,
+/static/96a9e2a46e8a4d67ebe60a50e150af7a/efc66/gettoken.png 885w,
+/static/96a9e2a46e8a4d67ebe60a50e150af7a/c83ae/gettoken.png 1180w,
+/static/96a9e2a46e8a4d67ebe60a50e150af7a/00b3d/gettoken.png 1745w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The next step is to configure our route to invoke our lambda. Let’s navigate to &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Networking &amp;amp; Content Delivery &amp;gt; API Gateway&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Select our API, &lt;strong&gt;cook-recipes-api&lt;/strong&gt;, and add a new route :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/e60da3a11e0942b695ef69083bf623d1/df438/tokenroute.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 22.2972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABJ0AAASdAHeZh94AAAAhElEQVQY052OUQvDIAyE/f//cS9z1T5IW2sTowg309Eiexks8JFTc2fM01pMzsG+JmwxYk8Jcd/P/g8mhADnPJz3EBHUWlGUUm5k0N/om/pKJzPDEDGOg0D9IFLAvSufwcE0cIXp5601XKXK6Joaxjkj9eBlXTvbefcL9SiUBbzMoPmBNw6gNVfiwXdtAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;token route&quot;
+        title=&quot;token route&quot;
+        src=&quot;/static/e60da3a11e0942b695ef69083bf623d1/fcda8/tokenroute.png&quot;
+        srcset=&quot;/static/e60da3a11e0942b695ef69083bf623d1/12f09/tokenroute.png 148w,
+/static/e60da3a11e0942b695ef69083bf623d1/e4a3f/tokenroute.png 295w,
+/static/e60da3a11e0942b695ef69083bf623d1/fcda8/tokenroute.png 590w,
+/static/e60da3a11e0942b695ef69083bf623d1/efc66/tokenroute.png 885w,
+/static/e60da3a11e0942b695ef69083bf623d1/c83ae/tokenroute.png 1180w,
+/static/e60da3a11e0942b695ef69083bf623d1/df438/tokenroute.png 1556w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Once your route is created and attach our lambda function by clicking &lt;strong&gt;Attach integration&lt;/strong&gt; :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/0298796a2019fa0dcb0292d468260663/5e4a4/attachintegration.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 34.45945945945946%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABJ0AAASdAHeZh94AAAA/ElEQVQoz31Ri26EMAzr//8lx3QcHK/SR9oV6iURnG6btkpWoHJspzFt+4Hm1sJ5Dx+C1s05xfud5X+7bf9CeswwDGiaG7rugXvX4dH3mJdFCeM0sdkNPXMCC8cY/wYRlnWFuRJJgz9BlBCYtLHoNM1aU0o4juMb9n1/oZSiHCONzgcmVFQAtVZFYZKYiauYXdDx2UCqCChy1h45hjhqjISfp3ICf6b3bCjfMpYEsHbTSSTZlfYKYlYfcX8uWEMGlYrweSAWFkvllVAMI0XQKagLY6SUfwUxnjJ8PuDyroLEYlJ9Lvx2TgXnedFFrdbquM9xxDjPugzikd/xBcKpHfPoP4ziAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;attach integration&quot;
+        title=&quot;attach integration&quot;
+        src=&quot;/static/0298796a2019fa0dcb0292d468260663/fcda8/attachintegration.png&quot;
+        srcset=&quot;/static/0298796a2019fa0dcb0292d468260663/12f09/attachintegration.png 148w,
+/static/0298796a2019fa0dcb0292d468260663/e4a3f/attachintegration.png 295w,
+/static/0298796a2019fa0dcb0292d468260663/fcda8/attachintegration.png 590w,
+/static/0298796a2019fa0dcb0292d468260663/efc66/attachintegration.png 885w,
+/static/0298796a2019fa0dcb0292d468260663/c83ae/attachintegration.png 1180w,
+/static/0298796a2019fa0dcb0292d468260663/5e4a4/attachintegration.png 1403w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Click on &lt;strong&gt;Create and Attach integration&lt;/strong&gt; and find your Lambda function (RecipeCookAuthenticate) to attach to your route :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/3b16b85e0af371d2f9c7b2d433b82bdd/ae21e/createintegration.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 47.2972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABKElEQVQoz42S6ZaDIAyFef/nbOtSBQuyCOqdG6qd5cyZzo/vBBNIbhKV1hpN0+B2a9B1He73ASFGlFKQc35LKSR/omJakJYFPgSUdcW279VmJqxJD/uTxHer3N+2byitR9yuV/R9jxA8IhMLQaDSSMLx7Q/kHH+JiVVmDrgME1o9waYCt6yY84ZQtqdy76uir2rkPNP/jK01fvrVFBI6G9FbTwLuLkLHginlqtA696zO8zk3KSR+a92hOmKhX1DGGLRtWxciFRdePttJKdXHkVY4R/CKHf7K4VdunqG1gWPFc+Aif5f22IJYcFH/RT2sxTjql2RRODwcroPByPlatu5y4VxXeM71HUraNNNU5e6sIGjO5tL16A0XxRk7/iKeSSMX8Bcz73wARjK8/3NmgQsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;create integration&quot;
+        title=&quot;create integration&quot;
+        src=&quot;/static/3b16b85e0af371d2f9c7b2d433b82bdd/fcda8/createintegration.png&quot;
+        srcset=&quot;/static/3b16b85e0af371d2f9c7b2d433b82bdd/12f09/createintegration.png 148w,
+/static/3b16b85e0af371d2f9c7b2d433b82bdd/e4a3f/createintegration.png 295w,
+/static/3b16b85e0af371d2f9c7b2d433b82bdd/fcda8/createintegration.png 590w,
+/static/3b16b85e0af371d2f9c7b2d433b82bdd/efc66/createintegration.png 885w,
+/static/3b16b85e0af371d2f9c7b2d433b82bdd/c83ae/createintegration.png 1180w,
+/static/3b16b85e0af371d2f9c7b2d433b82bdd/ae21e/createintegration.png 1537w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We will test now if our API Gateway integration works. Open a new browser tab with your Cognito log-in page :&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;https://&amp;lt;&amp;lt; your domain name &amp;gt;&amp;gt;.auth.&amp;lt;&amp;lt; your AWS region &amp;gt;&amp;gt;.amazoncognito.com/login?response_type=code&amp;amp;client_id=&amp;lt;&amp;lt; your app client ID&amp;gt;&amp;gt;&amp;amp;redirect_uri=&amp;lt;&amp;lt; your redirect URI&amp;gt;&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;And sign-in one more time. Pick-up the code, but now open a new browser tab with your API Gateway URL.&lt;/p&gt;
+&lt;p&gt;The URL should looks like:
+&lt;code class=&quot;language-text&quot;&gt;&amp;lt;&amp;lt; your api gateway base url &amp;gt;&amp;gt;/token/&amp;lt;&amp;lt; your authorization code &amp;gt;&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Finally, our API endpoint to retrieve our access token works successfully:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/bb0c80f806a1bf5c8cf8ab46d2af80f5/8963a/apitoken.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 17.567567567567565%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABJ0AAASdAHeZh94AAAAsklEQVQY01XLyw6CMBAFUP7/a9SYaFz7BRgTI4g7QxwLpS2PPvBaaElwcXLvtDMJMYZaKpyfAqdM4HirsU3f2F1oto+5SQmH6wfUKFRCgXnEBV7EwIVExTlKIiRdKaGpA/gANDqQBlAmZGtDnwgDxwbYSsNxz+fIzdxH37+1QWILCZNLDLlAf1806Kc5i3Ps0472zMPfFP90Fv4S2/QYe4exs5GL7Cpt3PHa9Y4L7ws//wAflDCS/tWw9AAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;api get token&quot;
+        title=&quot;api get token&quot;
+        src=&quot;/static/bb0c80f806a1bf5c8cf8ab46d2af80f5/fcda8/apitoken.png&quot;
+        srcset=&quot;/static/bb0c80f806a1bf5c8cf8ab46d2af80f5/12f09/apitoken.png 148w,
+/static/bb0c80f806a1bf5c8cf8ab46d2af80f5/e4a3f/apitoken.png 295w,
+/static/bb0c80f806a1bf5c8cf8ab46d2af80f5/fcda8/apitoken.png 590w,
+/static/bb0c80f806a1bf5c8cf8ab46d2af80f5/efc66/apitoken.png 885w,
+/static/bb0c80f806a1bf5c8cf8ab46d2af80f5/c83ae/apitoken.png 1180w,
+/static/bb0c80f806a1bf5c8cf8ab46d2af80f5/8963a/apitoken.png 1918w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The next step will be to configure our Client Side App.&lt;/p&gt;
+&lt;h3&gt;Fifth step: Configure the ReactJS app with S3/Cloudfront&lt;/h3&gt;
+&lt;p&gt;I just created a sample ReactJS application which is available in my &lt;a href=&quot;https://github.com/JStw&quot;&gt;Github&lt;/a&gt;. To get the app, you can git clone my project :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;batch&quot;&gt;&lt;pre class=&quot;language-batch&quot;&gt;&lt;code class=&quot;language-batch&quot;&gt;&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;git&lt;/span&gt; clone git@github.com:JStw/recipe-app.git&lt;/span&gt;
+
+&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;or&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;git&lt;/span&gt; clone https://github.com/JStw/recipe-app.git&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;One the application has been cloned, go to the &lt;strong&gt;recipe-app&lt;/strong&gt; folder and run a &lt;code class=&quot;language-text&quot;&gt;npm install&lt;/code&gt;. When your &lt;strong&gt;node_modules&lt;/strong&gt; will be installed, you can open the &lt;code class=&quot;language-text&quot;&gt;App.js&lt;/code&gt; file and edit this following lines :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;API_BASE_URL&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;&amp;lt;&amp;lt; put your api base url here &gt;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;COGNITO_BASE_URL&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;&amp;lt;&amp;lt; put the cognito base url here &gt;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;APP_REDIRECT_URI&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;&amp;lt;&amp;lt; put your cloudfront url here &gt;&gt;/authenticate&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;APP_CLIENT_ID&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;&amp;lt;&amp;lt; put your amazon app client id here &gt;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;API&lt;em&gt;BASE&lt;/em&gt;URL&lt;/strong&gt; is your API Gateway Invoke URL.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;COGNITO&lt;em&gt;BASE&lt;/em&gt;URL&lt;/strong&gt; is your Amazon Cognito domain name (available in your User Pool &gt; Domain Name)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;APP&lt;em&gt;REDIRECT&lt;/em&gt;URI&lt;/strong&gt; is the URL we configured in our User Pool (The Callback URL)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;APP&lt;em&gt;CLIENT&lt;/em&gt;ID&lt;/strong&gt; is the identifier also present in your User Pool &gt; App Client Settings.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example, for me the updates will be :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;API_BASE_URL&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;	https://eq0umxfk86.execute-api.eu-west-2.amazonaws.com&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;COGNITO_BASE_URL&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;https://cook-recipes-app.auth.eu-west-2.amazoncognito.com&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;APP_REDIRECT_URI&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;https://www.google.com/authenticate&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;APP_CLIENT_ID&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;13ft34s2dt7nn0ef0k4p512hgp&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once these 4 variables has been updated, save the &lt;code class=&quot;language-text&quot;&gt;App.js&lt;/code&gt; file and run a &lt;code class=&quot;language-text&quot;&gt;npm build&lt;/code&gt;. When this command has finished, you should see a &lt;code class=&quot;language-text&quot;&gt;build&lt;/code&gt; folder.&lt;/p&gt;
+&lt;p&gt;Now we will create a S3 bucket to host our application. Let’s navigate to &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Storage &amp;gt; S3&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Once you are here, create a bucket (bucket name should be unique across the world), so for me I’ll choose &lt;code class=&quot;language-text&quot;&gt;cook-recipe-app&lt;/code&gt; but you can provide another name.&lt;/p&gt;
+&lt;p&gt;Leave the default configuration as is, and hit the &lt;code class=&quot;language-text&quot;&gt;Create&lt;/code&gt; button. Then, you have to upload all our &lt;code class=&quot;language-text&quot;&gt;build&lt;/code&gt; folder content in your S3 bucket. Do not forget to upload also the &lt;code class=&quot;language-text&quot;&gt;static&lt;/code&gt; folder with the &lt;strong&gt;js&lt;/strong&gt; and &lt;strong&gt;css&lt;/strong&gt; folder.&lt;/p&gt;
+&lt;p&gt;Your bucket should look like below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d0c0a8d2e7da0e6ac7e0f502c86e7a4f/3f919/s3-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 42.567567567567565%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABSElEQVQoz4WQb0vDMBDG8/0/h0z32u3NdAq+EJ2CqMPtjSIoSmlr2jRtki7t413Kap2ogR/3J8ndcyde395xcbvE5d0DrpdrXDH3q95yfvX0jNIY6Kr6F1FXGifnCxxMZhhNjjCaHmOfGM/OMCa7N53jdHEDY20oylQ/sL0Vy3eFVWwQlR5/nbZt0TYN0X75bef7zQbeezSUE/NHicN1isVLDksq8sqiMA6urmEdQdbYLt7QR6ZmnwrU5DvnkKQpZJaFO2FLRf09Wl+HsayzwQ5RRYFC61CU46IsQxNNNlOqH50biPRD0gdNge9H2IWVV7x0Lko+K+Q8q2P6lRAiSZLwcJjcJc9zxHGMKIqgSNH2vdaknNR/K5jR7IbkctAMFj2E75UqQmH2WfFWOa+Az/avkFKGjr+pY0raFReTmQyjM12jzh8W/ATcrLPbmap37QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;s3 - 1&quot;
+        title=&quot;s3 - 1&quot;
+        src=&quot;/static/d0c0a8d2e7da0e6ac7e0f502c86e7a4f/fcda8/s3-1.png&quot;
+        srcset=&quot;/static/d0c0a8d2e7da0e6ac7e0f502c86e7a4f/12f09/s3-1.png 148w,
+/static/d0c0a8d2e7da0e6ac7e0f502c86e7a4f/e4a3f/s3-1.png 295w,
+/static/d0c0a8d2e7da0e6ac7e0f502c86e7a4f/fcda8/s3-1.png 590w,
+/static/d0c0a8d2e7da0e6ac7e0f502c86e7a4f/efc66/s3-1.png 885w,
+/static/d0c0a8d2e7da0e6ac7e0f502c86e7a4f/c83ae/s3-1.png 1180w,
+/static/d0c0a8d2e7da0e6ac7e0f502c86e7a4f/3f919/s3-1.png 1771w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d4fcbbe8d84cb46e2cdb7c068ba65b34/e7aec/s3-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 10.81081081081081%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABJ0AAASdAHeZh94AAAAVUlEQVQI1z2MCQoAMQgD+//f9tSqa1YLrRBCyMRCRGitYa2FOecTM+Oeqh6m1no8OxGBfx96749zdxTeGxSAmcECeIos8UjTY5zM1Y6cXeruxxiH/QFz5JyOYc8TcAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;s3 - 2&quot;
+        title=&quot;s3 - 2&quot;
+        src=&quot;/static/d4fcbbe8d84cb46e2cdb7c068ba65b34/fcda8/s3-2.png&quot;
+        srcset=&quot;/static/d4fcbbe8d84cb46e2cdb7c068ba65b34/12f09/s3-2.png 148w,
+/static/d4fcbbe8d84cb46e2cdb7c068ba65b34/e4a3f/s3-2.png 295w,
+/static/d4fcbbe8d84cb46e2cdb7c068ba65b34/fcda8/s3-2.png 590w,
+/static/d4fcbbe8d84cb46e2cdb7c068ba65b34/efc66/s3-2.png 885w,
+/static/d4fcbbe8d84cb46e2cdb7c068ba65b34/c83ae/s3-2.png 1180w,
+/static/d4fcbbe8d84cb46e2cdb7c068ba65b34/e7aec/s3-2.png 1726w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Once your files has been added, we will configure S3 to host a Web Application. For that, go to the root folder of your S3 Bucket, click on the &lt;strong&gt;Properties&lt;/strong&gt; tab and then &lt;strong&gt;Static website hosting&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Click on &lt;strong&gt;Use this bucket to host a website&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Specify &lt;strong&gt;index.html&lt;/strong&gt; for the Index document.&lt;/li&gt;
+&lt;li&gt;Specify also &lt;strong&gt;index.html&lt;/strong&gt; for the error document.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;and then hit &lt;strong&gt;Save&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Before accessing our S3 URL, we have to grant a public read access for everyone. For that, click on your bucket &lt;strong&gt;Permissions&lt;/strong&gt;, and then select the first tab, &lt;strong&gt;Block public access&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Turn off the &lt;strong&gt;Block public access&lt;/strong&gt; (the first option checked) and all the other option will uncheck.&lt;/p&gt;
+&lt;p&gt;Once is done, hit &lt;strong&gt;Save&lt;/strong&gt; and confirm the action by tapping &lt;strong&gt;confirm&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/3769c64c5e5a7e4c22e6a0a071f80e40/8d7b0/block-access.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 36.486486486486484%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABJ0AAASdAHeZh94AAAA4klEQVQoz4WQwW6GIBCEef/X66H3HkyNgiKIApYps8Jf0zSpyZddd5fZAfU5jhgbwzBg1hrbtmFdV1hrX9FuVuq99uyv9u6lM0AxMcZgqY193+G9hyPO/cQn3r16vvUZP7TH22ChzvPEPM+CreLdxdbyDudKKQJaFAD5NyHjfXRQKSXZIteq+LaZbo/jEEIIyDkLsc6nX8QY8VV7JcfbIa8sLuv7kWmaoNtbiuMKhcvTWXf7+LhMUX1ZFugqamqkOHMKcgmjbgs5RwPd2XVduG98C7OmWKQoB/+Dc/3wX24p+A1iOh2Gjhwi3gAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;block access&quot;
+        title=&quot;block access&quot;
+        src=&quot;/static/3769c64c5e5a7e4c22e6a0a071f80e40/fcda8/block-access.png&quot;
+        srcset=&quot;/static/3769c64c5e5a7e4c22e6a0a071f80e40/12f09/block-access.png 148w,
+/static/3769c64c5e5a7e4c22e6a0a071f80e40/e4a3f/block-access.png 295w,
+/static/3769c64c5e5a7e4c22e6a0a071f80e40/fcda8/block-access.png 590w,
+/static/3769c64c5e5a7e4c22e6a0a071f80e40/efc66/block-access.png 885w,
+/static/3769c64c5e5a7e4c22e6a0a071f80e40/c83ae/block-access.png 1180w,
+/static/3769c64c5e5a7e4c22e6a0a071f80e40/8d7b0/block-access.png 1723w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Finally, we have to add a &lt;strong&gt;Bucket Policy&lt;/strong&gt; to make our bucket content publicly available.&lt;/p&gt;
+&lt;p&gt;Click on &lt;strong&gt;Bucket Policy&lt;/strong&gt; and add this JSON policy :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;Version&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2012-10-17&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;Statement&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;Sid&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;PublicReadGetObject&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;Effect&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Allow&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;Principal&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;*&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;Action&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&quot;s3:GetObject&quot;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;Resource&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+                &lt;span class=&quot;token string&quot;&gt;&quot;arn:aws:s3:::&amp;lt;&amp;lt; put your bucket name here &gt;&gt;/*&quot;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;like below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/0fe7b9d15c3861d4c47a87e16f0103a5/9937c/bucketpolicy.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 41.891891891891895%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAABA0lEQVQoz6WRW0vDQBCF92/7pP4AX2wffFEffPVfiIggVioUvKRNGtBkk+w1aS5WjpOxgiCFFBc+ZucsnJnDisoVcDKGXAaQ0TNkSEQv3GdFwcg8/2bT/2hcf2kpaaJcreDKCtp5KOthfMlY0oxzMNbSewk/ECFzhTQroI1Drgy0dVDakJFDQdWT8S5HjC8uMZk9wRhNBpq3qtsWTdehbhq+cx2I2Ds6wdXdA6yzCMIQURwTS9o6g/We4+6C2D8+xfX9FG3XIliEeJ3P8ZYkNMCx4R+26RvE4fgct9MZ1p9rvKcpEply7D5+rhT6T6vqhqgHIQ5GZ7iZPKL76Hjl3uA/fAGqml5gfZiVsgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;bucket policy&quot;
+        title=&quot;bucket policy&quot;
+        src=&quot;/static/0fe7b9d15c3861d4c47a87e16f0103a5/fcda8/bucketpolicy.png&quot;
+        srcset=&quot;/static/0fe7b9d15c3861d4c47a87e16f0103a5/12f09/bucketpolicy.png 148w,
+/static/0fe7b9d15c3861d4c47a87e16f0103a5/e4a3f/bucketpolicy.png 295w,
+/static/0fe7b9d15c3861d4c47a87e16f0103a5/fcda8/bucketpolicy.png 590w,
+/static/0fe7b9d15c3861d4c47a87e16f0103a5/efc66/bucketpolicy.png 885w,
+/static/0fe7b9d15c3861d4c47a87e16f0103a5/9937c/bucketpolicy.png 1156w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;You static website is now configured, so we can test our S3 bucket URL. Your URL should be like :&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;https://&amp;lt;&amp;lt; your bucket name &amp;gt;&amp;gt;.s3.&amp;lt;&amp;lt; your region &amp;gt;&amp;gt;.amazonaws.com&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;For example, for me it will be:&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;https://cook-recipe-app.s3.eu-west-2.amazonaws.com/index.html&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Ok let’s test :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/da59a89d149845bbbb712e7f539bb167/5bd27/appdisplay.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 13.513513513513512%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABJ0AAASdAHeZh94AAAAeElEQVQI16XJSw6CMACE4V5TiGCsJmgiiXovxfIQWkTPRdv8VnTLysWXmcyIptW02lDfO66FolBVUHIJ/VbW0677AfN4zuqHF21nUFWD2OdndvmJ7HAkXm2J0g3xx69HqWSRBMt1yBnTJ0lkhhhHi7Vf3vu/OOd4A59PuOatg9iwAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;s3 app displaying&quot;
+        title=&quot;s3 app displaying&quot;
+        src=&quot;/static/da59a89d149845bbbb712e7f539bb167/fcda8/appdisplay.png&quot;
+        srcset=&quot;/static/da59a89d149845bbbb712e7f539bb167/12f09/appdisplay.png 148w,
+/static/da59a89d149845bbbb712e7f539bb167/e4a3f/appdisplay.png 295w,
+/static/da59a89d149845bbbb712e7f539bb167/fcda8/appdisplay.png 590w,
+/static/da59a89d149845bbbb712e7f539bb167/efc66/appdisplay.png 885w,
+/static/da59a89d149845bbbb712e7f539bb167/c83ae/appdisplay.png 1180w,
+/static/da59a89d149845bbbb712e7f539bb167/5bd27/appdisplay.png 1432w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Congrats! Our S3 application works ;-) According to the S3 documentation :&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Your website is available at the Amazon S3 website endpoint. However, you might have a domain, such as example.com, that you want to use to serve the content from the website you created. You might also want to use Amazon S3 root domain support to serve requests for both &lt;a href=&quot;http://www.example.com&quot;&gt;http://www.example.com&lt;/a&gt; and &lt;a href=&quot;http://example.com&quot;&gt;http://example.com&lt;/a&gt;. This requires additional steps. For an example, see Configuring a static website using a custom domain registered with Route 53.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;For more information you can &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/HostingWebsiteOnS3Setup.html&quot;&gt;read the official documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you click on the &lt;strong&gt;Serverless API&lt;/strong&gt; header menu, you will be redirected to the Home page, and you should see a link &lt;strong&gt;Please log-in to see recipes list&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;If you click on this link, you normally will be redirected to the Amazon Cognito Log-in page.&lt;/p&gt;
+&lt;p&gt;Let’s tackle the final step, the creation of our Cloudfront distribution.&lt;/p&gt;
+&lt;h3&gt;Final step: Create the Cloudfront distribution&lt;/h3&gt;
+&lt;p&gt;We are close to the end guys! Let’s navigate to &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Networking &amp;amp; Content Delivery &amp;gt; Cloudfront&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;First step is to &lt;strong&gt;Create Distribution&lt;/strong&gt;. We will choose the first option (Web delivery method).&lt;/p&gt;
+&lt;p&gt;Now, we have to configure our Cloudfront distribution. We will just update few of them :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Origin Settings :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Origin Domain Name should be your Amazon S3 Bucket previously created.&lt;/li&gt;
+&lt;li&gt;Leave the rest as is.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Default Cache Behavior Settings :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Redirect HTTP to HTTPS&lt;/li&gt;
+&lt;li&gt;Allowed methods: GET, HEAD, OPTIONS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For all the other configuration, leave as is. Just update the &lt;strong&gt;Default Root Object&lt;/strong&gt; by putting &lt;strong&gt;index.html&lt;/strong&gt;, and finally you can create your distribution.&lt;/p&gt;
+&lt;p&gt;Once is done, it will take some time to create and deploy your distribution. Meanwhile, click on your distribution in the list, and &lt;strong&gt;*Distribution Settings&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Go to the &lt;strong&gt;Errors Pages&lt;/strong&gt; tab and we will create some custom error response :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/ed66b4347877f2e6c1cad4882fa71c7a/914c7/customer-error.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABJ0AAASdAHeZh94AAABeUlEQVQoz41Ra0sCQRTd31NCUFRQFH1ZyoikgvoQ9XclTdcgog/lJuiu6z58rvtST3PGRgQVunA8d9y55557R9s60HF+/YB84R47R3nkb59xrN9h/+xa5nrhERc3T9g9ucTe6RVyhzq2BXIboL1/fKJYLKJqGHitGDBqbxLMq0YNpXIFL6Uyvr5NOK4Hy3ZgtR3Y7TmrXEELwxBBEKDX6wl00e12MRgMJAeBL/MsS/Hf0FjQdhxZ3Ol0YJomGo2GcGLjR+S24CzLkBJpiiRJJM9mM0wmE0RRLPPpdCqhUZV/sEiKCwE6Zu55HhzRjI14JjjJcDiUbuI4huu6UBrSIX/G4/HfyD15oV6vSxEWqO50o8AzgyZGo9GqIC/4vi/3RtAVL7KBKl4OVZyJ0fv9/qogD9wLR6IQOYoieMItWe1HYSG4zuHyx2azCcuy0Gq1FuP7fjB/FNEwTcnzR2EkSSz3vF6Q9oUzjsClh+FYCrKA4lwFWT3YJoe/n6LYGP258PEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;custom error&quot;
+        title=&quot;custom error&quot;
+        src=&quot;/static/ed66b4347877f2e6c1cad4882fa71c7a/fcda8/customer-error.png&quot;
+        srcset=&quot;/static/ed66b4347877f2e6c1cad4882fa71c7a/12f09/customer-error.png 148w,
+/static/ed66b4347877f2e6c1cad4882fa71c7a/e4a3f/customer-error.png 295w,
+/static/ed66b4347877f2e6c1cad4882fa71c7a/fcda8/customer-error.png 590w,
+/static/ed66b4347877f2e6c1cad4882fa71c7a/efc66/customer-error.png 885w,
+/static/ed66b4347877f2e6c1cad4882fa71c7a/914c7/customer-error.png 978w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s create this custom error, and go back to your Cloudfront distributions list. It should be still in progress, but it’s ok because we have few more configuration to do.&lt;/p&gt;
+&lt;p&gt;As you can see, we have a cloudfront domain name available :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1406e05b1e420662cb72bd525d6a12e1/a5a94/cdname.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 8.783783783783782%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABJ0AAASdAHeZh94AAAAdElEQVQI1x2NuQ7DIBBE/f/fR4OICbcFaGGFKegmgWKKOfTmklJCKYWvvqHvD6y1MMaglII5X7TWThZjhHMOIQRoreG9P9rdZgghDudiZrxzwqUK/xCodaSUDpCIMMb4gyfWWqi1ovd+/M73pjKBByPnfM5/d9yUZJ3h9uQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;cloudfront distr name&quot;
+        title=&quot;cloudfront distr name&quot;
+        src=&quot;/static/1406e05b1e420662cb72bd525d6a12e1/fcda8/cdname.png&quot;
+        srcset=&quot;/static/1406e05b1e420662cb72bd525d6a12e1/12f09/cdname.png 148w,
+/static/1406e05b1e420662cb72bd525d6a12e1/e4a3f/cdname.png 295w,
+/static/1406e05b1e420662cb72bd525d6a12e1/fcda8/cdname.png 590w,
+/static/1406e05b1e420662cb72bd525d6a12e1/efc66/cdname.png 885w,
+/static/1406e05b1e420662cb72bd525d6a12e1/c83ae/cdname.png 1180w,
+/static/1406e05b1e420662cb72bd525d6a12e1/a5a94/cdname.png 1657w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For example for me it’s: &lt;code class=&quot;language-text&quot;&gt;d39y0kvui8eeum.cloudfront.net&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you remember we put some “fake URL” in our RecipeUserPool in Amazon Cognito. So now, we will update our Cognito settings with our Cloudfront Domain Name.&lt;/p&gt;
+&lt;p&gt;Click on the &lt;code class=&quot;language-text&quot;&gt;Services&lt;/code&gt; dropdown, and search &lt;strong&gt;Cognito&lt;/strong&gt;. Once is done, go to your &lt;strong&gt;App Clients Settings&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Finally update both Sign-in and Sign-out links like below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1727b8404d4cd3d7946041a954eebbb4/078fe/signin-signout.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 52.02702702702703%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABJ0AAASdAHeZh94AAABLElEQVQoz51S7W6DMAzk/V+wUtfSFWhpElYIrIWEj1vOQKX9mIpm6XQ2RubOJhrHEdM0vQWj73vUdY3n84nH44Gu64TbduUW0bi8vCVcGLDf7wM+sNvtkKQpDocDjscYcRyjKApE3jsoraTQWkMbLWyMEWWd69E0jahZw3sfaieKqI48DIP0Ih9s3LSBVgoqoCxLeYG2OND3g+TOeam5or+C/Yh7KctKdmOtfe2C/J+InHPIsgymMLhcLpIT3A97bbBKu8wJWhVm3blfPUIG5nmO6/Uqlme7rfB3UMn9rZhd1C+eYWFrK8+axvIoHmma4XT6xDk5y0G+woGU0nIodVOoKotp2dE7iEIjF1a43+/yrxHer+wFvOIWiELu7pwkAiosFoXMeXV+eevAHxyjB6i91EovAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;update sign in sign ou&quot;
+        title=&quot;update sign in sign ou&quot;
+        src=&quot;/static/1727b8404d4cd3d7946041a954eebbb4/fcda8/signin-signout.png&quot;
+        srcset=&quot;/static/1727b8404d4cd3d7946041a954eebbb4/12f09/signin-signout.png 148w,
+/static/1727b8404d4cd3d7946041a954eebbb4/e4a3f/signin-signout.png 295w,
+/static/1727b8404d4cd3d7946041a954eebbb4/fcda8/signin-signout.png 590w,
+/static/1727b8404d4cd3d7946041a954eebbb4/efc66/signin-signout.png 885w,
+/static/1727b8404d4cd3d7946041a954eebbb4/078fe/signin-signout.png 934w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;(Do not forget to provide your Cloudfront distribution name, and not mine)&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Save your changes, and now go to &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Networking &amp;amp; Content Delivery &amp;gt; API Gateway&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Find your API and open the &lt;strong&gt;CORS&lt;/strong&gt; menu in the left tab. Configure CORS like below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/46f1d9ab36cf14c7d958fe1fba7415e6/ae21e/corsconfig.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 51.35135135135135%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABJ0AAASdAHeZh94AAABIElEQVQoz5VSW27DMAzz/S+0e+wI++i6rkiWOH7FD05U7SId0A0zwFiJaYmUYqZpxun0js/rFTElxBj/hdQx3o1zDtZacP/zMgs+FE3wKSv4nnOG2fcdtVaUUhSMf6K1pme8QBzPSm2yN425jA8BdnNYRaUPEU0+VklAMBGJ5DjvYcXFsq4IoqbdObeCLOSFYxYfcV42XAQfXxZnAS2gJyOyqJtdUF4sVNLPWlfXuWo5qMJNFVJF6Ra5WldJ+M7bxE2SNh3PR8ykxopC64M2/Nif0jEqMwnBQaTR9wOHs3BOLDshxD2j9aY+W0PBGNz4Rvu6K0QhG0nbtPRsysQ0z/df69GyRhhPo30RIsH4N7DH3t8mPu6wyMK/5PIG+/qCb1qdD4CRASiTAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;cors settings&quot;
+        title=&quot;cors settings&quot;
+        src=&quot;/static/46f1d9ab36cf14c7d958fe1fba7415e6/fcda8/corsconfig.png&quot;
+        srcset=&quot;/static/46f1d9ab36cf14c7d958fe1fba7415e6/12f09/corsconfig.png 148w,
+/static/46f1d9ab36cf14c7d958fe1fba7415e6/e4a3f/corsconfig.png 295w,
+/static/46f1d9ab36cf14c7d958fe1fba7415e6/fcda8/corsconfig.png 590w,
+/static/46f1d9ab36cf14c7d958fe1fba7415e6/efc66/corsconfig.png 885w,
+/static/46f1d9ab36cf14c7d958fe1fba7415e6/c83ae/corsconfig.png 1180w,
+/static/46f1d9ab36cf14c7d958fe1fba7415e6/ae21e/corsconfig.png 1537w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;You just need to allow your Cloudfront Domain Name in your API Origins, but also the &lt;strong&gt;Authorization&lt;/strong&gt; header.&lt;/p&gt;
+&lt;p&gt;Once it’s done, save your changes. &lt;/p&gt;
+&lt;p&gt;If you remember, we wanted to protect our API /recipes endpoint. Actually, every one can access it.&lt;/p&gt;
+&lt;p&gt;Stay on the API Gateway service, but this time open the &lt;strong&gt;Authorization&lt;/strong&gt; menu.&lt;/p&gt;
+&lt;p&gt;Find your GET &lt;code class=&quot;language-text&quot;&gt;/recipes&lt;/code&gt; endpoint, and click on &lt;strong&gt;Create and Attach Authorizer&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Configure your &lt;strong&gt;Authorizer&lt;/strong&gt; like below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/39d4120468fe317d2fb1067fb4cf90e6/37523/authsettings.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 98.64864864864865%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAABJ0AAASdAHeZh94AAACeUlEQVQ4y5VUi3KcMAzk/78vnbTNXHK5Hsf7aYONwWy1hkvzujZlZkeWEUJarR3pYUCW5cjzHHVdo6pqJGmGtu0wOQc7TZj+A5HWGj9//MT3+3s8Hh4FB9zdfcPpdIJfFjgJmt0E5zb7Fu4DotFKZiDArhsc1x7Q07LB+beYNqvsgt7ObxApMyHtLQ5Jiae0wlPW4FCOOFQGD5XFsR5xKtrw/jGpcMxqiavDuhgcOvl7I9W0OyItCRspJ1cWWW8EFvkwI9MzUk3rwn7SDsEyrpC9Qk+ozSJJ1vD9FZG1FmleYpDEi7Q7+xXz4oNduA7A/u6K9QVOYt2yviAk5GSbtoXWA/peoet7LDKQdV2xei/W/7H/QERpcNJlVaEsN2QioWEc4VdW6eF3LDv8XxBRO8MwhqRKYIwBq57nvcJP8Dr5e0RMcD7HIu4MlySVyoxwKPpzcxA1k19Fa2RNnwlvPaHCXinhsAuno24aVHJi6qYV24Anie1fQd/N8+2WnXDIIaQ8fkWxH8Mi+OSS7z9wKR3MNxCxjVoq4aT58WcPefvqE5EnttcIOpGM2odDGuj3Sgc5BUkpvfnSthJfqT12l1rb9RuHlAxvmF8ynPhyQRxfwoCIcxyHocWXRPwEieyRDsYen08ohW+2SvkRQYcjCRfpkBu/y+KmZF7Jxq/+Ax3hpJyloiRNQ1L6lBInaoyVnxmM4nPN/SAf+iHOvljGEGHKFDHP7zSx7DnIgkGbBrdWjH2X0LxKuL8jok7uw7jTOKQljmUT8JDkctNItZK4En4LOY5M9KUpd3LLJL3Gc17JvVfjXLVy55XI1IBRqmvl0qDYWcUtXl/jN0CHEQVk687hAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;authorizer settings&quot;
+        title=&quot;authorizer settings&quot;
+        src=&quot;/static/39d4120468fe317d2fb1067fb4cf90e6/fcda8/authsettings.png&quot;
+        srcset=&quot;/static/39d4120468fe317d2fb1067fb4cf90e6/12f09/authsettings.png 148w,
+/static/39d4120468fe317d2fb1067fb4cf90e6/e4a3f/authsettings.png 295w,
+/static/39d4120468fe317d2fb1067fb4cf90e6/fcda8/authsettings.png 590w,
+/static/39d4120468fe317d2fb1067fb4cf90e6/37523/authsettings.png 720w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Be careful, your &lt;strong&gt;Issuer URL&lt;/strong&gt; will be different. If you remember one of the first cognito schema, we need to integrate our user pool with an identity pool.&lt;/p&gt;
+&lt;p&gt;For that, we will use the Cognito IDP URL. Your Issuer URL should be like :
+&lt;code class=&quot;language-text&quot;&gt;https://cognito-idp.&amp;lt;region&amp;gt;.amazonaws.com/&amp;lt;YOUR_USER_POOL_ID&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;You can find your &lt;strong&gt;user pool id&lt;/strong&gt; in the Cognito service, in the general settings :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/ca37dc8519f824c7cb9a9854d013837d/aa08e/userpoolid.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 14.18918918918919%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABJ0AAASdAHeZh94AAAAmklEQVQI142N2wrCMBBE8/f64nf4KxbaesMWH6y3oiWtCba5iTTjporgmwuHYWdmWRbPV4jiFMmCNCFdrnHlHMY5KGP+4EE8iXefnbczFFmEcpfiXuWQlw3aVlBooamgrf3l44WHxgVtaC9hrBh8dqsKnPYZykMOwY9witORGsLe9/AAvPdfwiitwesaXTeFlCMIMYaQE+rXeAHw3OI+dFbEDAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;user pool id&quot;
+        title=&quot;user pool id&quot;
+        src=&quot;/static/ca37dc8519f824c7cb9a9854d013837d/fcda8/userpoolid.png&quot;
+        srcset=&quot;/static/ca37dc8519f824c7cb9a9854d013837d/12f09/userpoolid.png 148w,
+/static/ca37dc8519f824c7cb9a9854d013837d/e4a3f/userpoolid.png 295w,
+/static/ca37dc8519f824c7cb9a9854d013837d/fcda8/userpoolid.png 590w,
+/static/ca37dc8519f824c7cb9a9854d013837d/efc66/userpoolid.png 885w,
+/static/ca37dc8519f824c7cb9a9854d013837d/aa08e/userpoolid.png 967w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The last Authorizer settings, is the &lt;strong&gt;Audience one&lt;/strong&gt;. You just need to provide your &lt;strong&gt;App Client ID&lt;/strong&gt;. Once it’s done, hit &lt;strong&gt;Create and Attach&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/72391e01e9f26c1d86925fb1b698e94b/a8c87/authjwt.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 47.2972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABOklEQVQoz3VRi46DIBDk/7+x1/PanK+CoqiIgHO7VBqb9Egmg7AOM7uiKApcLxd8X78wDBq9HtBpDT2MGMbPGI1JOH9nFt2jgSp/IKs7ZFuhlRJV3ZCwhpmmVJT5o9BJjFmwwL2sUJLIb1XDmAnbtqHre9R01rQtmoa4aVETG/qR75mlVOnhgdIo1WGih8VEF8s8I/qAdbXwfkvIL3JRCAGORKRS8LTnte97qrHWIsaYamLcIXpjcVMPFP0dLgLzFgmBxAxU1yUndl3hnEu8ErsDvGe35yW0mVGSdW0pCj3uQsTqY4o+kkMWnCkBO8rOGOwqHpzPGCIET3b3Q/9gumAh7g1HZizLkjAntm+u3gRzT15iRwFPVvOkecoEjvdyRvhvic37l/UcgxvMzeaoT8GJBuWfgufIH/AHW0G6Plk2vyYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;auth jwt&quot;
+        title=&quot;auth jwt&quot;
+        src=&quot;/static/72391e01e9f26c1d86925fb1b698e94b/fcda8/authjwt.png&quot;
+        srcset=&quot;/static/72391e01e9f26c1d86925fb1b698e94b/12f09/authjwt.png 148w,
+/static/72391e01e9f26c1d86925fb1b698e94b/e4a3f/authjwt.png 295w,
+/static/72391e01e9f26c1d86925fb1b698e94b/fcda8/authjwt.png 590w,
+/static/72391e01e9f26c1d86925fb1b698e94b/efc66/authjwt.png 885w,
+/static/72391e01e9f26c1d86925fb1b698e94b/c83ae/authjwt.png 1180w,
+/static/72391e01e9f26c1d86925fb1b698e94b/a8c87/authjwt.png 1538w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, your &lt;code class=&quot;language-text&quot;&gt;/recipes&lt;/code&gt; endpoint is now protected with a JWT Authorizer. It means that if we re-open a browser tab, and try to get our cook recipe list one more time :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/b8f1802a8e409c8bf14b103e0f12de22/078fe/unauthorized.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 10.81081081081081%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAABJ0AAASdAHeZh94AAAAYElEQVQI13WNSQ7AIAwD+f9PoWINBcrmkkg99jBy5GgS5ZxHzjeMueB9QO8DrT0opUBrjRACUkqIMR7SmUmgnGGtPZ6R5D17iohE+pLlWiv23hhj/DLnPM+7HOHkbq2FF5jXmqA7QUk4AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;unauthorized&quot;
+        title=&quot;unauthorized&quot;
+        src=&quot;/static/b8f1802a8e409c8bf14b103e0f12de22/fcda8/unauthorized.png&quot;
+        srcset=&quot;/static/b8f1802a8e409c8bf14b103e0f12de22/12f09/unauthorized.png 148w,
+/static/b8f1802a8e409c8bf14b103e0f12de22/e4a3f/unauthorized.png 295w,
+/static/b8f1802a8e409c8bf14b103e0f12de22/fcda8/unauthorized.png 590w,
+/static/b8f1802a8e409c8bf14b103e0f12de22/efc66/unauthorized.png 885w,
+/static/b8f1802a8e409c8bf14b103e0f12de22/078fe/unauthorized.png 934w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This time we should be identified to access our recipe list.&lt;/p&gt;
+&lt;p&gt;Ok so now I think our Cloudfront distribution should be available, so go back to your distribution list.&lt;/p&gt;
+&lt;p&gt;Copy/paste your Cloudfront Domain Name and open it in your browser :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/2c036aed1f05b6fc9fac8d5a7d1eb43b/97655/cdn.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 36.486486486486484%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABJ0AAASdAHeZh94AAABRElEQVQoz32Rb0vCUBTG91Eii1QKTehFEFkRCUWfLAplufzT1Mwv0trmn5Vzm0XYG18VYlFRYcy7+3S31EKlAz+e89x7Hjjcy1VrBnT9FuWKDlWtw7RaaDTu0G4/wC3btjGsr14PjkPQ6XQhSTUoyhU0zUTz5h4Wy1nNFriMmIdYKCKVFSGks8idnQ8oMX+KOC+AF9LgkykcxnkcHCWQOD7x7pKpDDJiDoViCfkBnC8QxmwgBF8wjLngMuvDmFlYQmQ1io2dPaxtxrC+vYut2D6iTP2hFcwvRkbzXt4fGsE1DAvjGFYTslrBhSRDKVehsP5SViErZUhMtes6DNOdNX8y5i8c/ivq/DFuT8fOJosjhGAcyh7+5ZPi8Y3i6Z2iy3j+YP6VeaZ23/E+Z1p2YkNKqafEoegTBlMywPWuDmfolA2/AarO0SVAQuQ+AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;cdn works&quot;
+        title=&quot;cdn works&quot;
+        src=&quot;/static/2c036aed1f05b6fc9fac8d5a7d1eb43b/fcda8/cdn.png&quot;
+        srcset=&quot;/static/2c036aed1f05b6fc9fac8d5a7d1eb43b/12f09/cdn.png 148w,
+/static/2c036aed1f05b6fc9fac8d5a7d1eb43b/e4a3f/cdn.png 295w,
+/static/2c036aed1f05b6fc9fac8d5a7d1eb43b/fcda8/cdn.png 590w,
+/static/2c036aed1f05b6fc9fac8d5a7d1eb43b/97655/cdn.png 819w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;If you try to click on the &lt;strong&gt;List Recipes&lt;/strong&gt; nav bar link, you should have a message: “You are not supposed to be here”.&lt;/p&gt;
+&lt;p&gt;Ok so, let’s sign-in by clicking &lt;strong&gt;Please log-in to see recipes list&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Hey! Why we are this error ?!&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/93db98753c7ab0e23eebe454db6f6e6a/c23ad/errorcognito.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 26.351351351351354%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAAAy0lEQVQY02WPOQuEMBCF/fmC4lGLheDRefwFW7HUFTwSI4iFVlZi8dZk10Xd4mMyL+9NMhIhFE3TgDGGvu+/MNBDr6oKRVGgrmu0bXv4PvC+64jwUkpBCMEwDJimCZJpmrhiGIaomqbBcRzEcYwwDBFFkYCfkySB67rQdR3PvMTFJ/xClmWkaYplWTCO4415npFlGRRFER+4ZiUuPDkH5nmOfd+xruuNbdtQli+oqvrb6uRvIH+FV76yZVnwfR+e590IggC2bQvPM/8GDLszCxaER+IAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;error cognito&quot;
+        title=&quot;error cognito&quot;
+        src=&quot;/static/93db98753c7ab0e23eebe454db6f6e6a/fcda8/errorcognito.png&quot;
+        srcset=&quot;/static/93db98753c7ab0e23eebe454db6f6e6a/12f09/errorcognito.png 148w,
+/static/93db98753c7ab0e23eebe454db6f6e6a/e4a3f/errorcognito.png 295w,
+/static/93db98753c7ab0e23eebe454db6f6e6a/fcda8/errorcognito.png 590w,
+/static/93db98753c7ab0e23eebe454db6f6e6a/efc66/errorcognito.png 885w,
+/static/93db98753c7ab0e23eebe454db6f6e6a/c83ae/errorcognito.png 1180w,
+/static/93db98753c7ab0e23eebe454db6f6e6a/c23ad/errorcognito.png 1193w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;If you remember in our ReactJS application, we updated this variables :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;API_BASE_URL&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;https://eq0umxfk86.execute-api.eu-west-2.amazonaws.com&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;COGNITO_BASE_URL&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;https://cook-recipes-app.auth.eu-west-2.amazoncognito.com&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;APP_REDIRECT_URI&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;https://www.google.com/authenticate&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;APP_CLIENT_ID&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;13ft34s2dt7nn0ef0k4p512hgp&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Problem is our &lt;strong&gt;APP&lt;em&gt;REDIRECT&lt;/em&gt;URI&lt;/strong&gt; has change, because we put the Cloudfront URL.&lt;/p&gt;
+&lt;p&gt;So we have to update the &lt;strong&gt;APP&lt;em&gt;REDIRECT&lt;/em&gt;URI&lt;/strong&gt; by putting our Cloudfront URL like below :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;APP_REDIRECT_URI&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;https://d3lzprsa47l9ig.cloudfront.net/authenticate&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Yes, we need to rebuild once more time ^.^&lt;/p&gt;
+&lt;p&gt;Run a &lt;code class=&quot;language-text&quot;&gt;npm build&lt;/code&gt;. And re-upload your &lt;code class=&quot;language-text&quot;&gt;build&lt;/code&gt; folder content to our S3 bucket. I suggest to delete the entire content, and re-upload all the fresh content builded.&lt;/p&gt;
+&lt;p&gt;Before returning to our Cloudfront App, we updated our ClientSide App with our new Cloudfront Callback URL, but we should also update our Lambda which is exchanging our authorization code with an access token.&lt;/p&gt;
+&lt;p&gt;Open &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Compute &amp;gt; Lambda&lt;/code&gt;, and open your &lt;strong&gt;RecipeCookAuthenticate&lt;/strong&gt; lambda function.&lt;/p&gt;
+&lt;p&gt;Change this line and replace the google URL by your cloudfront URL :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;callback_uri &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;https://d3lzprsa47l9ig.cloudfront.net/authenticate&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Ok so now if we go back to our Cloudfront App, let’s re-try by clicking the sign-in app link and now we are able to Log-in properly :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 491px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d539198e7ea08938f87bec64df5cfb94/13566/authworks.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 101.35135135135135%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAABJ0AAASdAHeZh94AAACsElEQVQ4y6WUW08TQRTH+xVMfDcB9XOY+CEMz0hMNAb5DFBKuMuTEhH1idgrjdGQAC0UBIKJQKXUS8Kt2+2F7m730u5uL3/nzNIiihHqJL89szNn/nPOmdl1TU9PI5FIIB6Pt8TOzg6SySS8Xi8GBgbgmpqa4hPb29stsbW1xQOamZmBx+OBizrlchm6rnMM3Wj2HQwYhkPTx9CbY6qqwjRNzM3Nwe12wxUMBmFZFhRF4cKapnHHUqnEHWkxiWiazucNvfGucUt+1KLRKPr6+hxBcjo6PoIsy8jmssgx0uk0JKkAUUxDENJICQJOTvLOO5tLpY75uFSQuODi4qIjGAgEYLKdM6KITEaEUiyilRaJRBxBv9+PSqXCo6O0qSa2bfOxy0C+5wR9Ph8foJoUWXSSJPO61Ot11Gq1f1KtVs+nTDVUmdDBwQGvCUV5WTGCovwjZZqQJInXT2cnTE6082X4a8oUpSxLHNu2nEqzSOtXTpmdslqq4IcgQzjRkJF0pPIaDrNF7GcU5BXjdOHF2L+n7GMpU6OdqHYsLG4bXPnafHgXgn8zhY6JGB682EDX5HqT+5Nr6H69iZ43n/Do5QY6n62h8/kZ5NPxdBmTkX2sLC+hlwTn34fhCSdwrfMtbveE0dYdQvuTMG4ybjwO4a57AfcmVnCndx7t3bNsfJbbNsYt5n+9y4uHrz5jNcYEe5lgKBiAIJcR28tg43uOkUdsV0AsIWB1T8TSbhrRLwKi8RSzaawks/j4NYv1b6e+bN2hZGKp8S03avhrK6ky8hkBqlxAsZCDlBOhyXlohomcUoJh2hfUMHp2bWq1OsqmBdNysCtVVOiOkT3tk7Vt51MjTMuhVDab14b/voaGhviPsb+/v2Vo/eDgIMbGxuCix8jIyH8xPDyM0dFRjI+P4yfpUm8MmXcb5QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;login ok&quot;
+        title=&quot;login ok&quot;
+        src=&quot;/static/d539198e7ea08938f87bec64df5cfb94/13566/authworks.png&quot;
+        srcset=&quot;/static/d539198e7ea08938f87bec64df5cfb94/12f09/authworks.png 148w,
+/static/d539198e7ea08938f87bec64df5cfb94/e4a3f/authworks.png 295w,
+/static/d539198e7ea08938f87bec64df5cfb94/13566/authworks.png 491w&quot;
+        sizes=&quot;(max-width: 491px) 100vw, 491px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;So, enter your credentials and sign-in.&lt;/p&gt;
+&lt;p&gt;As you can see this time, we do not have been redirected to the Google fake page to get our authorization code, it has been redirected to our app :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/4d5039050f5887a82d28fd724f340adc/fe8a7/get_authcode.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 22.2972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABJ0AAASdAHeZh94AAAAqUlEQVQY05XKSwuCQBQF4PltGvQAdWELW9RvLVPHR0VmtamowBaNhS3Gx+5kk4S0qgsf51zuJdF6i2UYCbv9AatoA8umcKgHc2pjbFpVOphU3aE+XC8QqOvD82efTt0A80UIIndUSIICqa1A0Q30ByPoxlCQuypePyIbWoJWq/eeBsKSBE1xfMHxdMaVMaTpA8nt/r6x3xB8TVmW4Jwjz3NkWYaiKPDPPAFh4QMAqDcJGgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;get auth code from app&quot;
+        title=&quot;get auth code from app&quot;
+        src=&quot;/static/4d5039050f5887a82d28fd724f340adc/fcda8/get_authcode.png&quot;
+        srcset=&quot;/static/4d5039050f5887a82d28fd724f340adc/12f09/get_authcode.png 148w,
+/static/4d5039050f5887a82d28fd724f340adc/e4a3f/get_authcode.png 295w,
+/static/4d5039050f5887a82d28fd724f340adc/fcda8/get_authcode.png 590w,
+/static/4d5039050f5887a82d28fd724f340adc/efc66/get_authcode.png 885w,
+/static/4d5039050f5887a82d28fd724f340adc/c83ae/get_authcode.png 1180w,
+/static/4d5039050f5887a82d28fd724f340adc/fe8a7/get_authcode.png 1223w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;And finally you will be redirected to the home page, authenticated :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/437eb51fec4eb8cce93aaf810bb34f98/f2331/authok.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 14.864864864864865%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABJ0AAASdAHeZh94AAAAZklEQVQI15XDDQqDIBiAYa81xhjRarLfYHT8QdhnqB1Apda7ruADj7rc3ujXh3vXU+snh3PDsboWbjnVmqp9oEYRRCxiJ4wxfAfLOAWc9zhX0Ad8mFHscs6klIgxsiwreYX0g41yf9rMvSCV0wZwAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;auth ok&quot;
+        title=&quot;auth ok&quot;
+        src=&quot;/static/437eb51fec4eb8cce93aaf810bb34f98/fcda8/authok.png&quot;
+        srcset=&quot;/static/437eb51fec4eb8cce93aaf810bb34f98/12f09/authok.png 148w,
+/static/437eb51fec4eb8cce93aaf810bb34f98/e4a3f/authok.png 295w,
+/static/437eb51fec4eb8cce93aaf810bb34f98/fcda8/authok.png 590w,
+/static/437eb51fec4eb8cce93aaf810bb34f98/efc66/authok.png 885w,
+/static/437eb51fec4eb8cce93aaf810bb34f98/c83ae/authok.png 1180w,
+/static/437eb51fec4eb8cce93aaf810bb34f98/f2331/authok.png 1427w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Click on the &lt;strong&gt;List Recipes&lt;/strong&gt; now, and you should see your data :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/dec3e40414359eca12cf0352dcac5e24/5faa8/recipes.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 27.027027027027025%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAAAmElEQVQY052P2wqCQBRF5wczqCQVS+ny0H8bNNPcZyRjzJ0OvVceWOwNBxbnkGx3QFmfUZ8uSIsKyTrDMi2QbPLYv7GImSPfH7HaliCcc2htYK2Dcw52wlq0bYuue450P/H4JGGMQSkFLgQ4FzDGgLE7vPeYM6RprrhRGkVSylGu0fevuByG4W8IpQxiFDnn4+vTZSGE2cI3I6Ng/EHMEGwAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;data&quot;
+        title=&quot;data&quot;
+        src=&quot;/static/dec3e40414359eca12cf0352dcac5e24/fcda8/recipes.png&quot;
+        srcset=&quot;/static/dec3e40414359eca12cf0352dcac5e24/12f09/recipes.png 148w,
+/static/dec3e40414359eca12cf0352dcac5e24/e4a3f/recipes.png 295w,
+/static/dec3e40414359eca12cf0352dcac5e24/fcda8/recipes.png 590w,
+/static/dec3e40414359eca12cf0352dcac5e24/efc66/recipes.png 885w,
+/static/dec3e40414359eca12cf0352dcac5e24/c83ae/recipes.png 1180w,
+/static/dec3e40414359eca12cf0352dcac5e24/5faa8/recipes.png 1444w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Good job! We are done now ;-)&lt;/p&gt;
+&lt;p&gt;Let’s summarize what you achieve during this tutorial :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You created a DynamoDB table.&lt;/li&gt;
+&lt;li&gt;You created a Lambda function to retrieve DB items.&lt;/li&gt;
+&lt;li&gt;You created an API with API Gateway to invoke the lambda to get the items from the database.&lt;/li&gt;
+&lt;li&gt;You configured Amazon Cognito with the Authorization Code OAuth flow.&lt;/li&gt;
+&lt;li&gt;You created a second lambda to exchange the authorization code with the access token.&lt;/li&gt;
+&lt;li&gt;You added a new route to trigger this token exchange lambda.&lt;/li&gt;
+&lt;li&gt;You deployed a ReactJS application, hosted it in AWS S3 and configuring a Bucket Policy to publicly access it.&lt;/li&gt;
+&lt;li&gt;You created a Cloudfront application deserving the S3 bucket.&lt;/li&gt;
+&lt;li&gt;You created and attach an Authorizer to your API Gateway route.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Well done! I think you can play a little bit with it, but you did a great job and played with many AWS services :)&lt;/p&gt;
+&lt;p&gt;I hope this tutorial was helpful for you, if you liked it do not forget to share ;)&lt;/p&gt;
+&lt;p&gt;See you next time!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Serverless App with AWS in ReactJS, using Lambda & API Gateway - Final part]]></title><description><![CDATA[Hey hello there! If you didn’t read the previous post, I suggest you to read it before continuing. If you did, perfect, let’s continue…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-3/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-3/</guid><pubDate>Sun, 31 May 2020 11:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey hello there! If you didn’t read the previous post, I suggest you to &lt;a href=&quot;./../serverless-api-with-lambda-part-2&quot;&gt;read it&lt;/a&gt; before continuing. If you did, perfect, let’s continue ;)&lt;/p&gt;
 &lt;p&gt;The last part is to integrate our Lambda Functions previously created, in the AWS API Gateway service. Find this service, by opening &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Networking &amp;amp; Content Delivery &amp;gt; API Gateway&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Let’s create an API by clicking the &lt;code class=&quot;language-text&quot;&gt;Create API&lt;/code&gt; button.&lt;/p&gt;
 &lt;p&gt;We have the possibility to chose some types for our API, but in this case we want to create an HTTP API. So let’s keep the first selected option.&lt;/p&gt;
@@ -422,7 +2272,7 @@
 &lt;li&gt;Secure some API calls with Cognito.&lt;/li&gt;
 &lt;li&gt;Send SMS / Email to your subscribers list&lt;/li&gt;
 &lt;li&gt;Customize domain name for your API&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Serverless App with AWS in ReactJS, using Lambda & API Gateway - Part 2]]></title><description><![CDATA[Hey folks! If you didn’t read the previous post, I suggest you to read it  before continuing. If you did, let’s continue! At this step, you…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-2/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-2/</guid><pubDate>Sat, 30 May 2020 15:00:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey folks! If you didn’t read the previous post, I suggest you to &lt;a href=&quot;./../serverless-api-with-lambda-part-1&quot;&gt;read it&lt;/a&gt;  before continuing. If you did, let’s continue!&lt;/p&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Serverless App with AWS in ReactJS, using Lambda & API Gateway - Part 2]]></title><description><![CDATA[Hey folks! If you didn’t read the previous post, I suggest you to read it  before continuing. If you did, let’s continue! At this step, you…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-2/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-2/</guid><pubDate>Sat, 30 May 2020 15:00:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey folks! If you didn’t read the previous post, I suggest you to &lt;a href=&quot;../serverless-api-with-lambda-part-1&quot;&gt;read it&lt;/a&gt;  before continuing. If you did, let’s continue!&lt;/p&gt;
 &lt;p&gt;At this step, you normally have a beautiful database which only asking to be queried. Let’s move on to the first step.&lt;/p&gt;
 &lt;h3&gt;First step: define our Lambda Role&lt;/h3&gt;
 &lt;p&gt;Yeah I know, you wanted to start coding a little bit, but you have to wait again :)&lt;/p&gt;
