@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jstw Blog]]></title><description><![CDATA[A personal blog powered by Gatsby.]]></description><link>https://jstw.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 08 Jun 2020 07:55:14 GMT</lastBuildDate><item><title><![CDATA[Secure your Serverless App in AWS (Using Cognito, Cloudfront, API Gateway and Lambda)]]></title><description><![CDATA[Hello guys! Today, we will learn together how we can secure exchanges between a client application hosted in a Cloudfront distribution and…]]></description><link>https://jstw.github.io/serverless-app-with-secured-api/</link><guid isPermaLink="false">https://jstw.github.io/serverless-app-with-secured-api/</guid><pubDate>Fri, 05 Jun 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hello guys!&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jstw Blog]]></title><description><![CDATA[A personal blog powered by Gatsby.]]></description><link>https://jstw.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 08 Jun 2020 17:59:59 GMT</lastBuildDate><item><title><![CDATA[Secure your Serverless App in AWS (Using Cognito, Cloudfront, API Gateway, and Lambda)]]></title><description><![CDATA[Hello guys! Today, we will learn together how we can secure exchanges between a client application hosted in a Cloudfront distribution and…]]></description><link>https://jstw.github.io/serverless-app-with-secured-api/</link><guid isPermaLink="false">https://jstw.github.io/serverless-app-with-secured-api/</guid><pubDate>Fri, 05 Jun 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hello guys!&lt;/p&gt;
 &lt;p&gt;Today, we will learn together how we can secure exchanges between a client application hosted in a Cloudfront distribution and an API Gateway in AWS.&lt;/p&gt;
-&lt;p&gt;I wrote &lt;a href=&quot;../serverless-api-with-lambda-part-1&quot;&gt;an article&lt;/a&gt; last week to explain how we can build a serverless app with a simple ReactJS client which query an API Gateway (deserved by Lambda functions) to get items from a DynamoDB.&lt;/p&gt;
-&lt;p&gt;Well, you will see this article is not very different from the previous one in the beginning, but this time we will go a little bit further in the configuration of our API Gateway. We will also have a look to some new services like Amazon Cognito, and Cloudfront.&lt;/p&gt;
-&lt;p&gt;There is a list a pre-requisites that you must have before continuing:&lt;/p&gt;
+&lt;p&gt;I wrote &lt;a href=&quot;../serverless-api-with-lambda-part-1&quot;&gt;an article&lt;/a&gt; last week to explain how we can build a serverless app with a simple ReactJS client that query an API Gateway (deserved by Lambda functions) to get items from a DynamoDB.&lt;/p&gt;
+&lt;p&gt;Well, you will see this article is not very different from the previous one in the beginning, but this time we will go a little bit further in the configuration of our API Gateway. We will also have a look at some new services like Amazon Cognito, and Cloudfront.&lt;/p&gt;
+&lt;p&gt;There is a list of pre-requisites that you must have before continuing:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;An AWS account is required (&lt;a href=&quot;https://portal.aws.amazon.com/billing/signup#/start&quot;&gt;click here&lt;/a&gt; to create one)&lt;/li&gt;
 &lt;li&gt;Node Package Manager (&lt;a href=&quot;https://www.npmjs.com/get-npm&quot;&gt;npm&lt;/a&gt;) or other package managers like &lt;a href=&quot;https://classic.yarnpkg.com/en/docs/install/#windows-stable&quot;&gt;yarn&lt;/a&gt;.&lt;/li&gt;
@@ -10,9 +10,9 @@
 &lt;p&gt;We are now ready! Have a nice read :)&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;In general, when you want to develop an interactive client/server web application, you have to identify uniquely any users that will interact with your application.&lt;/p&gt;
-&lt;p&gt;You want probably also make a distinction between simple users and admin users, so you will add some user roles in your application.&lt;/p&gt;
-&lt;p&gt;Anyway, you will have to implement an authentication mechanism. There is so many authentication system already existing, from the simplest to the most complex one.&lt;/p&gt;
-&lt;p&gt;Today I will show you an AWS Service called Amazon Cognito, which use an authorization framework, OAuth, commonly used as a way for Internet users to grant websites or applications access to their information.&lt;/p&gt;
+&lt;p&gt;You will probably need also to make a distinction between simple users and admin users, so you will add some user roles in your application.&lt;/p&gt;
+&lt;p&gt;Anyway, you will have to implement an authentication mechanism. There are so many authentication systems already existing, from the simplest to the most complex one.&lt;/p&gt;
+&lt;p&gt;Today I will show you an AWS Service called Amazon Cognito, which uses an authorization framework, OAuth, commonly used as a way for Internet users to grant websites or applications access to their information.&lt;/p&gt;
 &lt;p&gt;This is a quick overview of how works oAuth2 :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -76,16 +76,16 @@
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;OAuth 2.0 supports several different grants. Grants are ways of retrieving an Access Token. Deciding which one is suited for your case depends mostly on your Client’s type, but other parameters weigh in as well, like the level of trust for the Client, or the experience you want your users to have.&lt;/p&gt;
-&lt;p&gt;This is the different OAuth flows that actually exists :&lt;/p&gt;
+&lt;p&gt;This is the different OAuth flows that exist:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Resource Owner&lt;/strong&gt;: the entity that can grant access to a protected resource. Typically this is the end-user.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Client&lt;/strong&gt;: an application requesting access to a protected resource on behalf of the Resource Owner.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Resource Server&lt;/strong&gt;: the server hosting the protected resources. This is the API you want to access.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Authorization Server&lt;/strong&gt;: the server that authenticates the Resource Owner and issues Access Tokens after getting proper authorization.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;User Agent&lt;/strong&gt;: the agent used by the Resource Owner to interact with the Client, for example a browser or a native application.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;User-Agent&lt;/strong&gt;: the agent used by the Resource Owner to interact with the Client, for example, a browser or a native application.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Have a look on this &lt;a href=&quot;https://auth0.com/docs/api-auth/which-oauth-flow-to-use&quot;&gt;article&lt;/a&gt; which can help you to determine which oAuth2 flows is more appropriate to your application.&lt;/p&gt;
+&lt;p&gt;Have a look at this &lt;a href=&quot;https://auth0.com/docs/api-auth/which-oauth-flow-to-use&quot;&gt;article&lt;/a&gt; which can help you to determine which oAuth2 flows is more appropriate to your application.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;I think we can now focus on the implementation of our application. Let me present you the architecture:&lt;/p&gt;
 &lt;p&gt;&lt;span
@@ -119,17 +119,17 @@
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Let’s summarize this schema regarding the Client Side operations:&lt;/p&gt;
+&lt;p&gt;Let’s summarize this schema regarding the Client-Side operations:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Customers will sign-in through the Amazon Cognito with their credentials. They can also create an account with email registration confirmation.&lt;/li&gt;
 &lt;li&gt;Once logged, Amazon Cognito will redirect to our application with an Authorization Code.&lt;/li&gt;
 &lt;li&gt;We will exchange this Authorization Code with an Access Token.&lt;/li&gt;
 &lt;li&gt;Once the Access Token available we will be able to query our API.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;This token will be essential for the rest, because we will protect all our API routes by attaching an “Authorizer” that will check all requests sent to our API, if they contain a valid access token provided by Cognito.&lt;/p&gt;
+&lt;p&gt;This token will be essential for the rest because we will protect all our API routes by attaching an “Authorizer” that will check all requests sent to our API if they contain a valid access token provided by Cognito.&lt;/p&gt;
 &lt;p&gt;Time to code! Let’s connect to the AWS Console and let’s move on :)&lt;/p&gt;
 &lt;h3&gt;First step: Creation of our Database&lt;/h3&gt;
-&lt;p&gt;We will create a simple DynamoDB which will contains our secret cook recipe list.&lt;/p&gt;
+&lt;p&gt;We will create a simple DynamoDB which will contain our secret cook recipe list.&lt;/p&gt;
 &lt;p&gt;Let’s navigate to DynamoDB via &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Database &amp;gt; DynamoDB&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Once you are here, hit the &lt;strong&gt;Create Table&lt;/strong&gt; and let’s provide a table name, &lt;strong&gt;recipes&lt;/strong&gt; for example, and fill our &lt;strong&gt;Primary Key&lt;/strong&gt; by adding :&lt;/p&gt;
 &lt;ul&gt;
@@ -169,7 +169,7 @@
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Then, for the provisioned capacity part, I will put the minimal values for this demo, but you can provides any resources what you will need, depends on your demand.&lt;/p&gt;
+&lt;p&gt;Then, for the provisioned capacity part, I will put the minimal values for this demo, but you can provide any resources that you will need, depends on your demand.&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -202,7 +202,7 @@
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Finally, we can now create our table! It will take few seconds to be available.&lt;/p&gt;
+&lt;p&gt;Finally, we can now create our table! It will take a few seconds to be available.&lt;/p&gt;
 &lt;p&gt;Once it is, you can click on the &lt;code class=&quot;language-text&quot;&gt;Items&lt;/code&gt; tab, and provide some basic items. I provide you a sample list of them :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;token property&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Pizza&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
@@ -220,10 +220,10 @@
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Our DynamoDB is now ready. Let’s move on to the creation of our Lambda.&lt;/p&gt;
 &lt;h3&gt;Second step: Lambda Function&lt;/h3&gt;
-&lt;p&gt;Our Lambda Function will query our Database to retrieve all recipes. To create our Lambda, navigate to &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Compute &amp;gt; Lambda&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Our Lambda function will query our database to retrieve all recipes. To create our Lambda, navigate to &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Compute &amp;gt; Lambda&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Once its done, create on &lt;strong&gt;Create Function&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Leave the first selected option as is (Author From Scratch), and give our lambda a name: &lt;strong&gt;GetRecipes&lt;/strong&gt; and select &lt;strong&gt;Python 3.8&lt;/strong&gt; for the language Runtime.&lt;/p&gt;
-&lt;p&gt;Our Lambda will need some permissions to interact with DynamoDB. For that, click on the &lt;strong&gt;Create a new role from AWS policy templates&lt;/strong&gt;, search for &lt;strong&gt;Simple microservice permissions&lt;/strong&gt; in the Policy templates selector and then provide a role name: &lt;strong&gt;myDynamoDbRole&lt;/strong&gt; like below :&lt;/p&gt;
+&lt;p&gt;Our Lambda will need some permission to interact with DynamoDB. For that, click on the &lt;strong&gt;Create a new role from AWS policy templates&lt;/strong&gt;, search for &lt;strong&gt;Simple microservice permissions&lt;/strong&gt; in the Policy templates selector and then provide a role name: &lt;strong&gt;myDynamoDbRole&lt;/strong&gt; like below :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -260,7 +260,7 @@
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Boto is the Amazon Web Services (AWS) SDK for Python&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
 
-&lt;span class=&quot;token comment&quot;&gt;# To interact with DynamoDB, I just need to specity what resource I will use from boto3 (here: dynamodb)&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# To interact with DynamoDB, I just need to specify what resource I will use from boto3 (here: dynamodb)&lt;/span&gt;
 dynamodb &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;resource&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;dynamodb&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 
 &lt;span class=&quot;token comment&quot;&gt;# Now I specify which table in DynamoDB I want to interact with.&lt;/span&gt;
@@ -275,9 +275,9 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
         &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; response&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Items&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;except&lt;/span&gt; Exception &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
         &lt;span class=&quot;token comment&quot;&gt;# If an exception was thrown, I just catch it to print a log, and then I raise the error.&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;An error occured while retrieving Recipes table.&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;An error occurred while retrieving Recipes table.&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; e&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Save your function, and we will provide a test event to test our lambda Function. Click on the &lt;code class=&quot;language-text&quot;&gt;Test&lt;/code&gt; button, and leave the default configuration as is. Just provide a name to your test event, and hit &lt;code class=&quot;language-text&quot;&gt;Create&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Save your function, and we will provide a test event to test our Lambda Function. Click on the &lt;code class=&quot;language-text&quot;&gt;Test&lt;/code&gt; button, and leave the default configuration as is. Just provide a name to your test event, and hit &lt;code class=&quot;language-text&quot;&gt;Create&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Once your test event has been created, you can click again the the &lt;strong&gt;Test&lt;/strong&gt; button and you should have an output like this :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -311,7 +311,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Our Lambda configuration is over, now let’s have a look on our API Gatewa.&lt;/p&gt;
+&lt;p&gt;Our Lambda configuration is over, now let’s have a look at our API Gateway.&lt;/p&gt;
 &lt;h3&gt;Third step: Create  the API&lt;/h3&gt;
 &lt;p&gt;Let’s navigate through &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Networking &amp;amp; Content Delivery &amp;gt; API Gateway&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Let’s first create our &lt;strong&gt;cook-recipes-api&lt;/strong&gt; (HTTP API) and integrate the lambda function like below :&lt;/p&gt;
@@ -378,7 +378,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Now you can hit &lt;strong&gt;Next&lt;/strong&gt;, &lt;strong&gt;Next&lt;/strong&gt; again and &lt;strong&gt;Create&lt;/strong&gt;, and your API will be created few seconds after. Congrats! Our API is now created :&lt;/p&gt;
+&lt;p&gt;Now you can hit &lt;strong&gt;Next&lt;/strong&gt;, &lt;strong&gt;Next&lt;/strong&gt; again, &lt;strong&gt;Create&lt;/strong&gt; and your API will be created a few seconds after. Congrats! Our API is now created :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -411,7 +411,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;As you wan see, your API has an &lt;strong&gt;Invoker URL&lt;/strong&gt;. This is the base URL of your API. So, to test our API, open your browser with this following URL: &lt;code class=&quot;language-text&quot;&gt;https://&amp;lt;&amp;lt; your api gateway invoker url &amp;gt;&amp;gt;/recipes&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, your API has an &lt;strong&gt;Invoker URL&lt;/strong&gt;. This is the base URL of your API. So, to test our API, open your browser with this following URL: &lt;code class=&quot;language-text&quot;&gt;https://&amp;lt;&amp;lt; your api gateway invoker url &amp;gt;&amp;gt;/recipes&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;You should see all your items in your DynamoDB like below :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -445,7 +445,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Well, we did a great job. Our API now works successfully!&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;But, why did you said its secure ?! Everyone can access to my cook recipe list with this endpoint…&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;But, why did you said it’s secure ?! Everyone can access to my cook recipe list with this endpoint…&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;That’s true! Now, we will handle the security part with Amazon Cognito.&lt;/p&gt;
 &lt;h3&gt;Fourth step: Configure Amazon Cognito&lt;/h3&gt;
 &lt;p&gt;Amazon Cognito is not present in the Services dropdown, but you can search it directly by tapping &lt;strong&gt;Cognito&lt;/strong&gt; :&lt;/p&gt;
@@ -484,7 +484,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
 &lt;p&gt;Once you are, we will firstly handle our User Pool. Click on &lt;strong&gt;Manage User Pools&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Provide a name to your user pool, &lt;strong&gt;CookRecipePool&lt;/strong&gt; for example, click on &lt;strong&gt;Review defaults&lt;/strong&gt;, and &lt;strong&gt;Next&lt;/strong&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;There is lot of configuration possible for User Pools, you can manage the required attributes for the Log-in part, define the “username” attributes, manage password policies, activate MFA etc.&lt;/p&gt;
+&lt;p&gt;There is a lot of configuration possible for User Pools, you can manage the required attributes for the Log-in part, define the “username” attributes, manage password policies, activate MFA, etc.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;On the Review’s page, we will add a Client Application by clicking on &lt;strong&gt;Add app clients…&lt;/strong&gt; Click again on &lt;strong&gt;Add app client&lt;/strong&gt;, provide a name to your App Client, &lt;strong&gt;CookRecipeApp&lt;/strong&gt; for example, leave the default configuration as is and hit &lt;strong&gt;Create App Client&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Once it’s done, click on &lt;strong&gt;Return to pool details&lt;/strong&gt; and create the user pool.&lt;/p&gt;
@@ -521,12 +521,12 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;In this settings you just need to :&lt;/p&gt;
+&lt;p&gt;In these settings you just need to :&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Check the &lt;strong&gt;Cognito User Pool&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;Provide the &lt;strong&gt;Sign-in/Sign-out URLs&lt;/strong&gt; (we don’t have our Cloudfront distribution ready for now, so you can put a temporary URL)&lt;/li&gt;
 &lt;li&gt;Allow the &lt;strong&gt;Authorization Code Grant&lt;/strong&gt; OAuth Flow.&lt;/li&gt;
-&lt;li&gt;Allow at minimum 1 scope (email for example).&lt;/li&gt;
+&lt;li&gt;Allow a minimum of 1 scope (email for example).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;We will update the Sign-in/Sign-out later. Now we can claim a Domain Name for our User Pool. Click on &lt;strong&gt;Domain Name&lt;/strong&gt; and choose a domain which is available like below :&lt;/p&gt;
 &lt;p&gt;&lt;span
@@ -599,11 +599,11 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;https://&amp;lt;&amp;lt; your domain name &amp;gt;&amp;gt;.auth.&amp;lt;&amp;lt; your AWS region &amp;gt;&amp;gt;.amazoncognito.com/login?response_type=code&amp;amp;client_id=&amp;lt;&amp;lt; your app client ID&amp;gt;&amp;gt;&amp;amp;redirect_uri=&amp;lt;&amp;lt; your redirect URI&amp;gt;&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Please replace the :&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Domain name (your domain previously created)&lt;/li&gt;
+&lt;li&gt;The domain name (your domain previously created)&lt;/li&gt;
 &lt;li&gt;Client id (provide your app client ID)&lt;/li&gt;
-&lt;li&gt;Redirect uri (should be &lt;a href=&quot;https://www.google.com/authenticate&quot;&gt;https://www.google.com/authenticate&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Redirect URI (should be &lt;a href=&quot;https://www.google.com/authenticate&quot;&gt;https://www.google.com/authenticate&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;For me it will looks like :&lt;/p&gt;
+&lt;p&gt;For me it will look like :&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://cook-recipes-app.auth.eu-west-2.amazoncognito.com/login?response_type=code&amp;#x26;client_id=13ft34s2dt7nn0ef0k4p512hgp&amp;#x26;redirect_uri=https://www.google.com/authenticate&quot;&gt;https://cook-recipes-app.auth.eu-west-2.amazoncognito.com/login?response_type=code&amp;#x26;client_id=13ft34s2dt7nn0ef0k4p512hgp&amp;#x26;redirect_uri=https://www.google.com/authenticate&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;You should be able to see your Log-in page :&lt;/p&gt;
 &lt;p&gt;&lt;span
@@ -635,7 +635,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Now we will sign up to obtain an account. Let’s provide an username, a valid email address and a password.&lt;/p&gt;
+&lt;p&gt;Now we will sign up to obtain an account. Let’s provide a username, a valid email address, and a password.&lt;/p&gt;
 &lt;p&gt;You should receive a verification code in your mail inbox :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -697,7 +697,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Once is done, you will be redirected to the &lt;strong&gt;Callback URL&lt;/strong&gt; you provided when we configured our App Client Settings. Normally, you have been redirected to the 404 google page, but the most interessant part is the URL :&lt;/p&gt;
+&lt;p&gt;Once it is done, you will be redirected to the &lt;strong&gt;Callback URL&lt;/strong&gt; you provided when we configured our App Client Settings. Normally, you have been redirected to the 404 google page, but the most interesting part is the URL :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -733,12 +733,12 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
 &lt;p&gt;Before creating our route, we will create a new Lambda Function that will handle this token exchange. Let’s navigate to &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Compute &amp;gt; Lambda&lt;/code&gt; again.&lt;/p&gt;
 &lt;p&gt;Once you are here, do the same thing we did for the creation of our GetRecipes lambda :&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Create lambda function&lt;/li&gt;
+&lt;li&gt;Create a lambda function&lt;/li&gt;
 &lt;li&gt;Leave “Author from scratch” default option selected&lt;/li&gt;
 &lt;li&gt;Provide a name (CognitoTokenExchange)&lt;/li&gt;
 &lt;li&gt;For the execution role, leave the first option selected (Create a new role with basic Lambda permissions)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Once your lambda is created, I provided you a ZIP file which contains our Lambda Function but also the dependencies needed to make an HTTP requests. &lt;a href=&quot;/15e423a003ff7320462f788fb274f397/cook-recipe-authenticate.zip&quot;&gt;Click here&lt;/a&gt; to download the zip file.&lt;/p&gt;
+&lt;p&gt;Once your lambda is created, I provided you a ZIP file that contains our Lambda Function but also the dependencies needed to make an HTTP request. &lt;a href=&quot;/15e423a003ff7320462f788fb274f397/cook-recipe-authenticate.zip&quot;&gt;Click here&lt;/a&gt; to download the zip file.&lt;/p&gt;
 &lt;p&gt;Then, click on the &lt;strong&gt;Edit code inline&lt;/strong&gt; like below :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -789,7 +789,7 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
     access_token_response &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; requests&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;post&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;token_url&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; data&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; verify&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; allow_redirects&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; auth&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;client_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; client_secret&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
     
     &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; json&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;loads&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;access_token_response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;text&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;with your &lt;strong&gt;Domain Name&lt;/strong&gt; (like we did above), your &lt;strong&gt;App Client ID&lt;/strong&gt; and your &lt;strong&gt;App Client Secret&lt;/strong&gt;. You can find this following information in the Amazon Cognito service, in the &lt;code class=&quot;language-text&quot;&gt;General settings &amp;gt; App clients&lt;/code&gt; menu in your &lt;strong&gt;CookRecipePool&lt;/strong&gt; :&lt;/p&gt;
+&lt;p&gt;with your &lt;strong&gt;Domain Name&lt;/strong&gt; (like we did above), your &lt;strong&gt;App Client ID&lt;/strong&gt;, and your &lt;strong&gt;App Client Secret&lt;/strong&gt;. You can find this following information in the Amazon Cognito service, in the &lt;code class=&quot;language-text&quot;&gt;General settings &amp;gt; App clients&lt;/code&gt; menu in your &lt;strong&gt;CookRecipePool&lt;/strong&gt; :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -890,7 +890,7 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;For example, my authorization code is: &lt;code class=&quot;language-text&quot;&gt;53c7105e-09b3-4a93-9062-0cdc74d30bd2&lt;/code&gt; (yours will be different).&lt;/p&gt;
-&lt;p&gt;Go back in your Lambda Function and add a &lt;strong&gt;Test Event&lt;/strong&gt;. Click on Test button, and add this following JSON:&lt;/p&gt;
+&lt;p&gt;Go back to your Lambda Function and add a &lt;strong&gt;Test Event&lt;/strong&gt;. Click on Test button, and add this following JSON:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;token property&quot;&gt;&quot;pathParameters&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;&quot;code&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&amp;lt;&amp;lt; put your authorization code here&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -1062,7 +1062,7 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
 &lt;p&gt;We will test now if our API Gateway integration works. Open a new browser tab with your Cognito log-in page :&lt;/p&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;https://&amp;lt;&amp;lt; your domain name &amp;gt;&amp;gt;.auth.&amp;lt;&amp;lt; your AWS region &amp;gt;&amp;gt;.amazoncognito.com/login?response_type=code&amp;amp;client_id=&amp;lt;&amp;lt; your app client ID&amp;gt;&amp;gt;&amp;amp;redirect_uri=&amp;lt;&amp;lt; your redirect URI&amp;gt;&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;And sign-in one more time. Pick-up the code, but now open a new browser tab with your API Gateway URL.&lt;/p&gt;
-&lt;p&gt;The URL should looks like:
+&lt;p&gt;The URL should look like:
 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;&amp;lt; your api gateway base url &amp;gt;&amp;gt;/token/&amp;lt;&amp;lt; your authorization code &amp;gt;&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Finally, our API endpoint to retrieve our access token works successfully:&lt;/p&gt;
 &lt;p&gt;&lt;span
@@ -1097,7 +1097,7 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The next step will be to configure our Client Side App.&lt;/p&gt;
+&lt;p&gt;The next step will be to configure our Client-Side App.&lt;/p&gt;
 &lt;h3&gt;Fifth step: Configure the ReactJS app with S3/Cloudfront&lt;/h3&gt;
 &lt;p&gt;I just created a sample ReactJS application which is available in my &lt;a href=&quot;https://github.com/JStw&quot;&gt;Github&lt;/a&gt;. To get the app, you can git clone my project :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;batch&quot;&gt;&lt;pre class=&quot;language-batch&quot;&gt;&lt;code class=&quot;language-batch&quot;&gt;&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;git&lt;/span&gt; clone git@github.com:JStw/recipe-app.git&lt;/span&gt;
@@ -1117,13 +1117,13 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
 &lt;li&gt;&lt;strong&gt;APP&lt;em&gt;CLIENT&lt;/em&gt;ID&lt;/strong&gt; is the identifier also present in your User Pool &gt; App Client Settings.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;For example, for me the updates will be :&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;API_BASE_URL&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;	https://eq0umxfk86.execute-api.eu-west-2.amazonaws.com&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;API_BASE_URL&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;  https://eq0umxfk86.execute-api.eu-west-2.amazonaws.com&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;COGNITO_BASE_URL&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;https://cook-recipes-app.auth.eu-west-2.amazoncognito.com&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;APP_REDIRECT_URI&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;https://www.google.com/authenticate&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;APP_CLIENT_ID&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;13ft34s2dt7nn0ef0k4p512hgp&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Once these 4 variables has been updated, save the &lt;code class=&quot;language-text&quot;&gt;App.js&lt;/code&gt; file and run a &lt;code class=&quot;language-text&quot;&gt;npm build&lt;/code&gt;. When this command has finished, you should see a &lt;code class=&quot;language-text&quot;&gt;build&lt;/code&gt; folder.&lt;/p&gt;
-&lt;p&gt;Now we will create a S3 bucket to host our application. Let’s navigate to &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Storage &amp;gt; S3&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Once you are here, create a bucket (bucket name should be unique across the world), so for me I’ll choose &lt;code class=&quot;language-text&quot;&gt;cook-recipe-app&lt;/code&gt; but you can provide another name.&lt;/p&gt;
+&lt;p&gt;Once these 4 variables have been updated, save the &lt;code class=&quot;language-text&quot;&gt;App.js&lt;/code&gt; file, and run an &lt;code class=&quot;language-text&quot;&gt;npm build&lt;/code&gt;. When this command has finished, you should see a &lt;code class=&quot;language-text&quot;&gt;build&lt;/code&gt; folder.&lt;/p&gt;
+&lt;p&gt;Now we will create an S3 bucket to host our application. Let’s navigate to &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Storage &amp;gt; S3&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Once you are here, create a bucket (bucket name should be unique across the world), so for me, I’ll choose &lt;code class=&quot;language-text&quot;&gt;cook-recipe-app&lt;/code&gt; but you can provide another name.&lt;/p&gt;
 &lt;p&gt;Leave the default configuration as is, and hit the &lt;code class=&quot;language-text&quot;&gt;Create&lt;/code&gt; button. Then, you have to upload all our &lt;code class=&quot;language-text&quot;&gt;build&lt;/code&gt; folder content in your S3 bucket. Do not forget to upload also the &lt;code class=&quot;language-text&quot;&gt;static&lt;/code&gt; folder with the &lt;strong&gt;js&lt;/strong&gt; and &lt;strong&gt;css&lt;/strong&gt; folder.&lt;/p&gt;
 &lt;p&gt;Your bucket should look like below :&lt;/p&gt;
 &lt;p&gt;&lt;span
@@ -1190,16 +1190,16 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Once your files has been added, we will configure S3 to host a Web Application. For that, go to the root folder of your S3 Bucket, click on the &lt;strong&gt;Properties&lt;/strong&gt; tab and then &lt;strong&gt;Static website hosting&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Once your files have been added, we will configure S3 to host a Web Application. For that, go to the root folder of your S3 Bucket, click on the &lt;strong&gt;Properties&lt;/strong&gt; tab, and then &lt;strong&gt;Static website hosting&lt;/strong&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Click on &lt;strong&gt;Use this bucket to host a website&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;Specify &lt;strong&gt;index.html&lt;/strong&gt; for the Index document.&lt;/li&gt;
 &lt;li&gt;Specify also &lt;strong&gt;index.html&lt;/strong&gt; for the error document.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;and then hit &lt;strong&gt;Save&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Before accessing our S3 URL, we have to grant a public read access for everyone. For that, click on your bucket &lt;strong&gt;Permissions&lt;/strong&gt;, and then select the first tab, &lt;strong&gt;Block public access&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Turn off the &lt;strong&gt;Block public access&lt;/strong&gt; (the first option checked) and all the other option will uncheck.&lt;/p&gt;
-&lt;p&gt;Once is done, hit &lt;strong&gt;Save&lt;/strong&gt; and confirm the action by tapping &lt;strong&gt;confirm&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Before accessing our S3 URL, we have to grant public read access for everyone. For that, click on your bucket &lt;strong&gt;Permissions&lt;/strong&gt;, and then select the first tab, &lt;strong&gt;Block public access&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Turn off the &lt;strong&gt;Block public access&lt;/strong&gt; (the first option checked) and all the other options will uncheck.&lt;/p&gt;
+&lt;p&gt;Once it is done, hit &lt;strong&gt;Save&lt;/strong&gt; and confirm the action by tapping &lt;strong&gt;confirm&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -1282,7 +1282,7 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;You static website is now configured, so we can test our S3 bucket URL. Your URL should be like :&lt;/p&gt;
+&lt;p&gt;Your static website is now configured, so we can test our S3 bucket URL. Your URL should be like :&lt;/p&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;https://&amp;lt;&amp;lt; your bucket name &amp;gt;&amp;gt;.s3.&amp;lt;&amp;lt; your region &amp;gt;&amp;gt;.amazonaws.com&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;For example, for me it will be:&lt;/p&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;https://cook-recipe-app.s3.eu-west-2.amazonaws.com/index.html&lt;/code&gt;&lt;/p&gt;
@@ -1321,16 +1321,16 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Congrats! Our S3 application works ;-) According to the S3 documentation :&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Your website is available at the Amazon S3 website endpoint. However, you might have a domain, such as example.com, that you want to use to serve the content from the website you created. You might also want to use Amazon S3 root domain support to serve requests for both &lt;a href=&quot;http://www.example.com&quot;&gt;http://www.example.com&lt;/a&gt; and &lt;a href=&quot;http://example.com&quot;&gt;http://example.com&lt;/a&gt;. This requires additional steps. For an example, see Configuring a static website using a custom domain registered with Route 53.&lt;/p&gt;
+&lt;p&gt;Your website is available at the Amazon S3 website endpoint. However, you might have a domain, such as example.com, that you want to use to serve the content from the website you created. You might also want to use Amazon S3 root domain support to serve requests for both &lt;a href=&quot;http://www.example.com&quot;&gt;http://www.example.com&lt;/a&gt; and &lt;a href=&quot;http://example.com&quot;&gt;http://example.com&lt;/a&gt;. This requires additional steps. For example, see Configuring a static website using a custom domain registered with Route 53.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;For more information you can &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/HostingWebsiteOnS3Setup.html&quot;&gt;read the official documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For more information, you can &lt;a href=&quot;https://docs.aws.amazon.com/AmazonS3/latest/dev/HostingWebsiteOnS3Setup.html&quot;&gt;read the official documentation&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you click on the &lt;strong&gt;Serverless API&lt;/strong&gt; header menu, you will be redirected to the Home page, and you should see a link &lt;strong&gt;Please log-in to see recipes list&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;If you click on this link, you normally will be redirected to the Amazon Cognito Log-in page.&lt;/p&gt;
 &lt;p&gt;Let’s tackle the final step, the creation of our Cloudfront distribution.&lt;/p&gt;
 &lt;h3&gt;Final step: Create the Cloudfront distribution&lt;/h3&gt;
 &lt;p&gt;We are close to the end guys! Let’s navigate to &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Networking &amp;amp; Content Delivery &amp;gt; Cloudfront&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;First step is to &lt;strong&gt;Create Distribution&lt;/strong&gt;. We will choose the first option (Web delivery method).&lt;/p&gt;
-&lt;p&gt;Now, we have to configure our Cloudfront distribution. We will just update few of them :&lt;/p&gt;
+&lt;p&gt;The first step is to &lt;strong&gt;Create Distribution&lt;/strong&gt;. We will choose the first option (Web delivery method).&lt;/p&gt;
+&lt;p&gt;Now, we have to configure our Cloudfront distribution. We will just update a few of them :&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Origin Settings :&lt;/p&gt;
@@ -1347,8 +1347,8 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;For all the other configuration, leave as is. Just update the &lt;strong&gt;Default Root Object&lt;/strong&gt; by putting &lt;strong&gt;index.html&lt;/strong&gt;, and finally you can create your distribution.&lt;/p&gt;
-&lt;p&gt;Once is done, it will take some time to create and deploy your distribution. Meanwhile, click on your distribution in the list, and &lt;strong&gt;*Distribution Settings&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;For all the other configuration, leave as is. Just update the &lt;strong&gt;Default Root Object&lt;/strong&gt; by putting &lt;strong&gt;index.html&lt;/strong&gt;, and finally, you can create your distribution.&lt;/p&gt;
+&lt;p&gt;Once it is done, it will take some time to create and deploy your distribution. Meanwhile, click on your distribution in the list, and &lt;strong&gt;*Distribution Settings&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Go to the &lt;strong&gt;Errors Pages&lt;/strong&gt; tab and we will create some custom error response :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -1381,8 +1381,8 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Let’s create this custom error, and go back to your Cloudfront distributions list. It should be still in progress, but it’s ok because we have few more configuration to do.&lt;/p&gt;
-&lt;p&gt;As you can see, we have a cloudfront domain name available :&lt;/p&gt;
+&lt;p&gt;Let’s create this custom error, and go back to your Cloudfront distributions list. It should be still in progress, but it’s ok because we have a few more configuration to do.&lt;/p&gt;
+&lt;p&gt;As you can see, we have a CloudFront domain name available :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -1415,10 +1415,10 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;For example for me it’s: &lt;code class=&quot;language-text&quot;&gt;d39y0kvui8eeum.cloudfront.net&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;For example, for me, it’s: &lt;code class=&quot;language-text&quot;&gt;d39y0kvui8eeum.cloudfront.net&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;If you remember we put some “fake URL” in our RecipeUserPool in Amazon Cognito. So now, we will update our Cognito settings with our Cloudfront Domain Name.&lt;/p&gt;
 &lt;p&gt;Click on the &lt;code class=&quot;language-text&quot;&gt;Services&lt;/code&gt; dropdown, and search &lt;strong&gt;Cognito&lt;/strong&gt;. Once is done, go to your &lt;strong&gt;App Clients Settings&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Finally update both Sign-in and Sign-out links like below :&lt;/p&gt;
+&lt;p&gt;Finally, update both Sign-in and Sign-out links like below :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -1450,7 +1450,7 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;(Do not forget to provide your Cloudfront distribution name, and not mine)&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;(Do not forget to provide your Cloudfront distribution name and not mine)&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Save your changes, and now go to &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Networking &amp;amp; Content Delivery &amp;gt; API Gateway&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Find your API and open the &lt;strong&gt;CORS&lt;/strong&gt; menu in the left tab. Configure CORS like below :&lt;/p&gt;
 &lt;p&gt;&lt;span
@@ -1487,7 +1487,7 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;You just need to allow your Cloudfront Domain Name in your API Origins, but also the &lt;strong&gt;Authorization&lt;/strong&gt; header.&lt;/p&gt;
 &lt;p&gt;Once it’s done, save your changes. &lt;/p&gt;
-&lt;p&gt;If you remember, we wanted to protect our API /recipes endpoint. Actually, every one can access it.&lt;/p&gt;
+&lt;p&gt;If you remember, we wanted to protect our API /recipes endpoint because now, everyone can access it.&lt;/p&gt;
 &lt;p&gt;Stay on the API Gateway service, but this time open the &lt;strong&gt;Authorization&lt;/strong&gt; menu.&lt;/p&gt;
 &lt;p&gt;Find your GET &lt;code class=&quot;language-text&quot;&gt;/recipes&lt;/code&gt; endpoint, and click on &lt;strong&gt;Create and Attach Authorizer&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Configure your &lt;strong&gt;Authorizer&lt;/strong&gt; like below :&lt;/p&gt;
@@ -1521,7 +1521,7 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Be careful, your &lt;strong&gt;Issuer URL&lt;/strong&gt; will be different. If you remember one of the first cognito schema, we need to integrate our user pool with an identity pool.&lt;/p&gt;
+&lt;p&gt;Be careful, your &lt;strong&gt;Issuer URL&lt;/strong&gt; will be different. If you remember one of the first Cognito schemas, we need to integrate our user pool with an identity pool.&lt;/p&gt;
 &lt;p&gt;For that, we will use the Cognito IDP URL. Your Issuer URL should be like :
 &lt;code class=&quot;language-text&quot;&gt;https://cognito-idp.&amp;lt;region&amp;gt;.amazonaws.com/&amp;lt;YOUR_USER_POOL_ID&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;You can find your &lt;strong&gt;user pool id&lt;/strong&gt; in the Cognito service, in the general settings :&lt;/p&gt;
@@ -1556,7 +1556,7 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The last Authorizer settings, is the &lt;strong&gt;Audience one&lt;/strong&gt;. You just need to provide your &lt;strong&gt;App Client ID&lt;/strong&gt;. Once it’s done, hit &lt;strong&gt;Create and Attach&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The last Authorizer settings is the &lt;strong&gt;Audience one&lt;/strong&gt;. You just need to provide your &lt;strong&gt;App Client ID&lt;/strong&gt;. Once it’s done, hit &lt;strong&gt;Create and Attach&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -1654,9 +1654,9 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;If you try to click on the &lt;strong&gt;List Recipes&lt;/strong&gt; nav bar link, you should have a message: “You are not supposed to be here”.&lt;/p&gt;
+&lt;p&gt;If you try to click on the &lt;strong&gt;List Recipes&lt;/strong&gt; navbar link, you should have a message: “You are not supposed to be here”.&lt;/p&gt;
 &lt;p&gt;Ok so, let’s sign-in by clicking &lt;strong&gt;Please log-in to see recipes list&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Hey! Why we are this error ?!&lt;/p&gt;
+&lt;p&gt;Hey! Why do we have this error ?!&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -1694,16 +1694,16 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
 &lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;COGNITO_BASE_URL&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;https://cook-recipes-app.auth.eu-west-2.amazoncognito.com&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;APP_REDIRECT_URI&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;https://www.google.com/authenticate&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;APP_CLIENT_ID&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;13ft34s2dt7nn0ef0k4p512hgp&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Problem is our &lt;strong&gt;APP&lt;em&gt;REDIRECT&lt;/em&gt;URI&lt;/strong&gt; has change, because we put the Cloudfront URL.&lt;/p&gt;
+&lt;p&gt;The problem is our &lt;strong&gt;APP&lt;em&gt;REDIRECT&lt;/em&gt;URI&lt;/strong&gt; has changed because we put the Cloudfront URL.&lt;/p&gt;
 &lt;p&gt;So we have to update the &lt;strong&gt;APP&lt;em&gt;REDIRECT&lt;/em&gt;URI&lt;/strong&gt; by putting our Cloudfront URL like below :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;APP_REDIRECT_URI&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;https://d3lzprsa47l9ig.cloudfront.net/authenticate&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Yes, we need to rebuild once more time ^.^&lt;/p&gt;
-&lt;p&gt;Run a &lt;code class=&quot;language-text&quot;&gt;npm build&lt;/code&gt;. And re-upload your &lt;code class=&quot;language-text&quot;&gt;build&lt;/code&gt; folder content to our S3 bucket. I suggest to delete the entire content, and re-upload all the fresh content builded.&lt;/p&gt;
+&lt;p&gt;Run an &lt;code class=&quot;language-text&quot;&gt;npm build&lt;/code&gt;. And re-upload your &lt;code class=&quot;language-text&quot;&gt;build&lt;/code&gt; folder content to our S3 bucket. I suggest to delete the entire content and re-upload all the fresh content built.&lt;/p&gt;
 &lt;p&gt;Before returning to our Cloudfront App, we updated our ClientSide App with our new Cloudfront Callback URL, but we should also update our Lambda which is exchanging our authorization code with an access token.&lt;/p&gt;
 &lt;p&gt;Open &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Compute &amp;gt; Lambda&lt;/code&gt;, and open your &lt;strong&gt;RecipeCookAuthenticate&lt;/strong&gt; lambda function.&lt;/p&gt;
-&lt;p&gt;Change this line and replace the google URL by your cloudfront URL :&lt;/p&gt;
+&lt;p&gt;Change this line and replace the google URL by your CloudFront URL :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;callback_uri &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;https://d3lzprsa47l9ig.cloudfront.net/authenticate&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Ok so now if we go back to our Cloudfront App, let’s re-try by clicking the sign-in app link and now we are able to Log-in properly :&lt;/p&gt;
+&lt;p&gt;Ok so now if we go back to our Cloudfront App, let’s re-try by clicking the sign-in app link and now we can Log-in properly :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 491px; &quot;
@@ -1767,7 +1767,7 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;And finally you will be redirected to the home page, authenticated :&lt;/p&gt;
+&lt;p&gt;And finally, you will be redirected to the home page, authenticated :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -1842,16 +1842,16 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
 &lt;li&gt;You configured Amazon Cognito with the Authorization Code OAuth flow.&lt;/li&gt;
 &lt;li&gt;You created a second lambda to exchange the authorization code with the access token.&lt;/li&gt;
 &lt;li&gt;You added a new route to trigger this token exchange lambda.&lt;/li&gt;
-&lt;li&gt;You deployed a ReactJS application, hosted it in AWS S3 and configuring a Bucket Policy to publicly access it.&lt;/li&gt;
+&lt;li&gt;You deployed a ReactJS application, hosted it in AWS S3, and configuring a Bucket Policy to publicly access it.&lt;/li&gt;
 &lt;li&gt;You created a Cloudfront application deserving the S3 bucket.&lt;/li&gt;
 &lt;li&gt;You created and attach an Authorizer to your API Gateway route.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Well done! I think you can play a little bit with it, but you did a great job and played with many AWS services :)&lt;/p&gt;
-&lt;p&gt;I hope this tutorial was helpful for you, if you liked it do not forget to share ;)&lt;/p&gt;
+&lt;p&gt;I hope this tutorial was helpful for you if you liked it do not forget to share ;)&lt;/p&gt;
 &lt;p&gt;See you next time!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Serverless App with AWS in ReactJS, using Lambda & API Gateway - Final part]]></title><description><![CDATA[Hey hello there! If you didn’t read the previous post, I suggest you to read it before continuing. If you did, perfect, let’s continue…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-3/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-3/</guid><pubDate>Sun, 31 May 2020 11:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey hello there! If you didn’t read the previous post, I suggest you to &lt;a href=&quot;./../serverless-api-with-lambda-part-2&quot;&gt;read it&lt;/a&gt; before continuing. If you did, perfect, let’s continue ;)&lt;/p&gt;
 &lt;p&gt;The last part is to integrate our Lambda Functions previously created, in the AWS API Gateway service. Find this service, by opening &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Networking &amp;amp; Content Delivery &amp;gt; API Gateway&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Let’s create an API by clicking the &lt;code class=&quot;language-text&quot;&gt;Create API&lt;/code&gt; button.&lt;/p&gt;
-&lt;p&gt;We have the possibility to chose some types for our API, but in this case we want to create an HTTP API. So let’s keep the first selected option.&lt;/p&gt;
+&lt;p&gt;We can choose some types for our API, but in this case, we want to create an HTTP API. So let’s keep the first selected option.&lt;/p&gt;
 &lt;p&gt;Provide a name, &lt;strong&gt;blog-api&lt;/strong&gt; for example, and let’s integrate our Lambdas by adding them one by one in the &lt;code class=&quot;language-text&quot;&gt;Create and configure integrations&lt;/code&gt; like below :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -1979,7 +1979,7 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;You can now click on &lt;strong&gt;Next&lt;/strong&gt; and leave the configuration stages as is. Review your API creation, and if it’s respect all the configuration above, you can hit the &lt;strong&gt;Create&lt;/strong&gt; button.&lt;/p&gt;
+&lt;p&gt;You can now click on &lt;strong&gt;Next&lt;/strong&gt; and leave the configuration stages as is. Review your API creation, and if it respects all the configuration above, you can hit the &lt;strong&gt;Create&lt;/strong&gt; button.&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -2012,7 +2012,7 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Good job, your API is now created! You can find your API url in your &lt;strong&gt;stages&lt;/strong&gt;. It should be in the Invoke URL column.&lt;/p&gt;
+&lt;p&gt;Good job, your API is now created! You can find your API URL in your &lt;strong&gt;stages&lt;/strong&gt;. It should be in the Invoke URL column.&lt;/p&gt;
 &lt;h3&gt;Let’s test the beast!&lt;/h3&gt;
 &lt;p&gt;I don’t know what you prefer to test your API, you can CURL or Postman, it’s up to you :)&lt;/p&gt;
 &lt;p&gt;I will go for curl :&lt;/p&gt;
@@ -2085,10 +2085,10 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;CreateArticle:&lt;/strong&gt; &lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;batch&quot;&gt;&lt;pre class=&quot;language-batch&quot;&gt;&lt;code class=&quot;language-batch&quot;&gt;&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;token parameter attr-name&quot;&gt;-d&lt;/span&gt; &apos;{&lt;/span&gt;
-	&quot;title&quot;: &quot;My CURL Article&quot;,
-	&quot;category&quot;: &quot;Test&quot;,
-	&quot;content&quot;: &quot;An article created via CURL command, awesome!&quot;,
-	&quot;author&quot;: &quot;Julien&quot;}&lt;span class=&quot;token punctuation&quot;&gt;&apos;&lt;/span&gt; -H &quot;Content-Type: application/json&quot; -X POST &amp;lt;&amp;lt; your api url &gt;&gt;/articles | json_pp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+   &quot;title&quot;: &quot;My CURL Article&quot;,
+   &quot;category&quot;: &quot;Test&quot;,
+   &quot;content&quot;: &quot;An article created via CURL command, awesome!&quot;,
+   &quot;author&quot;: &quot;Julien&quot;}&lt;span class=&quot;token punctuation&quot;&gt;&apos;&lt;/span&gt; -H &quot;Content-Type: application/json&quot; -X POST &amp;lt;&amp;lt; your api url &gt;&gt;/articles | json_pp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;em&gt;Output:&lt;/em&gt;
 &lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -2124,8 +2124,8 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;UpdateArticle:&lt;/strong&gt; &lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;batch&quot;&gt;&lt;pre class=&quot;language-batch&quot;&gt;&lt;code class=&quot;language-batch&quot;&gt;&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;token parameter attr-name&quot;&gt;-d&lt;/span&gt; &apos;{&lt;/span&gt;
-	&quot;content&quot;: &quot;Oh, this is a curl update ?&quot;,
-	&quot;author&quot;: &quot;CURLUser&quot;}&lt;span class=&quot;token punctuation&quot;&gt;&apos;&lt;/span&gt; -H &quot;Content-Type: application/json&quot; -X PUT &amp;lt;&amp;lt; your api url &gt;&gt;/articles/My%20CURL%20Article/Test | json_pp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+   &quot;content&quot;: &quot;Oh, this is a curl update ?&quot;,
+   &quot;author&quot;: &quot;CURLUser&quot;}&lt;span class=&quot;token punctuation&quot;&gt;&apos;&lt;/span&gt; -H &quot;Content-Type: application/json&quot; -X PUT &amp;lt;&amp;lt; your api url &gt;&gt;/articles/My%20CURL%20Article/Test | json_pp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;em&gt;Output:&lt;/em&gt;
 &lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -2195,14 +2195,14 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
     &lt;/span&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Perfect our API is working successfully! Let’s download our ReactJS application to test it in live :)&lt;/p&gt;
-&lt;p&gt;You can find in my Github account, a sample project which is available to test your API. You can clone it via command line (if you have git installed) : &lt;/p&gt;
+&lt;p&gt;You can find in my Github account, a sample project which is available to test your API. You can clone it via the command line (if you have git installed) : &lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;batch&quot;&gt;&lt;pre class=&quot;language-batch&quot;&gt;&lt;code class=&quot;language-batch&quot;&gt;&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;git&lt;/span&gt; clone git@github.com:JStw/blog-app.git&lt;/span&gt;
 // or via https :
 &lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;git&lt;/span&gt; clone https://github.com/JStw/blog-app.git&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;When its done, run a &lt;code class=&quot;language-text&quot;&gt;npm install&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Open the &lt;code class=&quot;language-text&quot;&gt;App.js&lt;/code&gt;, and put your Api Gateway base url in this line :&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;API_BASE_URL&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;put your api base url here (do not put the /)&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Before starting the app, you should enable CORS by adding the &lt;code class=&quot;language-text&quot;&gt;http://localhost:3000&lt;/code&gt; Origin. If you don’t do that, it will be impossile for your app to query your API.&lt;/p&gt;
+&lt;p&gt;When it’s done, run an &lt;code class=&quot;language-text&quot;&gt;npm install&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Open the &lt;code class=&quot;language-text&quot;&gt;App.js&lt;/code&gt;, and put your API Gateway base URL in this line :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;API_BASE_URL&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;put your API base URL here (do not put the /)&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Before starting the app, you should enable CORS by adding the &lt;code class=&quot;language-text&quot;&gt;http://localhost:3000&lt;/code&gt; Origin. If you don’t do that, it will be impossible for your app to query your API.&lt;/p&gt;
 &lt;p&gt;Navigate to the API Gateway Services, and click on the &lt;code class=&quot;language-text&quot;&gt;CORS&lt;/code&gt; option in the left menu. Edit the configuration, and add &lt;a href=&quot;http://localhost:3000&quot;&gt;http://localhost:3000&lt;/a&gt; to the &lt;strong&gt;Access-Control-Allow-Origin&lt;/strong&gt; list :
 &lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -2228,8 +2228,8 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
         loading=&quot;lazy&quot;
       /&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Once is done, save and go back to the React App project.&lt;/p&gt;
-&lt;p&gt;Run &lt;code class=&quot;language-text&quot;&gt;npm start&lt;/code&gt; and when the app will run, it will open a new tab with this following URL: &lt;code class=&quot;language-text&quot;&gt;http://localhost:3000&lt;/code&gt;.
+&lt;p&gt;Once it is done, save and go back to the React App project.&lt;/p&gt;
+&lt;p&gt;Run &lt;code class=&quot;language-text&quot;&gt;npm start&lt;/code&gt; and when the app will run, it will open a new tab with the following URL: &lt;code class=&quot;language-text&quot;&gt;http://localhost:3000&lt;/code&gt;.
 &lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -2265,12 +2265,12 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
 &lt;blockquote&gt;
 &lt;p&gt;If the port has changed because you have already something running on the 3000 port, please edit your CORS configuration by setting the correct port in your API Gateway.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;I hope this article was helpful for you, like I said this is my article guys, so it will not be perfect… but if you want to send me a feedback do not hesitate to contact me in DM via Twitter or my other social links :) Thank you for your time!&lt;/p&gt;
+&lt;p&gt;I hope this article was helpful for you like I said this is my article guys, so it will not be perfect… but if you want to send me feedback do not hesitate to contact me in DM via Twitter or my other social links :) Thank you for your time!&lt;/p&gt;
 &lt;h3&gt;Go further&lt;/h3&gt;
 &lt;p&gt;Now your API is working, this is some extra-work you can do :&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Secure some API calls with Cognito.&lt;/li&gt;
-&lt;li&gt;Send SMS / Email to your subscribers list&lt;/li&gt;
+&lt;li&gt;Send SMS / Email to your subscriber’s list&lt;/li&gt;
 &lt;li&gt;Customize domain name for your API&lt;/li&gt;
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Serverless App with AWS in ReactJS, using Lambda & API Gateway - Part 2]]></title><description><![CDATA[Hey folks! If you didn’t read the previous post, I suggest you to read it  before continuing. If you did, let’s continue! At this step, you…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-2/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-2/</guid><pubDate>Sat, 30 May 2020 15:00:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey folks! If you didn’t read the previous post, I suggest you to &lt;a href=&quot;../serverless-api-with-lambda-part-1&quot;&gt;read it&lt;/a&gt;  before continuing. If you did, let’s continue!&lt;/p&gt;
 &lt;p&gt;At this step, you normally have a beautiful database which only asking to be queried. Let’s move on to the first step.&lt;/p&gt;
@@ -2309,17 +2309,17 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Our Client-Side App will query our API. The API Gateway will invoke some Lambda Functions, and those lambda will interacts with our DynamoDB blog table.&lt;/p&gt;
-&lt;p&gt;But, to allow those interaction between our different AWS Services, we must configure an &lt;strong&gt;IAM role&lt;/strong&gt; with particular &lt;strong&gt;IAM policies&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Our Client-Side App will query our API. The API Gateway will invoke some Lambda Functions, and those lambdas will interact with our DynamoDB blog table.&lt;/p&gt;
+&lt;p&gt;But, to allow those interactions between our different AWS Services, we must configure an &lt;strong&gt;IAM role&lt;/strong&gt; with particular &lt;strong&gt;IAM policies&lt;/strong&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;If you want to know what are the IAM roles, why we need them, I’ll provide you the link to the  &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html&quot;&gt;IAM AWS Official Documentation&lt;/a&gt;. &lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Let’s navigate to the IAM Service through &lt;code class=&quot;language-text&quot;&gt;Security, Identity, &amp;amp; Compliance &amp;gt; IAM&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Before creating our IAM role, we will create the policy which will be attached to our role. For that, click on &lt;code class=&quot;language-text&quot;&gt;Policies &amp;gt; Create Policy&lt;/code&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;By default, an explicit deny is set to all resources created in AWS. You must grant permissions via IAM Policies. and attach them to your resources. In you want more informations about IAM Roles, Policies, Groups, have a look &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html&quot;&gt;to the officiel documentation of IAM&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;By default, an explicit deny is set to all resources created in AWS. You must grant permission via IAM Policies. and attach them to your resources. If you want more information about IAM Roles, Policies, Groups, have a look &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html&quot;&gt;to the official documentation of IAM&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Choose the &lt;code class=&quot;language-text&quot;&gt;JSON&lt;/code&gt; editor tab and copy paste this following JSON policy :&lt;/p&gt;
+&lt;p&gt;Choose the &lt;code class=&quot;language-text&quot;&gt;JSON&lt;/code&gt; editor tab and copy-paste this following JSON policy :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;token property&quot;&gt;&quot;Version&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2012-10-17&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
     &lt;span class=&quot;token property&quot;&gt;&quot;Statement&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
@@ -2348,9 +2348,9 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
     &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Do not forget to change the &lt;strong&gt;region&lt;/strong&gt; and the &lt;strong&gt;account id&lt;/strong&gt; inside the &lt;strong&gt;Resource arn&lt;/strong&gt; bloc. The region is the one selected in the AWS Console navigation bar, and your account id can be found by checking the IAM users sign-in link in the IAM Dashboard.&lt;/p&gt;
+&lt;p&gt;Do not forget to change the &lt;strong&gt;region&lt;/strong&gt; and the &lt;strong&gt;account id&lt;/strong&gt; inside the &lt;strong&gt;Resource ARN&lt;/strong&gt; bloc. The region is the one selected in the AWS Console navigation bar, and your account id can be found by checking the IAM users sign-in link in the IAM Dashboard.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Finally, you can hit the Next button to review your policy, add a name and create your policy. You should have  a screen like this :&lt;/p&gt;
+&lt;p&gt;Finally, you can hit the Next button to review your policy, add a name, and create your policy. You should have  a screen like this :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -2383,9 +2383,9 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Let me explain a little bit what this policy does. The first &lt;code class=&quot;language-text&quot;&gt;Effect&lt;/code&gt; will allow our resources (lambdas) to make some basics interactions with DynamoDB, for example: &lt;strong&gt;Query, Scan or PutItem&lt;/strong&gt; etc. For these specifics actions, we should fill the ARNs of our DynamoDB table/indexes.&lt;/p&gt;
+&lt;p&gt;Let me explain a little bit about what this policy does. The first &lt;code class=&quot;language-text&quot;&gt;Effect&lt;/code&gt; will allow our resources (lambdas) to make some basics interactions with DynamoDB, for example, &lt;strong&gt;Query, Scan or PutItem&lt;/strong&gt;, etc. For these specifics actions, we should fill the ARNs of our DynamoDB table/indexes.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;You always should follow one of the best practice in AWS, the &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege&quot;&gt;Principle of Least Privileges&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You always should follow one of the best practices in AWS, the &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege&quot;&gt;Principle of Least Privileges&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;I will not explain the second effect bloc (the &lt;strong&gt;lambda:InvokeFunction&lt;/strong&gt;) for now, I’ll keep it for later.&lt;/p&gt;
 &lt;p&gt;Our IAM Policy has been created and we can finally create our IAM Role. Go back to the IAM Dashboard (&lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Security, Identity &amp;amp; Compliance &amp;gt; IAM&lt;/code&gt;). Click on &lt;code class=&quot;language-text&quot;&gt;Roles &amp;gt; Create a role&lt;/code&gt;.&lt;/p&gt;
@@ -2458,7 +2458,7 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
 &lt;p&gt;Good job! Your role is now ready to be used. I think it’s time for coding!&lt;/p&gt;
 &lt;p&gt;You can now navigate to the Lambda Service trough: &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Compute &amp;gt; Lambda&lt;/code&gt;.&lt;/p&gt;
 &lt;h3&gt;Second step: Create our lambda functions&lt;/h3&gt;
-&lt;p&gt;We will start to create a first Lambda Function which will basically read out the content of our DynamoDB blog table.&lt;/p&gt;
+&lt;p&gt;We will start to create a first Lambda Function which will read out the content of our DynamoDB blog table.&lt;/p&gt;
 &lt;p&gt;So hit the &lt;code class=&quot;language-text&quot;&gt;Create Function&lt;/code&gt; button and keep the selected creation option (Author from scratch). Choose a name for your Lambda Function, &lt;code class=&quot;language-text&quot;&gt;GetArticles&lt;/code&gt; for example, and go for the &lt;code class=&quot;language-text&quot;&gt;Python 3.8&lt;/code&gt; language runtime.&lt;/p&gt;
 &lt;p&gt;Before creating our function, one last important step is to select our IAM Role previously created. Open the Permissions just below, click on &lt;code class=&quot;language-text&quot;&gt;Use an existing role&lt;/code&gt; and select your service role from the selected list like this:&lt;/p&gt;
 &lt;p&gt;&lt;span
@@ -2494,12 +2494,12 @@ client_secret &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;sp
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Then create your function. you will be redirected to your Lambda.&lt;/p&gt;
-&lt;p&gt;Scroll down a little bit to your Lambda Code Editor. In this Lambda, we just want to retrieve all Articles from our table. For that, we will use the &lt;code class=&quot;language-text&quot;&gt;Scan&lt;/code&gt; operation that will just basically reads every items in a table. (More information &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html&quot;&gt;here&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Scroll down a little bit to your Lambda Code Editor. In this Lambda, we just want to retrieve all Articles from our table. For that, we will use the &lt;code class=&quot;language-text&quot;&gt;Scan&lt;/code&gt; operation that will just basically reads every item in a table. (More information &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html&quot;&gt;here&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;Copy/paste this following code in the editor :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Boto is the Amazon Web Services (AWS) SDK for Python&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
 
-&lt;span class=&quot;token comment&quot;&gt;# To interact with DynamoDB, I just need to specity what resource I will use from boto3 (here: dynamodb)&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# To interact with DynamoDB, I just need to specify what resource I will use from boto3 (here: dynamodb)&lt;/span&gt;
 dynamodb &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;resource&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;dynamodb&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 
 &lt;span class=&quot;token comment&quot;&gt;# Now I specify which table in DynamoDB I want to interact with.&lt;/span&gt;
@@ -2514,11 +2514,11 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
         &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; response&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Items&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;except&lt;/span&gt; Exception &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
         &lt;span class=&quot;token comment&quot;&gt;# If an exception was thrown, I just catch it to print a log, and then I raise the error.&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;An error occured while retrieving Movies table.&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;An error occurred while retrieving Movies table.&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; e&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;No more explanations needed for this code, its quite simple, we just import the boto3 library to use the Dynamodb client. We surround our scan operation with the try/catch operator and finally we return the Items.&lt;/p&gt;
+&lt;p&gt;No more explanations needed for this code, it’s quite simple, we just import the boto3 library to use the Dynamodb client. We surround our scan operation with the try/catch operator and finally, we return the Items.&lt;/p&gt;
 &lt;p&gt;You can now this Lambda code by clicking &lt;code class=&quot;language-text&quot;&gt;Save&lt;/code&gt; at the top of the page, and now it’s time for testing :)&lt;/p&gt;
-&lt;p&gt;Just near the Save button, you have the possibility to create a &lt;code class=&quot;language-text&quot;&gt;Test Event&lt;/code&gt; to trigger our function handler.&lt;/p&gt;
+&lt;p&gt;Just near the Save button, you can create a &lt;code class=&quot;language-text&quot;&gt;Test Event&lt;/code&gt; to trigger our function handler.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;FYI: Every AWS Lambda function contains at least 2 parameters :&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2528,7 +2528,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;context&lt;/strong&gt; – AWS Lambda uses this parameter to provide runtime information to your handler.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Click on the &lt;code class=&quot;language-text&quot;&gt;Test&lt;/code&gt; button, choose an event name (For example: TestGetItems) and leave the rest as is. Your &lt;code class=&quot;language-text&quot;&gt;TestGetItems&lt;/code&gt; is now part of your tests events. Ready to test your lambda ? Push the test button again ;)&lt;/p&gt;
+&lt;p&gt;Click on the &lt;code class=&quot;language-text&quot;&gt;Test&lt;/code&gt; button, choose an event name (For example TestGetItems), and leave the rest as is. Your &lt;code class=&quot;language-text&quot;&gt;TestGetItems&lt;/code&gt; is now part of your test events. Ready to test your lambda? Push the test button again ;)&lt;/p&gt;
 &lt;p&gt;Normally you should see a success box like this :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -2564,7 +2564,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Well, I think we can claim our first beer, we successfully created our first lambda which reads our DynamoDB items, congrats!&lt;/p&gt;
 &lt;h3&gt;Third step: Create the other lambda functions&lt;/h3&gt;
-&lt;p&gt;The other Lambda will basically represents all the CRUD operation you can found in an API. Remember, the goal is to call these Lambda functions with API Gateway.&lt;/p&gt;
+&lt;p&gt;The other Lambda will represent all the CRUD operations you can found in an API. Remember, the goal is to call these Lambda functions with API Gateway.&lt;/p&gt;
 &lt;p&gt;So this is what is remaning for our Lambda :&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Retrieve all blog articles (GetArticles - done)&lt;/li&gt;
@@ -2573,7 +2573,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
 &lt;li&gt;Update an article (UpdateArticle - TBD)&lt;/li&gt;
 &lt;li&gt;Delete an article (DeleteArticle - TBD)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Let’s move on! Go back to the main Lambda screen, by clicking &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Compute &amp;gt; Lambda&lt;/code&gt;. Then, do the same job like you did before by clicking &lt;code class=&quot;language-text&quot;&gt;Create Function&lt;/code&gt;. Keep the same settings we did for the &lt;strong&gt;GetArticles&lt;/strong&gt; Lambda function.&lt;/p&gt;
+&lt;p&gt;Let’s move on! Go back to the main Lambda screen, by clicking &lt;code class=&quot;language-text&quot;&gt;Services &amp;gt; Compute &amp;gt; Lambda&lt;/code&gt;. Then, do the same job as you did before by clicking &lt;code class=&quot;language-text&quot;&gt;Create Function&lt;/code&gt;. Keep the same settings we did for the &lt;strong&gt;GetArticles&lt;/strong&gt; Lambda function.&lt;/p&gt;
 &lt;p&gt;This time, we will tackle our second lambda in the list, the &lt;code class=&quot;language-text&quot;&gt;FindByTitleAndCategory&lt;/code&gt;. Lambda settings should be the same :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -2612,7 +2612,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb&lt;sp
 &lt;/blockquote&gt;
 &lt;p&gt;Copy/paste this following Python code :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
-&lt;span class=&quot;token comment&quot;&gt;# This new import will be use to specify which DynamoDB Key we use in the KeyConditionExpression.&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# This new import will be used to specify which DynamoDB Key we use in the KeyConditionExpression.&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;dynamodb&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;conditions &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Key
  
 client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;resource&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;dynamodb&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
@@ -2634,7 +2634,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; client&lt;span
     &lt;span class=&quot;token keyword&quot;&gt;except&lt;/span&gt; Exception &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
         &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;An error occurred while retrieving an item in blog table.&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; e&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;In this lambda we just need to specify which fields we want to expose in our response thanks to the &lt;code class=&quot;language-text&quot;&gt;ProjectionExpression&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In this lambda, we just need to specify which fields we want to expose in our response thanks to the &lt;code class=&quot;language-text&quot;&gt;ProjectionExpression&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The second one (the most important) is the &lt;code class=&quot;language-text&quot;&gt;KeyConditionExpression&lt;/code&gt; which will determine our conditional query expression (which article we want to query).&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;You can find &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html&quot;&gt;here&lt;/a&gt; the official documentation of a Query operation.&lt;/p&gt;
@@ -2672,7 +2672,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; client&lt;span
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Do not pay attention of our test event structure, but please respect it.&lt;/p&gt;
+&lt;p&gt;Do not pay attention to our test event structure, but please respect it.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Once your event has been created, just hit the Test button again and let’s see what we received :)&lt;/p&gt;
 &lt;p&gt;&lt;span
@@ -2707,8 +2707,8 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; client&lt;span
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;This time, we just received 1 item based from the value passed in the test event. Our FindBy Lambda is now operational!&lt;/p&gt;
-&lt;p&gt;Let’s move on, and make the &lt;code class=&quot;language-text&quot;&gt;CreateArticle&lt;/code&gt; one. Same process like before, create a new Lambda function with the same settings.&lt;/p&gt;
+&lt;p&gt;This time, we just received 1 item based on the value passed in the test event. Our FindBy Lambda is now operational!&lt;/p&gt;
+&lt;p&gt;Let’s move on, and make the &lt;code class=&quot;language-text&quot;&gt;CreateArticle&lt;/code&gt; one. The same process like before, create a new Lambda function with the same settings.&lt;/p&gt;
 &lt;p&gt;Copy/paste this following code :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; json
 &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
@@ -2769,9 +2769,9 @@ lambda_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&
     &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; item&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Before configuring our test event, just some clarifications about this portion of code: &lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;First, to retrieve the body sent by the POST action, we want to handle the fact that the object passed in the body can be an object, but also a stringified object. That’s why we check the type of the &lt;code class=&quot;language-text&quot;&gt;event body&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Then, we use the &lt;code class=&quot;language-text&quot;&gt;put_item&lt;/code&gt; operation by simply passing the Item that we want to insert in database.&lt;/li&gt;
-&lt;li&gt;Finally, the official documentation is not really clear, but it’s impossible to retrieve the item created when we use the &lt;strong&gt;put_item&lt;/strong&gt; action. We need to query the DB again. But if you remember, we created already a Lamba (&lt;strong&gt;FindByArticleAndCategory&lt;/strong&gt;) which is doing exactly what we want to retrieve an item. That’s why we added the &lt;strong&gt;Lambda:InvokeFunction&lt;/strong&gt; policy in our IAM Role :) So when the &lt;strong&gt;put_item&lt;/strong&gt; is done, we just invoke our &lt;strong&gt;FindByArticleAndCategory&lt;/strong&gt; Lambda Function to retrieve our article created by providing his title and his category. It’s not the only way, and probably the right way to do that, but it’s one of the possibility to do it. The other one is to query directly the database like we did in the FindByArticleAndCategory Lambda,.&lt;/li&gt;
+&lt;li&gt;First, to retrieve the body sent by the POST action, we want to handle the fact that the object passed in the body can be an object, but also a stringified object. That’s why we check the type of &lt;code class=&quot;language-text&quot;&gt;event body&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Then, we use the &lt;code class=&quot;language-text&quot;&gt;put_item&lt;/code&gt; operation by simply passing the Item that we want to insert in the database.&lt;/li&gt;
+&lt;li&gt;Finally, the official documentation is not clear, but it’s impossible to retrieve the item created when we use the &lt;strong&gt;put_item&lt;/strong&gt; action. We need to query the DB again. But if you remember, we created already a Lamba (&lt;strong&gt;FindByArticleAndCategory&lt;/strong&gt;) which is doing exactly what we want to retrieve an item. That’s why we added the &lt;strong&gt;Lambda:InvokeFunction&lt;/strong&gt; policy in our IAM Role :) So when the &lt;strong&gt;put_item&lt;/strong&gt; is done, we just invoke our &lt;strong&gt;FindByArticleAndCategory&lt;/strong&gt; Lambda Function to retrieve our article created by providing his title and his category. It’s not the only way, and probably the right way to do that, but it’s one of the possibilities to do it. The other one is to query directly the database as we did in the FindByArticleAndCategory Lambda,.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Ok so let’s create our test event :
 &lt;span
@@ -2838,9 +2838,9 @@ lambda_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Same as DynamoDB’s RCU and WCU, if you want to use this Lambda in a real production stage, please adapt yhe settings in consequence (Memory, timeout etc.).I provide you a great article for &lt;a href=&quot;https://medium.com/@raupach/choosing-the-right-amount-of-memory-for-your-aws-lambda-function-99615ddf75dd&quot;&gt;choosing the right amount of memory for an AWS lambda&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Same as DynamoDB’s RCU and WCU, if you want to use this Lambda in a real production stage, please adapt the settings in consequence (Memory, timeout, etc.).I provide you a great article for &lt;a href=&quot;https://medium.com/@raupach/choosing-the-right-amount-of-memory-for-your-aws-lambda-function-99615ddf75dd&quot;&gt;choosing the right amount of memory for an AWS lambda&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;I think we can test our Create Lambda function, so hit the Test button and you should have this results :&lt;/p&gt;
+&lt;p&gt;I think we can test our Create Lambda function, so hit the Test button and you should have this result :&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
@@ -2873,7 +2873,7 @@ lambda_client &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boto3&
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Nice, the most difficult Lambda part has been done! The others one will be more easier.&lt;/p&gt;
+&lt;p&gt;Nice, the most difficult Lambda part has been done! The other one will be easier.&lt;/p&gt;
 &lt;p&gt;Let’s tackle the &lt;code class=&quot;language-text&quot;&gt;UpdateArticle&lt;/code&gt; Lambda. Create a new lambda and provide this code :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; json
 &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
@@ -2918,16 +2918,16 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
             &lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;e&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;response&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Error&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Message&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
             &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; e&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;For this portion of code, we will need the primary key identifier to determinate which object we want to update.&lt;/p&gt;
-&lt;p&gt;Remember, when we created our DynamoDB table, we specified a &lt;strong&gt;partition key&lt;/strong&gt; (title), and a &lt;strong&gt;sort key&lt;/strong&gt; (category) which represent our &lt;strong&gt;primary key&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;It means that if we want to make some actions in a particular item in our table, we have to specify these two properties.&lt;/p&gt;
+&lt;p&gt;For this portion of code, we will need the primary key identifier to determine which object we want to update.&lt;/p&gt;
+&lt;p&gt;Remember, when we created our DynamoDB table, we specified a &lt;strong&gt;partition key&lt;/strong&gt; (title), and a &lt;strong&gt;sort key&lt;/strong&gt; (category) which represents our &lt;strong&gt;primary key&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;It means that if we want to perform some actions in a particular item in our table, we have to specify these two properties.&lt;/p&gt;
 &lt;p&gt;Good news: For the &lt;strong&gt;update_item&lt;/strong&gt; operation, we can specify the &lt;code class=&quot;language-text&quot;&gt;ReturnValues=&amp;quot;ALL_NEW&amp;quot;&lt;/code&gt; property which will return the complete object updated.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;You have also the possibility to return only the attributes changed by changing the ReturnValues value. &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateItem.html#API_UpdateItem_RequestSyntax&quot;&gt;See here&lt;/a&gt; the possible values of the &lt;strong&gt;ReturnValues&lt;/strong&gt; property.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;In this lambda, I decided to update my item with Conditional Expressions. It means that it will update my item only if its respect the &lt;strong&gt;ConditionsExpressions&lt;/strong&gt;. If not, it will raise a &lt;strong&gt;ConditionalCheckFailedException&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;In this lambda, I decided to update my item with Conditional Expressions. It means that it will update my item only if it respects the &lt;strong&gt;ConditionsExpressions&lt;/strong&gt;. If not, it will raise a &lt;strong&gt;ConditionalCheckFailedException&lt;/strong&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;You can have a look on what are &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html&quot;&gt;conditions expressions&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can have a look at what are &lt;a href=&quot;https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html&quot;&gt;conditions expressions&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Let’s configure our test event and test it just after :
 &lt;span
@@ -3027,7 +3027,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Finally, let’s implement the latest one, create the DeleteArticle Lambda Function and provide this code :&lt;/p&gt;
+&lt;p&gt;Finally, let’s implement the latest one, create the DeleteArticle Lambda Function, and provide this code :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; json
 &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; boto3
 &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; botocore&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exceptions &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; ClientError
@@ -3133,8 +3133,8 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Woah, we did a great job, congrats. Let’s move on now to the latest part, the &lt;a href=&quot;../serverless-api-with-lambda-part-3&quot;&gt;creation of our API Gateway&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Serverless App with AWS in ReactJS, using Lambda & API Gateway - Part 1]]></title><description><![CDATA[Hey there! This is my first post on my new blog ;-) In this article we will have a look on how we can create a web application without…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-1/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-1/</guid><pubDate>Thu, 28 May 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey there! This is my first post on my new blog ;-)&lt;/p&gt;
-&lt;p&gt;In this article we will have a look on how we can create a web application without handling any server architecture/installation.&lt;/p&gt;
+&lt;p&gt;Woah, we did a great job, congrats. Let’s move on now to the latest part, the &lt;a href=&quot;../serverless-api-with-lambda-part-3&quot;&gt;creation of our API Gateway&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Serverless App with AWS in ReactJS, using Lambda & API Gateway - Part 1]]></title><description><![CDATA[Hey there! This is my first post on my new blog ;-) In this article, we will have a look at how we can create a web application without…]]></description><link>https://jstw.github.io/serverless-api-with-lambda-part-1/</link><guid isPermaLink="false">https://jstw.github.io/serverless-api-with-lambda-part-1/</guid><pubDate>Thu, 28 May 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hey there! This is my first post on my new blog ;-)&lt;/p&gt;
+&lt;p&gt;In this article, we will have a look at how we can create a web application without handling any server architecture/installation.&lt;/p&gt;
 &lt;p&gt;This kind of architecture is called “serverless”. (more information &lt;a href=&quot;https://hackernoon.com/what-is-serverless-architecture-what-are-its-pros-and-cons-cc4b804022e9&quot;&gt;here&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;Let me introduce you the architecture our the application :&lt;/p&gt;
 &lt;p&gt;&lt;span
@@ -3170,7 +3170,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;As you can see, it’s a very simple architecture. We don’t have to create so many resources to get a functional web app.&lt;/p&gt;
-&lt;p&gt;Our goal here, is to have a Client-Side application (developed in ReactJS), which will query an API (through API Gateway). Finally, this API will deserves some Lambda Functions that will interacts with our DynamoDB database.&lt;/p&gt;
+&lt;p&gt;Our goal here is to have a Client-Side application (developed in ReactJS), which will query an API (through API Gateway). Finally, this API will deserve some Lambda Functions that will interact with our DynamoDB database.&lt;/p&gt;
 &lt;p&gt;Before going further, there is a list of pre-requires :&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;You should have an AWS Account (to create one, please visit &lt;a href=&quot;https://portal.aws.amazon.com/billing/signup#/start&quot;&gt;this link&lt;/a&gt;)&lt;/li&gt;
@@ -3178,10 +3178,10 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
 &lt;li&gt;Node Package Manager (&lt;a href=&quot;https://www.npmjs.com/get-npm&quot;&gt;npm&lt;/a&gt;) or other package managers like &lt;a href=&quot;https://classic.yarnpkg.com/en/docs/install/#windows-stable&quot;&gt;yarn&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;I recommend to connect to your root account if you don’t have one, go to the IAM Dashboard and create an “admin” user. Once is done, attach the &lt;code class=&quot;language-text&quot;&gt;AdministratorAccess&lt;/code&gt; policy.&lt;/p&gt;
+&lt;p&gt;I recommend connecting to your root account if you don’t have one, go to the IAM Dashboard and create an “admin” user. Once is done, attach the &lt;code class=&quot;language-text&quot;&gt;AdministratorAccess&lt;/code&gt; policy.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Be careful&lt;/strong&gt;: For the entire article, I wil use the region &lt;strong&gt;eu-west-2&lt;/strong&gt;. You can choose every region you want, but do not forget to create all the keep the same region for all your future created resources!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Be careful&lt;/strong&gt;: For the entire article, I will use the region &lt;strong&gt;eu-west-2&lt;/strong&gt;. You can choose every region you want, but do not forget to create all the same region for all your future created resources!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Let’s start then :) Connect to your AWS Account by using the IAM users sign-in link.&lt;/p&gt;
 &lt;h3&gt;First step: Create the Database (DynamoDB)&lt;/h3&gt;
@@ -3225,7 +3225,7 @@ table &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; dynamodb_clien
 But this primary key can also be composed of a &lt;code class=&quot;language-text&quot;&gt;sort key&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The partition key is used for partitioning the data. Data with the same partition key is stored together, which allows you to query data with the same partition key in 1 query.&lt;/p&gt;
+&lt;p&gt;The partition key is used for partitioning the data. Data with the same partition key are stored together, which allows you to query data with the same partition key in 1 query.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The (optional) sort key determines the order of how data with the same partition key is stored. Using a clever sort key allows you to query many items in 1 query.&lt;/p&gt;
@@ -3233,7 +3233,7 @@ But this primary key can also be composed of a &lt;code class=&quot;language-tex
 &lt;h3&gt;Second step: Configure our DynamoDB table settings&lt;/h3&gt;
 &lt;p&gt;Our settings will be very simple. I will just create 1x &lt;strong&gt;Global Secondary Index (GSI)&lt;/strong&gt; which is composed with a partition key (&lt;code class=&quot;language-text&quot;&gt;title&lt;/code&gt; here), and a sort key, &lt;code class=&quot;language-text&quot;&gt;category&lt;/code&gt;. GSIs can be created only at the table creation and not after.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;For the Read/Write capacity mode, I will change them to have the minimum of Read capacity units (RCUs) and Write capacity units (WCUs). Of course, if you intent to use this Database in a real production environment, you will should adapt the RCUs/WCUs and perhaps use the Auto-Scaling, based on your application charge.&lt;/p&gt;
+&lt;p&gt;For the Read/Write capacity mode, I will change them to have a minimum of Read Capacity Units (RCUs) and Write capacity units (WCUs). Of course, if you intend to use this Database in a real production environment, you will adapt the RCUs/WCUs and perhaps use the Auto-Scaling, based on your application charge.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -3267,9 +3267,9 @@ But this primary key can also be composed of a &lt;code class=&quot;language-tex
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Once your DynamoDB settings are ready, feel free to hit the &lt;code class=&quot;language-text&quot;&gt;Create&lt;/code&gt; button and your table will be created in few seconds.&lt;/p&gt;
-&lt;p&gt;Once your database is available, you can provide some “Items” for later usages.&lt;/p&gt;
-&lt;p&gt;This is a basiclist of items that you can provide :&lt;/p&gt;
+&lt;p&gt;Once your DynamoDB settings are ready, feel free to hit the &lt;code class=&quot;language-text&quot;&gt;Create&lt;/code&gt; button and your table will be created in a few seconds.&lt;/p&gt;
+&lt;p&gt;Once your database is available, you can provide some “Items” for later usage.&lt;/p&gt;
+&lt;p&gt;This is a basic list of items that you can provide :&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
   &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;token property&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;My first article&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
