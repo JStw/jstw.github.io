@@ -4,7 +4,7 @@ date: "2020-05-30T15:00:03.284Z"
 description: "How to create a serverless app in AWS - Part 1 (The Lambda Functions)"
 ---
 
-Hey folks! If you didn't read the previous post, I suggest you to [read it](./../serverless-api-with-lambda-part-1)  before continuing. If you did, let's continue!
+Hey folks! If you didn't read the previous post, I suggest you to [read it](../serverless-api-with-lambda-part-1)  before continuing. If you did, let's continue!
 
 At this step, you normally have a beautiful database which only asking to be queried. Let's move on to the first step.
 
