@@ -1,4 +1,1026 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jstw Blog]]></title><description><![CDATA[A personal blog powered by Gatsby.]]></description><link>https://jstw.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 08 Jun 2020 17:59:59 GMT</lastBuildDate><item><title><![CDATA[Secure your Serverless App in AWS (Using Cognito, Cloudfront, API Gateway, and Lambda)]]></title><description><![CDATA[Hello guys! Today, we will learn together how we can secure exchanges between a client application hosted in a Cloudfront distribution and…]]></description><link>https://jstw.github.io/serverless-app-with-secured-api/</link><guid isPermaLink="false">https://jstw.github.io/serverless-app-with-secured-api/</guid><pubDate>Fri, 05 Jun 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hello guys!&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jstw Blog]]></title><description><![CDATA[A personal blog powered by Gatsby.]]></description><link>https://jstw.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 13 Jul 2020 11:19:27 GMT</lastBuildDate><item><title><![CDATA[Deploy SonarQube on AWS EC2 Instance]]></title><description><![CDATA[Hello there, today we will look forward to how you can deploy a Sonarqube in the AWS Cloud, using Amazon Cloud Compute (EC2) Service. Before…]]></description><link>https://jstw.github.io/deploy-sonarcube-on-aws/</link><guid isPermaLink="false">https://jstw.github.io/deploy-sonarcube-on-aws/</guid><pubDate>Sat, 04 Jul 2020 08:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hello there, today we will look forward to how you can deploy a &lt;strong&gt;Sonarqube&lt;/strong&gt; in the AWS Cloud, using Amazon Cloud Compute (EC2) Service.&lt;/p&gt;
+&lt;p&gt;Before going further, let’s introduce what is Sonarcube :&lt;/p&gt;
+&lt;p&gt;SonarQube is the leading tool for continuously inspecting the Code Quality and Security of your codebases
+and guiding development teams during Code Reviews.&lt;/p&gt;
+&lt;p&gt;It helps your development team to write cleaner and safer code. It provides also a &lt;strong&gt;continuous code inspection&lt;/strong&gt; thanks to multiple automated static code analysis rules, protecting your app on multiple fronts, and guiding your team.&lt;/p&gt;
+&lt;p&gt;SonarQube main components are :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Code Reliability&lt;/strong&gt;: Catch tricky bugs to prevent undefined behaviour from impacting end-users.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Application Security&lt;/strong&gt;: Fix vulnerabilities that compromise your app, and learn AppSec along the way with Security Hotspots.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Technical Debt&lt;/strong&gt;: Make sure your codebase is clean and maintainable, to increase developer velocity!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Actually, 27 programming languages can be handled with Sonarqube :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Java / C# / C / C++ / JavaScript / TypeScript / Python / Go &amp;#x26; 19 more!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I think I summarize a little bit what is Sonar, you can click here if you want more information about the product.&lt;/p&gt;
+&lt;p&gt;Let’s start! In this tutorial, we will need :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;An AWS Account (to create one, please visit &lt;a href=&quot;https://portal.aws.amazon.com/billing/signup#/start&quot;&gt;this link&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Node Package Manager (&lt;a href=&quot;https://www.npmjs.com/get-npm&quot;&gt;npm&lt;/a&gt;) or other package managers like &lt;a href=&quot;https://classic.yarnpkg.com/en/docs/install/#windows-stable&quot;&gt;yarn&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;A terminal (with Admin Rights).&lt;/li&gt;
+&lt;li&gt;Angular CLI (Available &lt;a href=&quot;https://angular.io/cli&quot;&gt;here&lt;/a&gt; or if you have a package manager, just run &lt;code class=&quot;language-text&quot;&gt;npm install -g @angular/cli&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;yarn install -g @angular/cli&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Step 1: Create the EC2 Instance&lt;/h3&gt;
+&lt;p&gt;Before going further, I suggest you create an IAM Admin user in your AWS account which will have the AdministratorAccess IAM Policy. For the rest of the tutorial, I will use the AWS Region: &lt;strong&gt;London (eu-west-2)&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Let’s connect through the AWS Console, and navigate to the EC2 Service (under the Compute layer).&lt;/p&gt;
+&lt;p&gt;Launch a new instance, and select the first AMI &lt;code class=&quot;language-text&quot;&gt;Amazon Linux 2 AMI (HVM), SSD Volume Type&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Sonarqube required at least &lt;strong&gt;3GB RAM&lt;/strong&gt;, so I recommend to use a &lt;strong&gt;t2.medium&lt;/strong&gt; or higher as Instance Type. Be careful, this kind of instance type are not free tier eligible, and you will be charged for this utilization (depend on your usage).&lt;/p&gt;
+&lt;p&gt;Leave the default configuration as is, and click on &lt;strong&gt;Review and Launch&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Before launching the EC2 Instance, if you already have a key pair, select it. If not, create a new one. This key pair will be used to connect to your EC2 Instance through ssh.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/7ab26859f0eeb4ba48a9d13ea336efcf/9c177/keypair.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 47.972972972972975%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABJ0AAASdAHeZh94AAABfElEQVQoz51S2W7CQAzM/38cQqJVWwiB3Nfu5oBc5JjapoH2oX1oopFnHcf2jm35vo8ojpEkCcIoguu6wiPibLMsA8ckaSrnIAgQUzz7u65D27aCqqoQhCEsx3FwPp8FzumE/X5P3IVt2+LzfQ/H41EKeZ4HjuczFzHGQGstNkli2OS3aspcMspSqiilkFI3HKgpsCzIX1bQ5F87y4kXRYHCFI/4pmnEb3FHXHG13NnhcHh0zeDO+Nvq55j1ZmxZhmmaoLSBdb1eUVclLnWFhjjbjjT5z5Pl1KGmrMqUSHODTBVPnms6G+FGrl3KNVkWBvO6roWzlYRZfk8YpowCbqjgRQpJXiHVNVJVI8wowaVB3/cy1RU82e98WRbSU8PiCb2+7PDx/karEqJtrljmCTNh+cI0jRjHJ1ivhV9Kwg/75nkmDSkh67buXNt2GCm4HwYMv+B2u8kV+R+eeiw7nIpfhvJT1nvVv3DXKsNms8F2uxXsdjsMJImmNfoE2mr1sWnwllsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;New EC2 Keypair&quot;
+        title=&quot;New EC2 Keypair&quot;
+        src=&quot;/static/7ab26859f0eeb4ba48a9d13ea336efcf/fcda8/keypair.png&quot;
+        srcset=&quot;/static/7ab26859f0eeb4ba48a9d13ea336efcf/12f09/keypair.png 148w,
+/static/7ab26859f0eeb4ba48a9d13ea336efcf/e4a3f/keypair.png 295w,
+/static/7ab26859f0eeb4ba48a9d13ea336efcf/fcda8/keypair.png 590w,
+/static/7ab26859f0eeb4ba48a9d13ea336efcf/9c177/keypair.png 880w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Once you downloaded your select or created your EC2 Key Pair, you can launch your instance.&lt;/p&gt;
+&lt;p&gt;Wait a few seconds, and your instance will be available. To connect to your EC2 Instance, go back to the EC2 Dashboard, and click on the Running Instance or click on View instance just after it has been created.&lt;/p&gt;
+&lt;p&gt;Open a terminal, and locate the place you downloaded your EC2 Key Pair (It’s a .pem file) :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;batch&quot;&gt;&lt;pre class=&quot;language-batch&quot;&gt;&lt;code class=&quot;language-batch&quot;&gt;&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;chmod&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;400&lt;/span&gt; &amp;lt;&amp;lt; your key pair pem file &gt;&gt;.pem&lt;/span&gt;
+&lt;span class=&quot;token command&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ssh&lt;/span&gt; &lt;span class=&quot;token parameter attr-name&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&amp;lt;&amp;lt; your key pair pem file &gt;&gt;&quot;&lt;/span&gt; ec2-user@&amp;lt;&amp;lt; ec2 instance public DNS address &gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once connected to your EC2, you should see something like this :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+13 package(s) needed for security, out of 22 available
+Run &amp;quot;sudo yum update&amp;quot; to apply all updates.
+[ec2-user@ip-&amp;lt;&amp;lt; your ec2 ip &amp;gt;&amp;gt; ~]$&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;First, run a &lt;strong&gt;sudo yum update&lt;/strong&gt; to apply all updates.&lt;/p&gt;
+&lt;p&gt;Then, we will install and configure a PostgreSQL Database. This database is needed to save the SonarQube analysis :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# Add the pgdg repository in Amazon Linux
+sudo amazon-linux-extras install postgresql10
+
+# Now, install postgresql 10
+sudo yum install -y postgresql-server postgresql-devel
+
+# Create a new PostgreSQL database cluster
+sudo /usr/bin/postgresql-setup --initdb
+
+# Start the PostgreSQL service
+systemctl start postgresql&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Normally you will see your PostgreSQL running if you type &lt;code class=&quot;language-text&quot;&gt;systemctl status postgresql&lt;/code&gt; :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/600381decfd55fd69a88a1ef852dc6ba/c0255/postgre_service_running.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 27.027027027027025%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAAAtElEQVQY041Qyw6DMAwrAsSrhVJQn5Qy+P9v9Gg47LbtYMWxEisxW5cVznuYzSKkgPDaYL2BUguW5YFSipD5NE2QUmKeZ3DO0Q8DBBcQQqBtW7C6rol4H3CeF2KISCkhxghrLQ02TYOu66gyxn7hIXn5vC7s+w5jDNWUDtKzUVEU/5h9DLU2OI4D2xbJ0DmHEAJBa01vlmWJqqr+M+z6npZyRuM4Umb9reU+v0053bqU89dr32rRcW5UAHrPAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;PostgreSQL service running&quot;
+        title=&quot;PostgreSQL service running&quot;
+        src=&quot;/static/600381decfd55fd69a88a1ef852dc6ba/fcda8/postgre_service_running.png&quot;
+        srcset=&quot;/static/600381decfd55fd69a88a1ef852dc6ba/12f09/postgre_service_running.png 148w,
+/static/600381decfd55fd69a88a1ef852dc6ba/e4a3f/postgre_service_running.png 295w,
+/static/600381decfd55fd69a88a1ef852dc6ba/fcda8/postgre_service_running.png 590w,
+/static/600381decfd55fd69a88a1ef852dc6ba/efc66/postgre_service_running.png 885w,
+/static/600381decfd55fd69a88a1ef852dc6ba/c0255/postgre_service_running.png 920w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The next step is to create our database user and our database. For that, we will use the &lt;strong&gt;PSQL Shell&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;sudo -u postgres psql postgres&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And run these queries :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;postgres=# CREATE USER sonar WITH ENCRYPTED PASSWORD &amp;#39;&amp;lt;&amp;lt; put a password &amp;gt;&amp;gt;&amp;#39;
+postgres-# ;
+postgres=# CREATE DATABASE sonarqube;
+postgres=# GRANT ALL PRIVILEGES ON DATABASE sonarqube to sonar;
+postgres=#&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Ok, now our DB, DB User and our User Privileges are created. The latest step for psql shell is to locate the &lt;code class=&quot;language-text&quot;&gt;pg_hba.conf&lt;/code&gt; configuration file :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;SHOW hba_file;
+
+# you should have an output like this :
+postgres=# SHOW hba_file;
+            hba_file
+---------------------------------
+ /var/lib/pgsql/data/pg_hba.conf
+(1 row)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;For me its actually located in &lt;code class=&quot;language-text&quot;&gt;/var/lib/pgsql/data/pg_hba.conf&lt;/code&gt;, but maybe it can be different for you.&lt;/p&gt;
+&lt;p&gt;Once you have the file path, quit the psql shell with &lt;code class=&quot;language-text&quot;&gt;\q&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We will edit the file with nano :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;sudo nano /var/lib/pgsql/data/pg_hba.conf&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;and replace all the content by :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;local   all     sonar   md5
+local   all     all     peer
+host    all     all     127.0.0.1/32    md5
+host    all     all     ::1/128         md5&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then restart the PostgreSQL service  (with sudo):&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;sudo systemctl restart postgresql&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Next step is to create a non-root Sonar System User :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# creating user group :
+sudo groupadd sonar
+
+# creating user named sonar without sign in options
+sudo useradd -c “SonarDemoJstw” -d /opt/sonarqube -g sonar -s /bin/bash sonar
+
+# set a password to activate our user :
+sudo passwd sonar
+
+# add the user to the sudo groups
+sudo usermod -a -G sonar ec2-user&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Let’s continue and install OpenJDK 11. Java is required for Sonarqube, and we will use version 7.9+ of Sonar that need Java 11.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# downloading zip file
+curl -O https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_linux-x64_bin.tar.gz
+
+# unzip and move files to the correct place
+tar zxvf openjdk-11.0.1_linux-x64_bin.tar.gz
+sudo mv jdk-11.0.1 /usr/local/
+
+# change access from the jdk folder
+sudo chmod -R 755 /usr/local/jdk-11.0.1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We need to add java to the $PATH. For that, use &lt;code class=&quot;language-text&quot;&gt;sudo nano /etc/profile&lt;/code&gt; and add these following lines at the end of the file :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;export JAVA_HOME=/usr/local/jdk-11.0.1
+export PATH=$JAVA_HOME/bin:$PATH&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Do not forget to &lt;code class=&quot;language-text&quot;&gt;source /etc/profile&lt;/code&gt; to load configuration changes.&lt;/p&gt;
+&lt;p&gt;Finally, you should have Java installed, and you can check yourself by writing &lt;code class=&quot;language-text&quot;&gt;java -version&lt;/code&gt;, you should see :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$ java -version
+openjdk version &amp;quot;11.0.1&amp;quot; 2018-10-16
+OpenJDK Runtime Environment 18.9 (build 11.0.1+13)
+OpenJDK 64-Bit Server VM 18.9 (build 11.0.1+13, mixed mode)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here we are! We can now install Sonarqube ;-)&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# download Sonarqube
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.9.1.zip
+
+# unzip files
+unzip sonarqube-developer-7.9.1.zip
+
+# move sources to the approriate folder
+sudo mv -v sonarqube-7.9.1/* /opt/sonarqube
+
+# change ownership of all the sonarqube files to user sonar
+sudo chown -R sonar:sonar /opt/sonarqube
+
+# change file access privileges
+sudo chmod -R 775 /opt/sonarqube&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Before running Sonarqube, we will have some few updates to do in the configuration files.&lt;/p&gt;
+&lt;p&gt;Edit the &lt;code class=&quot;language-text&quot;&gt;sonar.sh&lt;/code&gt; file :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;sudo nano /opt/sonarqube/bin/linux-x86-64/sonar.sh&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Find the commented line &lt;code class=&quot;language-text&quot;&gt;#RUN_AS_USER=&lt;/code&gt; and replace by :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;RUN_AS_USER=sonar&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Quit and save this file, and open the &lt;code class=&quot;language-text&quot;&gt;sonar.properties&lt;/code&gt; file :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;sudo nano /opt/sonarqube/conf/sonar.properties&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;First step, is to use the JDBC credentials. Find the commented lines &lt;code class=&quot;language-text&quot;&gt;sonar.jdbc.username&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;sonar.jdbc.password&lt;/code&gt; and replace by :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;sonar.jdbc.username=sonar
+sonar.jdbc.password=&amp;lt;&amp;lt; your DB password &amp;gt;&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The DB password was the one created by the `CREATE USER sonar WITH ENCRYPTED PASSWORD ’&amp;#x3C;&amp;#x3C; put a password &gt;&gt;’ request.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Do not quit the file edition, and this time uncomment the &lt;code class=&quot;language-text&quot;&gt;sonar.jdbc.url&lt;/code&gt; line and replace by :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Let’s check also the &lt;strong&gt;WEB SERVER&lt;/strong&gt; configuration, find the &lt;code class=&quot;language-text&quot;&gt;sonar.web.javaOpts&lt;/code&gt; line, uncomment it and put :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;sonar.web.javaOpts=-Djava.net.preferIPv4Stack=true&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Sometime, Java trying to use IPv6. So we will force Java to prefer IPv4 instead.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Just below, you will have also a &lt;code class=&quot;language-text&quot;&gt;sonar.web.javaAdditionalOpts&lt;/code&gt; commented line. Uncomment it, and add :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;sonar.web.javaAdditionalOpts=-server&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Find the &lt;code class=&quot;language-text&quot;&gt;sonar.web.host&lt;/code&gt;, and uncomment it. You can keep the default value &lt;code class=&quot;language-text&quot;&gt;0.0.0.0&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Finally, you can save your changes and exit this file.&lt;/p&gt;
+&lt;p&gt;Before starting the Sonar server, we will override some defaults limit configuration :&lt;/p&gt;
+&lt;p&gt;Edit both &lt;code class=&quot;language-text&quot;&gt;/etc/systemd/user.conf&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;/etc/systemd/system.conf&lt;/code&gt;, then add this following line at the end:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;DefaultLimitNOFILE=65536&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once is done, edit &lt;code class=&quot;language-text&quot;&gt;/etc/security/limits.conf&lt;/code&gt; and add these following lines :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;*  soft    nofile  65536
+*  hard    nofile  65536
+elasticsearch   soft    nofile  65536
+elasticsearch   hard    nofile  65536
+elasticsearch   memlock unlimited&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Edit the &lt;code class=&quot;language-text&quot;&gt;/etc/sysctl.conf&lt;/code&gt; file and add this following line :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;vm.max_map_count=262144&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Reload the system configuration with &lt;code class=&quot;language-text&quot;&gt;sudo sysctl -p&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;sudo systemctl restart postgresql&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Disconnect from the server, and reconnect again :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# disconnect
+exit
+
+# reconnect
+ssh -i &amp;quot;&amp;lt;&amp;lt; your key pair pem file &amp;gt;&amp;gt;&amp;quot; ec2-user@&amp;lt;&amp;lt; ec2 instance public DNS address &amp;gt;&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I think it’s time to start the Sonar server :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;/opt/sonarqube/bin/linux-x86-64/sonar.sh start&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Provide the password we defined for the sonar sudo user.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Here we are, your Sonarqube server should run ;-)&lt;/p&gt;
+&lt;p&gt;Before accessing it, you need to add a security rule to allow inbound traffic to Sonarqube.&lt;/p&gt;
+&lt;p&gt;Go to the &lt;code class=&quot;language-text&quot;&gt;EC2 Services &amp;gt; Running instances&lt;/code&gt;. Find your instance, and click on the Security Group associated :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/6b672e719f93df3c6f8db596ec6256cf/49ee2/security_group_ec2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 12.837837837837837%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABJ0AAASdAHeZh94AAAAi0lEQVQI15WMUQrDIBBEc3/IXfrXu0itsXRj1KhRSkkIZLoKHqALwwyzu28Y7y88KOJTMubZ4DgO/DcXruvEvn9RSsEwGwvrHLz3WJYFIQSklJrHGFvu3ruunDdsWwG9M7S2EEJg8AyrIMden5RSDV7VAVLKtp+mCeu6gog4K+4C30k89QgyN+YE/ADBT+KAmGJnCAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;EC2 Security Groups&quot;
+        title=&quot;EC2 Security Groups&quot;
+        src=&quot;/static/6b672e719f93df3c6f8db596ec6256cf/fcda8/security_group_ec2.png&quot;
+        srcset=&quot;/static/6b672e719f93df3c6f8db596ec6256cf/12f09/security_group_ec2.png 148w,
+/static/6b672e719f93df3c6f8db596ec6256cf/e4a3f/security_group_ec2.png 295w,
+/static/6b672e719f93df3c6f8db596ec6256cf/fcda8/security_group_ec2.png 590w,
+/static/6b672e719f93df3c6f8db596ec6256cf/efc66/security_group_ec2.png 885w,
+/static/6b672e719f93df3c6f8db596ec6256cf/c83ae/security_group_ec2.png 1180w,
+/static/6b672e719f93df3c6f8db596ec6256cf/49ee2/security_group_ec2.png 1618w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;You will be redirected to your Security Group. Click on the &lt;strong&gt;Inbound Rules&lt;/strong&gt; tab, and edit them.&lt;/p&gt;
+&lt;p&gt;Add a new rule like below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/fc3236d824601f5d809a4b69a9d022a5/668c6/add_rule.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 27.7027027027027%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAAA0UlEQVQY05VPy27DMAzz//9h1+06oHXROn7KdhxONJA0h15mgKYsUQxjLtcrvojvH/ze7rCPB+4K8uL9v2GstXgtHrkUpJQQYzxxnv2cM9IJfBcRlA8z83IetTb0viKEqNzgfUDT97ZtU1R0znqMMSFq5pybOtHZ3ifMqhdPax1ODaVWhJjUqLxTFEGWClHNUON1XVXf9KNd63H0+EeGCzTtOixSpmFVUEBUXaSx9QnPJEcSJj6nPgy5vDe5TGNiX2DNJLclwob8Npm8Td57DPMHlEHSrp3HDskAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;TCP Rule&quot;
+        title=&quot;TCP Rule&quot;
+        src=&quot;/static/fc3236d824601f5d809a4b69a9d022a5/fcda8/add_rule.png&quot;
+        srcset=&quot;/static/fc3236d824601f5d809a4b69a9d022a5/12f09/add_rule.png 148w,
+/static/fc3236d824601f5d809a4b69a9d022a5/e4a3f/add_rule.png 295w,
+/static/fc3236d824601f5d809a4b69a9d022a5/fcda8/add_rule.png 590w,
+/static/fc3236d824601f5d809a4b69a9d022a5/efc66/add_rule.png 885w,
+/static/fc3236d824601f5d809a4b69a9d022a5/c83ae/add_rule.png 1180w,
+/static/fc3236d824601f5d809a4b69a9d022a5/668c6/add_rule.png 1692w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;By default, Sonarqube is running on port 9000. You can change this default port by editing the &lt;strong&gt;sonar.properties&lt;/strong&gt; file in &lt;strong&gt;/opt/sonarqube/conf&lt;/strong&gt; folder.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Do not forget to restart sonar just after.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Save your rules, and to access to your Sonarqube server, find your EC2 IPv4 Public address in the EC2 Running Instances dashboard, open a new tab with this following URL :
+&lt;code class=&quot;language-text&quot;&gt;http://&amp;lt;&amp;lt; your ec2 public IP address &amp;gt;&amp;gt;:9000&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;And finally, you should see the Sonar interface :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/6019883c69e6a96b9f590fc428154d07/569c6/sonar.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 22.972972972972975%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAAAqUlEQVQY06WPXQqDMBCEc1YVRag38Exeoq+C+OJ7T1Cs+Y/ZabJi8VHowDLLBL7MikfXoa4bNE3N3rZt2g+vqgpFUaAsS/brnt+GYcA8zxjHEdM0oe97CPyhGCNCCPDe82QJrTWMMVBKsRPRrdkTbI/EkM8msa4rw8VzeSV6wHtT8Cm4C8yfS6lSS4JUmoHGWAgX9qM+0e8UuuxXnfkJzSfnJBey1sI5hy+DNWxWWE5H2AAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Sonar interface&quot;
+        title=&quot;Sonar interface&quot;
+        src=&quot;/static/6019883c69e6a96b9f590fc428154d07/fcda8/sonar.png&quot;
+        srcset=&quot;/static/6019883c69e6a96b9f590fc428154d07/12f09/sonar.png 148w,
+/static/6019883c69e6a96b9f590fc428154d07/e4a3f/sonar.png 295w,
+/static/6019883c69e6a96b9f590fc428154d07/fcda8/sonar.png 590w,
+/static/6019883c69e6a96b9f590fc428154d07/efc66/sonar.png 885w,
+/static/6019883c69e6a96b9f590fc428154d07/c83ae/sonar.png 1180w,
+/static/6019883c69e6a96b9f590fc428154d07/569c6/sonar.png 1674w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s create a sample test project. You can create any kind of project you want, but for this example, I will go for an Angular project.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;ng new my-sonar-app&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To integrate our Angular app in Sonar, we need a specific package: &lt;code class=&quot;language-text&quot;&gt;sonar-scanner&lt;/code&gt;. Install this package like below :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install -g sonar-scanner&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The next step is to write some configuration to tell our Angular App how to communicate with our Sonarqube server. For that, create a file named &lt;code class=&quot;language-text&quot;&gt;sonar-project.properties&lt;/code&gt; and add this content :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;sonar.host.url=http://&amp;lt;&amp;lt; your ec2 public ipv4 &amp;gt;&amp;gt;:9000
+sonar.login=admin
+sonar.password=admin
+sonar.projectKey=my-sonar-app
+sonar.projectName=my-sonar-app
+sonar.projectVersion=1.0
+sonar.sourceEncoding=UTF-8
+sonar.sources=src
+sonar.exclusions=**/node_modules/**
+sonar.tests=src
+sonar.test.inclusions=**/*.spec.ts
+sonar.typescript.lcov.reportPaths=coverage/lcov.info&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then, add a script to run our sonar scanner in the &lt;code class=&quot;language-text&quot;&gt;package.json&lt;/code&gt; file :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;quot;scripts&amp;quot;: {
+    // ... other scripts ...
+    &amp;quot;sonar&amp;quot;: &amp;quot;sonar-scanner&amp;quot;
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you don’t want to install sonar-scanner as a global dependency you can also install it as a devDepencies in your app. But you need to adapt the npm run script.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Before running&lt;/p&gt;
+&lt;p&gt;Open a terminal as Administrator, and then go to your project directory. Let’s run the sonar script: &lt;code class=&quot;language-text&quot;&gt;npm run sonar&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;A few moments later, you should have an output like this :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;INFO: Analysis report generated in 86ms, dir size=176 KB
+INFO: Analysis report compressed in 56ms, zip size=44 KB
+INFO: Analysis report uploaded in 664ms
+INFO: ANALYSIS SUCCESSFUL, you can browse http://&amp;lt;&amp;lt; your ec2 ip &amp;gt;&amp;gt;:9000/dashboard?id                                                                                                                                  =my-sonar-app
+INFO: Note that you will be able to access the updated dashboard once the server                                                                                                                                   has processed the submitted analysis report
+INFO: More about the report processing at http://&amp;lt;&amp;lt; your ec2 ip &amp;gt;&amp;gt;:9000/api/ce/task?                                                                                                                                  id=AXMd61kTTcDJ32FJALtf
+INFO: Analysis total time: 29.918 s
+INFO: ------------------------------------------------------------------------
+INFO: EXECUTION SUCCESS
+INFO: ------------------------------------------------------------------------
+INFO: Total time: 32.274s
+INFO: Final Memory: 22M/61M
+INFO: ------------------------------------------------------------------------&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally, you can connect to your SonarQube service instance, log-in with &lt;strong&gt;admin/admin&lt;/strong&gt; credentials, and you will see your project analysis :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/4c2adc9ad76c8c42b8b52b9143e85c02/8c381/project_analysed.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 27.027027027027025%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAAA5ElEQVQY011Qy47DIAzM///a7nHb3nKpqkpJSmLeYGBq6OZSo5Hx255pXVcopXDsO0oo8Maj+4gI3nsYY0a828dxDJwx5xy01ti2F9Rrg96emEaRjdA24Gf5xV3f0biBMw9kzsj5g2GLTikNnP6OWliGOEy1VCxOwUvyH10wuxldbDFgFIALqqDJizWitYZTmD8DWIaSC7A+YOo11/WKXBJIE+ZdGorvttxAicBkQHJyboyHeoxTu/TGtVZBQ5DN5ueG3ciG1loklwYf/R9dFArM0N4JT/889liQLXreN0ZdkFzRbyHAgnLgSAtnAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Project analysed&quot;
+        title=&quot;Project analysed&quot;
+        src=&quot;/static/4c2adc9ad76c8c42b8b52b9143e85c02/fcda8/project_analysed.png&quot;
+        srcset=&quot;/static/4c2adc9ad76c8c42b8b52b9143e85c02/12f09/project_analysed.png 148w,
+/static/4c2adc9ad76c8c42b8b52b9143e85c02/e4a3f/project_analysed.png 295w,
+/static/4c2adc9ad76c8c42b8b52b9143e85c02/fcda8/project_analysed.png 590w,
+/static/4c2adc9ad76c8c42b8b52b9143e85c02/efc66/project_analysed.png 885w,
+/static/4c2adc9ad76c8c42b8b52b9143e85c02/c83ae/project_analysed.png 1180w,
+/static/4c2adc9ad76c8c42b8b52b9143e85c02/8c381/project_analysed.png 1267w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The latest step is to configure a pipeline to include the sonar analysis in our build process. For that, we will use the AWS CodeCommit, AWS CodeBuild and AWS CodePipeline services.&lt;/p&gt;
+&lt;p&gt;Let’s first navigate to the AWS CodeCommit service by clicking on &lt;code class=&quot;language-text&quot;&gt;Developer Tools &amp;gt; CodeCommit&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Let’s create a repository called: &lt;code class=&quot;language-text&quot;&gt;my-sonar-app&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Follow the connection step explained by AWS, to register your SSH Public Key and configure the usage of your SSH Key in AWS CodeCommit.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you don’t have any SSH Key, you can follow this &lt;a href=&quot;https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-ssh-unixes.html?icmpid=docs_acc_console_connect_np&quot;&gt;documentation&lt;/a&gt; to create and integrate an SSH Key in an AWS CodeCommit repository.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Once your SSH key is ready to be used, you can git clone your CodeCommit repository :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;git clone ssh://git-codecommit.&amp;lt;&amp;lt; your aws region &amp;gt;&amp;gt;.amazonaws.com/v1/repos/&amp;lt;&amp;lt; your repo name &amp;gt;&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once you cloned your repository, you can copy/paste the content of the previous Angular project (my-sonar-app) in this repository.&lt;/p&gt;
+&lt;p&gt;You should have something like this :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8858782849ca85c2f5ecee5ec786b133/20982/project_dir.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 60.810810810810814%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABqklEQVQoz21SiW6sMAzk/3+xarePq4/lTMKRA5iOswulq1qynMMee2wn3aDQdD16pTFog3vToro3WJyHCys8dV1XhKfdtu20h17vya3SeKtGZINHSs2ihmj/9R6NthjHGcqMCAwUmeblPG/7jnmx2GlFE+weWtXMskeH4yMq7yEEAo7QWsdKROZ5gjYm+rzGEHDGUN/Q9YpB6nTC03rvoJRC27Y8+/hmjEbf95HiAXhIsm0WXVsSzGBZll8ZH4A+ViMAUu0DkPdhOAEj9aOHnjTK/xXKssA4TX8CmhdAacE1uYi1NmrivEWa3ZCmKYOGPwGF8muF0lMBOETOkiRZ6PRZFCjyDE1dn0FHD0PwrMhAkeIJSDAB3PcfyjPZOedY4bohLUq8v39w/+5YrIvT3Z5TtnSSftXcT/ccSkcmccqHHw+KCWR9Em0DPvIvfKYZ8q+KCx0QmNhzjcTO1nPpDZd/wMw/2a5u0Oj4Jj7Rj2/j4jAJoFC+5QXyLEVVVbHsa7PjlJm977qTsvT0QVl8XoZiZcqkeieYNPVY3v3s4c9iX6cseh2eFCL6Db3Xpu9lJbqTAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Project sources&quot;
+        title=&quot;Project sources&quot;
+        src=&quot;/static/8858782849ca85c2f5ecee5ec786b133/fcda8/project_dir.png&quot;
+        srcset=&quot;/static/8858782849ca85c2f5ecee5ec786b133/12f09/project_dir.png 148w,
+/static/8858782849ca85c2f5ecee5ec786b133/e4a3f/project_dir.png 295w,
+/static/8858782849ca85c2f5ecee5ec786b133/fcda8/project_dir.png 590w,
+/static/8858782849ca85c2f5ecee5ec786b133/20982/project_dir.png 778w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Before starting the configuration, we will create an S3 bucket to host our web application. Go to S3, by clicking &lt;code class=&quot;language-text&quot;&gt;Storage &amp;gt; S3&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Create a bucket, for ex: &lt;strong&gt;our-super-webapp&lt;/strong&gt;, and leave default configuration as is.&lt;/p&gt;
+&lt;p&gt;Once it’s done, click on the first tab, &lt;strong&gt;Block Public Access&lt;/strong&gt;, and un-check the first one, then save.&lt;/p&gt;
+&lt;p&gt;Then, click on the &lt;strong&gt;Permissions&lt;/strong&gt; tab, add a new &lt;strong&gt;Bucket Policy&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;Version&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;2012-10-17&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;Statement&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;Sid&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;PublicReadGetObject&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;Effect&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Allow&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;Principal&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;*&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;Action&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;s3:GetObject&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;Resource&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;arn:aws:s3:::&amp;lt;&amp;lt; put here your bucket name &gt;&gt;/*&quot;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Save it, and your bucket will be now public.&lt;/p&gt;
+&lt;p&gt;Ok so now, our S3 bucket is ready to be used in our build, so before pushing our Angular App in our AWS CodeCommit repository, we will create our AWS Pipeline.&lt;/p&gt;
+&lt;p&gt;Go back to the AWS CodePipeline, and click on &lt;code class=&quot;language-text&quot;&gt;Pipeline &amp;gt; Getting Started &amp;gt; Create pipeline&lt;/code&gt; on the left navbar.&lt;/p&gt;
+&lt;p&gt;Choose a name for the pipeline, for example &lt;strong&gt;MySuperPipeline&lt;/strong&gt; :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/db412ff864cce2cedd2d104d5cac8e0b/25c1c/pipeline_cfg_1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 52.70270270270271%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAABYklEQVQoz41Si46DMAzj/79xuu02NhhQoNAXUOpLCuz2lBbJCtDGcUwSKSWqSkDUNSohoJSCNgZa6wX8/CV6qk2apsHxeEKWZTgcfmGthfce0zS9YBzHj+BzQ6SJNhqt7KBIDQeT/V8kkki0EM4hIHwAxzAMSFjm8ZRiT+ou+XWVbx9GMaTarMr9PMc8U+Z4IeQR+66Lfjnn4EnJNxFJwhvCRlnsrzVKqSDtCDXN0FOgHOIzZ01584gFWOtuKu/BgpLGeewqjZ9cYJcJnFuDizQojUc9BAgXUNMd7n4tShRlhbKq6I8uG6DiZENUybYk7FfbK9iR/GHZnjoRhjuMqwIumldsXm6+8pnjkQ11SNMzrU2OoiggaBfbtkVH+8m5rpsILrwRrg2eI3qYtxrnvKRxChqnjMW83H1/B7Wg63pCF1fqXQz0PemNI08EJO0id9hMXzLBucd3AhdOT8vPE/DZHwFCWI8N2Z30AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Pipeline config 1&quot;
+        title=&quot;Pipeline config 1&quot;
+        src=&quot;/static/db412ff864cce2cedd2d104d5cac8e0b/fcda8/pipeline_cfg_1.png&quot;
+        srcset=&quot;/static/db412ff864cce2cedd2d104d5cac8e0b/12f09/pipeline_cfg_1.png 148w,
+/static/db412ff864cce2cedd2d104d5cac8e0b/e4a3f/pipeline_cfg_1.png 295w,
+/static/db412ff864cce2cedd2d104d5cac8e0b/fcda8/pipeline_cfg_1.png 590w,
+/static/db412ff864cce2cedd2d104d5cac8e0b/efc66/pipeline_cfg_1.png 885w,
+/static/db412ff864cce2cedd2d104d5cac8e0b/25c1c/pipeline_cfg_1.png 1047w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Once it’s done, click on &lt;strong&gt;Next&lt;/strong&gt;. The next step will be our &lt;strong&gt;Stage&lt;/strong&gt; configuration.&lt;/p&gt;
+&lt;p&gt;Choose &lt;strong&gt;AWS Repository&lt;/strong&gt; as Source Provider, select your repository previously created, add &lt;strong&gt;master&lt;/strong&gt; as branch name and finally select the &lt;strong&gt;AWS CodePipeline&lt;/strong&gt; detection options :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/f3c66ea8426892f6b127941521313524/20751/pipeline_cfg2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 60.13513513513513%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABeElEQVQoz52SCW7DIBBFff8TtmqitEqdxAYbr4DX35kxNEsbqSrS1wA2b9bEVBWyLEPfW3jv4Zz7l/htby2SpmmQKyWHZZ4x/0FLUDxP0ySWoUnX98jyHOnpjKqqyZuHJbi1TsSOrLvZs6VseO/C/bIs4DUSOGFqXdeogtjbM/GDiSJhp94PBFoxE2xd1yuwbVsoraF1IV75chhG0iB2HGnPCnvW47oDcjqKYJcsFyg/dNIcv9mocGZHPijC7oBd1wnImEoi4QjiD8/WLeQHMEZYGiPR8Zk/cG2ki2yjuLtkt5KMvwOds2hpdLgxPXWc01rp0RKKLeMRmsF3C93N8wZ/BHLjEtP2eDlmOKQX7I4nHE45PlWJVBuxp6KG6T24eUVpJBtdlBLhErMImXB9k9pP2OsOu1ThjfR6vGB/1njPK7IFPlSNwm8Puc650gLc5tV9K05D0tGHyg3QrUVJkRSdhbEDmmEWscPabWM0jtd59DfdjuL6fwFqh6aKVx2EPAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Pipeline config 2&quot;
+        title=&quot;Pipeline config 2&quot;
+        src=&quot;/static/f3c66ea8426892f6b127941521313524/fcda8/pipeline_cfg2.png&quot;
+        srcset=&quot;/static/f3c66ea8426892f6b127941521313524/12f09/pipeline_cfg2.png 148w,
+/static/f3c66ea8426892f6b127941521313524/e4a3f/pipeline_cfg2.png 295w,
+/static/f3c66ea8426892f6b127941521313524/fcda8/pipeline_cfg2.png 590w,
+/static/f3c66ea8426892f6b127941521313524/efc66/pipeline_cfg2.png 885w,
+/static/f3c66ea8426892f6b127941521313524/20751/pipeline_cfg2.png 1037w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Hit Next, and now we will create our &lt;strong&gt;Build Stage&lt;/strong&gt;. Before, configuring the Build Stage, we have to create our project. Click on the &lt;strong&gt;Create Project&lt;/strong&gt; button, it will open a new popup.&lt;/p&gt;
+&lt;p&gt;Give a project name, &lt;strong&gt;MySonarProject&lt;/strong&gt; for example, and then in the Environment image section, choose &lt;strong&gt;Managed&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Once you selected the Managed one, configure the rest as below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/403eb7c37360c2da4a958501e6ccafea/0d1a4/pipeline_cfg_3.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 78.37837837837837%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABJ0AAASdAHeZh94AAACJklEQVQ4y3VUi26jMBDk///tpJPanBo1uh4JSdoANmDwC5vprgMJbXOWRrteYPZN1vUDilLgdKkSzBjhJsBFwMYJJkTYMCHECD+OcM5jJBmnqy2uMIaATAwW23LA6/GCl8MH8qrDqTUo5ICP3kM4oLaRHAUIQY7P7yirOhFPRHojJN17j2wwBr0b0RqHzo5QLiTJ6H3AQBEzPHkPBI6CI2TJEYYwgyMkp5nWA86nI4rDAY2UuJ/pP2Ax0ccePw7ZKUILoUdISr3RjqQDl0HOeqN9kvJmswmiN+n9dkbvKRPKLuu0Rd54/N4V+LX9h83bEZu/BZ52+yS3+zP+kI3xkp/JdsTzocamqPG8r0gKPJHcVRrCEKEiQhWAY+fxJiwqHdBQmyU1YgHfE2ZdUqO+o7ZkZ8J+0DjTuMhWUadoXKjAjkcnxJ/6ymb9SI2KK0xJZpq6XNU1OqXmuk4/EFM3A8krWHfOPegJEQ5aQ8oGhohZZ7ATre8YE9l9gK8jMn5xyoefpQiFkLhcSjRNmyJVqkfXsVTpvmzGmtB5/yWjGyFHxGSXskLbdVD9laynlVQzOX+8pB3mFbNzyg8JOeWK1knQYJs5XWNtSp3vKcI5sgVM+pBQG51Stdal5X90UmNW9WJCfn/9/EaoaGzeKWVOM6aVGtOSc5r8A2DpeURmO2Np0sMIRW/xSn+ZfZ4jz/coqZYd1ZLL0DQL2lRf1iWVhUvyfcQWwk86HdybBifb7AAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Pipeline config 3&quot;
+        title=&quot;Pipeline config 3&quot;
+        src=&quot;/static/403eb7c37360c2da4a958501e6ccafea/fcda8/pipeline_cfg_3.png&quot;
+        srcset=&quot;/static/403eb7c37360c2da4a958501e6ccafea/12f09/pipeline_cfg_3.png 148w,
+/static/403eb7c37360c2da4a958501e6ccafea/e4a3f/pipeline_cfg_3.png 295w,
+/static/403eb7c37360c2da4a958501e6ccafea/fcda8/pipeline_cfg_3.png 590w,
+/static/403eb7c37360c2da4a958501e6ccafea/efc66/pipeline_cfg_3.png 885w,
+/static/403eb7c37360c2da4a958501e6ccafea/0d1a4/pipeline_cfg_3.png 1036w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Do not forget to select Enable this flag if you want to build Docker images or want your builds to get elevated privileges. This grants elevated privileges to the Docker process running on the build host.&lt;/p&gt;
+&lt;p&gt;You can add a look on the additional configuration, but for this example, I will leave it as is.&lt;/p&gt;
+&lt;p&gt;The most important part is to create our &lt;strong&gt;build specifications&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Before creating it, we will need a SonarQube Token for the authenticate part during build.&lt;/p&gt;
+&lt;p&gt;Just open a new Browser Tab, or navigate to your SonarQube one if you keep it opened, and navigate to your Account :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/f77cb26f9ecf900f8b89aeea034dff04/610c0/sonar-token.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 16.216216216216214%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABJ0AAASdAHeZh94AAAApElEQVQI11WNPwuDMBTE/YoJATH6MTp1bZcW/GhFl+jYoYtgcTExfxpzbR44dPhx9447XlHLGlJKNE2DqqpIy7IE5xxCiD8YY2jbFkopdF2Hvu8xqAGX2xWn+xmccRSjfeKhRzhjYbYN+74jpUR472Gdh3OOyHcIgfTw67pinmcYbRBjRDH5N15uQgwfKuTwgAY2jwP58OvkPD89yI+WZYHWmvgCJaLLPootMY0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;SonarQube token&quot;
+        title=&quot;SonarQube token&quot;
+        src=&quot;/static/f77cb26f9ecf900f8b89aeea034dff04/fcda8/sonar-token.png&quot;
+        srcset=&quot;/static/f77cb26f9ecf900f8b89aeea034dff04/12f09/sonar-token.png 148w,
+/static/f77cb26f9ecf900f8b89aeea034dff04/e4a3f/sonar-token.png 295w,
+/static/f77cb26f9ecf900f8b89aeea034dff04/fcda8/sonar-token.png 590w,
+/static/f77cb26f9ecf900f8b89aeea034dff04/efc66/sonar-token.png 885w,
+/static/f77cb26f9ecf900f8b89aeea034dff04/c83ae/sonar-token.png 1180w,
+/static/f77cb26f9ecf900f8b89aeea034dff04/610c0/sonar-token.png 1295w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Once you are here, navigate to the &lt;strong&gt;Security&lt;/strong&gt; tab.&lt;/p&gt;
+&lt;p&gt;Enter a token name, and click on the &lt;strong&gt;Generate&lt;/strong&gt; button as below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8714e7f2d8cb5a1cabf004be45bdfa08/f3c12/sonar-token-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 73.64864864864865%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABJ0AAASdAHeZh94AAAB6ElEQVQ4y61U2W5cIQyd//+5VqmmyUNUtYrm7hvcjf3E9h1myUsfWqQjG4ONwcecrLXY9x3OOcQYEUL4J5y895imCRz4f4wTB1qWBUopCcySMQyDyHEcb+j7Hlpsk6xnu5rULaGToetWVY2iKFDXNekVStJ5XpaloGlaQkO2i6yzzvZjf43LpcC2bUdAR5F5Ms/zM/R8tWt54zxSSned3vzZlihDY+Sktm3ptBLrepzEBXp05s3H/JB57avtxNVd15UyWSSzjbKJMQmc8/RuAx3W0Ru5a9i/FIUDhujhvRGEYOkqTCEC6c5usGZFoDWeP8PdddqfUiTahISg3mGnM4b6B4byO8bqBWP9Qvo3qPaMZXgVqO4smPufmGmuWfavpL/BLr8oEcM8DDBLjVV9YNEXzOqPYNEf0ONvbGtBWTaUZS3S2xbBdne4/io7uRkFdFCbR6MMVm8x2BGdIY5Z4qXVmJxGvw9oth6jUdiDfSjTA9JRIOkUDsoS6cuT09RTYVJMT7RhEnObPVb3VmVe0FqB6ZMdYjoow2vcPVz57MA27o4972d6ZZkzzO2ntZZPIo9IzszLzLkYg5CdaSatxh8C+ZmygqdGSPw5CG1IYcnBWZcs6URG/oWyjfdkH/mdKLCnQ4MxksAnxOCQrwGLcrMAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;SonarQube token 2&quot;
+        title=&quot;SonarQube token 2&quot;
+        src=&quot;/static/8714e7f2d8cb5a1cabf004be45bdfa08/fcda8/sonar-token-2.png&quot;
+        srcset=&quot;/static/8714e7f2d8cb5a1cabf004be45bdfa08/12f09/sonar-token-2.png 148w,
+/static/8714e7f2d8cb5a1cabf004be45bdfa08/e4a3f/sonar-token-2.png 295w,
+/static/8714e7f2d8cb5a1cabf004be45bdfa08/fcda8/sonar-token-2.png 590w,
+/static/8714e7f2d8cb5a1cabf004be45bdfa08/f3c12/sonar-token-2.png 764w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Copy/paste this token, and before adding our &lt;strong&gt;buildspec&lt;/strong&gt; configuration, we will need to add few environment variables, so go back to the Additional configuration on the Environment section, and then find the &lt;strong&gt;Environment variables&lt;/strong&gt; block.&lt;/p&gt;
+&lt;p&gt;We will add 3 variables :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SONAR_ENDPOINT : Your SonarQube EC2 IP Address endpoint&lt;/li&gt;
+&lt;li&gt;SONAR_TOKEN : The Authenticate Token previously created&lt;/li&gt;
+&lt;li&gt;PROJECT : Name of the project&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/6c8af3f8fa5a6cfbd07b317c4e5a7204/fe9f1/env-var.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 40.54054054054054%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAABMElEQVQoz51R2W6EMAzk/3+yrdRdoCQhF0cSYOrxbtXjsZYsZDKZw+lutzuMsQghYjIGx3Gg1op93/GzruvCtm2/5r/Ffx3JjLWY51mImh7wYn/vVchZByvfWoviKNpaw0kBES0izrtGcE3MdOu6wvugnZcF53kil4rBR4zPHuaAsBUVYpIqhIfg9lJQpEMIQupVqEs5wzmHj8moynWdsMuG18nh3Xq8TRYvo8GYVhV0TEKHJKRDIZy9h3XzgzDGpMNXUZkHVhSLROCmDonHiDkv6uSbkA6rpqNQaxKZdifdUdMd8FFIGGPEIo7ogjP/p5TVDffGeZUV8NyJISsp+ZhdSknYH/m1BcgYqioguuLr0REF3DMaHRNHt8QyJUU6Lw77YZAece8H7WEcNfp/6hONc2zJnYCy0gAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;AWS CodeProject Env vars&quot;
+        title=&quot;AWS CodeProject Env vars&quot;
+        src=&quot;/static/6c8af3f8fa5a6cfbd07b317c4e5a7204/fcda8/env-var.png&quot;
+        srcset=&quot;/static/6c8af3f8fa5a6cfbd07b317c4e5a7204/12f09/env-var.png 148w,
+/static/6c8af3f8fa5a6cfbd07b317c4e5a7204/e4a3f/env-var.png 295w,
+/static/6c8af3f8fa5a6cfbd07b317c4e5a7204/fcda8/env-var.png 590w,
+/static/6c8af3f8fa5a6cfbd07b317c4e5a7204/fe9f1/env-var.png 883w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Once it’s done, go back to the &lt;strong&gt;Buildspec configuration&lt;/strong&gt; part, and choose &lt;strong&gt;Insert build command&lt;/strong&gt;. Switch to the editor, and add the following configuration :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0.2&lt;/span&gt;
+
+&lt;span class=&quot;token key atrule&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;CACHE_CONTROL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;86400&quot;&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;S3_BUCKET&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&amp;lt;&amp;lt; Your S3 bucket name &gt;&gt;&quot;&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;BUILD_FOLDER&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;dist&quot;&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;phases&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;install&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;runtime-versions&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;nodejs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;commands&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; echo Installing source NPM dependencies&lt;span class=&quot;token punctuation&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; npm install
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; npm install &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;g @angular/cli
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; wget https&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;//binaries.sonarsource.com/Distribution/sonar&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;scanner&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;cli/sonar&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;scanner&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;cli&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;3.3.0.1492&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;linux.zip
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; unzip sonar&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;scanner&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;cli&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;3.3.0.1492&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;linux.zip
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; export PATH=$PATH&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;./sonar&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;scanner&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;3.3.0.1492&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;linux/bin/
+  &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;commands&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; echo Build started 
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; ng build
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; sonar&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;scanner
+            &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;Dsonar.login=$SONAR_TOKEN
+            &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;Dsonar.host.url=$SONAR_ENDPOINT
+            &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;Dsonar.projectKey=$PROJECT
+&lt;span class=&quot;token key atrule&quot;&gt;artifacts&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;files&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;**/*&apos;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;base-directory&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;dist*&apos;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;discard-paths&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; yes&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Do not forget to change in the env/variables buildspec block the name of your S3 Bucket.&lt;/p&gt;
+&lt;p&gt;Finally, you can click on the &lt;strong&gt;Continue to the Codepipeline&lt;/strong&gt; button.&lt;/p&gt;
+&lt;p&gt;The popup will be closed, and you should see an output like this in AWS :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/9f483b4f33b43d21bf1cc3d7c675d3ec/7a1fb/build-project-success.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 72.97297297297297%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABJ0AAASdAHeZh94AAAB2UlEQVQ4y52UbZKcIBCGvXPukwPkGPmdC+RHKjs6OioqggjqqJ1+G92dSbKp2lD1FDTCS3/NJEo1lKYZZdmVXl4uFEKgaZr+m8Q5R8MwkLWWxnGkbds+zLquwv1+p2Rgwby4CY4FR+8j45/gu+cIMDu2Q5jIe45onglj33dKcKBtOwHieGnhl94DXszzIsLr4R28fBWESNfpeGFZ5JCE8RjSX+w7Cz0OiIkg3NVaU9O2ksPHj+8BUTz++xBBFONWVqSalpw7cxMkNyDmKeZV8sWVxF6YDkI8A2Z+JMECYmVVU3Er5eJZMWE98saH4dVyrC13BiLqODrcreqajB24bYIjZdnDvha6oX3Dva2HybxiGeN7sqEn7Tr+3lBjFPVOc8jeUG4ulDcZXVVKOZNWF+GquOHrC5NSH7pnpjgbnu2sqXWKHWi4yux6zS6jKDWHrrqOdN9zWDP31yQzCFMQG+2CWewjhz542dv2LbZNlrF33NhpUdPPvKKWRXEY/RaZY/6W5/Vpn3s7Vz+BgUIYrrY9Ya83boGPDtwQD724/Uz8eUXwQG+M/JKQDnM8ijWq3Fv+P8i/0/DjGyX4+C9wEfm9laXYZVWJDaGC9/KiIKUt6a+fSX/5RL8A3YmIZxHcQcwAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Build project success&quot;
+        title=&quot;Build project success&quot;
+        src=&quot;/static/9f483b4f33b43d21bf1cc3d7c675d3ec/fcda8/build-project-success.png&quot;
+        srcset=&quot;/static/9f483b4f33b43d21bf1cc3d7c675d3ec/12f09/build-project-success.png 148w,
+/static/9f483b4f33b43d21bf1cc3d7c675d3ec/e4a3f/build-project-success.png 295w,
+/static/9f483b4f33b43d21bf1cc3d7c675d3ec/fcda8/build-project-success.png 590w,
+/static/9f483b4f33b43d21bf1cc3d7c675d3ec/efc66/build-project-success.png 885w,
+/static/9f483b4f33b43d21bf1cc3d7c675d3ec/7a1fb/build-project-success.png 1030w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Click on Next, and now we will configure our deployment provider. Choose &lt;strong&gt;Amazon S3&lt;/strong&gt;, select your region and your S3 Bucket, and click on &lt;strong&gt;Extract file before deploy&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Leave the additional configuration as is, and click on Next again. You can review your configuration, and create your pipeline.&lt;/p&gt;
+&lt;p&gt;Once you click on the create button, you should have been redirected to your Pipeline main page. Few seconds, after you will see a status failed in the source block in your pipeline :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/206b0cd7951601e159911b23671f730f/8c76f/error-pipeline-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 62.16216216216216%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABpklEQVQoz42RuU7DQBCGV0IcDQU3iJuO+xBHiyh5Em46IBwFRwPhaKDgKQi8ATS8AxJVIDEJyTp27F2fP+vFCVGEAiN9mn9m7fHvWbJwM4L56yEs3k5j7KwFPYdVGDipQ/9xLXqPqkWukXzrWvSFdd9RQHWYf2rSckAwetYshg5i9qobk+ftGD5tlMxd9WIi2iZ705edmLrowMxllzwbj7aK95owdNog+037BPURArJ1t4Sd2AoisVXsxtawd78hdUTo/YdN7N6vSwo6OC/kUr19tywhLgMc5gMevgF+dIArcELcslzeE5BPmkGGZvGWeMfL66sk9ZlGOpOGklKg6Rosm4Nb7F8QqqqguRwYY8gbhoQxDsa57FmWBdu2/w3JioGarqM0fN+XFLTnecXeX5AspdCFKy7cxONxaMJtOKk4NJFUpOPCByqFdKjn82COj3dqIqmaSOU4qGEXHwocBpS6r+hQM034mgpXicM1DRiiVtWc2J/96xoqOxQDTc6gJJJ4enxGKvkBz3WRF66DJZe7+ntg+MuW40KhGrjt/HpBpZdUKb4AzJI7Vd/3ReUAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Error pipeline 1&quot;
+        title=&quot;Error pipeline 1&quot;
+        src=&quot;/static/206b0cd7951601e159911b23671f730f/fcda8/error-pipeline-1.png&quot;
+        srcset=&quot;/static/206b0cd7951601e159911b23671f730f/12f09/error-pipeline-1.png 148w,
+/static/206b0cd7951601e159911b23671f730f/e4a3f/error-pipeline-1.png 295w,
+/static/206b0cd7951601e159911b23671f730f/fcda8/error-pipeline-1.png 590w,
+/static/206b0cd7951601e159911b23671f730f/8c76f/error-pipeline-1.png 612w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;If you click on the Details just below the &lt;strong&gt;Failed&lt;/strong&gt; text, it’s because we specified during the pipeline configuration the “master” branch, but this branch does not exist yet.&lt;/p&gt;
+&lt;p&gt;Go back to your terminal, and navigate to the AWS Repo you previously cloned.&lt;/p&gt;
+&lt;p&gt;Create a &lt;code class=&quot;language-text&quot;&gt;.gitignore&lt;/code&gt; file at the project root directory, and add this content :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;node_modules/&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You need to update also the &lt;strong&gt;sonar-project.properties&lt;/strong&gt; file by replacing the actual content by :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;sonar.host.url=http://&amp;lt;&amp;lt; your sonarqube EC2 ip address&amp;gt;&amp;gt;:9000
+sonar.login=&amp;lt;&amp;lt; your sonar token &amp;gt;&amp;gt;
+sonar.projectKey=my-sonar-app
+sonar.projectName=my-sonar-app
+sonar.projectVersion=1.0
+sonar.sourceEncoding=UTF-8
+sonar.sources=src
+sonar.exclusions=**/node_modules/**
+sonar.tests=src
+sonar.test.inclusions=**/*.spec.ts
+sonar.typescript.lcov.reportPaths=coverage/lcov.info&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As you can see, if you run a &lt;code class=&quot;language-text&quot;&gt;git status&lt;/code&gt; command, you should see your files without node_modules directory :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/5f816b0cd884bbee9e90620f11915388/61c63/git-status.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 61.48648648648649%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABDElEQVQoz62T226DMBBE1xgw+MItQCiJ2kj9/2+czhpe2sfQh6Px7sDYltbidw//8IjPCDMZNM5hlTuCbZA6Qd8LxvHQlATDIOjYV69j7ZKDDCOkbSEikGWZsSwr1nXlTz2MkcN4lxgCgwaEEPPpLoUp8+2GbfvANM8Zzw0cg4uioDbcKMDzOi3x3mdV9AAppvztr0BrLaqqQl+WmKmBaklhDKwtUdd19kuSlV5VHn1F6z+nPBbfJwsx164tKMgXmchAyv8IfJGdrGS8FnoEfpI76Ukg9mrg42Q/g92VQDlDNvIkkdTvBnZdl+dr4CuJVCWx1+i86Tol6PDneVQ/8gE0TfZ0HrXWWVRf6x8B7/rcfxwrEwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;git status&quot;
+        title=&quot;git status&quot;
+        src=&quot;/static/5f816b0cd884bbee9e90620f11915388/fcda8/git-status.png&quot;
+        srcset=&quot;/static/5f816b0cd884bbee9e90620f11915388/12f09/git-status.png 148w,
+/static/5f816b0cd884bbee9e90620f11915388/e4a3f/git-status.png 295w,
+/static/5f816b0cd884bbee9e90620f11915388/fcda8/git-status.png 590w,
+/static/5f816b0cd884bbee9e90620f11915388/61c63/git-status.png 693w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We will run this following commands :&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;# creating local master branch
+git checkout -b master
+
+# adding the angular add content previously copy/pasted
+git add .
+
+# commiting our files
+git commit -m &amp;quot;this is my first commit&amp;quot;
+
+# push our branch (for the 1st time)
+git push --set-upstream origin master&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you navigate to the AWS CodeCommit service again, if you check in &lt;strong&gt;Repositories &gt; Branches&lt;/strong&gt; you should see your branch :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/da6972611b7d97a2368538a39b190ea2/daed9/master-branch.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 31.08108108108108%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAABD0lEQVQY001QSW7DMBDz/4/9Qp/RXttTH9ACBRJnaaxItjZrd8COZCPwgSBHHpG0uv4mcGECAx9xExJ8UhiIhSQeFcREehxhrIU2pmGvG7RaYTS60+WK4+mMw7EH46ItK70uqg1Po51Z5SfiAyYDxid0nHMwdofzASFGxA3O+4aqrXPtW51n0j4ESClbezVy2M9XmPcXmJ8PdDXB0VLJCXgU5JwbYkrNJG067c8qk6mngOApgB0Qhl9ofkVXL9vZ4Xyf8CcdcintwjhNUEqj0FyxLAsshQshGte5IsQENUeEBfCpoKuJng6/+glv3wwh5WaotKbmvrVNW+v6u1qv71fblpIh54CeG0hLz0GN/wGPl8uhP9mj0AAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;master branch created&quot;
+        title=&quot;master branch created&quot;
+        src=&quot;/static/da6972611b7d97a2368538a39b190ea2/fcda8/master-branch.png&quot;
+        srcset=&quot;/static/da6972611b7d97a2368538a39b190ea2/12f09/master-branch.png 148w,
+/static/da6972611b7d97a2368538a39b190ea2/e4a3f/master-branch.png 295w,
+/static/da6972611b7d97a2368538a39b190ea2/fcda8/master-branch.png 590w,
+/static/da6972611b7d97a2368538a39b190ea2/efc66/master-branch.png 885w,
+/static/da6972611b7d97a2368538a39b190ea2/c83ae/master-branch.png 1180w,
+/static/da6972611b7d97a2368538a39b190ea2/daed9/master-branch.png 1426w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Once it’s done, go back to the pipeline page, and if you click on your pipeline, you should see that it’s actually in progress.&lt;/p&gt;
+&lt;p&gt;It’s normal because we configured our pipeline to be triggered when we push something on the master branch, so wait a little bit until your pipeline finish.&lt;/p&gt;
+&lt;p&gt;Ok, a few minutes later your pipeline has been correctly executed with a success output :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/85d87e9214c6bc016a12881439212552/2dab4/pipeline-passed.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 54.05405405405405%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAABE0lEQVQoz6WSi26DMAxF+f9f3DraMvqCQJ4Oz9w5aVcxadNgs3RkwMGxfZ29li8oqwKtlNDGwpGHJYJ1BPIefgPaGGT72xusNXDOQTn+6DpY38NQj2EYMU0TxvHuv+MzFn1KWNRHaNuh45/nx6GlhRAQov+JEJ7njLXIjuIA0xF85znZ/Ahisz0Txgr7AWkGRPdZzPP8BwKkkchOlyuqWuByvaEWAkrrNItIfF6D1Ip1IOTVDll+ynGuzxBtA6kMl+0SmnGsNq0kdtaoJqq8Q6sFWn5RfEtUOEEdj2JI6q3F8Npl76LgG1hhFiLwLGJgMeq7yr/xVeU9FHGr5DCNE/5jKWEpSl6ZWK5JxAXf0uaSKOQHKm1atuig2msAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;pipeline passed&quot;
+        title=&quot;pipeline passed&quot;
+        src=&quot;/static/85d87e9214c6bc016a12881439212552/fcda8/pipeline-passed.png&quot;
+        srcset=&quot;/static/85d87e9214c6bc016a12881439212552/12f09/pipeline-passed.png 148w,
+/static/85d87e9214c6bc016a12881439212552/e4a3f/pipeline-passed.png 295w,
+/static/85d87e9214c6bc016a12881439212552/fcda8/pipeline-passed.png 590w,
+/static/85d87e9214c6bc016a12881439212552/efc66/pipeline-passed.png 885w,
+/static/85d87e9214c6bc016a12881439212552/c83ae/pipeline-passed.png 1180w,
+/static/85d87e9214c6bc016a12881439212552/2dab4/pipeline-passed.png 1461w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;If you go to your Sonarqube EC2 server, you should also see that the analysis has been successfully uploaded during your build :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/ddf954e227dd81ba0533644e4cdebe20/82f50/sonar-pipeline-passed.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABJ0AAASdAHeZh94AAACE0lEQVQoz4WSzW7UMBzE88RtoWXVrOgbVOLOa/RGEUgUyqG99LBU/WBhu028+XAcJ3GcbJIdxt4HINIojhX9/ZsZBwcHhzg8PMJZeIbwNEQYhpjP5/4dhqd+PZvNcHx8jBOnkxO8fXOE9/N3uL25xuPjPZbLJa6urnD+8QOC2vawnYUwAmYwcM80TfjvM3WodA6lclRVBWMMtl2PQIgNRLLBxe8LLMQCRhv+pFCoAmVZUgpVmaJUAkoKVEUCrTZoKolMKog0R1PXHNj4wUHT8KO1wMBTR0AahaRJMG5H9H1PWWzrR1h1B5Xc4Gl9CVveYWweIHKJ15QHEyDO5H5g13UYhsHbdNI8oO1b7Ha7/d44wOoHGHkLGf9A9PoFjbxByz1FF3meQdNJoUrUJA2crao2yGihNjUsaTvboW1bylIGtk4h1cqr47rWMUyVkEgjoe2NLCk6K0oE4zRiGiZEzKgbOp/3QKqGIVuGvNuNtHuP1ctnxPEnKPENafSdthf4s8nwFGd+UFpqpEojUEWBolBQ9K9q5QldY47MU3Ld6IT2Xqg11yymjFhKgpiFuFJVQXekdeUE48gmdkBSMYe+8IQuv3679Rk6wokFROIrNsklTHbNcn6i079QyBTr9Rqr1QpRFPFG6H2GSlfMsUHPO+moHKHWmiE3JG59Zipf8sr8hcyekafPpIwhpSMULCb3ci3/A5jT4bwW0ZNGAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;sonar pipeline passed&quot;
+        title=&quot;sonar pipeline passed&quot;
+        src=&quot;/static/ddf954e227dd81ba0533644e4cdebe20/fcda8/sonar-pipeline-passed.png&quot;
+        srcset=&quot;/static/ddf954e227dd81ba0533644e4cdebe20/12f09/sonar-pipeline-passed.png 148w,
+/static/ddf954e227dd81ba0533644e4cdebe20/e4a3f/sonar-pipeline-passed.png 295w,
+/static/ddf954e227dd81ba0533644e4cdebe20/fcda8/sonar-pipeline-passed.png 590w,
+/static/ddf954e227dd81ba0533644e4cdebe20/efc66/sonar-pipeline-passed.png 885w,
+/static/ddf954e227dd81ba0533644e4cdebe20/c83ae/sonar-pipeline-passed.png 1180w,
+/static/ddf954e227dd81ba0533644e4cdebe20/82f50/sonar-pipeline-passed.png 1635w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The latest step is to configure your S3 Bucket to host a web application, to see if our automated deployment works. For that, let’s navigate to S3, then click on your bucket. Open the second tab, Properties and click on static web hosting.&lt;/p&gt;
+&lt;p&gt;Configure the static web hosting as below :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/fee8f2e0ca804b95bdab0481e2120d83/4d08a/s3-config.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 113.51351351351352%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAXCAYAAAALHW+jAAAACXBIWXMAABJ0AAASdAHeZh94AAADFklEQVQ4y41UyW7UQBD1R3FGSBFwBAUQisSSwJEb38MlCxAyASWZQySu3ACJJGQjySwomdVju2239+VRZY8zS2ZGtPRU5U76ddXrV6P8UR2s7nexcaSidKqhdKJhbb+DlV8drO11sEpY6cci5/2PB91rrBN4v3zchbJ5rOLWuyPMrZ1h7sMZ7m5W8XSrhlc7VTwuXeDZVhWL21UsfKng6ecKlrZreET7t5dPcWeFsJzj3vszvNw8gVI+13F//RzzpQqebNexsHuFxd1LvC7X8ZyIl3bqWf6CiBicL+7U8ODTBR5uDMDn35TPobQtD3ttBwdtiUNq/7BH3x0XP5syw48GxUaef28Mvg/of34TishnDhoGlCQKASQQugZDNyCcELqM4AYJvDCB9GM4lAcR5V6URTeIMWkloQ8lCEP4UYyq5qEtXLR0ibYhYTke/CCA5wdwPQ+m48MmIr7EoRglKZI0RcygPCVCx3GhxFSh7Yf4VjMQ+B6kbWUwTZOiDcsimAJNzUTHDmG6EQzqgkl4pUTI4OW6RBhQFWmaZBu2lBBExGRdXaBFrf/PGiEMqeUkSbKSecMwDJiWiTCMEEYRoqmIsxjHAz1HCJFp4OSEVOFsMkIcX+djhME1Ibds2wTLQrNnoGWH+ev1dZqEGy0HQYiUCFljlTzZVAXa9AAW2UWSXWxCFul7HKaXR2AKYY8Imaxr0Cu7ISzyHUMQbD8nHkZ+6RjhsIasndrTIIRJWgrKe+ipKuqahBul2cGi/TzOeuVCkxF90sIYeRdD4L+z5fj8xFfObh0iHlRR4Kb/gmyS/Om2SSedKirtXzhcoUcj6U8iZHMyJNlG0/Vs3AyKfzUHuhtDkwGEG+Wtz7DPCCEbmW9kMkkGt2mOdduFQ3MexAnCOJk6epk0Iy3TBo+SlFQRVZa/Mk+MoAuskZkdrih/tIFMntcnZGF5hAotJw3/OOL+z1dCUaVfnyZNlUUFKUzEfmNxueXh2Zy1BJn6SgTQSNu3Xy8xv1HFScuEwn0zmKxAsTcLtnQhbCerqtI1cdqmCdMM/AMPA9A8g0/MNgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;s3 webhost config&quot;
+        title=&quot;s3 webhost config&quot;
+        src=&quot;/static/fee8f2e0ca804b95bdab0481e2120d83/fcda8/s3-config.png&quot;
+        srcset=&quot;/static/fee8f2e0ca804b95bdab0481e2120d83/12f09/s3-config.png 148w,
+/static/fee8f2e0ca804b95bdab0481e2120d83/e4a3f/s3-config.png 295w,
+/static/fee8f2e0ca804b95bdab0481e2120d83/fcda8/s3-config.png 590w,
+/static/fee8f2e0ca804b95bdab0481e2120d83/4d08a/s3-config.png 709w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Finally, copy/paste your S3 URL and check if your app has successfully been deployed :&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/0cc4bd13b5d3d93a29f88da5f8917151/29114/s3-app-deployed.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 52.70270270270271%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAAB8ElEQVQoz21RTU/UYBDuX9woCbtcWKLo0asS1MCCSPw8aALsNuxWV8SLRwwnvHrGxAhqNJq2u223319v+zjT2tJEJnk678w78/SZeaUvv218/mVj6/kYd9Z3sLK5h5WNEqsPZWw+VWr0nihYezzCegEFd7dk3N/ex9qjEVYfDLD9bAhpUT5Hu/8N1w+0/7DU/46FkYqFVzra5LtvdNx8N8GNQwL55bc6lg/LXHesY/zJgJSIHIwoTi9AsT8xcX5tA/eGp7j9/iduHfzA8akFIIMfJgj/1bIPowRxmkGfECEusSSJEUchUtOGYZj4o2pw/RAiy3C55cXXsW1IeZ6jBiXjOMbMceGFMZJMkApWI4p8GIZwvIgUxciInFrqXrbZbHZByCaEgOd5iKiB1eQEl2JNnyBJ04IkFVld3xRTE1YX5agJXNeF73vULIqzaRqF5+IgCJASMf+U1TbJakIepbIoiuA4Dpo5JuC4mWOlPE1lfMd1Nu/QMEoFnCwVmej1epifb2Oxu4ROp4Orc3O4QmjTudVq4eTkY70iVs0clmVB0zRITDCdToskg+Ojow9QhvsYKwO8eLmH4W4fr3cHUHYG6Msyzr6ela9K01S93KeqaknYBF/yfgSNEHg2LNunnUUIXB9JWD5WNUlFVJ1Z5V95AhRplNfBKwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;s3 webapp deployed&quot;
+        title=&quot;s3 webapp deployed&quot;
+        src=&quot;/static/0cc4bd13b5d3d93a29f88da5f8917151/fcda8/s3-app-deployed.png&quot;
+        srcset=&quot;/static/0cc4bd13b5d3d93a29f88da5f8917151/12f09/s3-app-deployed.png 148w,
+/static/0cc4bd13b5d3d93a29f88da5f8917151/e4a3f/s3-app-deployed.png 295w,
+/static/0cc4bd13b5d3d93a29f88da5f8917151/fcda8/s3-app-deployed.png 590w,
+/static/0cc4bd13b5d3d93a29f88da5f8917151/efc66/s3-app-deployed.png 885w,
+/static/0cc4bd13b5d3d93a29f88da5f8917151/c83ae/s3-app-deployed.png 1180w,
+/static/0cc4bd13b5d3d93a29f88da5f8917151/29114/s3-app-deployed.png 1920w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Well, I think we are done, congrats! &lt;/p&gt;
+&lt;p&gt;Let’s summarize what you accomplished during this tutorial :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You configured an EC2 Instance with the Amazon Linux AMI.&lt;/li&gt;
+&lt;li&gt;You have installed and configured Java 11 on your EC2 Instance.&lt;/li&gt;
+&lt;li&gt;You have installed and configured Sonarqube on your EC2 Instance.&lt;/li&gt;
+&lt;li&gt;You automated deployment for an Angular project in S3 once using AWS CodeCommit, CodeBuild and CodePipeline.&lt;/li&gt;
+&lt;li&gt;You integrated the sonar analysis in Codebuild.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I hope this article was helpful for you if you want to send me feedback do not hesitate to contact me in DM via Twitter or my other social links :) Thank you for your time!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Secure your Serverless App in AWS (Using Cognito, Cloudfront, API Gateway, and Lambda)]]></title><description><![CDATA[Hello guys! Today, we will learn together how we can secure exchanges between a client application hosted in a Cloudfront distribution and…]]></description><link>https://jstw.github.io/serverless-app-with-secured-api/</link><guid isPermaLink="false">https://jstw.github.io/serverless-app-with-secured-api/</guid><pubDate>Fri, 05 Jun 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Hello guys!&lt;/p&gt;
 &lt;p&gt;Today, we will learn together how we can secure exchanges between a client application hosted in a Cloudfront distribution and an API Gateway in AWS.&lt;/p&gt;
 &lt;p&gt;I wrote &lt;a href=&quot;../serverless-api-with-lambda-part-1&quot;&gt;an article&lt;/a&gt; last week to explain how we can build a serverless app with a simple ReactJS client that query an API Gateway (deserved by Lambda functions) to get items from a DynamoDB.&lt;/p&gt;
 &lt;p&gt;Well, you will see this article is not very different from the previous one in the beginning, but this time we will go a little bit further in the configuration of our API Gateway. We will also have a look at some new services like Amazon Cognito, and Cloudfront.&lt;/p&gt;
