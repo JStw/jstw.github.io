@@ -16,9 +16,9 @@ If you remember our architecture schema :
 
 ![Architecture](../serverless-api-with-lambda-part-1/archi.PNG)
 
-Our Client-Side App will query our API. The API Gateway will invoke some Lambda Functions, and those lambda will interacts with our DynamoDB blog table.
+Our Client-Side App will query our API. The API Gateway will invoke some Lambda Functions, and those lambdas will interact with our DynamoDB blog table.
 
-But, to allow those interaction between our different AWS Services, we must configure an **IAM role** with particular **IAM policies**.
+But, to allow those interactions between our different AWS Services, we must configure an **IAM role** with particular **IAM policies**.
 
 > If you want to know what are the IAM roles, why we need them, I'll provide you the link to the  [IAM AWS Official Documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html). 
 
@@ -26,9 +26,9 @@ Let's navigate to the IAM Service through `Security, Identity, & Compliance > IA
 
 Before creating our IAM role, we will create the policy which will be attached to our role. For that, click on `Policies > Create Policy`.
 
-> By default, an explicit deny is set to all resources created in AWS. You must grant permissions via IAM Policies. and attach them to your resources. In you want more informations about IAM Roles, Policies, Groups, have a look [to the officiel documentation of IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html).
+> By default, an explicit deny is set to all resources created in AWS. You must grant permission via IAM Policies. and attach them to your resources. If you want more information about IAM Roles, Policies, Groups, have a look [to the official documentation of IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html).
 
-Choose the `JSON` editor tab and copy paste this following JSON policy :
+Choose the `JSON` editor tab and copy-paste this following JSON policy :
 ```json
 {
     "Version": "2012-10-17",
@@ -59,15 +59,15 @@ Choose the `JSON` editor tab and copy paste this following JSON policy :
 }
 ```
 
-> Do not forget to change the **region** and the **account id** inside the **Resource arn** bloc. The region is the one selected in the AWS Console navigation bar, and your account id can be found by checking the IAM users sign-in link in the IAM Dashboard.
+> Do not forget to change the **region** and the **account id** inside the **Resource ARN** bloc. The region is the one selected in the AWS Console navigation bar, and your account id can be found by checking the IAM users sign-in link in the IAM Dashboard.
 
-Finally, you can hit the Next button to review your policy, add a name and create your policy. You should have  a screen like this :
+Finally, you can hit the Next button to review your policy, add a name, and create your policy. You should have  a screen like this :
 
 ![IAM Policy](iampolicy.PNG)
 
-Let me explain a little bit what this policy does. The first `Effect` will allow our resources (lambdas) to make some basics interactions with DynamoDB, for example: **Query, Scan or PutItem** etc. For these specifics actions, we should fill the ARNs of our DynamoDB table/indexes.
+Let me explain a little bit about what this policy does. The first `Effect` will allow our resources (lambdas) to make some basics interactions with DynamoDB, for example, **Query, Scan or PutItem**, etc. For these specifics actions, we should fill the ARNs of our DynamoDB table/indexes.
 
-> You always should follow one of the best practice in AWS, the [Principle of Least Privileges](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege).
+> You always should follow one of the best practices in AWS, the [Principle of Least Privileges](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege).
 
 I will not explain the second effect bloc (the **lambda:InvokeFunction**) for now, I'll keep it for later.
 
@@ -87,7 +87,7 @@ You can now navigate to the Lambda Service trough: `Services > Compute > Lambda`
 
 ###Second step: Create our lambda functions
 
-We will start to create a first Lambda Function which will basically read out the content of our DynamoDB blog table.
+We will start to create a first Lambda Function which will read out the content of our DynamoDB blog table.
 
 So hit the `Create Function` button and keep the selected creation option (Author from scratch). Choose a name for your Lambda Function, `GetArticles` for example, and go for the `Python 3.8` language runtime.
 
@@ -97,7 +97,7 @@ Before creating our function, one last important step is to select our IAM Role 
 
 Then create your function. you will be redirected to your Lambda.
 
-Scroll down a little bit to your Lambda Code Editor. In this Lambda, we just want to retrieve all Articles from our table. For that, we will use the `Scan` operation that will just basically reads every items in a table. (More information [here](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html)).
+Scroll down a little bit to your Lambda Code Editor. In this Lambda, we just want to retrieve all Articles from our table. For that, we will use the `Scan` operation that will just basically reads every item in a table. (More information [here](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html)).
 
 Copy/paste this following code in the editor :
 
@@ -105,7 +105,7 @@ Copy/paste this following code in the editor :
 # Boto is the Amazon Web Services (AWS) SDK for Python
 import boto3
 
-# To interact with DynamoDB, I just need to specity what resource I will use from boto3 (here: dynamodb)
+# To interact with DynamoDB, I just need to specify what resource I will use from boto3 (here: dynamodb)
 dynamodb = boto3.resource('dynamodb')
 
 # Now I specify which table in DynamoDB I want to interact with.
@@ -120,15 +120,15 @@ def lambda_handler(event, context):
         return response['Items']
     except Exception as e:
         # If an exception was thrown, I just catch it to print a log, and then I raise the error.
-        print('An error occured while retrieving Movies table.')
+        print('An error occurred while retrieving Movies table.')
         raise e
 ```
 
-No more explanations needed for this code, its quite simple, we just import the boto3 library to use the Dynamodb client. We surround our scan operation with the try/catch operator and finally we return the Items.
+No more explanations needed for this code, it's quite simple, we just import the boto3 library to use the Dynamodb client. We surround our scan operation with the try/catch operator and finally, we return the Items.
 
 You can now this Lambda code by clicking `Save` at the top of the page, and now it's time for testing :)
 
-Just near the Save button, you have the possibility to create a `Test Event` to trigger our function handler.
+Just near the Save button, you can create a `Test Event` to trigger our function handler.
 
 > FYI: Every AWS Lambda function contains at least 2 parameters :
 
@@ -136,7 +136,7 @@ Just near the Save button, you have the possibility to create a `Test Event` to 
 
 > **context** – AWS Lambda uses this parameter to provide runtime information to your handler.
 
-Click on the `Test` button, choose an event name (For example: TestGetItems) and leave the rest as is. Your `TestGetItems` is now part of your tests events. Ready to test your lambda ? Push the test button again ;)
+Click on the `Test` button, choose an event name (For example TestGetItems), and leave the rest as is. Your `TestGetItems` is now part of your test events. Ready to test your lambda? Push the test button again ;)
 
 Normally you should see a success box like this :
 
@@ -146,7 +146,7 @@ Well, I think we can claim our first beer, we successfully created our first lam
 
 ### Third step: Create the other lambda functions
 
-The other Lambda will basically represents all the CRUD operation you can found in an API. Remember, the goal is to call these Lambda functions with API Gateway.
+The other Lambda will represent all the CRUD operations you can found in an API. Remember, the goal is to call these Lambda functions with API Gateway.
 
 So this is what is remaning for our Lambda :
 - Retrieve all blog articles (GetArticles - done)
@@ -155,7 +155,7 @@ So this is what is remaning for our Lambda :
 - Update an article (UpdateArticle - TBD)
 - Delete an article (DeleteArticle - TBD)
 
-Let's move on! Go back to the main Lambda screen, by clicking `Services > Compute > Lambda`. Then, do the same job like you did before by clicking `Create Function`. Keep the same settings we did for the **GetArticles** Lambda function.
+Let's move on! Go back to the main Lambda screen, by clicking `Services > Compute > Lambda`. Then, do the same job as you did before by clicking `Create Function`. Keep the same settings we did for the **GetArticles** Lambda function.
 
 This time, we will tackle our second lambda in the list, the `FindByTitleAndCategory`. Lambda settings should be the same :
 
@@ -167,7 +167,7 @@ Copy/paste this following Python code :
 
 ```python
 import boto3
-# This new import will be use to specify which DynamoDB Key we use in the KeyConditionExpression.
+# This new import will be used to specify which DynamoDB Key we use in the KeyConditionExpression.
 from boto3.dynamodb.conditions import Key
  
 client = boto3.resource('dynamodb')
@@ -191,7 +191,7 @@ def lambda_handler(event, context):
         raise e
 ```
 
-In this lambda we just need to specify which fields we want to expose in our response thanks to the `ProjectionExpression`.
+In this lambda, we just need to specify which fields we want to expose in our response thanks to the `ProjectionExpression`.
 
 The second one (the most important) is the `KeyConditionExpression` which will determine our conditional query expression (which article we want to query).
 
@@ -201,15 +201,15 @@ Save your function, add a new test event but this time we will have to change a 
 
 ![FindBy test event](findbytest.PNG)
 
-> Do not pay attention of our test event structure, but please respect it.
+> Do not pay attention to our test event structure, but please respect it.
 
 Once your event has been created, just hit the Test button again and let's see what we received :)
 
 ![FindBy test event](findbyresult.PNG)
 
-This time, we just received 1 item based from the value passed in the test event. Our FindBy Lambda is now operational!
+This time, we just received 1 item based on the value passed in the test event. Our FindBy Lambda is now operational!
 
-Let's move on, and make the `CreateArticle` one. Same process like before, create a new Lambda function with the same settings.
+Let's move on, and make the `CreateArticle` one. The same process like before, create a new Lambda function with the same settings.
 
 Copy/paste this following code :
 ```python
@@ -273,9 +273,9 @@ def lambda_handler(event, context):
 ```
 
 Before configuring our test event, just some clarifications about this portion of code: 
-- First, to retrieve the body sent by the POST action, we want to handle the fact that the object passed in the body can be an object, but also a stringified object. That's why we check the type of the `event body`.
-- Then, we use the `put_item` operation by simply passing the Item that we want to insert in database.
-- Finally, the official documentation is not really clear, but it's impossible to retrieve the item created when we use the **put_item** action. We need to query the DB again. But if you remember, we created already a Lamba (**FindByArticleAndCategory**) which is doing exactly what we want to retrieve an item. That's why we added the **Lambda:InvokeFunction** policy in our IAM Role :) So when the **put_item** is done, we just invoke our **FindByArticleAndCategory** Lambda Function to retrieve our article created by providing his title and his category. It's not the only way, and probably the right way to do that, but it's one of the possibility to do it. The other one is to query directly the database like we did in the FindByArticleAndCategory Lambda,.
+- First, to retrieve the body sent by the POST action, we want to handle the fact that the object passed in the body can be an object, but also a stringified object. That's why we check the type of `event body`.
+- Then, we use the `put_item` operation by simply passing the Item that we want to insert in the database.
+- Finally, the official documentation is not clear, but it's impossible to retrieve the item created when we use the **put_item** action. We need to query the DB again. But if you remember, we created already a Lamba (**FindByArticleAndCategory**) which is doing exactly what we want to retrieve an item. That's why we added the **Lambda:InvokeFunction** policy in our IAM Role :) So when the **put_item** is done, we just invoke our **FindByArticleAndCategory** Lambda Function to retrieve our article created by providing his title and his category. It's not the only way, and probably the right way to do that, but it's one of the possibilities to do it. The other one is to query directly the database as we did in the FindByArticleAndCategory Lambda,.
 
 Ok so let's create our test event :
 ![FindBy test event](createarticletest.PNG)
@@ -284,13 +284,13 @@ Before testing our Lambda Function, because this one is a little bit more "trick
  
 ![Increase Lambda Timeout](lambdatimeout.PNG)
 
-> Same as DynamoDB's RCU and WCU, if you want to use this Lambda in a real production stage, please adapt yhe settings in consequence (Memory, timeout etc.).I provide you a great article for [choosing the right amount of memory for an AWS lambda](https://medium.com/@raupach/choosing-the-right-amount-of-memory-for-your-aws-lambda-function-99615ddf75dd)
+> Same as DynamoDB's RCU and WCU, if you want to use this Lambda in a real production stage, please adapt the settings in consequence (Memory, timeout, etc.).I provide you a great article for [choosing the right amount of memory for an AWS lambda](https://medium.com/@raupach/choosing-the-right-amount-of-memory-for-your-aws-lambda-function-99615ddf75dd)
 
-I think we can test our Create Lambda function, so hit the Test button and you should have this results :
+I think we can test our Create Lambda function, so hit the Test button and you should have this result :
 
 ![Create Article success](createresult.PNG)
 
-Nice, the most difficult Lambda part has been done! The others one will be more easier.
+Nice, the most difficult Lambda part has been done! The other one will be easier.
 
 Let's tackle the `UpdateArticle` Lambda. Create a new lambda and provide this code :
 
@@ -340,19 +340,19 @@ def lambda_handler(event, context):
             raise e
 ```
 
-For this portion of code, we will need the primary key identifier to determinate which object we want to update.
+For this portion of code, we will need the primary key identifier to determine which object we want to update.
 
-Remember, when we created our DynamoDB table, we specified a **partition key** (title), and a **sort key** (category) which represent our **primary key**.
+Remember, when we created our DynamoDB table, we specified a **partition key** (title), and a **sort key** (category) which represents our **primary key**.
 
-It means that if we want to make some actions in a particular item in our table, we have to specify these two properties.
+It means that if we want to perform some actions in a particular item in our table, we have to specify these two properties.
 
 Good news: For the **update_item** operation, we can specify the `ReturnValues="ALL_NEW"` property which will return the complete object updated.
 
 > You have also the possibility to return only the attributes changed by changing the ReturnValues value. [See here](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateItem.html#API_UpdateItem_RequestSyntax) the possible values of the **ReturnValues** property.
 
-In this lambda, I decided to update my item with Conditional Expressions. It means that it will update my item only if its respect the **ConditionsExpressions**. If not, it will raise a **ConditionalCheckFailedException**.
+In this lambda, I decided to update my item with Conditional Expressions. It means that it will update my item only if it respects the **ConditionsExpressions**. If not, it will raise a **ConditionalCheckFailedException**.
 
-> You can have a look on what are [conditions expressions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html).
+> You can have a look at what are [conditions expressions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ConditionExpressions.html).
 
 Let's configure our test event and test it just after :
 ![Update Article Test Event](updatetest.PNG)
@@ -363,7 +363,7 @@ As you can see, this is what we received :
 And if we check our DynamoDB blog table :
 ![Blog Table Updated](tableupdated.PNG)
 
-Finally, let's implement the latest one, create the DeleteArticle Lambda Function and provide this code :
+Finally, let's implement the latest one, create the DeleteArticle Lambda Function, and provide this code :
 
 ```python
 import json
