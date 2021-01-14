@@ -1,0 +1,429 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style id="typography.js">html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{font:100%/1.75 'Merriweather','Georgia',serif;box-sizing:border-box;overflow-y:scroll;}*{box-sizing:inherit;}*:before{box-sizing:inherit;}*:after{box-sizing:inherit;}body{color:hsla(0,0%,0%,0.9);font-family:'Merriweather','Georgia',serif;font-weight:400;word-wrap:break-word;font-kerning:normal;-moz-font-feature-settings:"kern", "liga", "clig", "calt";-ms-font-feature-settings:"kern", "liga", "clig", "calt";-webkit-font-feature-settings:"kern", "liga", "clig", "calt";font-feature-settings:"kern", "liga", "clig", "calt";}img{max-width:100%;margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}h1{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:Montserrat,sans-serif;font-weight:900;text-rendering:optimizeLegibility;font-size:2.5rem;line-height:1.1;}h2{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.73286rem;line-height:1.1;}h3{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.4427rem;line-height:1.1;}h4{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1rem;line-height:1.1;letter-spacing:0.140625em;text-transform:uppercase;}h5{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.83255rem;line-height:1.1;}h6{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.75966rem;line-height:1.1;font-style:italic;}hgroup{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}ul{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;list-style:disc;}ol{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;}dl{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}dd{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}p{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}figure{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}pre{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:0.85rem;line-height:1.75rem;}table{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1rem;line-height:1.75rem;border-collapse:collapse;width:100%;}fieldset{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}blockquote{margin-left:-1.75rem;margin-right:1.75rem;margin-top:0;padding-bottom:0;padding-left:1.42188rem;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1.20112rem;line-height:1.75rem;color:hsla(0,0%,0%,0.59);font-style:italic;border-left:0.32813rem solid hsla(0,0%,0%,0.9);}form{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}noscript{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}iframe{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}hr{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:calc(1.75rem - 1px);background:hsla(0,0%,0%,0.2);border:none;height:1px;}address{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}b{font-weight:700;}strong{font-weight:700;}dt{font-weight:700;}th{font-weight:700;}li{margin-bottom:calc(1.75rem / 2);}ol li{padding-left:0;}ul li{padding-left:0;}li > ol{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}li > ul{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}blockquote *:last-child{margin-bottom:0;}li *:last-child{margin-bottom:0;}p *:last-child{margin-bottom:0;}li > p{margin-bottom:calc(1.75rem / 2);}code{font-size:0.85rem;line-height:1.75rem;}kbd{font-size:0.85rem;line-height:1.75rem;}samp{font-size:0.85rem;line-height:1.75rem;}abbr{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}acronym{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}abbr[title]{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;text-decoration:none;}thead{text-align:left;}td,th{text-align:left;border-bottom:1px solid hsla(0,0%,0%,0.12);font-feature-settings:"tnum";-moz-font-feature-settings:"tnum";-ms-font-feature-settings:"tnum";-webkit-font-feature-settings:"tnum";padding-left:1.16667rem;padding-right:1.16667rem;padding-top:0.875rem;padding-bottom:calc(0.875rem - 1px);}th:first-child,td:first-child{padding-left:0;}th:last-child,td:last-child{padding-right:0;}blockquote > :last-child{margin-bottom:0;}blockquote cite{font-size:1rem;line-height:1.75rem;color:hsla(0,0%,0%,0.9);font-weight:400;}blockquote cite:before{content:"— ";}ul,ol{margin-left:0;}@media only screen and (max-width:480px){ul,ol{margin-left:1.75rem;}blockquote{margin-left:-1.3125rem;margin-right:0;padding-left:0.98438rem;}}h1,h2,h3,h4,h5,h6{margin-top:3.5rem;}a{box-shadow:0 1px 0 0 currentColor;color:#007acc;text-decoration:none;}a:hover,a:active{box-shadow:none;}mark,ins{background:#007acc;color:white;padding:0.10938rem 0.21875rem;text-decoration:none;}a.gatsby-resp-image-link{box-shadow:none;}</style><style data-href="/styles.1a54add997246827ae7a.css">@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:100;src:local("Montserrat Thin "),local("Montserrat-Thin"),url(/static/montserrat-latin-100-191cc9f50f3b76b9617cb383f19acb7d.woff2) format("woff2"),url(/static/montserrat-latin-100-370318464551d5f25b0f0a78f374faac.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:100;src:local("Montserrat Thin italic"),local("Montserrat-Thinitalic"),url(/static/montserrat-latin-100italic-bdeaeb79db315697bd173a55b097dc18.woff2) format("woff2"),url(/static/montserrat-latin-100italic-ecf7d49386e8f265878e735db34a7c4b.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:200;src:local("Montserrat Extra Light "),local("Montserrat-Extra Light"),url(/static/montserrat-latin-200-85d5ef9db7f2dc6979172a4a3b2c57cb.woff2) format("woff2"),url(/static/montserrat-latin-200-1fc98e126a3d152549240e6244d7e669.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:200;src:local("Montserrat Extra Light italic"),local("Montserrat-Extra Lightitalic"),url(/static/montserrat-latin-200italic-49095760a498d024fe1a85a078850df9.woff2) format("woff2"),url(/static/montserrat-latin-200italic-fe46cf8b9462c820457d3bf537e4057f.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:300;src:local("Montserrat Light "),local("Montserrat-Light"),url(/static/montserrat-latin-300-7c3daf12b706645b5d3710f863a4da04.woff2) format("woff2"),url(/static/montserrat-latin-300-8dc95fab9cf98d02ca8d76e97d3dff60.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:300;src:local("Montserrat Light italic"),local("Montserrat-Lightitalic"),url(/static/montserrat-latin-300italic-f20b178ca2024a5eac8e42e6649db86c.woff2) format("woff2"),url(/static/montserrat-latin-300italic-3fe16939288856e8e828fa2661bf2354.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:400;src:local("Montserrat Regular "),local("Montserrat-Regular"),url(/static/montserrat-latin-400-bc3aa95dca08f5fee5291e34959c27bc.woff2) format("woff2"),url(/static/montserrat-latin-400-8102c4838f9e3d08dad644290a9cb701.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:400;src:local("Montserrat Regular italic"),local("Montserrat-Regularitalic"),url(/static/montserrat-latin-400italic-5cad650422a7184467af5a4d17b264c4.woff2) format("woff2"),url(/static/montserrat-latin-400italic-d191f22af3bb50902b99ac577f81a322.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:500;src:local("Montserrat Medium "),local("Montserrat-Medium"),url(/static/montserrat-latin-500-92d16e458625f4d2c8940f6bdca0ff09.woff2) format("woff2"),url(/static/montserrat-latin-500-8b763220218ffc11c57c84ddb80e7b26.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:500;src:local("Montserrat Medium italic"),local("Montserrat-Mediumitalic"),url(/static/montserrat-latin-500italic-47bfcca6b69d6a9acca7a8bff17193e2.woff2) format("woff2"),url(/static/montserrat-latin-500italic-72c01f753c3940c0b9cb6bf2389caddf.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:600;src:local("Montserrat SemiBold "),local("Montserrat-SemiBold"),url(/static/montserrat-latin-600-6fb1b5623e528e27c18658fecf5ee0ee.woff2) format("woff2"),url(/static/montserrat-latin-600-7c839d15a6f54e7025ba8c0c4b333e8f.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:600;src:local("Montserrat SemiBold italic"),local("Montserrat-SemiBolditalic"),url(/static/montserrat-latin-600italic-60789af1c9338ed1a9546722ec54b4f7.woff2) format("woff2"),url(/static/montserrat-latin-600italic-f3d4de8d0afb19e777c79032ce828e3d.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:700;src:local("Montserrat Bold "),local("Montserrat-Bold"),url(/static/montserrat-latin-700-39d93cf678c740f9f6b2b1cfde34bee3.woff2) format("woff2"),url(/static/montserrat-latin-700-80f10bd382f0df1cd650fec59f3c9394.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:700;src:local("Montserrat Bold italic"),local("Montserrat-Bolditalic"),url(/static/montserrat-latin-700italic-ba136d97b14e82284dd595e257f11c47.woff2) format("woff2"),url(/static/montserrat-latin-700italic-8c98142b425630821139c24bd1698700.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold "),local("Montserrat-ExtraBold"),url(/static/montserrat-latin-800-b7018be9ed6cd94da8b6675b3a468c3b.woff2) format("woff2"),url(/static/montserrat-latin-800-9a9befcf50d64f9d2d19d8b1d1984add.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold italic"),local("Montserrat-ExtraBolditalic"),url(/static/montserrat-latin-800italic-540ffdd223d1a9ad3d4e678e1a23372e.woff2) format("woff2"),url(/static/montserrat-latin-800italic-897086f99f4e1f45e6b1e9368527d0bc.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:900;src:local("Montserrat Black "),local("Montserrat-Black"),url(/static/montserrat-latin-900-58cd789700850375b834e8b6776002eb.woff2) format("woff2"),url(/static/montserrat-latin-900-26d42c9428780e545a540bbb50c84bce.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:900;src:local("Montserrat Black italic"),local("Montserrat-Blackitalic"),url(/static/montserrat-latin-900italic-451157bc8861fe54f523b3669a3def71.woff2) format("woff2"),url(/static/montserrat-latin-900italic-a8ec4957e1c24f5793305763ad9845b3.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:300;src:local("Merriweather Light "),local("Merriweather-Light"),url(/static/merriweather-latin-300-b1158cfcd4aacb9d8fb61625e37af46a.woff2) format("woff2"),url(/static/merriweather-latin-300-cc7de05e166e90320d7d896e0f72a19d.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:300;src:local("Merriweather Light italic"),local("Merriweather-Lightitalic"),url(/static/merriweather-latin-300italic-8fe52a48089d6ebe46db0b8e7cc66263.woff2) format("woff2"),url(/static/merriweather-latin-300italic-e1331f5397c2a673f9d3765138debdb5.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:400;src:local("Merriweather Regular "),local("Merriweather-Regular"),url(/static/merriweather-latin-400-8276fdb72ae8f4714d4e6eba704cc39f.woff2) format("woff2"),url(/static/merriweather-latin-400-69f09800f4f6479d06e44eba837df872.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:400;src:local("Merriweather Regular italic"),local("Merriweather-Regularitalic"),url(/static/merriweather-latin-400italic-3a9be9ea9f7aa4af6de7307df21d9fc0.woff2) format("woff2"),url(/static/merriweather-latin-400italic-d76079ed7541a433a54f79316de086e9.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:700;src:local("Merriweather Bold "),local("Merriweather-Bold"),url(/static/merriweather-latin-700-fa534be7ffa380e39a7f6e03bf9a5e03.woff2) format("woff2"),url(/static/merriweather-latin-700-ba56ea84b8084b7ff9677f50d3cd81bd.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:700;src:local("Merriweather Bold italic"),local("Merriweather-Bolditalic"),url(/static/merriweather-latin-700italic-1ef5edaaa20ae53ea50399884c5e48c6.woff2) format("woff2"),url(/static/merriweather-latin-700italic-534bc9e7ce93c73d73426e46acd78092.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:900;src:local("Merriweather Black "),local("Merriweather-Black"),url(/static/merriweather-latin-900-7528fb70e8a4a82c7305e72ff43ac25f.woff2) format("woff2"),url(/static/merriweather-latin-900-3799b6e2f5ed3fcccf9d7a708d7419fa.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:900;src:local("Merriweather Black italic"),local("Merriweather-Blackitalic"),url(/static/merriweather-latin-900italic-e1b4d2aaa78e12ad84aaf8a56321e4c2.woff2) format("woff2"),url(/static/merriweather-latin-900italic-2ae22f731b3424e8dbb4b37f7ca6e708.woff) format("woff")}code[class*=language-],pre[class*=language-]{color:#000;background:none;text-shadow:0 1px #fff;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}code[class*=language-]::selection,code[class*=language-] ::selection,pre[class*=language-]::selection,pre[class*=language-] ::selection{text-shadow:none;background:#b3d4fc}@media print{code[class*=language-],pre[class*=language-]{text-shadow:none}}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*=language-],pre[class*=language-]{background:#f5f2f0}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#999}.token.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#905}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#690}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.class-name,.token.function{color:#dd4a68}.token.important,.token.regex,.token.variable{color:#e90}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><meta name="generator" content="Gatsby 2.24.57"/><link rel="alternate" type="application/rss+xml" href="/rss.xml"/><link rel="icon" href="/favicon-32x32.png?v=4a9773549091c227cd2eb82ccd9c5e3a" type="image/png"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#663399"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><title data-react-helmet="true">Serverless App with AWS in ReactJS, using Lambda &amp; API Gateway - Final part | Jstw Blog</title><meta data-react-helmet="true" name="description" content="How to create a serverless API in AWS - Part 3 (The API Gateway)"/><meta data-react-helmet="true" property="og:title" content="Serverless App with AWS in ReactJS, using Lambda &amp; API Gateway - Final part"/><meta data-react-helmet="true" property="og:description" content="How to create a serverless API in AWS - Part 3 (The API Gateway)"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="jstw"/><meta data-react-helmet="true" name="twitter:title" content="Serverless App with AWS in ReactJS, using Lambda &amp; API Gateway - Final part"/><meta data-react-helmet="true" name="twitter:description" content="How to create a serverless API in AWS - Part 3 (The API Gateway)"/><link as="script" rel="preload" href="/webpack-runtime-d0cee47abff92a6d3e11.js"/><link as="script" rel="preload" href="/styles-fa79fef4936efa84b233.js"/><link as="script" rel="preload" href="/framework-38c1b66eb715199b2515.js"/><link as="script" rel="preload" href="/app-d40e199bb4181adf59e7.js"/><link as="script" rel="preload" href="/commons-835530cd8d0369cbd6b4.js"/><link as="script" rel="preload" href="/fab8c9364b01cebfd3503fc18011994750f493ff-e32a823ce8effcd6d7ba.js"/><link as="script" rel="preload" href="/component---src-templates-blog-post-js-cd165963c94fd51b86af.js"/><link as="fetch" rel="preload" href="/page-data\serverless-api-with-lambda-part-3\page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data\app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div style="margin-left:auto;margin-right:auto;max-width:42rem;padding:2.625rem 1.3125rem"><header><h3 style="font-family:Montserrat, sans-serif;margin-top:0"><a style="box-shadow:none;color:inherit" href="/">Jstw Blog</a></h3></header><main><article><header><h1 style="margin-top:1.75rem;margin-bottom:0">Serverless App with AWS in ReactJS, using Lambda &amp; API Gateway - Final part</h1><p style="font-size:0.83255rem;line-height:1.75rem;display:block;margin-bottom:1.75rem">May 31, 2020</p></header><section><p>Hey hello there! If you didn’t read the previous post, I suggest you to <a href="./../serverless-api-with-lambda-part-2">read it</a> before continuing. If you did, perfect, let’s continue ;)</p>
+<p>The last part is to integrate our Lambda Functions previously created, in the AWS API Gateway service. Find this service, by opening <code class="language-text">Services &gt; Networking &amp; Content Delivery &gt; API Gateway</code>.</p>
+<p>Let’s create an API by clicking the <code class="language-text">Create API</code> button.</p>
+<p>We have the possibility to chose some types for our API, but in this case we want to create an HTTP API. So let’s keep the first selected option.</p>
+<p>Provide a name, <strong>blog-api</strong> for example, and let’s integrate our Lambdas by adding them one by one in the <code class="language-text">Create and configure integrations</code> like below :</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/3ade922f177a4cdbe7485a33910babb2/ee3fb/integration1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 54.05405405405405%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAABbElEQVQoz31Si46EIAz0/3/yRNfX+lgfCLiivU5F10s2RzKplDJOp0Rd19HjkVGW5RTHsXzHSlGSPsg5R25xIS6CJQC5JeTOvOVcZIyheZ4F0zRJ1FpLXNf1wvv9FpxEyCEit4Qz7KO+70mphFJWpJJUFEJdkqasWPGZoh+OZVVRUZRUlhXleSGxLEvprAix7weKZlYI0mEYWOGhTAfFojR0sG0b7Qysfd+P/RU/uQiXn3VNwzjSfwsX5FKI9+81tCyE1lp6vXr2xEuB+BS88d5/wMUXeA8i1GnjqO64w3EKCrmtlH2bOK5cCPKEvWyaVn7wh+gGkKG2HTR1Mw+EBSEXYVpsgbALgheXR1+AvPfHOcntY0FQhFHDeLRxkpye+fMn3yCkhx3oUuv50zKeg2EvQYJJt/zYkd9vau/wgRDvtuk1Ze1I02z4zB9DadqWjLHyQDH16vlk1JJf74O5wVonz8k6HqDfxAJw/QJYm1dej4ZYjwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Integration 1"
+        title="Integration 1"
+        src="/static/3ade922f177a4cdbe7485a33910babb2/fcda8/integration1.png"
+        srcset="/static/3ade922f177a4cdbe7485a33910babb2/12f09/integration1.png 148w,
+/static/3ade922f177a4cdbe7485a33910babb2/e4a3f/integration1.png 295w,
+/static/3ade922f177a4cdbe7485a33910babb2/fcda8/integration1.png 590w,
+/static/3ade922f177a4cdbe7485a33910babb2/efc66/integration1.png 885w,
+/static/3ade922f177a4cdbe7485a33910babb2/ee3fb/integration1.png 1144w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/03266e80dde87402388cff82018de7d7/72372/integration2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 56.08108108108109%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAABR0lEQVQoz51Si46EIAzk/z9zL1ld36ACgtjrVDFkc7eXHEl9lHbamVZZ52gYRooxUkpJ3rB93z8aYv22kXWemrYjxzjwq3lZqKprdngJ0tpwQEtmnikdB+3sS5flbySGEGmaNHXGUqstBW4ihEBq4yqrtbRtQTpDVa01LVwIgKkATAUg4pCDfxz4gKXCRfFAMlt5fgLLhngxUGe6MZ5SKMvddV0vLSMAVZz3p6a/dCjGd9Y6MqujVz9K3q3h81nRsq4C0vOAHo8vEXoXeqd2+TsPToY5TjQuDOqiNAQZVGTUkl6m/onuHSuZ15NzAKqAii5z9UznT0COQacbT3acJvK+oFxVteiGKpgwNIUE72tTrg/AANRMK1WDkZWBT2EhcQGBz0V11PcDaWPu5NKyhmjAY3jcVaYrGuICAK+mFer/Oce1bqD8DerFXwwB/0YBAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Integration 2"
+        title="Integration 2"
+        src="/static/03266e80dde87402388cff82018de7d7/fcda8/integration2.png"
+        srcset="/static/03266e80dde87402388cff82018de7d7/12f09/integration2.png 148w,
+/static/03266e80dde87402388cff82018de7d7/e4a3f/integration2.png 295w,
+/static/03266e80dde87402388cff82018de7d7/fcda8/integration2.png 590w,
+/static/03266e80dde87402388cff82018de7d7/efc66/integration2.png 885w,
+/static/03266e80dde87402388cff82018de7d7/72372/integration2.png 1149w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Now our Lambdas are integrated. Let’s create our <strong>routes</strong> and configure them like this :</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/464f518bbd960c472e3bf9cd78dfb6ed/e9d87/routeconfig1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 44.5945945945946%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABS0lEQVQoz31SXU/DMAzs7+e/8MyPQLzDAxpo6ZqO5bNN2rRpDztso0wTkU6ufPHZvrTy3kNpDW0MrHUIIVzR38R/EWO5V7Gg2AvItoVSGjnnK5blHDe5e5jnGdM0IRFIsIOUEm17REOxaSREXaOuD3+wFzUOh6ZwQvzypfZ4hHOOBlhQ8Zg8mVIKp5MiwsPQ+lozdIlsiTG2FF3zfIcQaVWecl3XH8HiUR/Ah5PsY9d1uD3DMBBnEUO4YVakNNHa+SxIHbgz7z+mVAS5K5P5DG4klcHrbg8dRvgpw6cMHRP6IYHfIcaAlTyvInU21JnBxZdJWfCClXK66/Epv9CQsCWhOC/oSTjlhQvKnUyoHKl7WpHB3/fAHHv8sduVabbHWoNWe9jnR5inB3rljVAR5rjBJa/pUST9CV3fF3uGcSwWMW8caYg3uPcXfAOEmbSA00RelQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Route Config example"
+        title="Route Config example"
+        src="/static/464f518bbd960c472e3bf9cd78dfb6ed/fcda8/routeconfig1.png"
+        srcset="/static/464f518bbd960c472e3bf9cd78dfb6ed/12f09/routeconfig1.png 148w,
+/static/464f518bbd960c472e3bf9cd78dfb6ed/e4a3f/routeconfig1.png 295w,
+/static/464f518bbd960c472e3bf9cd78dfb6ed/fcda8/routeconfig1.png 590w,
+/static/464f518bbd960c472e3bf9cd78dfb6ed/efc66/routeconfig1.png 885w,
+/static/464f518bbd960c472e3bf9cd78dfb6ed/e9d87/routeconfig1.png 1176w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Please be sure to have the same URL as below :</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/7198b48cd5e26caa026248d8c7d851f0/72372/routeconfig.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 59.45945945945946%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABh0lEQVQoz52TWZKDMAxEuf8xEyBM2DGLWTV6wjCpfA5VKhst7e42RE3TyPMZy+uVyc/7LZP3/wrPOk0SDcMgVVVJ07bSOSfLstyxrusd37nlKz/Ps0XUdZ2k6UuSJJUkTW3/jGNjzfqwNbF9kiQSazweT6vHmmcuyzLJ80I8gH3fS1lWAnDTtBYw5v0MJ23bSV03GrXVarXJud7q4zjJ52OSGeLZ990GnXN3wxHWUf0pFQyg/TjuGnvvT7nMRzQS27aZsbBxytoHo8kTGJ4XpQzDaN4xPJt3i7KujbUB0ngN0gBjirABfNU8LGDQ6sVRG8bRhpdwKVwmJG7AXkHWdbMiklhPSYcdZGwUEH8xngO27Q+wxWsFPSXraSY5DGE0Eiq9ABrJ04iKvCik7wd7/2TIQfSeDLXR9YP5ckmmyHeJjMsvABu1YJq82UAswUOsgSFqIhpggy8MmwUKhHTAD5VHULvsuHKwR/qlklwEUMU3pmbTbE1BEuv9VwQvjdnHn0IAuoVb/wUyOKMXZFzn0AAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Route Config"
+        title="Route Config"
+        src="/static/7198b48cd5e26caa026248d8c7d851f0/fcda8/routeconfig.png"
+        srcset="/static/7198b48cd5e26caa026248d8c7d851f0/12f09/routeconfig.png 148w,
+/static/7198b48cd5e26caa026248d8c7d851f0/e4a3f/routeconfig.png 295w,
+/static/7198b48cd5e26caa026248d8c7d851f0/fcda8/routeconfig.png 590w,
+/static/7198b48cd5e26caa026248d8c7d851f0/efc66/routeconfig.png 885w,
+/static/7198b48cd5e26caa026248d8c7d851f0/72372/routeconfig.png 1149w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>You can now click on <strong>Next</strong> and leave the configuration stages as is. Review your API creation, and if it’s respect all the configuration above, you can hit the <strong>Create</strong> button.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/9dd7fb49ed4873643a7ff78479d12419/098c1/apisuccess.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 47.2972972972973%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABKklEQVQoz5VRO07EMBD1XWhol54VRUTJp+FQSBTQbCSOwQE4AhdY2iASf+I4PzuJHmMni5ZNtCtGepqZ5xl75pk9vF7jZrPGfXwVcBevcRtfInpZIXpejf4YQs0FoqdzRI9nYF88RSIEvkWKVGYQuQDPOYQWIQ5eywPsziQkxaoqwT/ekL1vwNKMY7v9REa+rhsYU6Isq3/D9ymlwVSukCQJtNboug7WWlg3orXtn/wX1i7wLnCsMIYmq+GIODTP98Mw45umCVMtGdNFASklairyNtAFp+Af6ft+8YxWziGVAueC1i7CxafQTNjPd57lpB33v5xm8Ot7Hf36++g6N+PmNWNf0FDRZD6pSDNdGBLX0Yf4T3ETbOB8TT5t1LQtvFyG+luKhZDB/wCMBZVFSEpSSQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="API Creation Success"
+        title="API Creation Success"
+        src="/static/9dd7fb49ed4873643a7ff78479d12419/fcda8/apisuccess.png"
+        srcset="/static/9dd7fb49ed4873643a7ff78479d12419/12f09/apisuccess.png 148w,
+/static/9dd7fb49ed4873643a7ff78479d12419/e4a3f/apisuccess.png 295w,
+/static/9dd7fb49ed4873643a7ff78479d12419/fcda8/apisuccess.png 590w,
+/static/9dd7fb49ed4873643a7ff78479d12419/efc66/apisuccess.png 885w,
+/static/9dd7fb49ed4873643a7ff78479d12419/c83ae/apisuccess.png 1180w,
+/static/9dd7fb49ed4873643a7ff78479d12419/098c1/apisuccess.png 1578w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Good job, your API is now created! You can find your API url in your <strong>stages</strong>. It should be in the Invoke URL column.</p>
+<h3>Let’s test the beast!</h3>
+<p>I don’t know what you prefer to test your API, you can CURL or Postman, it’s up to you :)</p>
+<p>I will go for curl :</p>
+<p><strong>GetArticles:</strong> </p>
+<div class="gatsby-highlight" data-language="batch"><pre class="language-batch"><code class="language-batch"><span class="token command"><span class="token keyword">curl</span> <span class="token parameter attr-name">-v</span> <span class="token parameter attr-name">-X</span> GET '&lt;&lt; your api url>>/articles'</span></code></pre></div>
+<p><em>Output:</em>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/d4d144082387abdbabac620bb62eebc1/63ec5/getarticlescurlresult.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 60.13513513513513%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABYUlEQVQoz5VSa3OCMBAMb0wgPAJIeESdUfv/f+H2LrSOY1utH3Zg7pK93dsIuVdQi0I2ZNBWY1ErnJmxrDWWpcS6asyzxjQVhJKg0FsDNc3QB4diGJAmKXY7CSklhC4qmNpA5hJd26FuaxS6REn1YW+J8EAkC+q6RUt9rRv0/YCCLvetwdEdqFdBCIEoiiDyPEcYhkiSBEEQIAxC32TEcewPBcH2H8eRP/vd9yRU53t3NQFdVXA0qWkaUtHC2olszvS16LqO0KNQimztPPE94S8Qnuh0PKEsS9jRejLeR5qmXtGjqqfgiXyRLXMhS7P/qHilsMWRFGqtvTrnHMZxpOX3MMZ45W+opB3q6kY40DNgsopqTMTWeXcPi39ume1uaQZkOfWW39rbD8uU7PX64cNhdefzhRIeoShZVsngoT6g10o3y+vqUNHzMaa7PRd+PjyE+0qqLfmv8P5E8urAm/gEohEFuG8db04AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="GetArticles Output"
+        title="GetArticles Output"
+        src="/static/d4d144082387abdbabac620bb62eebc1/fcda8/getarticlescurlresult.png"
+        srcset="/static/d4d144082387abdbabac620bb62eebc1/12f09/getarticlescurlresult.png 148w,
+/static/d4d144082387abdbabac620bb62eebc1/e4a3f/getarticlescurlresult.png 295w,
+/static/d4d144082387abdbabac620bb62eebc1/fcda8/getarticlescurlresult.png 590w,
+/static/d4d144082387abdbabac620bb62eebc1/63ec5/getarticlescurlresult.png 812w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><strong>FindArticleByTitleAndCategory:</strong> </p>
+<div class="gatsby-highlight" data-language="batch"><pre class="language-batch"><code class="language-batch"><span class="token command"><span class="token keyword">curl</span> <span class="token parameter attr-name">-v</span> <span class="token parameter attr-name">-X</span> GET '&lt;&lt; your api url>>/articles/My<span class="token variable">%20firs%</span>20article/Blabla'</span></code></pre></div>
+<p><em>Output:</em>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/406d92d0f0ba7d80f1fe7eb985e351d4/23592/findbyarticlescurlresult.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 22.972972972972975%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAAAuElEQVQY05WQyXKEMAxE7YkxXpBZxtkwMEzN/3/ji6FyylKVHF71QS2pJSXvgpREeV7Y843tltn3zOPxxrpemeeBpfS8lFdkLuT9zjVn2ratOLz3xBhpmoYQPMoay0lr0U+ay8VUQyJJX7WrDaESiSHirCV1Qp8SSqlvaK1RqRaHccA7X4193RLounhuPVKcph+af6WUpZ41M00T27oxjiMi8pnM45zDGPP3gYf54PiBbeyp/0r0hQ+lw2zkQOqLEwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="FindByArticles Output"
+        title="FindByArticles Output"
+        src="/static/406d92d0f0ba7d80f1fe7eb985e351d4/fcda8/findbyarticlescurlresult.png"
+        srcset="/static/406d92d0f0ba7d80f1fe7eb985e351d4/12f09/findbyarticlescurlresult.png 148w,
+/static/406d92d0f0ba7d80f1fe7eb985e351d4/e4a3f/findbyarticlescurlresult.png 295w,
+/static/406d92d0f0ba7d80f1fe7eb985e351d4/fcda8/findbyarticlescurlresult.png 590w,
+/static/406d92d0f0ba7d80f1fe7eb985e351d4/efc66/findbyarticlescurlresult.png 885w,
+/static/406d92d0f0ba7d80f1fe7eb985e351d4/23592/findbyarticlescurlresult.png 1031w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><strong>CreateArticle:</strong> </p>
+<div class="gatsby-highlight" data-language="batch"><pre class="language-batch"><code class="language-batch"><span class="token command"><span class="token keyword">curl</span> <span class="token parameter attr-name">-d</span> '{</span>
+	"title": "My CURL Article",
+	"category": "Test",
+	"content": "An article created via CURL command, awesome!",
+	"author": "Julien"}<span class="token punctuation">'</span> -H "Content-Type: application/json" -X POST &lt;&lt; your api url >>/articles | json_pp</code></pre></div>
+<p><em>Output:</em>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/37594579eda8a2c6fd011704bc5ebef2/68947/createdarticlecurlresult.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 25%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABJ0AAASdAHeZh94AAAAo0lEQVQY05WP2RKDIAxFoyCLLDqKqP//obcJHcbpU9uHMyGEJAdKR0KoATkuWGyE9QRnCZbxjqDNCLIONHIk+s5VL5xMrRV72VFKxXlKfmHbClJMiPOMdV3hvYcxpjFNhpfaxjufGuScg7FPUZpSSph5SL+TNzlnKKUwDANGtu2xnzuklMZ932yzsd3RmrXWH/z01Y5sDSE0bbETxE4GSe3fgS9Jn2rSa6hj3QAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="CreatedArticle Output"
+        title="CreatedArticle Output"
+        src="/static/37594579eda8a2c6fd011704bc5ebef2/fcda8/createdarticlecurlresult.png"
+        srcset="/static/37594579eda8a2c6fd011704bc5ebef2/12f09/createdarticlecurlresult.png 148w,
+/static/37594579eda8a2c6fd011704bc5ebef2/e4a3f/createdarticlecurlresult.png 295w,
+/static/37594579eda8a2c6fd011704bc5ebef2/fcda8/createdarticlecurlresult.png 590w,
+/static/37594579eda8a2c6fd011704bc5ebef2/efc66/createdarticlecurlresult.png 885w,
+/static/37594579eda8a2c6fd011704bc5ebef2/c83ae/createdarticlecurlresult.png 1180w,
+/static/37594579eda8a2c6fd011704bc5ebef2/68947/createdarticlecurlresult.png 1281w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><strong>UpdateArticle:</strong> </p>
+<div class="gatsby-highlight" data-language="batch"><pre class="language-batch"><code class="language-batch"><span class="token command"><span class="token keyword">curl</span> <span class="token parameter attr-name">-d</span> '{</span>
+	"content": "Oh, this is a curl update ?",
+	"author": "CURLUser"}<span class="token punctuation">'</span> -H "Content-Type: application/json" -X PUT &lt;&lt; your api url >>/articles/My%20CURL%20Article/Test | json_pp</code></pre></div>
+<p><em>Output:</em>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/47dd52da522f8f4e88fac839d982964a/f663d/updatedarticlecurlresult.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 16.89189189189189%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABJ0AAASdAHeZh94AAAAcUlEQVQI152O2QoEMQgETSYnao4h5P//tEcysOy+7kNRtqhIbTfoUvQ6MAdjW+69GhlFGaUP5JyRUkKM8fDW6TiXchxCQLgCSEVxaApmwX0viDTUyqg23ERQzEQE59wP3vvDd4/mnPbVxlrLDvJn+V8e+ZdAclUNt+cAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="UpdatedArticle Output"
+        title="UpdatedArticle Output"
+        src="/static/47dd52da522f8f4e88fac839d982964a/fcda8/updatedarticlecurlresult.png"
+        srcset="/static/47dd52da522f8f4e88fac839d982964a/12f09/updatedarticlecurlresult.png 148w,
+/static/47dd52da522f8f4e88fac839d982964a/e4a3f/updatedarticlecurlresult.png 295w,
+/static/47dd52da522f8f4e88fac839d982964a/fcda8/updatedarticlecurlresult.png 590w,
+/static/47dd52da522f8f4e88fac839d982964a/efc66/updatedarticlecurlresult.png 885w,
+/static/47dd52da522f8f4e88fac839d982964a/c83ae/updatedarticlecurlresult.png 1180w,
+/static/47dd52da522f8f4e88fac839d982964a/f663d/updatedarticlecurlresult.png 1511w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><strong>DeleteArticle:</strong> </p>
+<div class="gatsby-highlight" data-language="batch"><pre class="language-batch"><code class="language-batch"><span class="token command"><span class="token keyword">curl</span> <span class="token parameter attr-name">-X</span> DELETE '&lt;&lt; your api url>>/articles/My<span class="token variable">%20CURL%</span>20Article/Test'</span></code></pre></div>
+<p><em>Output:</em>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/9e5d339502f41f0215232bb3521d443a/aa61c/deletedarticlecurlresult.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 34.45945945945946%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABJ0AAASdAHeZh94AAAA+klEQVQoz41Q2XLDIBDDB5izNuAYX3j8/z+pLkyalzaZPmiWY1cridlkYZKBSw7ZZ+yPBWf2uO8HrjxjXUcc+4i4BLj9QLwuTNMErTWMMVBKQUqJvu8xDAOYNQ5a0qcykFqi7TpqMphGD2e/6KxpQENTHTiHH0c458AYQ9u2FU3TvO6MC4FMW+/7xhxneB/q9mEQ4LyHVPKlorxzIi3DH8AQQsB5nIgxIMSIZUlE7DGSGvMkKXYKhODoyMWPqj8Jy+acL2zbhrSumOe55lSsWcpJksLSo57VWFsze0tYwk0pVaWWmguKKiFErR/U/EaRX6xIqWpm/x58g29rkJkSTTJvlQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="DeletedArticle Output"
+        title="DeletedArticle Output"
+        src="/static/9e5d339502f41f0215232bb3521d443a/fcda8/deletedarticlecurlresult.png"
+        srcset="/static/9e5d339502f41f0215232bb3521d443a/12f09/deletedarticlecurlresult.png 148w,
+/static/9e5d339502f41f0215232bb3521d443a/e4a3f/deletedarticlecurlresult.png 295w,
+/static/9e5d339502f41f0215232bb3521d443a/fcda8/deletedarticlecurlresult.png 590w,
+/static/9e5d339502f41f0215232bb3521d443a/efc66/deletedarticlecurlresult.png 885w,
+/static/9e5d339502f41f0215232bb3521d443a/aa61c/deletedarticlecurlresult.png 1065w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<hr>
+<p>Perfect our API is working successfully! Let’s download our ReactJS application to test it in live :)</p>
+<p>You can find in my Github account, a sample project which is available to test your API. You can clone it via command line (if you have git installed) : </p>
+<div class="gatsby-highlight" data-language="batch"><pre class="language-batch"><code class="language-batch"><span class="token command"><span class="token keyword">git</span> clone git@github.com:JStw/blog-app.git</span>
+// or via https :
+<span class="token command"><span class="token keyword">git</span> clone https://github.com/JStw/blog-app.git</span></code></pre></div>
+<p>When its done, run a <code class="language-text">npm install</code>.</p>
+<p>Open the <code class="language-text">App.js</code>, and put your Api Gateway base url in this line :</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token constant">API_BASE_URL</span> <span class="token operator">=</span> <span class="token string">'put your api base url here (do not put the /)'</span><span class="token punctuation">;</span></code></pre></div>
+<p>Before starting the app, you should enable CORS by adding the <code class="language-text">http://localhost:3000</code> Origin. If you don’t do that, it will be impossile for your app to query your API.</p>
+<p>Navigate to the API Gateway Services, and click on the <code class="language-text">CORS</code> option in the left menu. Edit the configuration, and add <a href="http://localhost:3000">http://localhost:3000</a> to the <strong>Access-Control-Allow-Origin</strong> list :
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 44.5945945945946%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABBklEQVQoz6VRW04EQQjs+19tL6FGjRpHnZl+P6gFbHR24p8klSZAUwW4ZfnA49Mz3vktpSDn/C+4FAP8vkHenJMGU0pI8k4/T//40eIhV4Xka61wsQxsGVgTobQBooExbkFEaL2jtabo7P/maWJAzN0tDZeHjst9x+vWODSLaIILRUlkRT4E7N6rGpo5IxQSibs1RLx9rXj5XOFzAYhuGzJkt/p5NummbuatedGRuYlPGXtMHGgqm2aRQUxGlR0JRM25zszpYmNE4HF+lJxQuVnmnOc6GVnGN6WmVghlJc72I1c7Kzuye24kxHZdU2hmtU5U6QUZMoqy9gn1vy/qfVD/SPLXyFf3B8Krb6GSWQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="CORS"
+        title="CORS"
+        src="/static/12a59859965ea26fdb376913b55791cd/fcda8/apicors.png"
+        srcset="/static/12a59859965ea26fdb376913b55791cd/12f09/apicors.png 148w,
+/static/12a59859965ea26fdb376913b55791cd/e4a3f/apicors.png 295w,
+/static/12a59859965ea26fdb376913b55791cd/fcda8/apicors.png 590w,
+/static/12a59859965ea26fdb376913b55791cd/efc66/apicors.png 885w,
+/static/12a59859965ea26fdb376913b55791cd/c83ae/apicors.png 1180w,
+/static/12a59859965ea26fdb376913b55791cd/fba00/apicors.png 1529w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+    </span></p>
+<p>Once is done, save and go back to the React App project.</p>
+<p>Run <code class="language-text">npm start</code> and when the app will run, it will open a new tab with this following URL: <code class="language-text">http://localhost:3000</code>.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/0428526e689ae48b2c17004fd645c92b/d9ed0/webapp1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 48.64864864864865%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABJ0AAASdAHeZh94AAABbElEQVQoz42QCUsDMRCF88tUsAq2YBFEEPzFiqJYaan2rnWzu9mje2SPbJ+ZbFtaLNLAR2bem5kc7Pr2Hjd3D2g02zhpNHF60dqDtEOQRz3nV200CB2fXbbABpM5xrMFhnofjGdm/xpN8Tmc6nyO0fQbI+2Ppn+hvl2EF4A9vbzh+fUdH71PvHV66HT76PYHeHx+NbEtAjheeBRFqcCGk+/6FmtmCw7L8bDgroHiY0llBvZjC3DX3zMoP8R/NaTJLAfL8gJxkiJJJVIN5Vmem50KSN9Qe7W/qxNUq1QFVpYFLMuCEALCFVitVtissizBOYdtcwRBsNWrqqrr13Bum1paTKkSUSLBRQSp/0ApZYbWg1cIIwnLXeoGZRpIp4F0ES9M4fgxiry+HXmMzFwLvh+YYZTvIqVEEIbG2/WpOU4SLJcRqvUhBKOnuK6rB/pwHAdRFKEo9D9lGTzP3/PiON56m+eSRzWJHk7P/gV1vtF5rPaVqwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Web App"
+        title="Web App"
+        src="/static/0428526e689ae48b2c17004fd645c92b/fcda8/webapp1.png"
+        srcset="/static/0428526e689ae48b2c17004fd645c92b/12f09/webapp1.png 148w,
+/static/0428526e689ae48b2c17004fd645c92b/e4a3f/webapp1.png 295w,
+/static/0428526e689ae48b2c17004fd645c92b/fcda8/webapp1.png 590w,
+/static/0428526e689ae48b2c17004fd645c92b/efc66/webapp1.png 885w,
+/static/0428526e689ae48b2c17004fd645c92b/c83ae/webapp1.png 1180w,
+/static/0428526e689ae48b2c17004fd645c92b/d9ed0/webapp1.png 1415w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<blockquote>
+<p>If the port has changed because you have already something running on the 3000 port, please edit your CORS configuration by setting the correct port in your API Gateway.</p>
+</blockquote>
+<p>I hope this article was helpful for you, like I said this is my article guys, so it will not be perfect… but if you want to send me a feedback do not hesitate to contact me in DM via Twitter or my other social links :) Thank you for your time!</p>
+<h3>Go further</h3>
+<p>Now your API is working, this is some extra-work you can do :</p>
+<ul>
+<li>Secure some API calls with Cognito.</li>
+<li>Send SMS / Email to your subscribers list</li>
+<li>Customize domain name for your API</li>
+</ul></section><hr style="margin-bottom:1.75rem"/><footer><div style="display:flex;margin-bottom:4.375rem"><div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden;display:inline-block;width:50px;height:50px;margin-right:0.875rem;margin-bottom:0;min-width:50px;border-radius:100%"><img aria-hidden="true" src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAUDBAH/xAAWAQEBAQAAAAAAAAAAAAAAAAABAwL/2gAMAwEAAhADEAAAAbOGfANpObn0Sg36KS//xAAdEAADAAEFAQAAAAAAAAAAAAABAgMABBESISMy/9oACAEBAAEFAuWISTuM1HwtWkVoCKdrL0E3Kr//xAAZEQACAwEAAAAAAAAAAAAAAAAAAQISITH/2gAIAQMBAT8BxIsifBn/xAAYEQEBAAMAAAAAAAAAAAAAAAAAAQISIf/aAAgBAgEBPwHta1gj/8QAHBAAAgICAwAAAAAAAAAAAAAAAAECEBEhMUFx/9oACAEBAAY/ArUU+SSfVebMSMaP/8QAGxABAAMAAwEAAAAAAAAAAAAAAQARITFBUWH/2gAIAQEAAT8hPhjjmz15n2i0Vrd2peFSxdYJbHPIDXpSG3flvuVKIFLSf//aAAwDAQACAAMAAAAQQz9B/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAExEP/aAAgBAwEBPxCp4yKP/8QAGBEBAAMBAAAAAAAAAAAAAAAAAQAQMRH/2gAIAQIBAT8QBeFOmYn/xAAcEAEBAAMBAQEBAAAAAAAAAAABEQAhUTFhQdH/2gAIAQEAAT8Q7hlW31Xz8mW3h0KjmEDZfus3KfQATz7lDCLwzzHcbVD0SYFVZwm9/uIzzBqx/XP/2Q==" alt="Julien Sauvannet" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms;border-radius:50%"/><noscript><picture><source srcset="/static/5cedcb2b70ec9d23884c6868cc27b7c4/99438/profile-pic.jpg 1x,
+/static/5cedcb2b70ec9d23884c6868cc27b7c4/aba1d/profile-pic.jpg 1.5x,
+/static/5cedcb2b70ec9d23884c6868cc27b7c4/b315d/profile-pic.jpg 2x" /><img loading="lazy" width="50" height="50" srcset="/static/5cedcb2b70ec9d23884c6868cc27b7c4/99438/profile-pic.jpg 1x,
+/static/5cedcb2b70ec9d23884c6868cc27b7c4/aba1d/profile-pic.jpg 1.5x,
+/static/5cedcb2b70ec9d23884c6868cc27b7c4/b315d/profile-pic.jpg 2x" src="/static/5cedcb2b70ec9d23884c6868cc27b7c4/99438/profile-pic.jpg" alt="Julien Sauvannet" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div><p>Written by <strong>Julien Sauvannet</strong> <!-- -->a passionate full-stack developer.<!-- --> <br/>Senior Software Developer at <a href="https://www.arhs-group.com/entities/spikeseed/">ARHS Spikeseed</a>.</p></div></footer></article><nav><ul style="display:flex;flex-wrap:wrap;justify-content:space-between;list-style:none;padding:0"><li><a rel="prev" href="/serverless-api-with-lambda-part-2/">← <!-- -->Serverless App with AWS in ReactJS, using Lambda &amp; API Gateway - Part 2</a></li><li><a rel="next" href="/serverless-app-with-secured-api/">Secure your Serverless App in AWS (Using Cognito, Cloudfront, API Gateway and Lambda)<!-- --> →</a></li></ul></nav></main><footer>© <!-- -->2021<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a><br/><small>Socials links: <a href="https://twitter.com/jstw">Twitter</a>, <a href="https://stackoverflow.com/users/8597732/jstw">StackOverflow</a>, <a href="https://www.linkedin.com/in/julien-sauvannet-8b5330b7/">Linkedin</a>.</small></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/serverless-api-with-lambda-part-3/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-cf85d7276881ef92fda8.js"],"app":["/app-d40e199bb4181adf59e7.js"],"component---src-pages-404-js":["/component---src-pages-404-js-23502f482a6ce5a729e6.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-f2dd2bfe653cc96aad04.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-cd165963c94fd51b86af.js"]};/*]]>*/</script><script src="/polyfill-cf85d7276881ef92fda8.js" nomodule=""></script><script src="/component---src-templates-blog-post-js-cd165963c94fd51b86af.js" async=""></script><script src="/fab8c9364b01cebfd3503fc18011994750f493ff-e32a823ce8effcd6d7ba.js" async=""></script><script src="/commons-835530cd8d0369cbd6b4.js" async=""></script><script src="/app-d40e199bb4181adf59e7.js" async=""></script><script src="/framework-38c1b66eb715199b2515.js" async=""></script><script src="/styles-fa79fef4936efa84b233.js" async=""></script><script src="/webpack-runtime-d0cee47abff92a6d3e11.js" async=""></script></body></html>
