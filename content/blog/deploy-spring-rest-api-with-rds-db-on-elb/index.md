@@ -145,11 +145,6 @@ public class SongController {
     public List<Song> getAllSongs() {
         return this.songRepository.findAll();
     }
-    
-    @RequestMapping(value = "/songs", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<Song> getAllSongs() {
-        return this.songRepository.findAll();
-    }
 }
 ```
 
@@ -178,14 +173,14 @@ public String fillDatabase() {
     song2.setAuthor("Mathieu Chédid");
     song2.setAlbum("Je dis aime");
     song2.setTitle("Monde virtuel");
-    song1.setRate(3);
+    song2.setRate(3);
 
     Song song3 = new Song();
 
     song3.setAuthor("Lee fields");
     song3.setAlbum("Faithful Man");
     song3.setTitle("Wish you were here");
-    song1.setRate(5);
+    song3.setRate(5);
 
     this.songRepository.save(song1);
     this.songRepository.save(song2);
