@@ -1,0 +1,533 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style id="typography.js">html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{font:100%/1.75 'Merriweather','Georgia',serif;box-sizing:border-box;overflow-y:scroll;}*{box-sizing:inherit;}*:before{box-sizing:inherit;}*:after{box-sizing:inherit;}body{color:hsla(0,0%,0%,0.9);font-family:'Merriweather','Georgia',serif;font-weight:400;word-wrap:break-word;font-kerning:normal;-moz-font-feature-settings:"kern", "liga", "clig", "calt";-ms-font-feature-settings:"kern", "liga", "clig", "calt";-webkit-font-feature-settings:"kern", "liga", "clig", "calt";font-feature-settings:"kern", "liga", "clig", "calt";}img{max-width:100%;margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}h1{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:Montserrat,sans-serif;font-weight:900;text-rendering:optimizeLegibility;font-size:2.5rem;line-height:1.1;}h2{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.73286rem;line-height:1.1;}h3{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.4427rem;line-height:1.1;}h4{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1rem;line-height:1.1;letter-spacing:0.140625em;text-transform:uppercase;}h5{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.83255rem;line-height:1.1;}h6{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.75966rem;line-height:1.1;font-style:italic;}hgroup{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}ul{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;list-style:disc;}ol{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;}dl{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}dd{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}p{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}figure{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}pre{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:0.85rem;line-height:1.75rem;}table{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1rem;line-height:1.75rem;border-collapse:collapse;width:100%;}fieldset{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}blockquote{margin-left:-1.75rem;margin-right:1.75rem;margin-top:0;padding-bottom:0;padding-left:1.42188rem;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1.20112rem;line-height:1.75rem;color:hsla(0,0%,0%,0.59);font-style:italic;border-left:0.32813rem solid hsla(0,0%,0%,0.9);}form{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}noscript{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}iframe{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}hr{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:calc(1.75rem - 1px);background:hsla(0,0%,0%,0.2);border:none;height:1px;}address{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}b{font-weight:700;}strong{font-weight:700;}dt{font-weight:700;}th{font-weight:700;}li{margin-bottom:calc(1.75rem / 2);}ol li{padding-left:0;}ul li{padding-left:0;}li > ol{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}li > ul{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}blockquote *:last-child{margin-bottom:0;}li *:last-child{margin-bottom:0;}p *:last-child{margin-bottom:0;}li > p{margin-bottom:calc(1.75rem / 2);}code{font-size:0.85rem;line-height:1.75rem;}kbd{font-size:0.85rem;line-height:1.75rem;}samp{font-size:0.85rem;line-height:1.75rem;}abbr{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}acronym{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}abbr[title]{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;text-decoration:none;}thead{text-align:left;}td,th{text-align:left;border-bottom:1px solid hsla(0,0%,0%,0.12);font-feature-settings:"tnum";-moz-font-feature-settings:"tnum";-ms-font-feature-settings:"tnum";-webkit-font-feature-settings:"tnum";padding-left:1.16667rem;padding-right:1.16667rem;padding-top:0.875rem;padding-bottom:calc(0.875rem - 1px);}th:first-child,td:first-child{padding-left:0;}th:last-child,td:last-child{padding-right:0;}blockquote > :last-child{margin-bottom:0;}blockquote cite{font-size:1rem;line-height:1.75rem;color:hsla(0,0%,0%,0.9);font-weight:400;}blockquote cite:before{content:"— ";}ul,ol{margin-left:0;}@media only screen and (max-width:480px){ul,ol{margin-left:1.75rem;}blockquote{margin-left:-1.3125rem;margin-right:0;padding-left:0.98438rem;}}h1,h2,h3,h4,h5,h6{margin-top:3.5rem;}a{box-shadow:0 1px 0 0 currentColor;color:#007acc;text-decoration:none;}a:hover,a:active{box-shadow:none;}mark,ins{background:#007acc;color:white;padding:0.10938rem 0.21875rem;text-decoration:none;}a.gatsby-resp-image-link{box-shadow:none;}</style><style data-href="/styles.1a54add997246827ae7a.css">@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:100;src:local("Montserrat Thin "),local("Montserrat-Thin"),url(/static/montserrat-latin-100-191cc9f50f3b76b9617cb383f19acb7d.woff2) format("woff2"),url(/static/montserrat-latin-100-370318464551d5f25b0f0a78f374faac.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:100;src:local("Montserrat Thin italic"),local("Montserrat-Thinitalic"),url(/static/montserrat-latin-100italic-bdeaeb79db315697bd173a55b097dc18.woff2) format("woff2"),url(/static/montserrat-latin-100italic-ecf7d49386e8f265878e735db34a7c4b.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:200;src:local("Montserrat Extra Light "),local("Montserrat-Extra Light"),url(/static/montserrat-latin-200-85d5ef9db7f2dc6979172a4a3b2c57cb.woff2) format("woff2"),url(/static/montserrat-latin-200-1fc98e126a3d152549240e6244d7e669.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:200;src:local("Montserrat Extra Light italic"),local("Montserrat-Extra Lightitalic"),url(/static/montserrat-latin-200italic-49095760a498d024fe1a85a078850df9.woff2) format("woff2"),url(/static/montserrat-latin-200italic-fe46cf8b9462c820457d3bf537e4057f.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:300;src:local("Montserrat Light "),local("Montserrat-Light"),url(/static/montserrat-latin-300-7c3daf12b706645b5d3710f863a4da04.woff2) format("woff2"),url(/static/montserrat-latin-300-8dc95fab9cf98d02ca8d76e97d3dff60.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:300;src:local("Montserrat Light italic"),local("Montserrat-Lightitalic"),url(/static/montserrat-latin-300italic-f20b178ca2024a5eac8e42e6649db86c.woff2) format("woff2"),url(/static/montserrat-latin-300italic-3fe16939288856e8e828fa2661bf2354.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:400;src:local("Montserrat Regular "),local("Montserrat-Regular"),url(/static/montserrat-latin-400-bc3aa95dca08f5fee5291e34959c27bc.woff2) format("woff2"),url(/static/montserrat-latin-400-8102c4838f9e3d08dad644290a9cb701.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:400;src:local("Montserrat Regular italic"),local("Montserrat-Regularitalic"),url(/static/montserrat-latin-400italic-5cad650422a7184467af5a4d17b264c4.woff2) format("woff2"),url(/static/montserrat-latin-400italic-d191f22af3bb50902b99ac577f81a322.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:500;src:local("Montserrat Medium "),local("Montserrat-Medium"),url(/static/montserrat-latin-500-92d16e458625f4d2c8940f6bdca0ff09.woff2) format("woff2"),url(/static/montserrat-latin-500-8b763220218ffc11c57c84ddb80e7b26.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:500;src:local("Montserrat Medium italic"),local("Montserrat-Mediumitalic"),url(/static/montserrat-latin-500italic-47bfcca6b69d6a9acca7a8bff17193e2.woff2) format("woff2"),url(/static/montserrat-latin-500italic-72c01f753c3940c0b9cb6bf2389caddf.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:600;src:local("Montserrat SemiBold "),local("Montserrat-SemiBold"),url(/static/montserrat-latin-600-6fb1b5623e528e27c18658fecf5ee0ee.woff2) format("woff2"),url(/static/montserrat-latin-600-7c839d15a6f54e7025ba8c0c4b333e8f.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:600;src:local("Montserrat SemiBold italic"),local("Montserrat-SemiBolditalic"),url(/static/montserrat-latin-600italic-60789af1c9338ed1a9546722ec54b4f7.woff2) format("woff2"),url(/static/montserrat-latin-600italic-f3d4de8d0afb19e777c79032ce828e3d.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:700;src:local("Montserrat Bold "),local("Montserrat-Bold"),url(/static/montserrat-latin-700-39d93cf678c740f9f6b2b1cfde34bee3.woff2) format("woff2"),url(/static/montserrat-latin-700-80f10bd382f0df1cd650fec59f3c9394.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:700;src:local("Montserrat Bold italic"),local("Montserrat-Bolditalic"),url(/static/montserrat-latin-700italic-ba136d97b14e82284dd595e257f11c47.woff2) format("woff2"),url(/static/montserrat-latin-700italic-8c98142b425630821139c24bd1698700.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold "),local("Montserrat-ExtraBold"),url(/static/montserrat-latin-800-b7018be9ed6cd94da8b6675b3a468c3b.woff2) format("woff2"),url(/static/montserrat-latin-800-9a9befcf50d64f9d2d19d8b1d1984add.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold italic"),local("Montserrat-ExtraBolditalic"),url(/static/montserrat-latin-800italic-540ffdd223d1a9ad3d4e678e1a23372e.woff2) format("woff2"),url(/static/montserrat-latin-800italic-897086f99f4e1f45e6b1e9368527d0bc.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:900;src:local("Montserrat Black "),local("Montserrat-Black"),url(/static/montserrat-latin-900-58cd789700850375b834e8b6776002eb.woff2) format("woff2"),url(/static/montserrat-latin-900-26d42c9428780e545a540bbb50c84bce.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:900;src:local("Montserrat Black italic"),local("Montserrat-Blackitalic"),url(/static/montserrat-latin-900italic-451157bc8861fe54f523b3669a3def71.woff2) format("woff2"),url(/static/montserrat-latin-900italic-a8ec4957e1c24f5793305763ad9845b3.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:300;src:local("Merriweather Light "),local("Merriweather-Light"),url(/static/merriweather-latin-300-b1158cfcd4aacb9d8fb61625e37af46a.woff2) format("woff2"),url(/static/merriweather-latin-300-cc7de05e166e90320d7d896e0f72a19d.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:300;src:local("Merriweather Light italic"),local("Merriweather-Lightitalic"),url(/static/merriweather-latin-300italic-8fe52a48089d6ebe46db0b8e7cc66263.woff2) format("woff2"),url(/static/merriweather-latin-300italic-e1331f5397c2a673f9d3765138debdb5.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:400;src:local("Merriweather Regular "),local("Merriweather-Regular"),url(/static/merriweather-latin-400-8276fdb72ae8f4714d4e6eba704cc39f.woff2) format("woff2"),url(/static/merriweather-latin-400-69f09800f4f6479d06e44eba837df872.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:400;src:local("Merriweather Regular italic"),local("Merriweather-Regularitalic"),url(/static/merriweather-latin-400italic-3a9be9ea9f7aa4af6de7307df21d9fc0.woff2) format("woff2"),url(/static/merriweather-latin-400italic-d76079ed7541a433a54f79316de086e9.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:700;src:local("Merriweather Bold "),local("Merriweather-Bold"),url(/static/merriweather-latin-700-fa534be7ffa380e39a7f6e03bf9a5e03.woff2) format("woff2"),url(/static/merriweather-latin-700-ba56ea84b8084b7ff9677f50d3cd81bd.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:700;src:local("Merriweather Bold italic"),local("Merriweather-Bolditalic"),url(/static/merriweather-latin-700italic-1ef5edaaa20ae53ea50399884c5e48c6.woff2) format("woff2"),url(/static/merriweather-latin-700italic-534bc9e7ce93c73d73426e46acd78092.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:900;src:local("Merriweather Black "),local("Merriweather-Black"),url(/static/merriweather-latin-900-7528fb70e8a4a82c7305e72ff43ac25f.woff2) format("woff2"),url(/static/merriweather-latin-900-3799b6e2f5ed3fcccf9d7a708d7419fa.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:900;src:local("Merriweather Black italic"),local("Merriweather-Blackitalic"),url(/static/merriweather-latin-900italic-e1b4d2aaa78e12ad84aaf8a56321e4c2.woff2) format("woff2"),url(/static/merriweather-latin-900italic-2ae22f731b3424e8dbb4b37f7ca6e708.woff) format("woff")}code[class*=language-],pre[class*=language-]{color:#000;background:none;text-shadow:0 1px #fff;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}code[class*=language-]::selection,code[class*=language-] ::selection,pre[class*=language-]::selection,pre[class*=language-] ::selection{text-shadow:none;background:#b3d4fc}@media print{code[class*=language-],pre[class*=language-]{text-shadow:none}}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*=language-],pre[class*=language-]{background:#f5f2f0}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#999}.token.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#905}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#690}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.class-name,.token.function{color:#dd4a68}.token.important,.token.regex,.token.variable{color:#e90}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><meta name="generator" content="Gatsby 2.24.57"/><link rel="alternate" type="application/rss+xml" href="/rss.xml"/><link rel="icon" href="/favicon-32x32.png?v=4a9773549091c227cd2eb82ccd9c5e3a" type="image/png"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#663399"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><title data-react-helmet="true">Deploy your Spring Boot Rest API with MySQL on AWS Elastic Beanstalk | Jstw Blog</title><meta data-react-helmet="true" name="description" content="Let&#x27;s have a look at how we can deploy our spring rest API with MySQL on AWS"/><meta data-react-helmet="true" property="og:title" content="Deploy your Spring Boot Rest API with MySQL on AWS Elastic Beanstalk"/><meta data-react-helmet="true" property="og:description" content="Let&#x27;s have a look at how we can deploy our spring rest API with MySQL on AWS"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="jstw"/><meta data-react-helmet="true" name="twitter:title" content="Deploy your Spring Boot Rest API with MySQL on AWS Elastic Beanstalk"/><meta data-react-helmet="true" name="twitter:description" content="Let&#x27;s have a look at how we can deploy our spring rest API with MySQL on AWS"/><link as="script" rel="preload" href="/webpack-runtime-d0cee47abff92a6d3e11.js"/><link as="script" rel="preload" href="/styles-fa79fef4936efa84b233.js"/><link as="script" rel="preload" href="/framework-38c1b66eb715199b2515.js"/><link as="script" rel="preload" href="/app-d40e199bb4181adf59e7.js"/><link as="script" rel="preload" href="/commons-835530cd8d0369cbd6b4.js"/><link as="script" rel="preload" href="/fab8c9364b01cebfd3503fc18011994750f493ff-e32a823ce8effcd6d7ba.js"/><link as="script" rel="preload" href="/component---src-templates-blog-post-js-cd165963c94fd51b86af.js"/><link as="fetch" rel="preload" href="/page-data\deploy-spring-rest-api-with-rds-db-on-elb\page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data\app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div style="margin-left:auto;margin-right:auto;max-width:42rem;padding:2.625rem 1.3125rem"><header><h3 style="font-family:Montserrat, sans-serif;margin-top:0"><a style="box-shadow:none;color:inherit" href="/">Jstw Blog</a></h3></header><main><article><header><h1 style="margin-top:1.75rem;margin-bottom:0">Deploy your Spring Boot Rest API with MySQL on AWS Elastic Beanstalk</h1><p style="font-size:0.83255rem;line-height:1.75rem;display:block;margin-bottom:1.75rem">January 13, 2021</p></header><section><p>Hello guys!</p>
+<p>I didn’t publish an article since a while! So today, I wanted to share with how to deals with a REST API built with Spring Boot that communicates with a MySQL database.</p>
+<p>Like always, there is a list of pre-requisites that you must have before continuing:</p>
+<ul>
+<li>An AWS account is required (<a href="https://portal.aws.amazon.com/billing/signup#/start">click here</a> to create one)</li>
+<li>Spring Boot with Java (<a href="https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started.html#getting-started-installing-spring-boot">click here</a> to download/install)</li>
+<li>MySQL (<a href="https://dev.mysql.com/doc/mysql-getting-started/en/#mysql-getting-started-installing">click here</a> to download/install)</li>
+</ul>
+<p>Ok, let’s move on!</p>
+<hr>
+<h2>Step 1: Spring Rest API</h2>
+<p>The first step is to initialize our spring boot app with the <a href="https://start.spring.io/">Spring Initializer</a>. Let’s create a sample Maven Project (Java 11) like below:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/ec7ed471ce06e749ccc822c5f20a676c/fe60e/spring_init.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 45.27027027027027%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABL0lEQVQoz31Si07EIBDk/z/RGKNp7yyU2he0pZSOzBpOvXhuMmkKszOzgJrmEUeKAE6wjuOA7VqEEJBSErDWdcU4joUmtW0btNZomgbDMMB7D9XYC/rxA+f5xUzngXkZEbYgDfu+yzobqrrCm33Cuq1ivGQTrhPzPAtftaaFMUZ+6LCuWSQGxBTws6ZpwuV6xev1Gbp7x5Z57IlZmKYxRuGpvu8ltnNONmTMM90Sl2IK0xi0QwM7N3mCXZLyKAjyCUURkim8LIu4FpQGmpCjtUHVvcBvLq+dMnbBTZDuHJVjW2tlNB5+AYVoGjLIm/0kRsCv+/kW5OwUsa0V0a7r5IALuFcuBn8I3EN557NIFms16qqWlCUZvzwKPqF7kUelOL9z+cr35fb2HqX5L1nBJ0pVvRgAB3l0AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="spring initialization"
+        title="spring initialization"
+        src="/static/ec7ed471ce06e749ccc822c5f20a676c/fcda8/spring_init.png"
+        srcset="/static/ec7ed471ce06e749ccc822c5f20a676c/12f09/spring_init.png 148w,
+/static/ec7ed471ce06e749ccc822c5f20a676c/e4a3f/spring_init.png 295w,
+/static/ec7ed471ce06e749ccc822c5f20a676c/fcda8/spring_init.png 590w,
+/static/ec7ed471ce06e749ccc822c5f20a676c/efc66/spring_init.png 885w,
+/static/ec7ed471ce06e749ccc822c5f20a676c/c83ae/spring_init.png 1180w,
+/static/ec7ed471ce06e749ccc822c5f20a676c/fe60e/spring_init.png 1677w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>For this example, we will just need 3 dependencies :</p>
+<ul>
+<li>Spring Web — Full-stack web development with Tomcat and Spring MVC</li>
+<li>Spring Data JPA — Java Persistence API including spring-data-JPA, spring-orm, and Hibernate</li>
+<li>MySQL Driver — MySQL JDBC driver</li>
+</ul>
+<p>Once it’s done, you can click on generate and it will download a zip file that you can extract and import in your IDE.</p>
+<p>Next step is to define our DB configuration. For that, create a file in <code class="language-text">&lt;&lt; path of your project &gt;&gt;/src/main/resources/application.properties</code> and put this configuration :</p>
+<div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token comment"># Server configuration</span>
+server.port=8080
+
+<span class="token comment"># Spring</span>
+spring.datasource.url=jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>3306/my_db<span class="token punctuation">?</span>useSSL=false
+spring.datasource.username=root
+spring.datasource.password=root
+
+<span class="token comment"># Hibernate</span>
+<span class="token comment"># The SQL dialect makes Hibernate generate better SQL for the chosen database</span>
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+
+<span class="token comment"># Hibernate ddl auto (create, create-drop, validate, update)</span>
+spring.jpa.hibernate.ddl<span class="token punctuation">-</span>auto=update</code></pre></div>
+<p>Our configuration is done, so the next step is to create our class entity model. It’s a simple project, so I will create just a simple one: Song.</p>
+<p>Let’s create a folder <code class="language-text">models</code> in our application, and create a Java Class Song like below :</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@Entity</span>
+<span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"songs"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Song</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Id</span>
+    <span class="token annotation punctuation">@GeneratedValue</span><span class="token punctuation">(</span>strategy <span class="token operator">=</span> <span class="token class-name">GenerationType</span><span class="token punctuation">.</span>AUTO<span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">Long</span> id<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Column</span><span class="token punctuation">(</span>nullable <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> title<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Column</span><span class="token punctuation">(</span>nullable <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> album<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Column</span><span class="token punctuation">(</span>nullable <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> author<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Column</span><span class="token punctuation">(</span>nullable <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> rate<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">Song</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">Long</span> <span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setId</span><span class="token punctuation">(</span><span class="token class-name">Long</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>id <span class="token operator">=</span> id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> title<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token class-name">String</span> title<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>title <span class="token operator">=</span> title<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getAlbum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> album<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setAlbum</span><span class="token punctuation">(</span><span class="token class-name">String</span> album<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>album <span class="token operator">=</span> album<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getAuthor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> author<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setAuthor</span><span class="token punctuation">(</span><span class="token class-name">String</span> author<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>author <span class="token operator">=</span> author<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getRate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> rate<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setRate</span><span class="token punctuation">(</span><span class="token keyword">int</span> rate<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>rate <span class="token operator">=</span> rate<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Once our model entity is created, let’s create the repository class. Create a folder <code class="language-text">repositories</code> and create a java class called SongRepository with the following code:</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@Repository</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SongRepository</span> <span class="token keyword">extends</span> <span class="token class-name">JpaRepository</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Song</span><span class="token punctuation">,</span> <span class="token class-name">Long</span><span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span></code></pre></div>
+<p>And the latest step for our API is to create the controller to serve the data. Create the latest folder called <code class="language-text">controllers</code> and add a SongController Java Class like below :</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/api"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SongController</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">SongRepository</span> songRepository<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">SongController</span><span class="token punctuation">(</span><span class="token class-name">SongRepository</span> songRepository<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>songRepository <span class="token operator">=</span> songRepository<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"/songs"</span><span class="token punctuation">,</span> method <span class="token operator">=</span> <span class="token class-name">RequestMethod</span><span class="token punctuation">.</span>GET<span class="token punctuation">,</span> produces <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_JSON_VALUE<span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Song</span><span class="token punctuation">></span></span> <span class="token function">getAllSongs</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>songRepository<span class="token punctuation">.</span><span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"/songs"</span><span class="token punctuation">,</span> method <span class="token operator">=</span> <span class="token class-name">RequestMethod</span><span class="token punctuation">.</span>GET<span class="token punctuation">,</span> produces <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_JSON_VALUE<span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Song</span><span class="token punctuation">></span></span> <span class="token function">getAllSongs</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>songRepository<span class="token punctuation">.</span><span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Before starting our application, we need to create the database that we provided in the <code class="language-text">application.properties</code> file. So, connect to MySQL via command line and create your DB as below :</p>
+<div class="gatsby-highlight" data-language="console"><pre class="language-console"><code class="language-console">mysql -u root -p
+# hit your password
+
+# create the database my_db :
+create database my_db;</code></pre></div>
+<p>We need to fill a little bit our DB, so I added a new method in our SongController :</p>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"/init-db"</span><span class="token punctuation">,</span> method <span class="token operator">=</span> <span class="token class-name">RequestMethod</span><span class="token punctuation">.</span>GET<span class="token punctuation">,</span> produces <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token class-name">MediaType</span><span class="token punctuation">.</span>APPLICATION_JSON_VALUE<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">fillDatabase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Song</span> song1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Song</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    song1<span class="token punctuation">.</span><span class="token function">setAuthor</span><span class="token punctuation">(</span><span class="token string">"Bigflo &amp; Oli"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    song1<span class="token punctuation">.</span><span class="token function">setAlbum</span><span class="token punctuation">(</span><span class="token string">"La vie de rêve"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    song1<span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">"Bienvenue chez moi"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    song1<span class="token punctuation">.</span><span class="token function">setRate</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">Song</span> song2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Song</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    song2<span class="token punctuation">.</span><span class="token function">setAuthor</span><span class="token punctuation">(</span><span class="token string">"Mathieu Chédid"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    song2<span class="token punctuation">.</span><span class="token function">setAlbum</span><span class="token punctuation">(</span><span class="token string">"Je dis aime"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    song2<span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">"Monde virtuel"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    song1<span class="token punctuation">.</span><span class="token function">setRate</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">Song</span> song3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Song</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    song3<span class="token punctuation">.</span><span class="token function">setAuthor</span><span class="token punctuation">(</span><span class="token string">"Lee fields"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    song3<span class="token punctuation">.</span><span class="token function">setAlbum</span><span class="token punctuation">(</span><span class="token string">"Faithful Man"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    song3<span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">"Wish you were here"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    song1<span class="token punctuation">.</span><span class="token function">setRate</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">this</span><span class="token punctuation">.</span>songRepository<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>song1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>songRepository<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>song2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>songRepository<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>song3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token string">"Database has been filled in !"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Ok so I think we can check if everything is ok by running <code class="language-text">mvn spring-boot:run</code> in your project folder.</p>
+<p>Our application run successfully :</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">2021-01-14 08:55:42.067  INFO 12800 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService &#39;applicationTaskExecutor&#39;
+2021-01-14 08:55:42.254  INFO 12800 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path &#39;&#39;
+2021-01-14 08:55:42.260  INFO 12800 --- [           main] c.jstw.mysuperapi.MysuperapiApplication  : Started MysuperapiApplication in 3.056 seconds (JVM running for 3.362)</code></pre></div>
+<p>Let’s first hit our init DB endpoint : <code class="language-text">http://localhost:8080/api/init-db</code>
+and then let’s test <code class="language-text">http://localhost:8080/api/songs</code> :</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 480px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/49a778ffd8dd4ee91e6178fdd5ae16fa/e85cb/db_query.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 156.75675675675674%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAfCAYAAADnTu3OAAAACXBIWXMAABJ0AAASdAHeZh94AAADuUlEQVRIx5VW2bKrRgzk/z8uT6mbs3g3Nph935m+amGIzbFvJVSpZhBjjaRuSbaSJEEQBPj4+IBt27qP4xi32w3b7RaHw0HX/X6PzWaDr68v7Ha7RcIwRBRFi1h13aBuJmnaFlVdoyhKVFV1F9mXherKcpKiKJb9v+cqfbeSKIRzOcNzrrjaJxRZgr7rQM/TJIaf1gjzDkPfyY9q1HJhJ99pNMsyPTevarB298gvGxSXra7N7YCuLieva7m5bmXf6SWtREChwYYR6Zl6WfnNwovHGLPWPOnm/Vo3juNkkCAwhPnDfxE+BOF0OuF8Pi9gqkG62vc9/u/DUOkIZQ7dopsMieswDLpSzDjc33/q5nOPoc9nrEKQy4QSbdfrLUoHoUBWTgBQN9MiLQiE6MWTmVI8T89mwKz4vIXz/Te6PNIfp2mCJM3hJJ16Qt1EoQRu0qKRi4l4mqbI8gKx6Gm8u7PAapIAReCgiP3FG9KlbSoUd/JSzxw3dbWQWd/zGH1Ta8hzGqw0y7E7HHGWsqMnjuNo2cWxeOS6uF6viiCN8oxtX+D7vvCzQfr9F6rgOvNGF4u35XkuSOWLJ0reO4Gn3HSq5/skvXrE/SD6GRD1kNwhjzzP0x+9p495+b7m52KQKx8aHMSD0k+RxkSQ4EA8YZ6EHhRhGnXKuNVVPwzyGdoe8e6GxBbApDHcLoDvGJXQA7yrQeQZ5OlwL8s5hy88lM9q0P+8Itw4aKoG1xOw/zS42QaXA3DejZrHxxpfQiaKn9JczxcXSWUQi4RZj+M/NzGUYnMKcHZbXG7iZSpGIwMvGRGVvZ5di8UCPx6P0nkjDKMRwuaQNEkuWYriCdfRaJ64jmaSYZze12KRe/v9QVv53CjGXihRSLG3pIRZoWz+gPwdFM6LNSjR1kUkoORZK2BIq/LF+9goQHnKfA3vacNBtIBizGIwPfloyg7XI4EwcG1g80sQDkjycUH4sdGqQU6vJw8FQe+XjejgSRVJw4hHBC6QyZGUoAhtqnJQRrw0OIfMDyx+9bLptawIyuv8zeX7bHTxkKBQWUlHMeMUdj+MD7evwTBPRv8ISi/llkj+IldmTd5KmJAQDWQYyphlhUjocrwuzXsPyccFFMlh+O0g3t+kUjqctsDx2wg4BocvIj5IbzQiw48JqAb5V2NNGxokKHVZK2VCqZRAxJXya9v+7dj9AQp7nIIj3abJOej71ZyeOYenkfrkIXlIUNhg2TjfDf/Z0LthrwaZO7Z6luC6czwL3nr1+PwGdjBoitAZBOcAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="db query"
+        title="db query"
+        src="/static/49a778ffd8dd4ee91e6178fdd5ae16fa/e85cb/db_query.png"
+        srcset="/static/49a778ffd8dd4ee91e6178fdd5ae16fa/12f09/db_query.png 148w,
+/static/49a778ffd8dd4ee91e6178fdd5ae16fa/e4a3f/db_query.png 295w,
+/static/49a778ffd8dd4ee91e6178fdd5ae16fa/e85cb/db_query.png 480w"
+        sizes="(max-width: 480px) 100vw, 480px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Ok congrats folks, our first part is done ;-)</p>
+<p>Let’s move on now, and start the AWS part.</p>
+<h2>Step 2: Creation of the RDS Instance</h2>
+<p>Open the Amazon RDS service via <code class="language-text">Services / Databases / RDS</code>, and then hit “Create Database”.</p>
+<p>Let’s keep the “Standard create” option and select “MySQL” for the engine options.</p>
+<p>For the “Template” part, I will select “Free Tier” because it’s a sample project for a demo, but you can adapt the template based on your needs.</p>
+<p>In the Settings part, I will change the DB instance identifier by: <code class="language-text">my-rds-db-id</code>. For the credentials I will provide a password: <strong>MySuperPassword;2021</strong>, and let the “master username” as is (<strong>admin</strong> by default).</p>
+<p>Chose your DB instance size based on your requirement (for this example I will let the default one: db.t2.micro), same for the Storage part.</p>
+<p>I will leave the other default settings (Availability &#x26; durability, Connectivity, Database authentication) but the important part will be on the Additional configuration part.</p>
+<p>Open the Additional configuration part, and provide the Initial database name: <strong>my<em>rds</em>db</strong> and leave the rest as is.</p>
+<p>Once is done, click on “Create Database” and it will take a few minutes to provide your DB.</p>
+<p>Meanwhile, we will update a little bit our <strong>application.properties</strong> to change the server port and the spring Datasource lines. The server configuration/spring should look like :</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"># Server configuration
+server.port=5000
+
+# Spring
+spring.datasource.url=jdbc:mysql://${RDS_HOSTNAME}:${RDS_PORT}/${RDS_DB_NAME}
+spring.datasource.username=${RDS_USERNAME}
+spring.datasource.password=${RDS_PASSWORD}</code></pre></div>
+<p>Once it’s done, we will build our app by running a: <code class="language-text">mvn clean package -DskipTests</code></p>
+<p>Your artifact should be generated in your <code class="language-text">&lt;&lt; project path &gt;&gt;/target/&lt;&lt; project app name &gt;&gt;-0.0.1-SNAPSHOT.jar</code> like below :</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/a307c96f99c94a9a730601abf7076b8b/774b6/jar.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 32.43243243243243%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAAA9ElEQVQY022RyY6DMAyGs7KFLCShoDKaCsGhvc/7v9o/ZpkemB4+2bLiT47N1nXFOI7wPiB2HTpCSgmt9Y5SCkVRoCzLPW781a9wzsGW5RDmnNH3/S5MKaOqqrfgQEMIQfAz/ocxBvb99UAMCdY4ihHGGIQU0FoL5wKs9W+kVNQkaBIJIS9CeQpVFJCJE1QwDLWoEViHUlHeMLTtQXPm3jOSM/Ct+RMhzUi3GT5mSF1BCtoH03B2oOYbQhho6oaoYZ1BXRc0Kf8s24jxh5qfsO2TvrjQ7jJU0WCaZszzC8PwIHFHccT9PtHhtrW09Nbtx7kKfwFMgoT2xELFiAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="jar created"
+        title="jar created"
+        src="/static/a307c96f99c94a9a730601abf7076b8b/fcda8/jar.png"
+        srcset="/static/a307c96f99c94a9a730601abf7076b8b/12f09/jar.png 148w,
+/static/a307c96f99c94a9a730601abf7076b8b/e4a3f/jar.png 295w,
+/static/a307c96f99c94a9a730601abf7076b8b/fcda8/jar.png 590w,
+/static/a307c96f99c94a9a730601abf7076b8b/774b6/jar.png 738w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Ok, so I think it’s time to create our Elastic Beanstalk application. Let’s navigate to this service via <code class="language-text">Services / Compute / Elastic Beanstalk</code>.</p>
+<p>Hit <strong>Create a new environment</strong>, keep the default selected environment tier (Web server environment).</p>
+<p>Provide an application name: <em>my-super-api</em> (for me)
+Chose a domain and check is availability:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/db83dfcddf92439fc5a3a62bfcb2945a/83e77/elb-env.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 46.621621621621614%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABFUlEQVQoz6VS127DMAzU//9fW8dJHpN6SLasYVvyuJLyeGiBFkEFHEiKFMdRwhgDKRWUaiCVIl2iJrAeYkQI4W/sceM4QrRaI89zZNkF2SXH7X7H2/sH8usNbduC/V3XJWjS9W7rA2Q3TQtrLSIlFv0wYJqmE6lSGJN0zsF5j77v4Un675LAfktxHJMSspPHVWobmxPxWdcVrx5+Iwaam5M9np8oygpsz/NM3RLm15AScqvMQ4zTWeU/EANxyKRWVZ0440vu8AeWJUn2M2dPmqaoa5IlHkUJ2TSpIcGc8WI0fR9tLBx1vNDj9eyWlU3n+wPTXugYlwumhKbvIE0N73xafdrsDt6iGSwKJxHmuFGC9delfAEcPLx/NbwW1AAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="elb env info"
+        title="elb env info"
+        src="/static/db83dfcddf92439fc5a3a62bfcb2945a/fcda8/elb-env.png"
+        srcset="/static/db83dfcddf92439fc5a3a62bfcb2945a/12f09/elb-env.png 148w,
+/static/db83dfcddf92439fc5a3a62bfcb2945a/e4a3f/elb-env.png 295w,
+/static/db83dfcddf92439fc5a3a62bfcb2945a/fcda8/elb-env.png 590w,
+/static/db83dfcddf92439fc5a3a62bfcb2945a/efc66/elb-env.png 885w,
+/static/db83dfcddf92439fc5a3a62bfcb2945a/83e77/elb-env.png 889w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>For the platform, let’s select the Java one with the Corretto platform branch :</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/76bf282bd01da7e653c7da07808f75f6/748b0/elb-platform.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 62.16216216216216%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABcUlEQVQoz62S627bMAyF/f5v1wL7k3VJEydNbcvORTfLknx6KKfDihbpBszABwokTRxeKm0MtpsNdtstvPeYc0aKEXGaCikuRPpSSh8R3x9ITjWOI/oAnMeIwfJtPC7jBJdm2DhDTxmG+BCgrV2gCEPrKECwxDiHqRRk4o/W4eGpxuPPLR5Wz1gdFH61GptO43i2UD7jbCx2hwPWuxrrusZmv0d9PBZe2hZHYlm0sn6EToCyAc3Vo9EBryZiPXjsrxMuIeMUqNR5qNOA/nQqKGEYFvjuaD27rWRujepxsQ7sEFOeEUmeZyQSUqYvI/8FM/OXGfY9HOXSw0D6MjndQeKiLnCJlQxVUaFi0YHSyzYlMX3+6V5B2brYonBg/69NQ6UDOtWh6xRa0t3Q2pR2vlM4vStsuCFR2SmFwK2nb1r8kt8KWcBxg6JEZtk0bbkt+d4HfY98s1KnHLYcqLS9EEpA5HueU7H/SHXVGoaXr/8Tb8Jeo/CvtEA0AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="elb platform info"
+        title="elb platform info"
+        src="/static/76bf282bd01da7e653c7da07808f75f6/fcda8/elb-platform.png"
+        srcset="/static/76bf282bd01da7e653c7da07808f75f6/12f09/elb-platform.png 148w,
+/static/76bf282bd01da7e653c7da07808f75f6/e4a3f/elb-platform.png 295w,
+/static/76bf282bd01da7e653c7da07808f75f6/fcda8/elb-platform.png 590w,
+/static/76bf282bd01da7e653c7da07808f75f6/748b0/elb-platform.png 868w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>And finally, we will upload our artefact built previously in the Application code part :</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/0d6507efec9f9d9725d97d75b8db719f/6e9ba/elb-app-code.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 95.27027027027027%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAABJ0AAASdAHeZh94AAACBklEQVQ4y51Ui3LaMBD0//9epkkhJJBA/cRvyU+Z7d6ZUCBNIdXMjizZ2rvbW9kzxiDLMqTpjDzPuc7Rtu1/wRPCh4cfeHxaYLFYYv26xmr1gr7vLzAMw13w2q7DdDjMG+MwHx5HTNOEA/cF8uycuwueEDVNg83bu2K9ecP7doeqNjDGouYsAe4dmqHA2AaGxDILwUjMZYwaWbM8QrL+klBKHEeH2lpYEjYUtmGAjvsCCdYcg9qm1aA9A6kUR0nO4Y3UTUZaFIj2e8TseJhwTlNk3JP97ArpP+CZtkdmelRViaIsUVaVavdR9geu1yNlGE6ynHW5tB1e4gqh7yMII8Rxgoho1Fcsl2UKuq7XWWRRUCIh+KShkw5OI/wgQBCE2NPcEl207URLEolhdeZaGiSaS5bOTUpyoaEILB/EyZxZTP2ENMsLdpy2ofFFBrGRpQOk2+dwV1BCeVHXNUlyXr1C56qqTwcuDt9j7JGQcsMohk8t/SD6VMq9oIYDcjtguWO5Uaglq1bTH32+MzTD3h2QVgZJHCOlD6UJX2V4K3PelEG+QCHGZlMSmnu/T08dvB63MtamOHbZ9yMlVC+y42JuedcxW2mYrvvhIsO/Eoqfms5is3tF4If6p3n6yX/jconl80qbtOXedveLdkpvE8rfpHMtkjKEqe18/YiK3pPnaZq+VfJvUZDIWkZZ2o0AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="elb app code"
+        title="elb app code"
+        src="/static/0d6507efec9f9d9725d97d75b8db719f/fcda8/elb-app-code.png"
+        srcset="/static/0d6507efec9f9d9725d97d75b8db719f/12f09/elb-app-code.png 148w,
+/static/0d6507efec9f9d9725d97d75b8db719f/e4a3f/elb-app-code.png 295w,
+/static/0d6507efec9f9d9725d97d75b8db719f/fcda8/elb-app-code.png 590w,
+/static/0d6507efec9f9d9725d97d75b8db719f/6e9ba/elb-app-code.png 731w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Let’s create your environment, It will take a few minutes to do it.</p>
+<p>Once it’s created, click on your environment and go to the configuration (on the left side menu), and then edit the <strong>Software</strong> category part.</p>
+<p>Scroll down and we will need to provide some environment properties like below :</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/5b43ce69b9747ff54e9ceb6844a5e8b3/951a4/elb-env-props.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 54.72972972972974%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAABK0lEQVQoz31Sy5KEIAzk/z/S8eJcHB+APESsbDpOtlxL99BCIOl0Y0z/+VDTvKhtW2peLQ3jSCEEWoBlkXVwiZa0Ut02KqX8CxNTosRY11UQYxTCM3yI5JcgdzlnyX+CmaaJuq6jcRhoZHWIr3DWUt/39H6/aeA8PZ/n+U8e6k1mVbiAvVorbWzrin3f5c4ysXNOnKhS2NQ8nBscggzB9vBGIMSqhFi9d1IHYq3D3iT+4J2007mjxkqoFi2TIlZHR035KmTCmZPQ7UkhCpHsvRebZ1Xnxr8K0Rk2nkbhUMiE7rAJYrW8yN4LmSjMF8K7ziBcy0aTdTTNlqznt+M4rwq2u1VZRSHIzjbuFKI7hrzgbxY0q7w/A8Rfhcff87cjo2MD4hjD42jp2PwAF7pXcBV7pYkAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="elb env props"
+        title="elb env props"
+        src="/static/5b43ce69b9747ff54e9ceb6844a5e8b3/fcda8/elb-env-props.png"
+        srcset="/static/5b43ce69b9747ff54e9ceb6844a5e8b3/12f09/elb-env-props.png 148w,
+/static/5b43ce69b9747ff54e9ceb6844a5e8b3/e4a3f/elb-env-props.png 295w,
+/static/5b43ce69b9747ff54e9ceb6844a5e8b3/fcda8/elb-env-props.png 590w,
+/static/5b43ce69b9747ff54e9ceb6844a5e8b3/efc66/elb-env-props.png 885w,
+/static/5b43ce69b9747ff54e9ceb6844a5e8b3/c83ae/elb-env-props.png 1180w,
+/static/5b43ce69b9747ff54e9ceb6844a5e8b3/951a4/elb-env-props.png 1355w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>You will find the <strong>RDS_HOSTNAME</strong> value in the RDS section, select your RDS Database, and then find in the Connectivity &#x26; Security tab the endpoint value.</p>
+<p>Save these properties, and now we will need to create a new security group for our ELB Security Group to authorize the communication between MySQL and our ELB Instance.</p>
+<p>For that, let’s navigate to <code class="language-text">Services / Compute / EC2</code>, and then click on “Security Groups” on the left menu.</p>
+<p>Create a new security group, provide a name and attach it to your default VPC or the VPC you created (if you created a custom one).</p>
+<p>The next step is to provide an Inbound rule, that will allow the TCP 3306 from our Elastic Beanstalk app. Chose a type “MySQL / Aurora”, it will automatically provide the protocol TCP and port 3306, and then for the source select the EC2 Security Group associated to your ELB app (you can find it in the ELB Section / Configuration / EC2 security groups) :</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/314bfbf64aa0d9fff16354f58da8fe77/b4904/security-group.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 31.08108108108108%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABJ0AAASdAHeZh94AAAA9klEQVQY00VQ207FIBDs//+fD8YHozXaYy+UWynQds4sFCWZ7GZZmEs3zwt+xwk+7IgxYt9vsM851xmR2O8x3Ts7tm1DYI2pztJdO2MtVmNxXhe891i0wao1FKt84JyDdh6KMCRy+YThnjGmiJB3gi2E8mknTIKLw+M4/pAFVCX9eZ6YtcPPY4QlwYX/I3cC2RV04zRhGB5UZQpLQyB7tRZK/XpMeHl9w2ffFwcN3m9lv+yyduuqq2WyiGXFXpsaQ0yZ1mwhm6jw/aPHyLwlhkUpqvV0UBWGZllkyqBZTrd0CbvZkHtlPfrvAZaZy26xynrdaPE8AVHP0f4GvXOPAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="sgs"
+        title="sgs"
+        src="/static/314bfbf64aa0d9fff16354f58da8fe77/fcda8/security-group.png"
+        srcset="/static/314bfbf64aa0d9fff16354f58da8fe77/12f09/security-group.png 148w,
+/static/314bfbf64aa0d9fff16354f58da8fe77/e4a3f/security-group.png 295w,
+/static/314bfbf64aa0d9fff16354f58da8fe77/fcda8/security-group.png 590w,
+/static/314bfbf64aa0d9fff16354f58da8fe77/efc66/security-group.png 885w,
+/static/314bfbf64aa0d9fff16354f58da8fe77/c83ae/security-group.png 1180w,
+/static/314bfbf64aa0d9fff16354f58da8fe77/b4904/security-group.png 1768w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Finally, let’s go to your RDS Database, click on <strong>Modify</strong> :</p>
+<p>Leave all as is, but in the “Connectivity” part, remove the default security group and add the new one created previously :</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/27f0aac908a2f4bb98e276b007649fa3/91b29/rds-sg-update.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 54.05405405405405%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABJ0AAASdAHeZh94AAABMUlEQVQoz5VTB5KEIBD0/7+8ULcGFFiQIGjfDKeU6+WpagEdelLbKK3RdT3ebjdIKRFihPcePoS/g/y1vmOeZzTGGAzDQKQdmDznjGVZ/g0pFZxzaPihlKpkjHVdv8e2lTUTNtpv+5kt0d2GUx6EgBgn9JSpVLpcyvulgj1QAZ0jZRRCLCTkWo2/lwxHImOwUyk5JaQT1nWr2Rz4IHs8V0IxTQUTla6NxUzvGJaazEgp1zJ55YA8vDNpJTQ+4nXUeBEKT/2I50FimgPOVvq0Yzv18EtC66mHykBog15q3CmAW/KnEq/lHWTntRB679CTZNpbC2vt4VkH8DicveQlnYZyyfAQMvcs0t45XwbxU4aHhK7GQUnYliQzkmQEyWdES3+NsXNpfIxLkciv2P0CSfAdeqVddmnV1kYAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="rds sg update"
+        title="rds sg update"
+        src="/static/27f0aac908a2f4bb98e276b007649fa3/fcda8/rds-sg-update.png"
+        srcset="/static/27f0aac908a2f4bb98e276b007649fa3/12f09/rds-sg-update.png 148w,
+/static/27f0aac908a2f4bb98e276b007649fa3/e4a3f/rds-sg-update.png 295w,
+/static/27f0aac908a2f4bb98e276b007649fa3/fcda8/rds-sg-update.png 590w,
+/static/27f0aac908a2f4bb98e276b007649fa3/efc66/rds-sg-update.png 885w,
+/static/27f0aac908a2f4bb98e276b007649fa3/91b29/rds-sg-update.png 983w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Click on Continue, and do not forget before modifying your DB instance to select <code class="language-text">Apply immediately</code> option. Then click on Modify DB instance.</p>
+<p>Ok, guys, we are done with the AWS configuration part, so the latest step is to test our API :)</p>
+<p>Let’s go back to your ELB App, and copy your environment URL. For me, it will be: <code class="language-text">http://my-super-api.eu-west-3.elasticbeanstalk.com</code>.</p>
+<p>Let’s do the same thing we did in local, by opening first the “init DB endpoint”: </p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">http://my-super-api.eu-west-3.elasticbeanstalk.com/api/init-db
+
+# and then check the songs endpoint :
+http://my-super-api.eu-west-3.elasticbeanstalk.com/api/songs</code></pre></div>
+<p>Finally, we can see our data:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/7f6162128c4bf5e44ad3153a96cbf1a5/4597d/db_aws_query.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 120.94594594594594%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAYCAYAAAD6S912AAAACXBIWXMAABJ0AAASdAHeZh94AAACt0lEQVQ4y41Ua5OiMBDk//+9+3K1e6WCgoAYIOQBAdI7E8TH7qqXsiWZTLoyPTOJpJRomgZCCLRti3Vd1/VLsD/j3sZnI/47nU44HA7BoaGNPM+RpgdkWYo92XkvTVNaZ2G+Yr/fBxt/kyRBVVVE2Cm0RCplB6U1rLVQSqHTBsr0GPo+2Hr6GmOgyWfFalv3+RvJdAORfELEH+iyLQajA2HbaUjj4NxAjkQ8DD8InXNXsnEcA6JpdLgNTz//sH5Y0lgPMpjwfs6IpmkK4fLiQkkk/oJHMvYtiiJovCaBE3mPiNl5zPN8Jbqfez//2HuFaE0Ia8TasU7LvEOnWMeB1n3QjPdZM46GfX5DJI8xujyGMwra2OsBJla0VnbRyZCdSS0lwLmbZt8RKdkgOyQQ54pqkApVnKmwa5zKkjRpYHSH/HgM+lhZw6SftwT+MkLIRzqQ5SVqadF0Fq3qIaRBzXM9QLSa7D2kJkgNM8xPEXF37LZbFGUF3U+wg4fpadN5uBkgH9B0mU8AucCS4RkiDoXbiDuCx9AZNEmJrqZbnYGm8mjPDEDWlOVpxqsR8UPAfcpJCIQUltgUMI1GeQSOe48yA2GmLI7X+ryV1SOuN+TszlRzzg7UggJWc29SGJrCHbhD6ACW23nvn9+QCeM4vtbfRCXBYc2zv8umvxDdyJ6RRtxC/PTwDUPIlOEur9G1BlRRMMpfvvO1t1/ekAl3u92NkEql+JNAnSXSBDhsgM1fT1pOVLjTW9JAyCHfa6gLKmjFGs6LflQOvV10fEvIWV5DDhpO07c+8A86vk3KbyGLbUE1p3AugVZ41CeEmpSNxzS+znS4YSA0C2FPhNVHBi2oh1MgpzqM/3k0YqLs+/dZZsJVQ3Yaewd9akMdOuo3z603LO/if4W8asihh4f0xyvyqN27G34BKvRL/TsUJKoAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="db live query"
+        title="db live query"
+        src="/static/7f6162128c4bf5e44ad3153a96cbf1a5/fcda8/db_aws_query.png"
+        srcset="/static/7f6162128c4bf5e44ad3153a96cbf1a5/12f09/db_aws_query.png 148w,
+/static/7f6162128c4bf5e44ad3153a96cbf1a5/e4a3f/db_aws_query.png 295w,
+/static/7f6162128c4bf5e44ad3153a96cbf1a5/fcda8/db_aws_query.png 590w,
+/static/7f6162128c4bf5e44ad3153a96cbf1a5/4597d/db_aws_query.png 631w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Congrats guys, your API is now working on AWS :)</p>
+<p>Let’s summarize what you achieve during this tutorial :</p>
+<ul>
+<li>You created a REST API with SpringBoot Framework in Java 11</li>
+<li>You created and configured an RDS Instance with a MySQL Database in AWS</li>
+<li>You created an Elastic Beanstalk application</li>
+<li>You configured a Security Group to allow exchanges between your RDS Instance and the ELB App.</li>
+</ul>
+<p>I hope it was helpful for you, see you next time!</p></section><hr style="margin-bottom:1.75rem"/><footer><div style="display:flex;margin-bottom:4.375rem"><div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden;display:inline-block;width:50px;height:50px;margin-right:0.875rem;margin-bottom:0;min-width:50px;border-radius:100%"><img aria-hidden="true" src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAUDBAH/xAAWAQEBAQAAAAAAAAAAAAAAAAABAwL/2gAMAwEAAhADEAAAAbOGfANpObn0Sg36KS//xAAdEAADAAEFAQAAAAAAAAAAAAABAgMABBESISMy/9oACAEBAAEFAuWISTuM1HwtWkVoCKdrL0E3Kr//xAAZEQACAwEAAAAAAAAAAAAAAAAAAQISITH/2gAIAQMBAT8BxIsifBn/xAAYEQEBAAMAAAAAAAAAAAAAAAAAAQISIf/aAAgBAgEBPwHta1gj/8QAHBAAAgICAwAAAAAAAAAAAAAAAAECEBEhMUFx/9oACAEBAAY/ArUU+SSfVebMSMaP/8QAGxABAAMAAwEAAAAAAAAAAAAAAQARITFBUWH/2gAIAQEAAT8hPhjjmz15n2i0Vrd2peFSxdYJbHPIDXpSG3flvuVKIFLSf//aAAwDAQACAAMAAAAQQz9B/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAExEP/aAAgBAwEBPxCp4yKP/8QAGBEBAAMBAAAAAAAAAAAAAAAAAQAQMRH/2gAIAQIBAT8QBeFOmYn/xAAcEAEBAAMBAQEBAAAAAAAAAAABEQAhUTFhQdH/2gAIAQEAAT8Q7hlW31Xz8mW3h0KjmEDZfus3KfQATz7lDCLwzzHcbVD0SYFVZwm9/uIzzBqx/XP/2Q==" alt="Julien Sauvannet" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms;border-radius:50%"/><noscript><picture><source srcset="/static/5cedcb2b70ec9d23884c6868cc27b7c4/99438/profile-pic.jpg 1x,
+/static/5cedcb2b70ec9d23884c6868cc27b7c4/aba1d/profile-pic.jpg 1.5x,
+/static/5cedcb2b70ec9d23884c6868cc27b7c4/b315d/profile-pic.jpg 2x" /><img loading="lazy" width="50" height="50" srcset="/static/5cedcb2b70ec9d23884c6868cc27b7c4/99438/profile-pic.jpg 1x,
+/static/5cedcb2b70ec9d23884c6868cc27b7c4/aba1d/profile-pic.jpg 1.5x,
+/static/5cedcb2b70ec9d23884c6868cc27b7c4/b315d/profile-pic.jpg 2x" src="/static/5cedcb2b70ec9d23884c6868cc27b7c4/99438/profile-pic.jpg" alt="Julien Sauvannet" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div><p>Written by <strong>Julien Sauvannet</strong> <!-- -->a passionate full-stack developer.<!-- --> <br/>Senior Software Developer at <a href="https://www.arhs-group.com/entities/spikeseed/">ARHS Spikeseed</a>.</p></div></footer></article><nav><ul style="display:flex;flex-wrap:wrap;justify-content:space-between;list-style:none;padding:0"><li><a rel="prev" href="/serverless-app-with-secured-api/">← <!-- -->Secure your Serverless App in AWS (Using Cognito, Cloudfront, API Gateway and Lambda)</a></li><li></li></ul></nav></main><footer>© <!-- -->2021<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a><br/><small>Socials links: <a href="https://twitter.com/jstw">Twitter</a>, <a href="https://stackoverflow.com/users/8597732/jstw">StackOverflow</a>, <a href="https://www.linkedin.com/in/julien-sauvannet-8b5330b7/">Linkedin</a>.</small></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/deploy-spring-rest-api-with-rds-db-on-elb/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-cf85d7276881ef92fda8.js"],"app":["/app-d40e199bb4181adf59e7.js"],"component---src-pages-404-js":["/component---src-pages-404-js-23502f482a6ce5a729e6.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-f2dd2bfe653cc96aad04.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-cd165963c94fd51b86af.js"]};/*]]>*/</script><script src="/polyfill-cf85d7276881ef92fda8.js" nomodule=""></script><script src="/component---src-templates-blog-post-js-cd165963c94fd51b86af.js" async=""></script><script src="/fab8c9364b01cebfd3503fc18011994750f493ff-e32a823ce8effcd6d7ba.js" async=""></script><script src="/commons-835530cd8d0369cbd6b4.js" async=""></script><script src="/app-d40e199bb4181adf59e7.js" async=""></script><script src="/framework-38c1b66eb715199b2515.js" async=""></script><script src="/styles-fa79fef4936efa84b233.js" async=""></script><script src="/webpack-runtime-d0cee47abff92a6d3e11.js" async=""></script></body></html>
